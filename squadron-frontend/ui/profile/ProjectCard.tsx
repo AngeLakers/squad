@@ -1,11 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
+import styled from 'styled-components';
+import Card from '@mui/material/import React, {useEffect, useRef, useState} from 'react';
+import styled from 'styled-compimport React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ShareIcon from '@mui/icons-material/Share';
-import {Avatar, AvatarGroup, Grid} from "@mui/material";
+import {Avatar, AvatarGroup, Grid, IconButton} from "@mui/material";
+import StarIcon from '@mui/icons-material/Star';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
 const StyledCard = styled(Card)`
@@ -61,7 +66,7 @@ const ProjectName = styled(Typography)`
 
 const DescriptionRow = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   font-size: 12px; // 设置字体大小
 `;
 const CompanyDescription = styled(Typography)`
@@ -72,6 +77,7 @@ const CompanyDescription = styled(Typography)`
   display: -webkit-box;
   -webkit-line-clamp: ${props => (props.expanded ? 'none' : '3')};
   -webkit-box-orient: vertical;
+  transition: height 0.3s ease-out;
 `;
 
 const SeeMoreButton = styled(Button)`
@@ -107,7 +113,7 @@ const RoleTag = styled.div`
 `;
 const SquadmatesContainer = styled.div`
   display: flex;
-    flex-direction: column;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start
 `;
@@ -120,6 +126,10 @@ const OpenRolesTitleContainer = styled.div`
 const ProjectCard = ({projectName, projectDescription, projectLink, labels, openRoles, squadmates}) => {
     const [expanded, setExpanded] = useState(false);
     const [titleExpanded, setTitleExpanded] = useState(false);
+    const [showStar, setShowStar] = useState(true);
+    const [height, setHeight] = useState('auto');
+    const [showVisibilityOff, setShowVisibilityOff] = useState(true); //
+    const descriptionRef = useRef(null);
     const truncatedDescription = expanded ? projectDescription : projectDescription.substring(0, 50) + '...';
 
     const shouldShowSeeMore = projectDescription.length > 50;
@@ -127,11 +137,16 @@ const ProjectCard = ({projectName, projectDescription, projectLink, labels, open
     const handleSeeMoreClick = () => {
         setExpanded(!expanded);
     };
-    ;
+
     const handleTitleExpandClick = () => {
         setTitleExpanded(!titleExpanded);
     };
 
+    useEffect(() => {
+        if (descriptionRef.current) {
+            setHeight(`${descriptionRef.current.scrollHeight}px`);
+        }
+    }, [expanded]);
 
 
     return (
@@ -143,7 +158,20 @@ const ProjectCard = ({projectName, projectDescription, projectLink, labels, open
                     ))}
                 </div>
                 <div>
-                    <Button startIcon={<ShareIcon/>}/>
+
+                    <IconButton>
+                        <ShareIcon/>
+                    </IconButton>
+                    {showStar && (  // 条件渲染 Star 按钮
+                        <IconButton>
+                            <StarIcon/>
+                        </IconButton>
+                    )}
+                    {showVisibilityOff && (  // 条件渲染 VisibilityOff 按钮
+                        <IconButton>
+                            <VisibilityOffIcon/>
+                        </IconButton>
+                    )}
                     <StyledButton variant="contained" href={projectLink} target="_blank">
                         View
                     </StyledButton>
@@ -164,14 +192,12 @@ const ProjectCard = ({projectName, projectDescription, projectLink, labels, open
                     </Grid>
                 </AvatarGrid>
                 <DescriptionRow>
-                    <CompanyDescription variant="body2">
+                    <CompanyDescription ref={descriptionRef} style={{ height }}>
                         {truncatedDescription}
                     </CompanyDescription>
-                    {shouldShowSeeMore && (
-                        <SeeMoreButton onClick={handleSeeMoreClick}>
-                            {expanded ? 'See Less' : 'See More'}
-                        </SeeMoreButton>
-                    )}
+                    <SeeMoreButton onClick={handleSeeMoreClick}>
+                        {expanded ? 'See Less' : 'See More'}
+                    </SeeMoreButton>
                 </DescriptionRow>
 
                 <OpenRolesContainer>
@@ -213,22 +239,21 @@ const ProjectCard = ({projectName, projectDescription, projectLink, labels, open
                 </OpenRolesTitleContainer>
 
 
+                {/*<OpenRolesSection>*/}
+                {/*    <Typography variant="h6">Open Roles</Typography>*/}
+                {/*    {openRoles.map((role, index) => (*/}
+                {/*        <OpenRole key={index} variant="body2">*/}
+                {/*            {role}*/}
+                {/*        </OpenRole>*/}
+                {/*    ))}*/}
+                {/*</OpenRolesSection>*/}
 
-            {/*<OpenRolesSection>*/}
-            {/*    <Typography variant="h6">Open Roles</Typography>*/}
-            {/*    {openRoles.map((role, index) => (*/}
-            {/*        <OpenRole key={index} variant="body2">*/}
-            {/*            {role}*/}
-            {/*        </OpenRole>*/}
-            {/*    ))}*/}
-            {/*</OpenRolesSection>*/}
 
+            </CardContentStyled>
 
-        </CardContentStyled>
-
-</StyledCard>
-)
-    ;
+        </StyledCard>
+    )
+        ;
 };
 
 
