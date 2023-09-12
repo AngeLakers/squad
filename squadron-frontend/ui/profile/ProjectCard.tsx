@@ -1,8 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
-import Card from '@mui/material/import React, {useEffect, useRef, useState} from 'react';
-import styled from 'styled-compimport React, {useEffect, useRef, useState} from 'react';
-import styled from 'styled-components';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -11,6 +8,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import {Avatar, AvatarGroup, Grid, IconButton} from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 
 
 const StyledCard = styled(Card)`
