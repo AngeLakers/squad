@@ -2,27 +2,7 @@ import React, { useState } from 'react';
 import Button from '@mui/joy/Button';
 import styled from 'styled-components';
 import UploadVideoButton from '@/ui/upload-file-button';
-
-const Overlay = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const Popup = styled.div`
-    width: 50%;
-    height: 50%;
-    background-color: white;
-    display: flex;
-    position: relative;
-`;
+import PopupComponent from '@/ui/popup';
 
 const Sidebar = styled.div`
     width: 25%;
@@ -43,15 +23,6 @@ const OptionButton = styled.button<{ isSelected: boolean }>`
     cursor: pointer;
 `;
 
-const CloseButton = styled.button`
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    font-size: 20px;
-`;
 
 const ContentContainer = styled.div`
     flex: 3;
@@ -84,8 +55,7 @@ const VideoUpload: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const [selectedOption, setSelectedOption] = useState<string>('Upload video');
 
     return (
-        <Overlay>
-            <Popup>
+        <PopupComponent onClose={onClose}>
                 <Sidebar>
                     {['Upload video', 'Record video', 'Video URL'].map(option => (
                         <OptionButton 
@@ -110,9 +80,8 @@ const VideoUpload: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                         </UrlInputContainer>
                     )}
                 </ContentContainer>
-                <CloseButton onClick={onClose}>X</CloseButton>
-            </Popup>
-        </Overlay>
+                
+            </PopupComponent>
     );
 };
 
