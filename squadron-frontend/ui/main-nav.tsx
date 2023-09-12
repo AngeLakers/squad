@@ -15,7 +15,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import SquadCustom from "@/ui/squad_custom_popup";
+import SquadCustom from "@/ui/option-popup";
 import { useState } from "react";
 import { link } from "fs";
 import styled from "styled-components";
