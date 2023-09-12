@@ -2,31 +2,16 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import PopupComponent from "./popup";
 
 const BlackColor = "#000000";
 const LightPurple = "#D1C4E9";
 const DeepPurple = "#673AB7";
 
-const Modal = styled.div`
-  position: fixed;
-  top: 25%;
-  left: 25%;
-  width: 50%;
-  height: auto;
-  background-color: white;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+const ModalContent = styled.div`
+  width: 100%;
+  height: 100%;
   padding: 20px;
-`;
-
-const CloseButton = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
 `;
 
 const Title = styled.div`
@@ -124,8 +109,8 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   return (
-    <Modal>
-      <CloseButton onClick={closeModal}>×</CloseButton>
+    <PopupComponent onClose={closeModal}>
+    <ModalContent>
       <div>
         {" "}
         <Title>{title}</Title>
@@ -144,7 +129,8 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
           Next
         </NextButton>
       </Link>
-    </Modal>
+    </ModalContent>
+    </PopupComponent>
   );
 };
 
