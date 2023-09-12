@@ -8,20 +8,12 @@ export const metadata: Metadata = {
   description: "Squadron frontend",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>
-        <div className="h-screen flex flex-col">
-          <MainNav />
-          <Divider />
-          <div>{children}</div>
-        </div>
-      </body>
-    </html>
+    <div className="h-screen flex flex-col">
+      <MainNav />
+      <Divider />
+      <div>{children}</div>
+    </div>
   );
 }
