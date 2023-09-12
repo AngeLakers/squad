@@ -2,8 +2,8 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
-import SquadCustom from "@/ui/squad_custom_popup";
-import VideoUpload from '@/app/c4_proj_spec/video_upload';
+import SquadCustom from "@/ui/squad-custom-popup";
+import VideoUpload from '@/app/c4_proj_spec/video-upload';
 
 
 export default function C4Start() {
