@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const Overlay = styled.div`
@@ -14,12 +14,18 @@ const Overlay = styled.div`
     align-items: center;
 `;
 
-const Popup = styled.div`
+interface PopupPropsStyled {
+    finalHeight?: string;
+  }
+
+const Popup = styled.div<PopupPropsStyled>`
+    position: fixed;
+    top: 25%;
+    left: 25%;
     width: 50%;
-    height: 50%;
+    height: ${props => props.finalHeight || 'auto'};
     background-color: white;
     display: flex;
-    position: relative;
 `;
 
 const CloseButton = styled.button`
@@ -38,9 +44,24 @@ interface PopupProps {
 }
 
 const PopupComponent: React.FC<PopupProps> = ({ children, onClose }) => {
+    const popupRef = useRef<HTMLDivElement | null>(null);
+    const [finalHeight, setFinalHeight] = useState('auto');
+
+    useEffect(() => {
+        if (popupRef.current) {
+            const autoHeight = popupRef.current.clientHeight;
+            const fiftyPercentHeight = window.innerHeight * 0.5;
+            if (autoHeight < fiftyPercentHeight) {
+                setFinalHeight('50%');
+            } else {
+                setFinalHeight('auto');
+            }
+        }
+    }, []);
+
     return (
         <Overlay>
-            <Popup>
+            <Popup ref={popupRef} finalHeight={finalHeight}>
                 {children}
                 <CloseButton onClick={onClose}>×</CloseButton>
             </Popup>
