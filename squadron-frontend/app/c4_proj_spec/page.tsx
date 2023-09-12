@@ -5,12 +5,14 @@ import { useState } from 'react';
 import SquadCustom from "@/ui/option-popup";
 import VideoUpload from '@/app/c4_proj_spec/video-upload';
 import InviteAdmin from '@/ui/non-repeated/invite-admin';
+import AddRole from '@/ui/non-repeated/add-role';
 
 
 export default function C4Start() {
     const [isModalOpen, setModalOpen] = useState(false);
     const [videoUploadOpen, setVideoUploadOpen] = useState<boolean>(false);
     const [isAdminInvite, setAdminInviteOpen] = useState(false);
+    const [isRoleAdd, setAddRoleOpen] = useState(false);
     return (
       <div>
         <Button variant="outlined" onClick={() => setModalOpen(true)}>
@@ -18,6 +20,7 @@ export default function C4Start() {
         </Button>
         <Button variant="outlined" onClick={() => setVideoUploadOpen(true)}>Upload video</Button>
         <Button variant="outlined" onClick={() => setAdminInviteOpen(true)}>Add admins</Button>
+        <Button variant="outlined" onClick={() => setAddRoleOpen(true)}>Add role</Button>
         {isModalOpen && (
           <SquadCustom
             closeModal={() => {
@@ -34,6 +37,7 @@ export default function C4Start() {
         )}
         {videoUploadOpen && <VideoUpload onClose={() => setVideoUploadOpen(false)} />}
         {isAdminInvite && <InviteAdmin onClose={() => setAdminInviteOpen(false)} />}
+        {isRoleAdd && <AddRole onClose={() => setAddRoleOpen(false)} />}
 
       </div>
     );
