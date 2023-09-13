@@ -109,30 +109,30 @@ const paperStyle = {
   height: 150,
   marginBottom: 0,
   backgroundImage: 'url("/images/02.png")',
-  backgroundSize: 'cover', // 根据需要调整背景图片大小
+  backgroundSize: 'cover', 
   backgroundRepeat: 'no-repeat',
   // backgroundPosition: 'center',
-  border: '1px solid #e0e0e0', // 添加边框样式，如果需要的话
+  border: '1px solid #e0e0e0', 
 };
 const paperStyle2 = {
   width: 200,
   height: 150,
   marginTop: 20,
   backgroundImage: 'url("/images/03.png")',
-  backgroundSize: 'cover', // 根据需要调整背景图片大小
+  backgroundSize: 'cover', 
   backgroundRepeat: 'no-repeat',
   // backgroundPosition: 'center',
-  border: '1px solid #e0e0e0', // 添加边框样式，如果需要的话
+  border: '1px solid #e0e0e0', 
 };
 const paperStyle3 = {
   width: 200,
   height: 150,
   marginTop: 20,
   backgroundImage: 'url("/images/04.png")',
-  backgroundSize: 'cover', // 根据需要调整背景图片大小
+  backgroundSize: 'cover', 
   backgroundRepeat: 'no-repeat',
   // backgroundPosition: 'center',
-  border: '1px solid #e0e0e0', // 添加边框样式，如果需要的话
+  border: '1px solid #e0e0e0', 
 };
 export default function Home() {
   return (
