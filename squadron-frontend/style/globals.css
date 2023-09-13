@@ -166,8 +166,5 @@ position:absolute;
 display: flex;
 margin-left: 20px;
 } 
-.svg-container {
-  display: flex; 
-  gap: 10px;
-}
+
 
