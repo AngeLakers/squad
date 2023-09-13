@@ -15,6 +15,43 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import SquadCustom from "@/ui/option-popup";
+import { useState } from "react";
+import { link } from "fs";
+import styled from "styled-components";
+
+const StyledButton = styled(Button)`
+  color: black;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  flex-direction: row;
+  padding-top: 0.75rem;
+  padding-right: 2rem;
+  padding-bottom: 0.75rem;
+  padding-left: 2rem;
+`;
+
+const NavRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+`;
+
+const LogoContainer = styled.div`
+  padding-left: 1rem;
+  padding-right: 5rem;
+`;
+
+const LogoImage = styled.img`
+  width: auto;
+  height: 7rem;
+`;
+
+const NavButton = styled(StyledButton)`
+  padding: 0 5rem;
+`;
 
 export function MainNav() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -25,10 +62,11 @@ export function MainNav() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const [isModalOpen, setModalOpen] = useState(false);
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 flex flex-row py-3 px-8">
-      <div className=" flex flex-row flex-1">
+    <Nav>
+      <NavRow>
         <div className="pl-1 pr-5">
           <Link href="/application">
             <img
@@ -38,15 +76,13 @@ export function MainNav() {
             />
           </Link>
         </div>
-
         <div className="px-5">
-          <Button className="text-black" href="/sidebar" variant="text">
+          <StyledButton href="/sidebar" variant="text">
             Home
-          </Button>
+          </StyledButton>
         </div>
         <div className="px-5">
-          <Button
-            className="text-black"
+          <StyledButton
             id="basic-button"
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
@@ -68,7 +104,7 @@ export function MainNav() {
                 stroke-linejoin="round"
               />
             </svg>
-          </Button>
+          </StyledButton>
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}
@@ -84,8 +120,7 @@ export function MainNav() {
           </Menu>
         </div>
         <div className="px-5">
-          <Button
-            className="text-black"
+          <StyledButton
             id="basic-button"
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
@@ -107,7 +142,7 @@ export function MainNav() {
                 stroke-linejoin="round"
               />
             </svg>
-          </Button>
+          </StyledButton>
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}
@@ -123,11 +158,11 @@ export function MainNav() {
           </Menu>
         </div>
         <div className="px-5">
-          <Button className="text-black" href="/sidebar" variant="text">
+          <StyledButton href="/sidebar" variant="text">
             Pricing
-          </Button>
+          </StyledButton>
         </div>
-      </div>
+      </NavRow>
       <div className="flex flex-row">
         <div className="px-3">
           <Button className="text-black" href="/sidebar" variant="text">
@@ -137,13 +172,22 @@ export function MainNav() {
         <div className="px-3">
           <Button
             className="bg-black text-white"
-            href="/sidebar"
             variant="text"
+            onClick={() => setModalOpen(true)}
           >
             Sign up
           </Button>
+          {isModalOpen && (
+            <SquadCustom
+              closeModal={() => setModalOpen(false)}
+              title={"Select your role"}
+              description={"test"}
+              options={["I'm a Talent", "I'm a Client"]}
+              link={"/signup"}
+            />
+          )}
         </div>
       </div>
-    </nav>
+    </Nav>
   );
 }
