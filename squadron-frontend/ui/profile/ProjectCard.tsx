@@ -65,11 +65,11 @@ const ProjectName = styled(Typography)`
 const DescriptionRow = styled.div`
   display: flex;
   align-items: flex-start;
-  font-size: 12px; // 设置字体大小
+  font-size: 12px;
 `;
 const CompanyDescription = styled(Typography)`
-  flex-grow: 1; // 允许元素占用多余的空间
-  margin-right: 2px; // 添加右边距
+  flex-grow: 1;
+  margin-right: 2px; 
   font-size: 12px;
   overflow: hidden;
   display: -webkit-box;
@@ -87,9 +87,9 @@ const SeeMoreButton = styled(Button)`
 const OpenRolesContainer = styled.div`
   margin-top: 24px;
   display: flex;
-  justify-content: space-between; // 一个靠左一个靠右
+  justify-content: space-between; 
   align-items: flex-start;
-  flex-wrap: wrap; // 允许多行
+  flex-wrap: wrap;
 `;
 const RoleTagsContainer = styled.div`
   display: flex;
@@ -160,12 +160,12 @@ const ProjectCard = ({projectName, projectDescription, projectLink, labels, open
                     <IconButton>
                         <ShareIcon/>
                     </IconButton>
-                    {showStar && (  // 条件渲染 Star 按钮
+                    {showStar && (
                         <IconButton>
                             <StarIcon/>
                         </IconButton>
                     )}
-                    {showVisibilityOff && (  // 条件渲染 VisibilityOff 按钮
+                    {showVisibilityOff && (
                         <IconButton>
                             <VisibilityOffIcon/>
                         </IconButton>
