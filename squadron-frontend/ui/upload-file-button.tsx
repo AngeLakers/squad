@@ -15,7 +15,11 @@ const VisuallyHiddenInput = muiStyled('input')`
     width: 1px;
 `;
 
-const UploadVideoButton: React.FC = () => {
+interface UploadVideoButtonProps {
+    label?: string;
+}
+
+const UploadVideoButton: React.FC<UploadVideoButtonProps> = ({ label }) => {
     return (
         <label htmlFor="contained-button-file">
             <input
@@ -49,7 +53,7 @@ const UploadVideoButton: React.FC = () => {
                     </SvgIcon>
                 }
             >
-                Upload a video
+                {label}
                 <VisuallyHiddenInput type="file" />
             </Button>
         </label>

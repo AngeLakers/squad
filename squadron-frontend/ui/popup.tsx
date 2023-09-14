@@ -26,6 +26,7 @@ const Popup = styled.div<PopupPropsStyled>`
     height: ${props => props.finalHeight || 'auto'};
     background-color: white;
     display: flex;
+    overflow-y: auto;
 `;
 
 const CloseButton = styled.button`
