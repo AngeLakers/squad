@@ -39,6 +39,7 @@ const Popup = styled.div<PopupPropsStyled>`
     height: ${props => props.finalHeight || 'auto'};
     background-color: white;
     display: flex;
+    max-height: calc(100vh - 100px);
     overflow-y: auto;
 `;
 

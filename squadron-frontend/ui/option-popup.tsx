@@ -54,7 +54,7 @@ const RadioButton = styled.div<RadioButtonProps>`
     border-radius: 10px;
     border: 1px solid ${(props) => (props.isSelected ? BlackColor : "lightgray")};
     cursor: pointer;
-    height: 80px;
+    height: 12vh;
 `;
 
 const Circle = styled.div`
@@ -96,6 +96,7 @@ interface SquadCustomProps {
     title: string;
     description: string;
     options: string[];
+    icons: React.ReactNode[];
     link: string;
 }
 
@@ -104,6 +105,7 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
     title,
     description,
     options,
+    icons,
     link,
 }) => {
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -120,6 +122,7 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
 
         <RadioButtonGroup
           options={options}
+          icons={icons}
           selectedOption={selectedOption}
           onChange={setSelectedOption}
         />
@@ -138,22 +141,25 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
       options: string[];
       selectedOption: string | null;
       onChange: (selected: string) => void;
+      icons: React.ReactNode[]; 
   }
 
   const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({
       options,
+      icons,
       selectedOption,
       onChange,
   }) => {
     return (
         <RadioButtonGroupDiv optionsLength={options.length}>
-            {options.map((option) => (
+            {options.map((option, index) => (
               <RadioButton
                 key={option}
                 isSelected={selectedOption === option}
                 onClick={() => onChange(option)}
               >
                 <Circle>{selectedOption === option && <div />}</Circle>
+                {icons[index]}
                 {option}
               </RadioButton>
             ))}
