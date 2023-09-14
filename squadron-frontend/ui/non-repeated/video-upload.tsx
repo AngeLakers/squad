@@ -66,7 +66,7 @@ const VideoUpload: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                     ))}
                 </Sidebar>
                 <ContentContainer>
-                    {selectedOption === 'Upload video' && <UploadVideoButton />}
+                    {selectedOption === 'Upload video' && <UploadVideoButton label="Upload a video"/>}
         
                     {selectedOption === 'Record video' && (
                         <Button variant="outlined" color="neutral">Record</Button>
