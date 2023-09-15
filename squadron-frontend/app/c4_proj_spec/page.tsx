@@ -8,6 +8,8 @@ import InviteAdmin from '@/ui/non-repeated-use/invite-admin';
 import AddRole from '@/ui/non-repeated-use/add-role';
 import EditProjPopup from '@/ui/non-repeated-use/editproj-popup';
 import ExitUncompletedPopup from '@/ui/non-repeated-use/exit-uncompleted-popup';
+import CostEstimator from '@/ui/non-repeated-use/cost-estimator';
+
 
 export default function C4Start() {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -128,6 +130,7 @@ export default function C4Start() {
         <Button variant="outlined" onClick={() => setAddRoleOpen(true)}>Add role</Button>
         <Button variant="outlined" onClick={() => setEditprojPopupOpen(true)}>Edit project</Button>
         <Button variant="outlined" onClick={() => setexitUncompletedPopupOpen(true)}>Exit Uncompleted Role</Button>
+        <CostEstimator></CostEstimator>
         {isModalOpen && (
           <SquadCustom
             closeModal={() => {
