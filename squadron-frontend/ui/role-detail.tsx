@@ -1,9 +1,8 @@
 "use client"
 import Link from 'next/link';
 import styled from 'styled-components';
-import TestData from './test-role-data';
-import { Badge } from './badge';
 import { Button } from '@mui/material';
+import { Chip } from '@mui/material';
 
 //all style in role-detail component
 
@@ -40,6 +39,7 @@ const RoleCardTalent = styled.div`
     position: relative;
     width: 100%;
     align-items: center;
+    margin: 2% 0;
 `
 const RoleCardTalentStatusBar = styled.div`
     align-items: flex-start;
@@ -168,111 +168,121 @@ const ButtonContainer = styled.div`
 
 `
 const BadgeContainer = styled.div`
+    align-items: flex-start;
+    align-self: stretch;
+    display: flex;
+    // flex: 0 0 auto;
+    gap: 16px;
+    position: relative;
 `
+interface RoleDetailProps {
+    status?: string[];
+    roleLogoUrl?: string;
+    positionName?: string;
+    description?: string;
+    startDate?: string;
+    hourlyRateMin?: number;
+    hourlyRateMax?: number;
+    expectedHoursPerWeek?: number;
+    location?: string;
+    skills?: string[];
+    tools?: string[];
+}
 
-type BadgeProps = {
-    text: string;
-    textColor?: string;
-    iconUrl?: string;
-    borderColor?: string;
-    borderThickness?: string;
-    backgroundColor?: string;
-};
+const RoleCard: React.FC<RoleDetailProps> = ({ status, roleLogoUrl, positionName, description, startDate, hourlyRateMin, hourlyRateMax, expectedHoursPerWeek, location, skills, tools }) => {
 
-// test data
-const skillBadgePropsList: BadgeProps[] = [{
-    text: "React1",
-    textColor: "red",
-    iconUrl: "/icon/roleLogo.svg"
-}, {
-    text: "React2",
-    textColor: "blue",
-    iconUrl: "/icon/roleLogo.svg"
-}, {
-    text: "React3",
-    textColor: "green",
-    iconUrl: "/icon/roleLogo.svg"
-}]
-
-export function RoleDetail() {
     return (
         <RoleCardTalent>
             <RoleCardTalentStatusBar>
-                <Badge text="Lead role" textColor="white" iconUrl='/icon/infoCircle.svg' backgroundColor='black' />
-                <Badge text="Open Role" textColor={success700}  backgroundColor={success50} borderColor={success50}/>
-                <Badge text="Accepting applications" textColor={success700}  backgroundColor={success50} borderColor={success50}/>
+                {
+                    status?.map((status, index) => (
+                        <div key={index}>
+                            <Chip key={index} label={status} variant="outlined" />
+                        </div>
+                    ))
+                }
             </RoleCardTalentStatusBar>
             <RoleCardTalentBody>
                 <RoleLogoTitle>
                     <RoleLogo>
-                        <img src="/icon/roleLogo.svg" alt="Role Icon" />
+                        <img src={roleLogoUrl} alt="Role Icon" />
                     </RoleLogo>
-                    <RoleTitle>Full stack</RoleTitle>
+                    <RoleTitle>
+                        {positionName}
+                    </RoleTitle>
                     <ButtonContainer>
-                    <Button variant="outlined" href=''>Refer</Button>
-                    <Button variant="contained" href="/application">
-                        Apply
-                    </Button>
+                        <Button variant="outlined" href=''>Refer</Button>
+                        <Button variant="contained" href="/application">
+                            Apply
+                        </Button>
                     </ButtonContainer>
                 </RoleLogoTitle>
                 <RolePositionDiscription>
-                    <div>role discription balabalabal abalabalab alab alabalaba labala balaba labalabala balabalab alabalabalab labalab alabal abalaba labalabal abalabalaba labalabala balabalab alabala balabalaba labala balabalabalabal sabalabalabalab alabalabalabalabalabalabala</div>
+                    {description}
                 </RolePositionDiscription>
                 <RoleRateHourLocationDate>
                     <IconAndCategory>
                         <IconInRateHourLocationDate >
                             <img src="/icon/coins.svg" alt="Coins Icon" />
                         </IconInRateHourLocationDate>
-                        <TextInRateHourLocationDate>Rate</TextInRateHourLocationDate>
+                        <TextInRateHourLocationDate>
+                            {hourlyRateMin}-{hourlyRateMax}/h
+                        </TextInRateHourLocationDate>
                     </IconAndCategory>
                     <IconAndCategory>
                         <IconInRateHourLocationDate >
                             <img src="/icon/clock.svg" alt="Coins Icon" />
                         </IconInRateHourLocationDate>
-                        <TextInRateHourLocationDate>Hour/week</TextInRateHourLocationDate>
+                        <TextInRateHourLocationDate>
+                            {expectedHoursPerWeek} h/week
+                        </TextInRateHourLocationDate>
                     </IconAndCategory>
                     <IconAndCategory>
                         <IconInRateHourLocationDate >
                             <img src="/icon/locationPin.svg" alt="Coins Icon" />
                         </IconInRateHourLocationDate>
-                        <TextInRateHourLocationDate>City, Country</TextInRateHourLocationDate>
+                        <TextInRateHourLocationDate>
+                            {location}
+                        </TextInRateHourLocationDate>
                     </IconAndCategory>
                     <IconAndCategory>
                         <IconInRateHourLocationDate >
                             <img src="/icon/calendar.svg" alt="Coins Icon" />
                         </IconInRateHourLocationDate>
-                        <TextInRateHourLocationDate>Date</TextInRateHourLocationDate>
+                        <TextInRateHourLocationDate>
+                            {startDate}
+                        </TextInRateHourLocationDate>
                     </IconAndCategory>
                 </RoleRateHourLocationDate>
                 <RequiredRecommendedSkillTool>
                     <SkillTitle>Required skills</SkillTitle>
                     <BadgeContainer>
-                    {
-                        skillBadgePropsList.map((badgeProps, index) => (
-                            <Badge key={index} {...badgeProps} />
-                        ))
-                    } 
+                        {
+                            skills?.map((skill, index) => (
+                                <Chip key={index} label={skill} variant="outlined" />
+                            ))
+                        }
                     </BadgeContainer>
-
                     <SkillTitle>Recommended skills</SkillTitle>
                     <BadgeContainer>
-                    {
-                        skillBadgePropsList.map((badgeProps, index) => (
-                            <Badge key={index} {...badgeProps} />
-                        ))
-                    } 
+                        {
+                            skills?.map((skill, index) => (
+                                <Chip key={index} label={skill} variant="outlined" />
+                            ))
+                        }
                     </BadgeContainer>
-
                     <SkillTitle>Tools</SkillTitle>
                     <BadgeContainer>
-                    {
-                        skillBadgePropsList.map((badgeProps, index) => (
-                            <Badge key={index} {...badgeProps} />
-                        ))
-                    } 
+                        {
+                            tools?.map((tool, index) => (
+                                <Chip key={index} label={tool} variant="outlined" />
+                            ))
+                        }
                     </BadgeContainer>
                 </RequiredRecommendedSkillTool>
             </RoleCardTalentBody>
         </RoleCardTalent>
     )
 };
+
+export default RoleCard;
