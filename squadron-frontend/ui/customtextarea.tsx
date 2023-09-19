@@ -13,17 +13,17 @@ interface CustomTextareaProps {
 const StyledTextarea = styled(TextareaAutosize)<CustomTextareaProps>`
     border: ${(props) => props.borderStyle || '1px solid #D2D6DB'};
     width: ${(props) => props.width || '100%'}; 
-    height: ${(props) => props.height || 'auto'}; 
+    height: ${(props) => props.height || 'auto'} ;
     padding: 12px 14px;
     border-radius: 8px;
     margin-bottom: 0px;
-    resize: none; // Disable resizing
+    resize: none; // Remove the resize handle on the bottom right
     box-sizing: border-box; // Make sure the padding and border are included in the width and height
 `;
 
 const TextareaContainer = styled.div<CustomTextareaProps>`
     width: ${(props) => props.width || '928px'};
-    height: ${(props) => props.height || '154px'};
+    
     margin-bottom: 8px;
 `;
 
@@ -43,9 +43,10 @@ const CustomTextarea: React.FC<CustomTextareaProps> = ({ borderStyle, width, hei
     //const MAX_CHAR_COUNT = 275;
   
     return (
-      <TextareaContainer width={width} height={height}>
+      <TextareaContainer width={width} >
         <StyledTextarea
           //borderStyle={borderStyle}
+          style={{height: height}}
           width={width}
           height={height}
           value={text}
