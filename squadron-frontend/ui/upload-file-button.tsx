@@ -1,3 +1,5 @@
+// You can define your label such as upload, upload a video, upload a file.
+
 import React from 'react';
 import Button from '@mui/joy/Button';
 import SvgIcon from '@mui/joy/SvgIcon';
@@ -15,7 +17,11 @@ const VisuallyHiddenInput = muiStyled('input')`
     width: 1px;
 `;
 
-const UploadVideoButton: React.FC = () => {
+interface UploadVideoButtonProps {
+    label?: string;
+}
+
+const UploadVideoButton: React.FC<UploadVideoButtonProps> = ({ label }) => {
     return (
         <label htmlFor="contained-button-file">
             <input
@@ -49,7 +55,7 @@ const UploadVideoButton: React.FC = () => {
                     </SvgIcon>
                 }
             >
-                Upload a video
+                {label}
                 <VisuallyHiddenInput type="file" />
             </Button>
         </label>
