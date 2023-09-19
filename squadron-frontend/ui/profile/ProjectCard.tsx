@@ -4,52 +4,115 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ShareIcon from '@mui/icons-material/Share';
-import {Avatar, AvatarGroup, Grid, IconButton} from "@mui/material";
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Avatar,
+    AvatarGroup,
+    Chip,
+    Collapse,
+    Grid,
+    IconButton
+} from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
-
 const StyledCard = styled(Card)`
-  width: 1008px;
-  height: 396px;
-  margin: 10px;
-  padding: 5px;
-  border: 1px solid #ccc;
+  width: 63rem; /* 1008px / 16 = 63rem */
+  margin: 0.625rem; /* 10px / 16 = 0.625rem */
+  padding: 0.375rem; /* 5px / 16 = 0.3125rem */
   box-sizing: border-box;
+
+  border-radius: 0.75rem; /* 12px / 16 = 0.75rem */
+  background-color: #fff;
+  border: 0.0625rem solid #e5e7eb; /* 1px / 16 = 0.0625rem */
+  color: #384250;
+  font-family: Inter;
+  min-width: 63rem;
+  max-width: 63rem;
+  overflow-y: auto;
+  max-height: 27rem;
+
 `;
+
 const CardContentStyled = styled(CardContent)`
-  padding: 24px;
+  padding: 1.5rem; /* 24px / 16 = 1.5rem */
+`;
+
+const StyledIconButton = styled(IconButton)`
+  position: relative;
+  border-radius: 0.5rem; /* 8px / 16 = 0.5rem */
+  background-color: #fff;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0.625rem; /* 10px / 16 = 0.625rem */
+  align-items: center;
+  justify-content: center;
 `;
 
 const StyledButton = styled(Button)`
-  background-color: #007bff;
-  color: white;
+  position: relative;
+  border-radius: 0.5rem; /* 8px / 16 = 0.5rem */
+  background-color: #fff;
+  box-shadow: 0px 0.0625rem 0.125rem rgba(16, 24, 40, 0.05); /* 1px / 16 = 0.0625rem, 2px / 16 = 0.125rem */
+  border: 0.0625rem solid #d2d6db; /* 1px / 16 = 0.0625rem */
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  padding: 0.625rem 1rem; /* 10px / 16 = 0.625rem, 16px / 16 = 1rem */
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  font-size: 0.875rem; /* 14px / 16 = 0.875rem */
+  color: #384250;
+  margin-left: 1.5rem; /* 24px / 16 = 1.5rem */
+  font-family: Inter;
+  font-weight: 600;
 
   &:hover {
     background-color: #0056b3;
   }
 `;
 
+
 const HeaderRow = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 1.5rem; /* 24px / 16 = 1.5rem */
+  border-bottom: 0.0625rem solid #f3f4f6; /* 1px / 16 = 0.0625rem */
+  position: relative;
+  box-sizing: border-box;
+  flex-direction: row;
   align-items: center;
-  padding: 24px;
-  border-bottom: 1px solid #ddd;
+  text-align: center;
+  font-size: 0.875rem; /* 14px / 16 = 0.875rem */
+  color: #384250;
+  font-family: Inter;
 `;
 
 const Label = styled.span`
   background-color: #f1f1f1;
-  padding: 5px 10px;
-  border-radius: 4px;
-  border-radius: 12px;
-  margin-right: 10px;
+  padding: 0.3125rem 0.625rem; /* 5px / 16 = 0.3125rem, 10px / 16 = 0.625rem */
+  border-radius: 0.75rem; /* 12px / 16 = 0.75rem */
+  margin-right: 0.625rem; /* 10px / 16 = 0.625rem */
+  font-size: 0.875rem; /* 14px / 16 = 0.875rem */
+  line-height: 1.25rem; /* 20px / 16 = 1.25rem */
+  font-weight: 500;
+  font-family: Inter;
+  color: #384250;
+  text-align: center;
 `;
 
 const AvatarGrid = styled(Grid)`
-  margin-top: 5px;
+  margin-top: 0.3125rem;
 `;
 
 const CompanyName = styled(Typography)`
@@ -65,31 +128,25 @@ const ProjectName = styled(Typography)`
 const DescriptionRow = styled.div`
   display: flex;
   align-items: flex-start;
-  font-size: 12px;
-`;
-const CompanyDescription = styled(Typography)`
-  flex-grow: 1;
-  margin-right: 2px; 
-  font-size: 12px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: ${props => (props.expanded ? 'none' : '3')};
-  -webkit-box-orient: vertical;
-  transition: height 0.3s ease-out;
+  font-size: 0.875rem; /* 14px / 16 = 0.875rem */
 `;
 
 const SeeMoreButton = styled(Button)`
-  margin-top: 5px;
-  font-size: 12px;
-  flex-shrink: 0; // 
+  margin-top: 0.3125rem; /* 5px / 16 = 0.3125rem */
+  font-size: 0.875rem; /* 14px / 16 = 0.875rem */
+  font-weight: 600;
+  color: #4b48ec;
+
 `;
 
 const OpenRolesContainer = styled.div`
   margin-top: 24px;
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
+
+
 `;
 const RoleTagsContainer = styled.div`
   display: flex;
@@ -98,36 +155,167 @@ const RoleTagsContainer = styled.div`
 `;
 
 const OpenRolesHeader = styled(Typography)`
-  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+
 `;
 
-const RoleTag = styled.div`
-  background-color: lightblue;
-  color: darkblue;
-  padding: 5px 10px;
-  margin: 5px;
-  border-radius: 12px;
-  font-size: 14px;
+
+const StyledChip = styled(Chip)`
+  margin: 0.3125rem !important; /* 5px / 16 = 0.3125rem */
+  border-radius: 0.25rem !important; /* 4px / 16 = 0.25rem */
+  font-size: 0.875rem !important; /* 14px / 16 = 0.875rem */
+  position: relative;
+  width: auto !important;
+  font-weight: bold;
+  background-color: #e0f2fe !important;
+  display: flex;
+  flex-direction: row;
+  padding: 0.25rem 0.75rem 0.25rem 0.625rem; /* 4px / 16 = 0.25rem, 12px / 16 = 0.75rem, 10px / 16 = 0.625rem */
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  //mix-blend-mode: multiply;
+  text-align: center;
+  color: #0056b3 !important;
+\`  ;
+
 `;
+
+
+const RoleTag: React.FC<RoleTagProps> = ({role}) => {
+    return (
+        <StyledChip
+            label={role}
+            avatar={<Avatar src="/public/profile-icon/user-03.svg"/>}
+            variant="filled"
+            color="primary"
+
+
+        />
+    );
+};
+
+
 const SquadmatesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start
-`;
-
-const OpenRolesTitleContainer = styled.div`
-  display: ${props => (props.expanded ? 'block' : 'none')};
+  justify-content: flex-start;
+  text-align: left;
+  align-items: flex-start;
 `;
 
 
-const ProjectCard = ({projectName, projectDescription, projectLink, labels, openRoles, squadmates}) => {
+const ExpandableText: React.FC<ExpandableSectionProps> = ({text}) => {
+    const [expanded, setExpanded] = useState(false);
+
+    const handleToggle = () => {
+        setExpanded(!expanded);
+    };
+
+    const truncatedText = expanded ? text : text.substring(0, 100) + '...';
+
+    return (
+
+        <ExpandableContainer>
+            <Typography variant="body1">
+                {truncatedText}
+            </Typography>
+            <SeeMoreButton onClick={handleToggle} variant="text">
+                {expanded ? 'See Less' : 'See More'}
+            </SeeMoreButton>
+        </ExpandableContainer>
+    );
+};
+
+const ExpandableContainer = styled('div')`
+  display: flex;
+  align-items: baseline;
+`;
+
+
+const StyledAccordion = styled(Accordion)`
+  box-shadow: none !important;
+  width: 100%;
+`;
+
+const StyledAccordionSummary = styled(AccordionSummary)`
+  &.Mui-expanded {
+    min-height: 3rem;
+  }
+
+  .MuiAccordionSummary-content {
+    margin: 0;
+
+    &.Mui-expanded {
+      margin: 0;
+    }
+  }
+`;
+
+const StyledExpandMoreIcon = styled(ExpandMoreIcon)`
+  margin-left: 0.5rem;
+`;
+
+const ExpandableSection = () => {
+    const [expanded, setExpanded] = useState(false);
+
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
+
+    return (
+        <StyledAccordion expanded={expanded}>
+            <StyledAccordionSummary onClick={handleExpandClick}>
+                <Typography variant="body2" display="inline">See more</Typography>
+                <StyledExpandMoreIcon/>
+            </StyledAccordionSummary>
+            <AccordionDetails>
+                <Typography variant="body2">
+                    This is the expanded Open Roles title section.
+                </Typography>
+            </AccordionDetails>
+        </StyledAccordion>
+    );
+};
+
+interface ExpandableSectionProps {
+    text: string;
+}
+
+interface Squadmate {
+    avatarUrl: string;
+}
+
+interface RoleTagProps {
+    role: string;
+}
+
+interface ProjectCardProps {
+    projectName: string;
+    projectDescription: string;
+    projectLink: string;
+    labels: string[];
+    openRoles: string[];
+    squadmates: Squadmate[];
+    status?: boolean;
+}
+
+
+const ProjectCard = ({
+                         projectName,
+                         projectDescription,
+                         projectLink,
+                         labels,
+                         openRoles,
+                         squadmates,
+                         status = true
+                     }: ProjectCardProps
+) => {
     const [expanded, setExpanded] = useState(false);
     const [titleExpanded, setTitleExpanded] = useState(false);
-    const [showStar, setShowStar] = useState(true);
-    const [height, setHeight] = useState('auto');
-    const [showVisibilityOff, setShowVisibilityOff] = useState(true); //
-    const descriptionRef = useRef(null);
+    const [showStar, setShowStar] = useState(status);
+    const [showVisibilityOff, setShowVisibilityOff] = useState(status);
     const truncatedDescription = expanded ? projectDescription : projectDescription.substring(0, 50) + '...';
 
     const shouldShowSeeMore = projectDescription.length > 50;
@@ -140,12 +328,6 @@ const ProjectCard = ({projectName, projectDescription, projectLink, labels, open
         setTitleExpanded(!titleExpanded);
     };
 
-    useEffect(() => {
-        if (descriptionRef.current) {
-            setHeight(`${descriptionRef.current.scrollHeight}px`);
-        }
-    }, [expanded]);
-
 
     return (
         <StyledCard>
@@ -155,22 +337,25 @@ const ProjectCard = ({projectName, projectDescription, projectLink, labels, open
                         <Label key={index}>{labels}</Label>
                     ))}
                 </div>
-                <div>
+                <div style={{display: 'flex', flexDirection: 'row'}}>
 
-                    <IconButton>
-                        <ShareIcon/>
-                    </IconButton>
+                    <StyledIconButton>
+                        <img src="/profile-icon/share.svg " alt="Share"/>
+
+                    </StyledIconButton>
                     {showStar && (
-                        <IconButton>
-                            <StarIcon/>
-                        </IconButton>
+                        <StyledIconButton>
+                            <img src="/profile-icon/star.svg " alt="Star"/>
+                        </StyledIconButton>
                     )}
                     {showVisibilityOff && (
-                        <IconButton>
-                            <VisibilityOffIcon/>
-                        </IconButton>
+                        <StyledIconButton>
+                            <img src="/profile-icon/eye.svg " alt="Visablity"/>
+                        </StyledIconButton>
                     )}
-                    <StyledButton variant="contained" href={projectLink} target="_blank">
+                    <StyledButton variant="contained"
+                                  href={projectLink}
+                                  target="_blank">
                         View
                     </StyledButton>
                 </div>
@@ -190,27 +375,25 @@ const ProjectCard = ({projectName, projectDescription, projectLink, labels, open
                     </Grid>
                 </AvatarGrid>
                 <DescriptionRow>
-                    <CompanyDescription ref={descriptionRef} style={{ height }}>
-                        {truncatedDescription}
-                    </CompanyDescription>
-                    <SeeMoreButton onClick={handleSeeMoreClick}>
-                        {expanded ? 'See Less' : 'See More'}
-                    </SeeMoreButton>
+                    <ExpandableText text={projectDescription}/>
                 </DescriptionRow>
 
                 <OpenRolesContainer>
-                    <div>
-                        <OpenRolesHeader variant="h6">
-                            Open Roles ({openRoles.length})
-                        </OpenRolesHeader>
-                        <RoleTagsContainer>
-                            {openRoles.map((role, index) => (
-                                <RoleTag key={index}>
-                                    {role}
-                                </RoleTag>
-                            ))}
-                        </RoleTagsContainer>
-                    </div>
+                    {status ? (
+                        <div className={"open_role"}>
+                            <OpenRolesHeader variant="h6">
+                                Open Roles ({openRoles.length})
+                            </OpenRolesHeader>
+                            <RoleTagsContainer>
+                                {openRoles.map((role, index) => (
+                                    <RoleTag key={index} role={role}>
+                                    </RoleTag>
+                                ))}
+                            </RoleTagsContainer>
+                        </div>
+                    ) : (
+                        <div className={"placeholder"}></div>
+                    )}
                     <div>
                         <SquadmatesContainer>
                             <OpenRolesHeader variant="h6">
@@ -226,25 +409,7 @@ const ProjectCard = ({projectName, projectDescription, projectLink, labels, open
                 </OpenRolesContainer>
 
 
-                <Button onClick={handleTitleExpandClick}>
-                    {titleExpanded ? 'See Less' : 'See More'}
-                </Button>
-
-                <OpenRolesTitleContainer expanded={titleExpanded}>
-                    <Typography variant="body2">
-                        This is the expanded Open Roles title section.
-                    </Typography>
-                </OpenRolesTitleContainer>
-
-
-                {/*<OpenRolesSection>*/}
-                {/*    <Typography variant="h6">Open Roles</Typography>*/}
-                {/*    {openRoles.map((role, index) => (*/}
-                {/*        <OpenRole key={index} variant="body2">*/}
-                {/*            {role}*/}
-                {/*        </OpenRole>*/}
-                {/*    ))}*/}
-                {/*</OpenRolesSection>*/}
+                <ExpandableSection/>
 
 
             </CardContentStyled>
