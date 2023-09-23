@@ -212,7 +212,7 @@ const RoleCard: React.FC<RoleDetailProps> = ({ status, roleLogoUrl, positionName
                     </RoleTitle>
                     <ButtonContainer>
                         <Button variant="outlined" href=''>Refer</Button>
-                        <Button variant="contained" href="/application">
+                        <Button variant="contained" href="/t5_proj_apply/application_apply">
                             Apply
                         </Button>
                     </ButtonContainer>
