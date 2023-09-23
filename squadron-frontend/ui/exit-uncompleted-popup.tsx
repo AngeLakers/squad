@@ -1,5 +1,5 @@
 import React from "react";
-import PopupComponent from "../popup";
+import PopupComponent from "./popup";
 import styled from "styled-components";
 import Button from '@mui/material/Button';
 
