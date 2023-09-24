@@ -4,6 +4,7 @@ import CustomButton from "./custom-button";
 import DropdownButton from "./dropdown-button";
 import { ArrowUpSVG, ArrowDownSVG, SquadSVG, VerticalDotsSVG } from "./svgs";
 import SquadPerson from "./squad-person";
+import CustomBadge from "./custom-badge";
 
 const Card = styled.div`
   display: flex;
@@ -22,7 +23,6 @@ const Divider = styled.div`
 `;
 
 const MatchContainer = styled.div`
-  width: 100%;
   padding: 16px 24px 16px 24px;
   gap: 16px;
 `;
@@ -114,7 +114,7 @@ const SquadCard: React.FC<CustomSquadCard> = ({}) => {
   return (
     <Card>
       <MatchContainer>
-        <div>100%match</div>
+        <CustomBadge preset="green" label="90% Great match" />
       </MatchContainer>
       <Divider />
       <SquadContainer>
