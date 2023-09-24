@@ -1,7 +1,9 @@
+"use client"
 import React from "react";
 import PopupComponent from "./popup";
 import styled from "styled-components";
 import Button from '@mui/material/Button';
+import { ReactNode } from 'react';
 
 const ContentContainer = styled.div`
     display: flex;
@@ -22,11 +24,11 @@ const Title = styled.h2`
 const Description = styled.p`
     margin: 2% 3%;
     text-align: center;
+    margin-bottom:8%;
 `;
 
 const Divider = styled.div`
     width: 100%;
-    margin: 5% 0;
     height: 1px;
     background-color: #e0e0e0;
 `;
@@ -35,7 +37,7 @@ const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-around;
     width: 100%;
-    margin-bottom: 5%;
+    margin-top: 8%;
 `;
 
 const Icon = styled.div`
@@ -44,22 +46,33 @@ const Icon = styled.div`
 
 interface EditProjProps {
     onClose: () => void;
+    title: string;
+    description: string;
+    cancelButtonText: string;
+    confirmButtonText: string;
+    showDivider?: boolean;
+    icon?: ReactNode;
 }
 
-const EditProjPopup: React.FC<EditProjProps> = ({ onClose }) => {
+const EditProjPopup: React.FC<EditProjProps> = ({ 
+    onClose,
+    title,
+    description,
+    cancelButtonText,
+    confirmButtonText,
+    showDivider = true,
+    icon
+}) => {
     return (
         <PopupComponent onClose={onClose}  width="25%" top="37.5%" left="37.5%" maxHeightPercent={0.3}>
             <ContentContainer>
-                <Icon><svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="4.5" y="4.5" width="48" height="48" rx="24" fill="#FEF0C7"/>
-                <path d="M28.5 24.5V28.5M28.5 32.5H28.51M38.5 28.5C38.5 34.0228 34.0228 38.5 28.5 38.5C22.9772 38.5 18.5 34.0228 18.5 28.5C18.5 22.9772 22.9772 18.5 28.5 18.5C34.0228 18.5 38.5 22.9772 38.5 28.5Z" stroke="#DC6803" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <rect x="4.5" y="4.5" width="48" height="48" rx="24" stroke="#FFFAEB" stroke-width="8"/></svg></Icon>
-                <Title>Edit project</Title>
-                <Description>We have already started collecting applicants…</Description>
-                <Divider />
+                <Icon>{icon}</Icon>
+                <Title>{title}</Title>
+                <Description>{description}</Description>
+                {showDivider &&<Divider />}
                 <ButtonContainer>
-                    <Button variant="outlined" onClick={onClose}>Cancel</Button>
-                    <Button variant="outlined">Confirm</Button>
+                    <Button variant="outlined" onClick={onClose}>{cancelButtonText}</Button>
+                    <Button variant="outlined">{confirmButtonText}</Button>
                 </ButtonContainer>
             </ContentContainer>
         </PopupComponent>

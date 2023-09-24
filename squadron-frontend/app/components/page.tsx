@@ -21,6 +21,7 @@ import mobilePhoneImage from '../../public/mobile-phone.png';
 import marketingImage from '../../public/marketing.png';
 import growthImage from '../../public/growth.png';
 import dataImage from '../../public/data.png';
+import editProjImage from '../../public/edit-proj.png';
 
 const StyledH1 = styled.h1`
   font-size: 2em; 
@@ -122,10 +123,22 @@ export default function AllComponents() {
             link={"/signup"}
           />
         )}
+
+        {editprojPopupOpen && (
+          <EditProjPopup 
+            onClose={() => setEditprojPopupOpen(false)} 
+            title="Edit Project" 
+            description="We have already started collecting applicants…" 
+            cancelButtonText="Cancel" 
+            confirmButtonText="Confirm"
+            icon={<Image src={editProjImage} alt="Edit Project Icon" width="57" height="57" />}
+            //showDivider={false}
+          />
+        )}
+        
         {videoUploadOpen && <VideoUpload onClose={() => setVideoUploadOpen(false)} />}
         {isAdminInvite && <InviteAdmin onClose={() => setAdminInviteOpen(false)} />}
         {isRoleAdd && <AddRole onClose={() => setAddRoleOpen(false)} />}
-        {editprojPopupOpen && <EditProjPopup onClose={() => setEditprojPopupOpen(false)} />}
         {exitUncompletedPopupOpen && <ExitUncompletedPopup onClose={() => setexitUncompletedPopupOpen(false)} />}
         {bookInterviewAPopupOpen && <BookInterviewA onClose={() => setbookInterviewAPopupOpen(false)} />}
       </div>
