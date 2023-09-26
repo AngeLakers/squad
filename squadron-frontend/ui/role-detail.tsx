@@ -1,30 +1,27 @@
 "use client"
-import Link from 'next/link';
 import styled from 'styled-components';
 import { Button } from '@mui/material';
 import { Chip } from '@mui/material';
-
-//all style in role-detail component
-
-const basewhite = '#ffffff';
-const borderColor = '#f5f5f5';
-const boxShadow = '0 1px 1px 1px #f5f5f5';
-const gray300 = '#d2d6db';
-const gray600 = '#475467';
-const gray700 = '#384250';
-const gray900 = '#111927';
-const success50 = '#ECFDF3'
-const success700 = '#027a48';
-const regularFontSize = '14px';
-const mediumFontSize = '16px';
-const largeFontSize = '20px';
-const regularFontWeight = '400';
-const mediumFontWeight = '500';
-const regularLineHeight = '20px';
-const mediumLineHeight = '24px';
-const largeLineHeight = '30px';
-const fontFamily = "Inter";
-
+import { Badge } from '@/ui/badge';
+import {
+    basewhite,
+    borderColor,
+    boxShadow,
+    gray500,
+    gray600,
+    gray700,
+    gray900,
+    success700,
+    regularFontSize,
+    mediumFontSize,
+    largeFontSize,
+    regularFontWeight,
+    mediumFontWeight,
+    regularLineHeight,
+    mediumLineHeight,
+    largeLineHeight,
+    fontFamily,
+} from "@/styles/reuseParams"
 
 
 const RoleCardTalent = styled.div`
@@ -186,10 +183,11 @@ interface RoleDetailProps {
     expectedHoursPerWeek?: number;
     location?: string;
     skills?: string[];
+    recommendedSkills?: string[];
     tools?: string[];
 }
 
-const RoleCard: React.FC<RoleDetailProps> = ({ status, roleLogoUrl, positionName, description, startDate, hourlyRateMin, hourlyRateMax, expectedHoursPerWeek, location, skills, tools }) => {
+const RoleCard: React.FC<RoleDetailProps> = ({ status, roleLogoUrl, positionName, description, startDate, hourlyRateMin, hourlyRateMax, expectedHoursPerWeek, location, skills, tools, recommendedSkills }) => {
 
     return (
         <RoleCardTalent>
@@ -197,7 +195,7 @@ const RoleCard: React.FC<RoleDetailProps> = ({ status, roleLogoUrl, positionName
                 {
                     status?.map((status, index) => (
                         <div key={index}>
-                            <Chip key={index} label={status} variant="outlined" />
+                            <Badge text={status} textColor={success700} borderColor={success700} />
                         </div>
                     ))
                 }
@@ -259,15 +257,24 @@ const RoleCard: React.FC<RoleDetailProps> = ({ status, roleLogoUrl, positionName
                     <BadgeContainer>
                         {
                             skills?.map((skill, index) => (
-                                <Chip key={index} label={skill} variant="outlined" />
+                                <Badge
+                                    text={skill}
+                                    textColor={success700}
+                                    borderColor={success700}
+                                />
                             ))
                         }
+
                     </BadgeContainer>
                     <SkillTitle>Recommended skills</SkillTitle>
                     <BadgeContainer>
                         {
-                            skills?.map((skill, index) => (
-                                <Chip key={index} label={skill} variant="outlined" />
+                            recommendedSkills?.map((skill, index) => (
+                                <Badge
+                                    text={skill}
+                                    textColor={gray500}
+                                    borderColor={gray500}
+                                />
                             ))
                         }
                     </BadgeContainer>
@@ -275,7 +282,12 @@ const RoleCard: React.FC<RoleDetailProps> = ({ status, roleLogoUrl, positionName
                     <BadgeContainer>
                         {
                             tools?.map((tool, index) => (
-                                <Chip key={index} label={tool} variant="outlined" />
+                                <Badge
+                                    text={tool}
+                                    textColor={gray500}
+                                    borderColor={gray500}
+                                    iconUrl='/icon/toolLogoSample.svg'
+                                />
                             ))
                         }
                     </BadgeContainer>
