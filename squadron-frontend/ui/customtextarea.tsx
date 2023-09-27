@@ -22,7 +22,7 @@ const StyledTextarea = styled(TextareaAutosize)<CustomTextareaProps>`
 `;
 
 const TextareaContainer = styled.div<CustomTextareaProps>`
-    width: ${(props) => props.width || '928px'};
+    width: ${(props) => props.width || '100%'};
     
     margin-bottom: 8px;
 `;
