@@ -10,6 +10,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import CloseButton from './close-button';
 
 const Overlay = styled.div`
     position: fixed;
@@ -43,6 +44,7 @@ const Popup = styled.div<PopupPropsStyled>`
     overflow-y: auto;
 `;
 
+/*
 const CloseButton = styled.button`
     position: absolute;
     right: 10px;
@@ -52,6 +54,7 @@ const CloseButton = styled.button`
     border: none;
     font-size: 20px;
 `;
+*/
 
 interface PopupProps {
     children: React.ReactNode;
