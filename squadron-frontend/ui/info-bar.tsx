@@ -2,17 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import CustomButton from "./custom-button";
 
-const BarContainer = styled.div<{ bgColor: string; borderColor: string }>`
+const BarContainer = styled.div<{
+  backgroundColor: string;
+  borderColor: string;
+}>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 10%;
   box-sizing: border-box;
   border: 1px solid ${(props) => props.borderColor};
   border-radius: 16px;
   padding: 15px 20px;
   gap: 16px;
-  background-color: ${(props) => props.bgColor};
+  background-color: ${(props) => props.backgroundColor};
 `;
 
 const InfoContainer = styled.div`
@@ -39,7 +41,7 @@ const BarHeader = styled.p`
   color: #111927;
 `;
 
-const BarSubHeader = styled.p`
+const BarSubHeader = styled.div`
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -48,20 +50,11 @@ const BarSubHeader = styled.p`
   color: #4d5761;
 `;
 
-const ReviewButton = styled.button<{ bgColor: string[] }>`
-  border-radius: 8px;
-  background-color: ${(props) => props.bgColor[0]};
-  padding: 10px 16px 10px 16px;
-  font-size: 0.9rem;
-  transition: background-color 0.3s ease;
-  &:hover {
-    background-color: ${(props) => props.bgColor[1]};
-  }
-  &:active {
-    transform: scale(0.99);
-  }
+const InfoIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
-
 interface CustomCollectingBar {
   backgroundColor?: string;
   buttonPreset?: "default" | "outlined";
@@ -73,12 +66,6 @@ interface CustomCollectingBar {
   link?: string;
 }
 
-const InfoIcon = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const InfoBar: React.FC<CustomCollectingBar> = ({
   backgroundColor = "#f8fbfc",
   borderColor = "#ebebed",
@@ -87,10 +74,9 @@ const InfoBar: React.FC<CustomCollectingBar> = ({
   buttonLabel,
   icon,
   buttonPreset = "default",
-  link,
 }) => {
   return (
-    <BarContainer bgColor={backgroundColor} borderColor={borderColor}>
+    <BarContainer backgroundColor={backgroundColor} borderColor={borderColor}>
       <InfoContainer>
         <InfoIcon>{icon}</InfoIcon>
         <TextContainer>

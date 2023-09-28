@@ -8,7 +8,6 @@ const SquadRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
 `;
 
 const PersonName = styled.div`
