@@ -24,6 +24,10 @@ import dataImage from '../../public/data.png';
 import editProjImage from '../../public/edit-proj.png';
 import ProjectProfile from '@/ui/project-profile';
 import RoleCard from '@/ui/role-detail';
+import {SimpleHeader} from '@/ui/simple-header';
+import CustomTextarea from '@/ui/customtextarea';
+import {Badge} from '@/ui/badge';
+import Skill from '@/ui/titled-badge';
 
 const StyledH1 = styled.h1`
   font-size: 2em; 
@@ -145,6 +149,41 @@ export default function AllComponents() {
           skills={["skill 1", "skill 2"]}
           tools={["tool 1", "tool 2", "tool 3"]} />
       </ComponentWrapper>
+      <ComponentWrapper filename="simple-header.tsx" createdBy="Wenzhuo Li" description="T5 - Header with the squadron icon">
+        <SimpleHeader></SimpleHeader>
+      </ComponentWrapper>
+      <ComponentWrapper filename="customtextarea.tsx" createdBy="Wenzhuo Li" description="T5 - The text area that can count the left characters. The max characters and textarea style can be adjusted">
+        <CustomTextarea borderStyle="1px solid #D2D6DB" width="600px" height="150px" maxCharCount={500} />
+      </ComponentWrapper>
+      <ComponentWrapper filename="badge.tsx" createdBy="Wenzhuo Li" description="T5 - badge that can change border styles and input-text">
+        <Badge text="React" textColor="#4d5761" iconUrl="/icon/send.svg" borderColor="black" borderThickness="1px" backgroundColor="white" />
+      </ComponentWrapper>
+      <ComponentWrapper filename="titled-badge.tsx" createdBy="Wenzhuo Li" description="T5 - This is a three-layer titled-badge">
+        <Skill
+          requiredSkills={{
+            title: "Required Skills",
+            badges: [
+              { text: "Product Analytics", iconUrl: "/icon/love.svg", borderColor: "#6C737F", borderThickness: "2px", textColor: "#4D5761" },
+              { text: "Roadmapping", borderColor: "#6C737F", borderThickness: "2px", textColor: "#4D5761" },
+              { text: "Product Analyticshuifhsuihfsiuhfui", borderColor: "#6C737F", borderThickness: "2px", textColor: "#4D5761" },
+            ]
+          }}
+          recommendedSkills={{
+            title: "Recommended Skills",
+            badges: [
+              { text: "Agile", borderColor: "#6C737F", borderThickness: "2px", textColor: "#4D5761" },
+            ]
+          }}
+          tools={{
+            title: "Tools",
+            badges: [
+              { text: "Agile", borderColor: "#6C737F", borderThickness: "2px", textColor: "#4D5761" },
+            ]
+          }}
+        />
+      </ComponentWrapper>
+
+
 
 
       {isModalOpen && (
