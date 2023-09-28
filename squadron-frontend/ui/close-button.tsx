@@ -12,12 +12,14 @@ const StyledCloseButton = styled.button`
 
 interface CloseButtonProps {
     onClick: () => void;
+    children?: React.ReactNode;
 }
 
-const CloseButton: React.FC<CloseButtonProps> = ({ onClick }) => {
+const CloseButton: React.FC<CloseButtonProps> = ({ onClick, children }) => {
     return (
         <StyledCloseButton onClick={onClick}>
             <img src={`/icon/x-close.svg`} alt="project" />
+           
         </StyledCloseButton>
     );
 };
