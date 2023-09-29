@@ -28,6 +28,7 @@ import {SimpleHeader} from '@/ui/simple-header';
 import CustomTextarea from '@/ui/customtextarea';
 import {Badge} from '@/ui/badge';
 import Skill from '@/ui/titled-badge';
+import AboutMe from '@/ui/about-me-popup';
 
 const StyledH1 = styled.h1`
   font-size: 2em; 
@@ -68,6 +69,7 @@ export default function AllComponents() {
   const [editprojPopupOpen, setEditprojPopupOpen] = useState(false);
   const [exitUncompletedPopupOpen, setexitUncompletedPopupOpen] = useState(false);
   const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
+  const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
   const icons = [
     <Image src={customizeImage} alt="Custom Icon" width="32" height="32" />,
     <Image src={worldWideWebImage} alt="Web Platform Icon" width="32" height="32" />,
@@ -152,8 +154,8 @@ export default function AllComponents() {
       <ComponentWrapper filename="simple-header.tsx" createdBy="Wenzhuo Li" description="T5 - Header with the squadron icon">
         <SimpleHeader></SimpleHeader>
       </ComponentWrapper>
-      <ComponentWrapper filename="customtextarea.tsx" createdBy="Wenzhuo Li" description="T5 - The text area that can count the left characters. The max characters and textarea style can be adjusted">
-        <CustomTextarea borderStyle="1px solid #D2D6DB" width="600px" height="150px" maxCharCount={500} />
+      <ComponentWrapper filename="customtextarea.tsx" createdBy="Wenzhuo Li" description="T5 - The text area that can count the left characters. The max characters and textarea style can be adjusted; the label and hint-text can choose to shown">
+        <CustomTextarea label="label" borderStyle="1px solid #D2D6DB" width="600px" height="150px" maxCharCount={500} />
       </ComponentWrapper>
       <ComponentWrapper filename="badge.tsx" createdBy="Wenzhuo Li" description="T5 - badge that can change border styles and input-text">
         <Badge text="React" textColor="#4d5761" iconUrl="/icon/send.svg" borderColor="black" borderThickness="1px" backgroundColor="white" />
@@ -182,6 +184,10 @@ export default function AllComponents() {
           }}
         />
       </ComponentWrapper>
+      <ComponentWrapper filename="about-me-popup.tsx" createdBy="Wenzhuo Li" description="T5 - About me">
+        <Button variant="outlined" onClick={() => setAboutMePopupOpen(true)}>About me</Button>
+      </ComponentWrapper>
+
 
 
 
@@ -219,6 +225,7 @@ export default function AllComponents() {
       {isRoleAdd && <AddRole onClose={() => setAddRoleOpen(false)} />}
       {exitUncompletedPopupOpen && <ExitUncompletedPopup onClose={() => setexitUncompletedPopupOpen(false)} />}
       {bookInterviewAPopupOpen && <BookInterviewA onClose={() => setbookInterviewAPopupOpen(false)} />}
+      {aboutMePopupOpen && <AboutMe onClose={() => setAboutMePopupOpen(false)} />}
     </div>
   );
 }

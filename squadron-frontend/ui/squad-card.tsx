@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import CustomButton from "./custom-button";
 import DropdownButton from "./dropdown-button";
-import { ArrowUpSVG, ArrowDownSVG, SquadSVG, VerticalDotsSVG } from "./svgs";
+import {
+  ArrowUpSVG,
+  ArrowDownSVG,
+  SquadSVG,
+  VerticalDotsSVG,
+  TickSVG,
+} from "./svgs";
 import SquadPerson from "./squad-person";
 import CustomBadge from "./custom-badge";
 
 const Card = styled.div`
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   background-color: #ffffff;
-  margin: 0 10%;
+  min-width: fit-content;
 `;
 
 const Divider = styled.div`
@@ -64,13 +69,11 @@ const ButtonContainer = styled.div`
 const SquadTable = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
 `;
 
 const TitleRow = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
 `;
 
 const TableTitle = styled.div`
@@ -114,7 +117,11 @@ const SquadCard: React.FC<CustomSquadCard> = ({}) => {
   return (
     <Card>
       <MatchContainer>
-        <CustomBadge preset="green" label="90% Great match" />
+        <CustomBadge
+          preset="green"
+          icon={<TickSVG />}
+          label="90% Great match"
+        />
       </MatchContainer>
       <Divider />
       <SquadContainer>
