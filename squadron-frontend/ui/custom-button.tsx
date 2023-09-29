@@ -44,7 +44,7 @@ const presets = {
     backgroundColor: "#4B48EC",
     hoverColor: "#8F8DF3",
     textColor: "#ffffff",
-    borderColor: "#4B48EC",
+    borderColor: "none",
   },
   outlined: {
     backgroundColor: "#ffffff",
@@ -56,7 +56,7 @@ const presets = {
     backgroundColor: "#111927",
     hoverColor: "#111927",
     textColor: "#FFFFFF",
-    borderColor: "#111927",
+    borderColor: "none",
     fontSize: "16px",
     lineHeight: "24px",
   },

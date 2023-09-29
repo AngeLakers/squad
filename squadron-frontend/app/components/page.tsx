@@ -39,7 +39,8 @@ import TalentInfo from "@/ui/talent-info-card";
 import TalentAnswers from "@/ui/talent-answers";
 import TalentNotes from "@/ui/talent-notes";
 import TalentDocuments from "@/ui/talent-documents";
-import TalentProfile from "@/ui/talent-profile-card";
+import TalentProfile, { ProfileDataType } from "@/ui/talent-profile-card";
+import SquadNav from "@/ui/squad-navigation";
 
 const mockProfileData: ProfileDataType = {
   rate: "$90/h",
@@ -384,6 +385,17 @@ export default function AllComponents() {
           icon={<AlertSVG />}
           link={""}
         ></InfoBar>
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="squad-navigation.tsx"
+        createdBy="Mark Sun"
+        description="C5 squad navigation bar"
+      >
+        <SquadNav
+          Top={true}
+          squadName="Suggested Squad #1"
+          talentInfo="Talent 1 of 5"
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="squad-card.tsx"
