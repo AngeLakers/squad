@@ -232,12 +232,17 @@ export default function AllComponents() {
         filename="custom-button.tsx"
         createdBy="Mark Sun"
         description="Button with different styles. You can use preset style or add your own style to the preset."
-        usage="<CustomButton label={'outlined'} preset='outlined'/>"
+        usage="<CustomButton label='custom padding' preset='outlined' padding='10px 30px'/>"
       >
-        <CustomButton label={"default"} />
+        <CustomButton label="default" />
         <CustomButton label={"outlined"} preset="outlined" />
         <CustomButton label={"balck"} preset="black" />
         <CustomButton label={"text"} preset="text" />
+        <CustomButton
+          label="custom padding"
+          preset="outlined"
+          padding="10px 30px"
+        />
       </ComponentWrapper>
       <StyledH1>C4</StyledH1>
       <ComponentWrapper
