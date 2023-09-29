@@ -85,7 +85,7 @@ const ProjectHub: React.FC = () => {
         {showProjectDetails && (
             <>
             <NewButtonContainer>
-            <CustomButton label="Share" backgroundColor='white' textColor='black' boarderColor="#D2D6DB"/>
+            <CustomButton label="Share" backgroundColor='white' textColor='black' borderColor="#D2D6DB"/>
             <CustomButton label="Edit Project" onClick={() => setEditprojPopupOpen(true)}/>
             {editprojPopupOpen && (
                 <EditProjPopup
@@ -94,7 +94,7 @@ const ProjectHub: React.FC = () => {
                     description="We have already started collecting applicants…"
                     cancelButtonText="Cancel"
                     confirmButtonText="Confirm"
-                    icon={<Image src={editProjImage} alt="Edit Project Icon" width="57" height="57" />}
+                    icon={<Image key="editProjImage" src={editProjImage} alt="Edit Project Icon" width="57" height="57" />}
                     button2Link={"/c4/proj_detail"}
                 />
             )}
@@ -148,13 +148,9 @@ const ProjectHub: React.FC = () => {
         )}
         {showSquad && (
         <>
-            <CollectingBar 
-            //...collectingBar props
-            />
+            <CollectingBar/>
             <SquadContainer>
-            <SquadSurveySwap 
-            //...squadSurveySwap props
-            />
+                <SquadSurveySwap />
             </SquadContainer>
         </>
         )}

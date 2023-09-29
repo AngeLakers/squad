@@ -96,7 +96,7 @@ interface SquadCustomProps {
     title: string;
     description: string;
     options: string[];
-    icons: React.ReactNode[];
+    icons?: React.ReactNode[];
     link: string;
 }
 
@@ -148,7 +148,7 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
       options: string[];
       selectedOption: string | null;
       onChange: (selected: string) => void;
-      icons: React.ReactNode[]; 
+      icons?: React.ReactNode[]; 
   }
 
   const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({
@@ -166,7 +166,7 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
                 onClick={() => onChange(option)}
               >
                 <Circle>{selectedOption === option && <div />}</Circle>
-                {icons[index]}
+                {icons && icons[index]}
                 {option}
               </RadioButton>
             ))}

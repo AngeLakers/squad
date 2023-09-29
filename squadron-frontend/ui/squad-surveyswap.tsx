@@ -102,7 +102,7 @@ export default function SquadSurveySwap() {
     <Container>
         <TitleRow>
             <LogoContainer>
-            <Image src={squadImage} alt="logo" width="56" height="56" />
+            <Image key="squadImage" src={squadImage} alt="logo" width="56" height="56" />
             </LogoContainer>
             <TextAndButtonContainer>
             <div>
