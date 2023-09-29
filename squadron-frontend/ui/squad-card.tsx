@@ -19,6 +19,7 @@ const Card = styled.div`
   border-radius: 12px;
   background-color: #ffffff;
   min-width: fit-content;
+  flex: 1;
 `;
 
 const Divider = styled.div`
