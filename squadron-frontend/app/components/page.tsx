@@ -41,6 +41,25 @@ import TalentNotes from "@/ui/talent-notes";
 import TalentDocuments from "@/ui/talent-documents";
 import TalentProfile from "@/ui/talent-profile-card";
 
+const mockProfileData: ProfileDataType = {
+  rate: "$90/h",
+  availability: "Immediately",
+  hoursToCommit: "40h / week",
+  location: "Sydney AU, GMT+11",
+  workingHours: "8:30 AM - 4:30 PM",
+  overlap: "7 hours",
+  experience: "5 years",
+  languages: {
+    English: "Native",
+    French: "Intermediate",
+  },
+  socialLinks: {
+    linkedin: "https://www.linkedin.com/in/your-profile/",
+    email: "mailto:your.email@example.com",
+    twitter: "https://twitter.com/your-profile",
+  },
+};
+
 const mockSkillsData: BadgeData[] = [
   { label: "Roadmapping", icon: <StarSVG />, preset: "outlined_green" },
   { label: "Vendor Management & Selection", preset: "outlined_grey" },
@@ -74,10 +93,14 @@ const mockSkillsData: BadgeData[] = [
 const mockToolsData: BadgeData[] = [
   {
     label: "Photoshop",
-    icon: <img src="/photoshop.png" />,
+    icon: <img alt="photoshop logo" src="/photoshop.png" />,
     preset: "outlined_grey",
   },
-  { label: "Figma", icon: <img src="/figma.png" />, preset: "outlined_grey" },
+  {
+    label: "Figma",
+    icon: <img alt="figma logo" src="/figma.png" />,
+    preset: "outlined_grey",
+  },
 ];
 
 const mockQAData = [
@@ -224,7 +247,7 @@ export default function AllComponents() {
         <CustomBadge
           label={"outlined_light_green badge with image icon"}
           preset={"outlined_light_green"}
-          icon={<img src="/figma.png" />}
+          icon={<img alt="figma logo" src="/figma.png" />}
           size="large"
         />
       </ComponentWrapper>
@@ -342,7 +365,7 @@ export default function AllComponents() {
         createdBy="Mark Sun"
         description="C5 - TalentProfile card"
       >
-        <TalentProfile />
+        <TalentProfile data={mockProfileData} />
       </ComponentWrapper>
       <ComponentWrapper
         filename="info-bar.tsx"
