@@ -64,6 +64,7 @@ const presets = {
 
 export interface CustomButtonProps {
   label: React.ReactNode;
+  onClick?: () => void; 
   preset?: "default" | "outlined" | "black" | "text";
   backgroundColor?: string;
   hoverColor?: string;

@@ -51,7 +51,7 @@ const CostEstimator: React.FC = () => {
   return (
     <BoxStyle>
       <HeaderContainerStyle>
-        <Image src={costImage} alt="Cost Icon" width="49" height="48" />
+        <Image key="costImage" src={costImage} alt="Cost Icon" width="49" height="48" />
         <TextContainer>
           <span>Cost Estimator</span>
           <span style={{ fontSize: 'smaller', color: 'grey' }}>description...</span>
