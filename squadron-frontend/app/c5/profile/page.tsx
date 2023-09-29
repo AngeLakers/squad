@@ -96,7 +96,7 @@ const TalentInfoWrapper = styled.div`
 export default function AllComponents() {
   return (
     <Profile>
-      <TalentProfile></TalentProfile>
+      <TalentProfile />
       <TalentInfo
         title={"Skills & Tools"}
         content={
