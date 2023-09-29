@@ -31,7 +31,7 @@ const HeaderContainerStyle = styled.div`
 const GreyBoxStyle = styled.div`
   width: 90%;
   padding: 2vh 2vw;
-  background-color: #E5E5E5;
+  background-color: #f3f4f6;
   display: flex;
   align-items: center;
   justify-content: left;

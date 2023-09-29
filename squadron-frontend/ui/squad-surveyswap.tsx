@@ -1,17 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import Avatar from '@mui/material/Avatar';
+import squadImage from '@/public/squad.png';
+import Image from 'next/image';
 
 const Container = styled.div`
-    border: 1px solid #ccc;
+    border: 1px solid #E5E7EB;
     padding: 1%;
-    width: 80%;
+    width: 100%;
+    border-radius:12px;
 `;
 
 const TitleRow = styled.div`
     display: flex;
-    justify-content: space-between;
-    margin:1% 1%;
+    justify-content: center;
+    padding: 24px;
 `;
 
 const SquadTitle = styled.span`
@@ -37,6 +40,7 @@ const AvatarGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: minmax(120px, auto);
+    margin:32px -24px;
 `;
 
 const RoleTitle = styled.div`
@@ -63,11 +67,24 @@ const AddButton = styled.button`
     background-color: white;
     color: grey;
     border: 1px solid grey;
+    margin-left:-24px;
 `;
 
 const ManageButton = styled.button`
     cursor: pointer;
     color: grey;
+`;
+
+const LogoContainer = styled.div`
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+`;
+const TextAndButtonContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
 `;
 
 export default function SquadSurveySwap() {
@@ -84,6 +101,10 @@ export default function SquadSurveySwap() {
   return (
     <Container>
         <TitleRow>
+            <LogoContainer>
+            <Image src={squadImage} alt="logo" width="56" height="56" />
+            </LogoContainer>
+            <TextAndButtonContainer>
             <div>
                 <SquadTitle>My Squad</SquadTitle>
                 <br />
@@ -93,6 +114,7 @@ export default function SquadSurveySwap() {
                 <AddButton>+ Add role</AddButton>
                 <ManageButton>Manage squad</ManageButton>
             </ButtonContainer>
+            </TextAndButtonContainer>
         </TitleRow>
 
       

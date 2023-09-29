@@ -54,7 +54,7 @@ const RadioButton = styled.div<RadioButtonProps>`
     border-radius: 10px;
     border: 1px solid ${(props) => (props.isSelected ? BlackColor : "lightgray")};
     cursor: pointer;
-    height: 12vh;
+    height: 112px;
 `;
 
 const Circle = styled.div`
@@ -128,7 +128,14 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
         />
         <Divider />
         <Link href={link}>
-          <NextButton active={!!selectedOption} onClick={() => closeModal()}>
+          <NextButton active={!!selectedOption} onClick={(e) => {
+              if (!selectedOption) {
+                e.preventDefault();
+              } else {
+                closeModal();
+              }
+            }}
+          >
             Next
           </NextButton>
         </Link>
