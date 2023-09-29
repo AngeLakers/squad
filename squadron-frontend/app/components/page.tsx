@@ -28,6 +28,7 @@ import { SimpleHeader } from "@/ui/simple-header";
 import CustomTextarea from "@/ui/customtextarea";
 import { Badge } from "@/ui/badge";
 import Skill from "@/ui/titled-badge";
+import AboutMe from "@/ui/about-me-popup";
 import CustomButton from "@/ui/custom-button";
 import CustomBadge from "@/ui/custom-badge";
 import { AlertSVG, StarSVG, TickSVG } from "@/ui/svgs";
@@ -161,6 +162,7 @@ export default function AllComponents() {
   const [exitUncompletedPopupOpen, setexitUncompletedPopupOpen] =
     useState(false);
   const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
+  const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
   const icons = [
     <Image src={customizeImage} alt="Custom Icon" width="32" height="32" />,
     <Image
@@ -494,9 +496,10 @@ export default function AllComponents() {
       <ComponentWrapper
         filename="customtextarea.tsx"
         createdBy="Wenzhuo Li"
-        description="T5 - The text area that can count the left characters. The max characters and textarea style can be adjusted"
+        description="T5 - The text area that can count the left characters. The max characters and textarea style can be adjusted; the label and hint-text can choose to shown"
       >
         <CustomTextarea
+          label="label"
           borderStyle="1px solid #D2D6DB"
           width="600px"
           height="150px"
@@ -571,6 +574,15 @@ export default function AllComponents() {
           }}
         />
       </ComponentWrapper>
+      <ComponentWrapper
+        filename="about-me-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T5 - About me"
+      >
+        <Button variant="outlined" onClick={() => setAboutMePopupOpen(true)}>
+          About me
+        </Button>
+      </ComponentWrapper>
 
       {isModalOpen && (
         <SquadCustom
@@ -627,6 +639,9 @@ export default function AllComponents() {
       )}
       {bookInterviewAPopupOpen && (
         <BookInterviewA onClose={() => setbookInterviewAPopupOpen(false)} />
+      )}
+      {aboutMePopupOpen && (
+        <AboutMe onClose={() => setAboutMePopupOpen(false)} />
       )}
     </div>
   );

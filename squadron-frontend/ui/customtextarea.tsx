@@ -4,11 +4,18 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import styled from 'styled-components';
 
 interface CustomTextareaProps {
+  label?: string;
+  showHintText?: boolean;
   borderStyle?: string;
   width?: string;
   height?: string;
   maxCharCount?: number;
 }
+
+const StyledLabel = styled.label`
+  display: block;
+  margin-bottom: 6px;
+`;
 
 const StyledTextarea = styled(TextareaAutosize)<CustomTextareaProps>`
     border: ${(props) => props.borderStyle || '1px solid #D2D6DB'};
@@ -38,15 +45,21 @@ const HintText = styled.p`
 `;
 
 
-const CustomTextarea: React.FC<CustomTextareaProps> = ({ borderStyle, width, height, maxCharCount = 275 }) => {
+const CustomTextarea: React.FC<CustomTextareaProps> = ({ 
+    label,
+    showHintText = true,
+    borderStyle, 
+    width, 
+    height, 
+    maxCharCount = 275 
+  }) => {
     const [text, setText] = useState("");
     //const MAX_CHAR_COUNT = 275;
   
     return (
-      <TextareaContainer width={width} >
+      <TextareaContainer width={width}>
+        {label && <StyledLabel>{label}</StyledLabel>}
         <StyledTextarea
-          //borderStyle={borderStyle}
-          style={{height: height}}
           width={width}
           height={height}
           value={text}
@@ -54,9 +67,11 @@ const CustomTextarea: React.FC<CustomTextareaProps> = ({ borderStyle, width, hei
           maxLength={maxCharCount}
           minRows={3}
         />
-        <HintText>
-          <span className="text-wrapper-6">{maxCharCount - text.length} characters left</span>
-        </HintText>
+        {showHintText && (
+          <HintText>
+            <span className="text-wrapper-6">{maxCharCount - text.length} characters left</span>
+          </HintText>
+        )}
       </TextareaContainer>
     );
   }
