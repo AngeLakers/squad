@@ -101,7 +101,7 @@ const Preview: React.FC = () => {
           skills={["skill 1", "skill 2"]}
           tools={["tool 1", "tool 2", "tool 3"]} />
 
-<Footer>
+    <Footer>
       <LeftButton>Cancel</LeftButton>
       <RightButtonGroup>
         <SaveButton>Save to drafts</SaveButton>
