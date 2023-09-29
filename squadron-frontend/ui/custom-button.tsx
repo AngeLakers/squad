@@ -81,6 +81,7 @@ type PresetTypes = "default" | "outlined" | "black" | "text" | "arrow";
 export interface CustomButtonProps {
   label: React.ReactNode;
   preset?: PresetTypes;
+  onClick?: () => void;
   backgroundColor?: string;
   hoverColor?: string;
   textColor?: string;

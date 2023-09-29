@@ -187,27 +187,30 @@ export default function AllComponents() {
   const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
   const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
   const icons = [
-    <Image src={customizeImage} alt="Custom Icon" width="32" height="32" />,
+    <Image key="customizeImage" src={customizeImage} alt="Custom Icon" width="32" height="32" />,
     <Image
+      key="worldWideWebImage"
       src={worldWideWebImage}
       alt="Web Platform Icon"
       width="32"
       height="32"
     />,
     <Image
+      key="mobilePhoneImage"
       src={mobilePhoneImage}
       alt="Mobile Phone Icon"
       width="32"
       height="32"
     />,
     <Image
+      key="marketingImage"
       src={marketingImage}
       alt="Marketing Website Icon"
       width="32"
       height="32"
     />,
-    <Image src={growthImage} alt="Growth Icon" width="32" height="32" />,
-    <Image src={dataImage} alt="Data Icon" width="32" height="32" />,
+    <Image key="growthImage" src={growthImage} alt="Growth Icon" width="32" height="32" />,
+    <Image key="dataImage" src={dataImage} alt="Data Icon" width="32" height="32" />,
   ];
 
   return (
@@ -643,6 +646,7 @@ export default function AllComponents() {
           confirmButtonText="Confirm"
           icon={
             <Image
+              key="editProjImage"
               src={editProjImage}
               alt="Edit Project Icon"
               width="57"
