@@ -161,6 +161,8 @@ type Props = {
     showButton1?: boolean;
     showButton2?: boolean;
     showNewDiv?: boolean;
+    button1Link?: string; 
+    button2Link?: string; 
 };
 
 const ApplicationSent: React.FC<Props> = ({
@@ -172,6 +174,8 @@ const ApplicationSent: React.FC<Props> = ({
     button2Text = "New Button2 Text",
     button1Style,
     button2Style,
+    button1Link,
+    button2Link,
     showButton1 = true,
     showButton2 = false,
     showNewDiv = false,
@@ -200,8 +204,8 @@ const ApplicationSent: React.FC<Props> = ({
                 </ShareLinkContainer>
             </NewDiv>
             <Frame7105>
-            {showButton1 && <Button1 style={button1Style}>{button1Text}</Button1>}
-            {showButton2 && <Button2 style={button2Style}>{button2Text}</Button2>}
+            {showButton1 && <a href={button1Link || "#"}><Button1 style={button1Style}>{button1Text}</Button1></a>}
+            {showButton2 && <a href={button2Link || "#"}><Button2 style={button2Style}>{button2Text}</Button2></a>}
             </Frame7105>
         </Container>
     </OuterContainer>

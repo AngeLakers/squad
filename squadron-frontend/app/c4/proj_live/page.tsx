@@ -15,6 +15,7 @@ const ProjectLive: React.FC = () => {
             button1Text="See project"
             showButton2={true}
             showNewDiv={true}
+            button1Link="/c4/proj_hub"
             button2Text="Home"
             button1Style={{
                 width: '384px',

@@ -4,9 +4,8 @@ import styled from "styled-components";
 const BarContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
     height: 12vh;
-    margin: 0 10%;
     box-sizing: border-box;
     border: 1px solid #ebebed;
     border-radius: 20px;

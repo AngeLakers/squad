@@ -28,7 +28,7 @@ const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-around;
     width: 100%;
-    margin-bottom: 4%;
+    padding-bottom: 6%;
     margin-top:4%;
 `;
 
