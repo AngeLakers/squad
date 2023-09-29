@@ -2,27 +2,36 @@ import React from "react";
 import styled from "styled-components";
 
 type CustomButtonStyledProps = {
-  backgroundColor: string;
+  backgroundColor?: string;
   hoverColor?: string;
-  textColor: string;
+  textColor?: string;
   borderColor?: string;
   fontSize?: string;
   lineHeight?: string;
   fontWeight?: string;
   gap?: string;
   padding?: string;
+  width?: string;
+  height?: string;
 };
 
 const CustomButtonStyled = styled.button<CustomButtonStyledProps>`
-  color: ${({ textColor }) => textColor};
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: ${({ width = "auto" }) => width};
+  height: ${({ height = "auto" }) => height};
+  color: ${({ textColor = "#000000" }) => textColor};
   border-radius: 8px;
   border: 1px solid ${({ borderColor = "#ffffff" }) => borderColor};
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ backgroundColor = "transparent" }) => backgroundColor};
   padding: ${({ padding = "10px 16px 10px 16px" }) => padding};
   font-weight: 600;
   font-size: ${({ fontSize = "14px" }) => fontSize};
   line-height: ${({ lineHeight = "20px" }) => lineHeight};
   transition: background-color 0.3s ease;
+  align-items: center;
   gap: ${({ gap = "8px" }) => gap};
   &:hover {
     background-color: ${({ hoverColor, backgroundColor }) =>
@@ -35,7 +44,7 @@ const presets = {
     backgroundColor: "#4B48EC",
     hoverColor: "#8F8DF3",
     textColor: "#ffffff",
-    borderColor: "#ffffff",
+    borderColor: "#4B48EC",
   },
   outlined: {
     backgroundColor: "#ffffff",
@@ -60,11 +69,18 @@ const presets = {
     fontWeight: "600",
     lineHeight: "24px",
   },
+  arrow: {
+    borderColor: "#6C737F",
+    backgroundColor: "#1F2A37",
+    width: "50px",
+    height: "50px",
+  },
 };
 
+type PresetTypes = "default" | "outlined" | "black" | "text" | "arrow";
 export interface CustomButtonProps {
   label: React.ReactNode;
-  preset?: "default" | "outlined" | "black" | "text";
+  preset?: PresetTypes;
   backgroundColor?: string;
   hoverColor?: string;
   textColor?: string;
@@ -74,6 +90,8 @@ export interface CustomButtonProps {
   fontWeight?: string;
   padding?: string;
   gap?: string;
+  width?: string;
+  height?: string;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
