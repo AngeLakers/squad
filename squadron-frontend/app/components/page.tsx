@@ -29,6 +29,8 @@ import CustomTextarea from '@/ui/customtextarea';
 import {Badge} from '@/ui/badge';
 import Skill from '@/ui/titled-badge';
 import AboutMe from '@/ui/about-me-popup';
+import CompleteProfilePopup from '@/ui/complete-profile-popup';
+import CompleteSkillsPopup from '@/ui/complete-profile-skills-popup';
 
 const StyledH1 = styled.h1`
   font-size: 2em; 
@@ -70,6 +72,9 @@ export default function AllComponents() {
   const [exitUncompletedPopupOpen, setexitUncompletedPopupOpen] = useState(false);
   const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
   const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
+  const [isCompleteProfilePopupOpen, setCompleteProfilePopupOpen] = useState(false);
+  const [isCompleteSkillsPopupOpen, setCompleteSkillsPopupOpen] = useState(false);
+
   const icons = [
     <Image src={customizeImage} alt="Custom Icon" width="32" height="32" />,
     <Image src={worldWideWebImage} alt="Web Platform Icon" width="32" height="32" />,
@@ -190,6 +195,12 @@ export default function AllComponents() {
 
 
 
+      <ComponentWrapper filename="complete-profile-popup.tsx" createdBy="Chelsea Guo" description="T5 - Complete Profile Popup">
+        <Button variant="outlined" onClick={() => setCompleteProfilePopupOpen(true)}>Complete Profile Popup</Button>
+      </ComponentWrapper>
+      <ComponentWrapper filename="complete-profile-aboutme-popup.tsx" createdBy="Chelsea Guo" description="T5 - Complete Profile Popup">
+        <Button variant="outlined" onClick={() => setCompleteSkillsPopupOpen(true)}>Complete Skills Popup</Button>
+      </ComponentWrapper>
 
 
       {isModalOpen && (
@@ -226,6 +237,8 @@ export default function AllComponents() {
       {exitUncompletedPopupOpen && <ExitUncompletedPopup onClose={() => setexitUncompletedPopupOpen(false)} />}
       {bookInterviewAPopupOpen && <BookInterviewA onClose={() => setbookInterviewAPopupOpen(false)} />}
       {aboutMePopupOpen && <AboutMe onClose={() => setAboutMePopupOpen(false)} />}
+      {isCompleteProfilePopupOpen && <CompleteProfilePopup onClose={() => setCompleteProfilePopupOpen(false)}/>}
+      {isCompleteSkillsPopupOpen && <CompleteSkillsPopup onClose={() => setCompleteSkillsPopupOpen(false)}/>}
     </div>
   );
 }
