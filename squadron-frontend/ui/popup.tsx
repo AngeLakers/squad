@@ -23,6 +23,7 @@ const Overlay = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    
 `;
 
 interface PopupPropsStyled {
@@ -42,6 +43,7 @@ const Popup = styled.div<PopupPropsStyled>`
     display: flex;
     max-height: calc(100vh - 100px);
     overflow-y: auto;
+    border-radius: 12px;
 `;
 
 /*
