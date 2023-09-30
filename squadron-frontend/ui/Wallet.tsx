@@ -31,8 +31,8 @@ export function Wallet() {
     return (
          <>
         <Wallet1>
-        <Paper variant="outlined" style={paperStyle4}/>
-        <Paper variant="outlined" style={paperStyle5}/>
+        <Paper4></Paper4>
+        <Paper5></Paper5>
         </Wallet1>
         </>
     )}
