@@ -39,7 +39,7 @@ export default function CreateProjectComponent() {
           options={["Custom", "Web Platform", "Mobile App",
             "Marketing Website", "Growth", "Data"]}
           icons={icons}
-          link={"/c4/proj_detail"}
+          link={(selectedOption) => selectedOption === "Custom" ? "/c4/proj_detail_custom" : "/c4/proj_detail_preset"}
         />
       )}
     </div>

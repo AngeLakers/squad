@@ -97,7 +97,7 @@ interface SquadCustomProps {
     description: string;
     options: string[];
     icons?: React.ReactNode[];
-    link: string;
+    link?: (selectedOption: string) => string;
 }
 
 const SquadCustom: React.FC<SquadCustomProps> = ({
@@ -127,7 +127,7 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
           onChange={setSelectedOption}
         />
         <Divider />
-        <Link href={link}>
+        <Link href={selectedOption && link ? link(selectedOption) : "#"}>
           <NextButton active={!!selectedOption} onClick={(e) => {
               if (!selectedOption) {
                 e.preventDefault();

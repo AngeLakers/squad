@@ -41,6 +41,7 @@ import TalentNotes from "@/ui/talent-notes";
 import TalentDocuments from "@/ui/talent-documents";
 import TalentProfile, { ProfileDataType } from "@/ui/talent-profile-card";
 import SquadNav from "@/ui/squad-navigation";
+import EmptyRoleCard from "@/ui/empty-role-card";
 
 const mockProfileData: ProfileDataType = {
   rate: "$90/h",
@@ -342,6 +343,13 @@ export default function AllComponents() {
         description="C4 - Collecting Bar"
       >
         <CollectingBar></CollectingBar>
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="empty-role-card.tsx"
+        createdBy="Becky Xu"
+        description="C4 - empty role card "
+      >
+      <EmptyRoleCard title="Product Manager"></EmptyRoleCard>
       </ComponentWrapper>
 
       <StyledH1>C5</StyledH1>
@@ -645,7 +653,6 @@ export default function AllComponents() {
             "Data",
           ]}
           icons={icons}
-          link={"/signup"}
         />
       )}
 
