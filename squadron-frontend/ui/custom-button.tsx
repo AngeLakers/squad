@@ -22,7 +22,7 @@ const CustomButtonStyled = styled.button<CustomButtonStyledProps>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  align-self: ${({ alignSelf = 'auto' }) => alignSelf};
+  ${props => props.alignSelf && `align-self: ${props.alignSelf};`}
   width: ${({ width = "auto" }) => width};
   height: ${({ height = "auto" }) => height};
   color: ${({ textColor = "#000000" }) => textColor};
@@ -30,7 +30,7 @@ const CustomButtonStyled = styled.button<CustomButtonStyledProps>`
   border: 1px solid ${({ borderColor = "#ffffff" }) => borderColor};
   background-color: ${({ backgroundColor = "transparent" }) => backgroundColor};
   padding: ${({ padding = "10px 16px 10px 16px" }) => padding};
-  margin: ${({ margin = "0" }) => margin};
+  ${props => props.margin !== undefined && `margin: ${props.margin};`}
   font-weight: 600;
   font-size: ${({ fontSize = "14px" }) => fontSize};
   line-height: ${({ lineHeight = "20px" }) => lineHeight};
