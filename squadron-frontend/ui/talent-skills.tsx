@@ -61,7 +61,7 @@ const TalentSkills: React.FC<TalentSkillsProps> = ({
               label={badge.label}
               icon={badge.icon}
               preset={badge.preset}
-            ></CustomBadge>
+            />
           ))}
         </Skillbadges>
       </SkillContainer>

@@ -1,84 +1,90 @@
 import React from "react";
 import styled from "styled-components";
 
-const CustomButtonStyled = styled.button<{
+type CustomButtonStyledProps = {
   backgroundColor: string;
-  activeColor?: string;
   hoverColor?: string;
   textColor: string;
-  boarderColor?: string;
-}>`
-  color: ${(props) => props.textColor};
-  border-radius: 8px;
-  border: 1px solid ${(props) => props.boarderColor || "#ffffff"};
-  background-color: ${(props) => props.backgroundColor};
-  padding: 10px 16px 10px 16px;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
-  transition: background-color 0.3s ease;
+  borderColor?: string;
+  fontSize?: string;
+  lineHeight?: string;
+  fontWeight?: string;
+  gap?: string;
+  padding?: string;
+};
 
+const CustomButtonStyled = styled.button<CustomButtonStyledProps>`
+  color: ${({ textColor }) => textColor};
+  border-radius: 8px;
+  border: 1px solid ${({ borderColor = "#ffffff" }) => borderColor};
+  background-color: ${({ backgroundColor }) => backgroundColor};
+  padding: ${({ padding = "10px 16px 10px 16px" }) => padding};
+  font-weight: 600;
+  font-size: ${({ fontSize = "14px" }) => fontSize};
+  line-height: ${({ lineHeight = "20px" }) => lineHeight};
+  transition: background-color 0.3s ease;
+  gap: ${({ gap = "8px" }) => gap};
   &:hover {
-    background-color: ${(props) => props.hoverColor || props.backgroundColor};
+    background-color: ${({ hoverColor, backgroundColor }) =>
+      hoverColor || backgroundColor};
   }
 `;
-
-export interface CustomButtonProps {
-  label: React.ReactNode;
-  preset?: "default" | "outlined";
-  backgroundColor?: string;
-  hoverColor?: string;
-  textColor?: string;
-  boarderColor?: string;
-  onClick?: () => void;
-}
 
 const presets = {
   default: {
     backgroundColor: "#4B48EC",
     hoverColor: "#8F8DF3",
     textColor: "#ffffff",
-    boarderColor: "#ffffff",
+    borderColor: "#ffffff",
   },
   outlined: {
     backgroundColor: "#ffffff",
     hoverColor: "#ffffff",
     textColor: "#384250",
-    boarderColor: "#d2d6db",
+    borderColor: "#d2d6db",
+  },
+  black: {
+    backgroundColor: "#111927",
+    hoverColor: "#111927",
+    textColor: "#FFFFFF",
+    borderColor: "#111927",
+    fontSize: "16px",
+    lineHeight: "24px",
+  },
+  text: {
+    backgroundColor: "transparent",
+    hoverColor: "transparent",
+    textColor: "#4D5761",
+    borderColor: "none",
+    fontSize: "16px",
+    fontWeight: "600",
+    lineHeight: "24px",
   },
 };
 
+export interface CustomButtonProps {
+  label: React.ReactNode;
+  preset?: "default" | "outlined" | "black" | "text";
+  backgroundColor?: string;
+  hoverColor?: string;
+  textColor?: string;
+  borderColor?: string;
+  fontSize?: string;
+  lineHeight?: string;
+  fontWeight?: string;
+  padding?: string;
+  gap?: string;
+}
+
 const CustomButton: React.FC<CustomButtonProps> = ({
   label,
-  preset,
-  backgroundColor,
-  hoverColor,
-  textColor,
-  boarderColor,
-  onClick,
+  preset = "default",
+  ...overriddenStyles
 }) => {
-  let styles = presets[preset || "default"];
+  const defaultStyles = presets[preset];
+  const styles = { ...defaultStyles, ...overriddenStyles };
 
-  if (backgroundColor || hoverColor || textColor || boarderColor) {
-    styles = {
-      backgroundColor: backgroundColor || "",
-      hoverColor: hoverColor || "",
-      textColor: textColor || "",
-      boarderColor: boarderColor || "",
-    };
-  }
-
-  return (
-    <CustomButtonStyled
-      backgroundColor={styles.backgroundColor}
-      hoverColor={styles.hoverColor}
-      textColor={styles.textColor}
-      boarderColor={styles.boarderColor}
-      onClick={onClick}
-    >
-      {label}
-    </CustomButtonStyled>
-  );
+  return <CustomButtonStyled {...styles}>{label}</CustomButtonStyled>;
 };
 
 export default CustomButton;

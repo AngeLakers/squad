@@ -54,21 +54,6 @@ const BadgeIcon = styled.div`
   overflow: hidden;
 `;
 
-export interface CustomButtonProps {
-  label: string;
-  icon?: React.ReactNode;
-  preset?:
-    | "green"
-    | "red"
-    | "outlined_grey"
-    | "outlined_green"
-    | "outlined_light_green";
-  backgroundColor?: string;
-  textColor?: string;
-  borderColor?: string;
-  size?: "small" | "large";
-}
-
 const presets = {
   green: {
     backgroundColor: "#ECFDF3",
@@ -97,40 +82,45 @@ const presets = {
   },
 };
 
+export interface CustomButtonProps {
+  label: string;
+  icon?: React.ReactNode;
+  preset?:
+    | "green"
+    | "red"
+    | "outlined_grey"
+    | "outlined_green"
+    | "outlined_light_green";
+  backgroundColor?: string;
+  textColor?: string;
+  borderColor?: string;
+  size?: "small" | "large";
+}
+
 const CustomBadge: React.FC<CustomButtonProps> = ({
   label,
-  icon,
+  icon = null,
   preset,
-  backgroundColor,
-  textColor,
-  borderColor,
-  size,
+  backgroundColor = "#ffffff",
+  textColor = "#000000",
+  borderColor = "transparent",
+  size = "small",
 }) => {
-  let finalBackgroundColor;
-  let finalTextColor;
-  let finalBorderColor;
-  let finalIcon = icon || null;
-  let finalSize = size || "small";
-
-  if (preset) {
-    finalBackgroundColor = presets[preset].backgroundColor;
-    finalTextColor = presets[preset].textColor;
-    finalBorderColor = presets[preset].borderColor;
-  } else {
-    finalBackgroundColor = backgroundColor || "#ffffff";
-    finalTextColor = textColor || "#000000";
-    finalBorderColor = borderColor || "transparent";
-  }
+  const finalBackgroundColor = preset
+    ? presets[preset].backgroundColor
+    : backgroundColor;
+  const finalTextColor = preset ? presets[preset].textColor : textColor;
+  const finalBorderColor = preset ? presets[preset].borderColor : borderColor;
 
   return (
     <Badge
       backgroundColor={finalBackgroundColor}
       textColor={finalTextColor}
       borderColor={finalBorderColor}
-      size={finalSize}
-      hasIcon={Boolean(finalIcon)}
+      size={size}
+      hasIcon={Boolean(icon)}
     >
-      {finalIcon && <BadgeIcon>{finalIcon}</BadgeIcon>}
+      {icon && <BadgeIcon>{icon}</BadgeIcon>}
       {label}
     </Badge>
   );
