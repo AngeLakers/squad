@@ -110,6 +110,45 @@ const FeaturedIcon = styled.div<FeaturedIconProps>`
     }
 `;
 
+//add a new div used in c4
+type HiddenDivProps = {
+    show: boolean;
+  };
+
+const NewDiv = styled.div<HiddenDivProps>`
+    display: ${({ show }) => (show ? 'flex' : 'none')};
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top:24px;
+    margin-bottom:32px;
+`;
+
+const ShareText = styled.p`
+    font-size: 16px;
+`;
+
+const ShareLinkContainer = styled.div`
+    width: 384px;
+    height: 40px;
+    display: flex;
+    border:1px solid #D2D6DB;
+    border-radius: 10px;
+`;
+
+const LinkDiv = styled.div`
+    flex-basis: 288px;
+    border-right: 1px solid #D2D6DB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6C737F;
+    `;
+
+const CopyButton = styled.button`
+    flex-basis: 96px;
+`;
+
 type Props = {
     featuredIconBgColor?: string;
     iconName?: string;
@@ -121,6 +160,9 @@ type Props = {
     button2Style?: React.CSSProperties;
     showButton1?: boolean;
     showButton2?: boolean;
+    showNewDiv?: boolean;
+    button1Link?: string; 
+    button2Link?: string; 
 };
 
 const ApplicationSent: React.FC<Props> = ({
@@ -132,9 +174,17 @@ const ApplicationSent: React.FC<Props> = ({
     button2Text = "New Button2 Text",
     button1Style,
     button2Style,
+    button1Link,
+    button2Link,
     showButton1 = true,
     showButton2 = false,
-}) => (
+    showNewDiv = false,
+}) => {
+    const handleCopy = () => {
+      navigator.clipboard.writeText('www.squadronexamplelink.com');
+    };
+  
+    return (
     <OuterContainer>
         <Container>
             <Top>
@@ -146,12 +196,20 @@ const ApplicationSent: React.FC<Props> = ({
                     <Subtitle>{subtitleText}</Subtitle>
                 </TitleSubtitle>
             </Top>
+            <NewDiv show={showNewDiv}>
+                <ShareText>Start Sharing it</ShareText>
+                 <ShareLinkContainer>
+                    <LinkDiv>www.squadronexamplelink.com</LinkDiv>
+                    <CopyButton onClick={handleCopy}>Copy</CopyButton>
+                </ShareLinkContainer>
+            </NewDiv>
             <Frame7105>
-            {showButton1 && <Button1 style={button1Style}>{button1Text}</Button1>}
-            {showButton2 && <Button2 style={button2Style}>{button2Text}</Button2>}
+            {showButton1 && <a href={button1Link || "#"}><Button1 style={button1Style}>{button1Text}</Button1></a>}
+            {showButton2 && <a href={button2Link || "#"}><Button2 style={button2Style}>{button2Text}</Button2></a>}
             </Frame7105>
         </Container>
     </OuterContainer>
 );
+};
 
 export default ApplicationSent;

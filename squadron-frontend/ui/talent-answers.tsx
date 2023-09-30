@@ -88,7 +88,7 @@ interface TalentAnswerProps {
 const TalentAnswer: React.FC<TalentAnswerProps> = ({ question, answer }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
-  const answerRef = useRef(null);
+  const answerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const element = answerRef.current;

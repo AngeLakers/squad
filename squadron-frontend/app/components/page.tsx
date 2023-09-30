@@ -39,7 +39,27 @@ import TalentInfo from "@/ui/talent-info-card";
 import TalentAnswers from "@/ui/talent-answers";
 import TalentNotes from "@/ui/talent-notes";
 import TalentDocuments from "@/ui/talent-documents";
-import TalentProfile from "@/ui/talent-profile-card";
+import TalentProfile, { ProfileDataType } from "@/ui/talent-profile-card";
+import SquadNav from "@/ui/squad-navigation";
+
+const mockProfileData: ProfileDataType = {
+  rate: "$90/h",
+  availability: "Immediately",
+  hoursToCommit: "40h / week",
+  location: "Sydney AU, GMT+11",
+  workingHours: "8:30 AM - 4:30 PM",
+  overlap: "7 hours",
+  experience: "5 years",
+  languages: {
+    English: "Native",
+    French: "Intermediate",
+  },
+  socialLinks: {
+    linkedin: "https://www.linkedin.com/in/your-profile/",
+    email: "mailto:your.email@example.com",
+    twitter: "https://twitter.com/your-profile",
+  },
+};
 import CompleteProfilePopup from "@/ui/complete-profile-popup";
 import CompleteSkillsPopup from "@/ui/complete-profile-skills-popup";
 
@@ -76,10 +96,14 @@ const mockSkillsData: BadgeData[] = [
 const mockToolsData: BadgeData[] = [
   {
     label: "Photoshop",
-    icon: <img src="/photoshop.png" />,
+    icon: <img alt="photoshop logo" src="/photoshop.png" />,
     preset: "outlined_grey",
   },
-  { label: "Figma", icon: <img src="/figma.png" />, preset: "outlined_grey" },
+  {
+    label: "Figma",
+    icon: <img alt="figma logo" src="/figma.png" />,
+    preset: "outlined_grey",
+  },
 ];
 
 const mockQAData = [
@@ -169,27 +193,30 @@ export default function AllComponents() {
   const [isCompleteSkillsPopupOpen, setCompleteSkillsPopupOpen] = useState(false);
 
   const icons = [
-    <Image src={customizeImage} alt="Custom Icon" width="32" height="32" />,
+    <Image key="customizeImage" src={customizeImage} alt="Custom Icon" width="32" height="32" />,
     <Image
+      key="worldWideWebImage"
       src={worldWideWebImage}
       alt="Web Platform Icon"
       width="32"
       height="32"
     />,
     <Image
+      key="mobilePhoneImage"
       src={mobilePhoneImage}
       alt="Mobile Phone Icon"
       width="32"
       height="32"
     />,
     <Image
+      key="marketingImage"
       src={marketingImage}
       alt="Marketing Website Icon"
       width="32"
       height="32"
     />,
-    <Image src={growthImage} alt="Growth Icon" width="32" height="32" />,
-    <Image src={dataImage} alt="Data Icon" width="32" height="32" />,
+    <Image key="growthImage" src={growthImage} alt="Growth Icon" width="32" height="32" />,
+    <Image key="dataImage" src={dataImage} alt="Data Icon" width="32" height="32" />,
   ];
 
   return (
@@ -229,7 +256,7 @@ export default function AllComponents() {
         <CustomBadge
           label={"outlined_light_green badge with image icon"}
           preset={"outlined_light_green"}
-          icon={<img src="/figma.png" />}
+          icon={<img alt="figma logo" src="/figma.png" />}
           size="large"
         />
       </ComponentWrapper>
@@ -347,7 +374,7 @@ export default function AllComponents() {
         createdBy="Mark Sun"
         description="C5 - TalentProfile card"
       >
-        <TalentProfile />
+        <TalentProfile data={mockProfileData} />
       </ComponentWrapper>
       <ComponentWrapper
         filename="info-bar.tsx"
@@ -363,6 +390,17 @@ export default function AllComponents() {
           icon={<AlertSVG />}
           link={""}
         ></InfoBar>
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="squad-navigation.tsx"
+        createdBy="Mark Sun"
+        description="C5 squad navigation bar"
+      >
+        <SquadNav
+          Top={true}
+          squadName="Suggested Squad #1"
+          talentInfo="Talent 1 of 5"
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="squad-card.tsx"
@@ -635,6 +673,7 @@ export default function AllComponents() {
           confirmButtonText="Confirm"
           icon={
             <Image
+              key="editProjImage"
               src={editProjImage}
               alt="Edit Project Icon"
               width="57"

@@ -54,7 +54,7 @@ const RadioButton = styled.div<RadioButtonProps>`
     border-radius: 10px;
     border: 1px solid ${(props) => (props.isSelected ? BlackColor : "lightgray")};
     cursor: pointer;
-    height: 12vh;
+    height: 112px;
 `;
 
 const Circle = styled.div`
@@ -96,7 +96,7 @@ interface SquadCustomProps {
     title: string;
     description: string;
     options: string[];
-    icons: React.ReactNode[];
+    icons?: React.ReactNode[];
     link: string;
 }
 
@@ -128,7 +128,14 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
         />
         <Divider />
         <Link href={link}>
-          <NextButton active={!!selectedOption} onClick={() => closeModal()}>
+          <NextButton active={!!selectedOption} onClick={(e) => {
+              if (!selectedOption) {
+                e.preventDefault();
+              } else {
+                closeModal();
+              }
+            }}
+          >
             Next
           </NextButton>
         </Link>
@@ -141,7 +148,7 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
       options: string[];
       selectedOption: string | null;
       onChange: (selected: string) => void;
-      icons: React.ReactNode[]; 
+      icons?: React.ReactNode[]; 
   }
 
   const RadioButtonGroup: React.FC<RadioButtonGroupProps> = ({
@@ -159,7 +166,7 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
                 onClick={() => onChange(option)}
               >
                 <Circle>{selectedOption === option && <div />}</Circle>
-                {icons[index]}
+                {icons && icons[index]}
                 {option}
               </RadioButton>
             ))}

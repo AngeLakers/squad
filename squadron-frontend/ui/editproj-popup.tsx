@@ -37,7 +37,8 @@ const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-around;
     width: 100%;
-    margin-top: 8%;
+    margin-top: 6%;
+    padding-bottom: 6%;
 `;
 
 const Icon = styled.div`
@@ -52,6 +53,7 @@ interface EditProjProps {
     confirmButtonText: string;
     showDivider?: boolean;
     icon?: ReactNode;
+    button2Link?: string; 
 }
 
 const EditProjPopup: React.FC<EditProjProps> = ({ 
@@ -60,6 +62,7 @@ const EditProjPopup: React.FC<EditProjProps> = ({
     description,
     cancelButtonText,
     confirmButtonText,
+    button2Link,
     showDivider = true,
     icon
 }) => {
@@ -72,7 +75,7 @@ const EditProjPopup: React.FC<EditProjProps> = ({
                 {showDivider &&<Divider />}
                 <ButtonContainer>
                     <Button variant="outlined" onClick={onClose}>{cancelButtonText}</Button>
-                    <Button variant="outlined">{confirmButtonText}</Button>
+                    <a href={button2Link || "#"}><Button variant="outlined">{confirmButtonText}</Button></a>
                 </ButtonContainer>
             </ContentContainer>
         </PopupComponent>
