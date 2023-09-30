@@ -40,6 +40,8 @@ import TalentAnswers from "@/ui/talent-answers";
 import TalentNotes from "@/ui/talent-notes";
 import TalentDocuments from "@/ui/talent-documents";
 import TalentProfile from "@/ui/talent-profile-card";
+import NotificationMessage, { NotificationProps } from "@/ui/notification-message";
+import NotificationBox from "@/ui/notification-message";
 
 const mockSkillsData: BadgeData[] = [
   { label: "Roadmapping", icon: <StarSVG />, preset: "outlined_green" },
@@ -110,6 +112,45 @@ const mockDocumentData = [
   { title: "name_of_the_archive5.pdf", size: "123333k" },
   { title: "name_of_the_archive6.pdf", size: "123k" },
 ];
+
+const notificationsData: NotificationProps[] = [
+  {
+    iconPath: "/icon/suitcase-failed.svg",
+    messageInfo: {
+      message: "Message 1",
+      websiteName: "Website Name 1",
+      organizationName: "Organization Name 1"
+    }
+  },
+  {
+    iconPath: "/icon/suitcase-failed.svg",
+    messageInfo: {
+      message: "Message 2",
+      websiteName: "Website Name 2",
+      organizationName: "Organization Name 2"
+    }
+  },
+
+  {
+    iconPath: "/icon/suitcase-failed.svg",
+    messageInfo: {
+      message: "Message 1",
+      websiteName: "Website Name 1",
+      organizationName: "Organization Name 1"
+    }
+  },
+  {
+    iconPath: "/icon/suitcase-failed.svg",
+    messageInfo: {
+      message: "Message 2",
+      websiteName: "Website Name 2",
+      organizationName: "Organization Name 2"
+    }
+  },
+
+];
+
+
 
 const StyledH1 = styled.h1`
   font-size: 2em;
@@ -591,6 +632,17 @@ export default function AllComponents() {
           About me
         </Button>
       </ComponentWrapper>
+        <ComponentWrapper
+        filename="notification-message.tsx"
+        createdBy="Ne Liu"
+        description="T5 - Talent receives invitation for a role with a squad- Notification message"
+        >
+
+            <div>
+              <NotificationBox notifications={notificationsData} />
+            </div>
+          </ComponentWrapper >
+
 
       {isModalOpen && (
         <SquadCustom
