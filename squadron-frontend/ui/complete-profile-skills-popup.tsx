@@ -3,8 +3,8 @@ import React from "react";
 import PopupComponent from "./popup";
 import styled from "styled-components";
 import { ReactNode } from 'react';
-import RightArrowIconButton from "./right-arrow-button";
 import CustomButton from "./custom-button";
+import CustomBadge from "./custom-badge";
 import {
     basewhite,
     borderColor,
@@ -29,7 +29,10 @@ import {
     regularLetterSpacing,
     warning600,
     titleFontWeight,
+    gray500,
 } from "@/styles/reuseParams";
+import { Label } from "@mui/icons-material";
+import { StarBorderSVG, StarSVG } from "./svgs";
 
 const ContentContainer = styled.div`
     display: flex;
@@ -38,7 +41,6 @@ const ContentContainer = styled.div`
     justify-content: center;
     width: 100%;
     border-radius: 12px;
-    border: 2px solid blue;
 `;
 const PopupHeader = styled.div`
     align-items: flex-start;
@@ -46,26 +48,43 @@ const PopupHeader = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 24px 24px 16px 24px;
+    padding: 24px 24px 20px 24px;
     gap: 4px;
-    border: 2px solid green;
 `
 const PopupBody = styled.div`
-    padding: 0px 24px 24px 24px;
+    padding: 24px 24px 0px 24px;
+    gap: 24px;
     overflow-y: auto;
     width: 100%;
-    max-height: 456px;     
-    border: 3px solid orange;
+    // max-height: 296px;     
 `
 const PopupFooter = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: right;
     justify-content: center;
     width: 100%;
-    padding: 32px, 0px, 0px, 0px;
+    padding: 32px 0px 0px 0px;
     gap: 12px;
-    border: 2px solid green;
+`
+const BodyContentContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+`
+const ItemContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: space-between;
+    width: 100%;
+`
+const ItemTitleContainer = styled.div`
+    display: flex;
+    flex-direction: column;
 `
 
 const Title = styled.div`
@@ -73,7 +92,6 @@ const Title = styled.div`
     font-size: ${titleFontSize};
     line-height: ${largeLineHeight};
     margin-top: 2%;
-    border: 2px solid red;
 `;
 const TitleDiscrption = styled.div`
     color: ${gray600};
@@ -81,62 +99,34 @@ const TitleDiscrption = styled.div`
     font-size: ${regularFontSize};
     line-height: ${regularLineHeight};
     margin-top: 2%;
-    border: 2px solid red;
 `
 const SecondTitle = styled.div`
+    color: ${gray700};
     font-weight: ${mediumFontWeight};
-    font-size: ${mediumFontSize};
-    line-height: ${mediumLineHeight};
-    margin-top: 2%;
-    border: 2px solid red;
-`
-const SecondTitleDiscrption = styled.div`
-    color: ${gray600};
-    font-weight: ${regularFontWeight};
     font-size: ${regularFontSize};
     line-height: ${regularLineHeight};
-    margin-top: 2%;
-    border: 2px solid red;
 `
 const SkillBadgeContainer = styled.div`
-    align-items: flex-start;
-    align-self: stretch;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
     position: relative;
-    height: 72px;
+    max-height: 80px;
     width: 100%;
-    border: 2px solid pink;
-`
-const ItemContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    border: 2px solid yellow;
+    border: 2px solid ${gray300};
+    border-radius: 8px;
+    padding: 12px 14px 12px 14px;
+    gap: 8px;
+    overflow-y: auto;
+
 `
 const ItemShortDescrip = styled.div`
     color: ${gray600};
     font-weight: ${regularFontWeight};
     font-size: ${regularFontSize};
     line-height: ${regularLineHeight};
-    border: 2px solid green;
 `
-const ArrowIconButtonContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    border: 2px solid violet;
-`
-
-const Description = styled.p`
-    margin: 2% 3%;
-    text-align: center;
-    margin-bottom:8%;
-    border: 2px solid red;
-`;
 
 const Divider = styled.div`
     width: 100%;
@@ -145,19 +135,12 @@ const Divider = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-    padding: 24px;
+    padding: 12px 24px 24px 24px;
+    gap: 12px;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     width: 100%;
-
-    border: 2px solid red;
 `;
-
-const openNewPopup = () => {
-    alert("open new popup");
-}
-
-
 interface CompleteSkillsPopupProps {
     onClose: () => void;
     showDivider?: boolean;
@@ -171,7 +154,7 @@ const CompleteSkillsPopup: React.FC<CompleteSkillsPopupProps> = ({
 }) => {
     return (
         <PopupComponent onClose={onClose}
-            width="27.8%"
+            width="752px"
             top="calc(50% - {finalHeight}/2)"
             left="calc(50% - {width}/2)"
             maxHeightPercent={0.3}
@@ -183,58 +166,126 @@ const CompleteSkillsPopup: React.FC<CompleteSkillsPopupProps> = ({
                 </PopupHeader>
                 {showDivider && <Divider />}
                 <PopupBody>
-                    {/* TODO: Need to confirm with the customer:
-                            1. Whether the item in this place is consistent with the project filled in T2.
-                            2. What's the exact content in "Intro about this
-                            3. How to calculate the percentage of completion
-                            4. Fill till 100% or all the items in the list" 
-                    */}
-                    <SecondTitle>My skills</SecondTitle>
-                    <SecondTitleDiscrption>balabalabal</SecondTitleDiscrption>
-                    <SkillBadgeContainer>
-                        <ItemContainer>bala</ItemContainer>
-                    </SkillBadgeContainer>
-                    {showDivider && <Divider />}
-                    <SkillBadgeContainer>
+                    <BodyContentContainer>
                         <ItemContainer>
-
-                            <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
+                            <ItemTitleContainer>
+                                <SecondTitle>Skills</SecondTitle>
+                                <ItemShortDescrip>balabalabal</ItemShortDescrip>
+                            </ItemTitleContainer>
+                            <SkillBadgeContainer>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarBorderSVG preset="grey" />}
+                                ></CustomBadge>
+                                
+                            </SkillBadgeContainer>
                         </ItemContainer>
-                        <ArrowIconButtonContainer>
-                            <RightArrowIconButton onClick={openNewPopup} />
-                        </ArrowIconButtonContainer>
-                    </SkillBadgeContainer>
-                    {showDivider && <Divider />}
-                    <SkillBadgeContainer>
+
                         <ItemContainer>
-
-                            <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
+                            <ItemTitleContainer>
+                                <SecondTitle>Superskill skills</SecondTitle>
+                                <ItemShortDescrip>select your 3 best skills clicking on the star</ItemShortDescrip>
+                            </ItemTitleContainer>
+                            <SkillBadgeContainer>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarSVG preset="grey" />}
+                                ></CustomBadge>
+                                <CustomBadge
+                                    label="Skill 1"
+                                    preset="outlined_grey"
+                                    icon={<StarSVG preset="grey" />}
+                                ></CustomBadge>
+                            </SkillBadgeContainer>
                         </ItemContainer>
-                        <ArrowIconButtonContainer>
-                            <RightArrowIconButton onClick={openNewPopup} />
-                        </ArrowIconButtonContainer>
-                    </SkillBadgeContainer>
-                    {showDivider && <Divider />}
-                    <SkillBadgeContainer>
-                        <ItemContainer>
-
-                            <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
-                        </ItemContainer>
-                        <ArrowIconButtonContainer>
-                            <RightArrowIconButton onClick={openNewPopup} />
-                        </ArrowIconButtonContainer>
-                    </SkillBadgeContainer>
-                    {showDivider && <Divider />}
-                    <SkillBadgeContainer>
-                        <ItemContainer>
-
-                            <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
-                        </ItemContainer>
-                        <ArrowIconButtonContainer>
-                            <RightArrowIconButton onClick={openNewPopup} />
-                        </ArrowIconButtonContainer>
-                    </SkillBadgeContainer>
-
+                    </BodyContentContainer>
                 </PopupBody>
                 <PopupFooter>
                     {showDivider && <Divider />}
@@ -242,18 +293,16 @@ const CompleteSkillsPopup: React.FC<CompleteSkillsPopupProps> = ({
                         <CustomButton
                             label="Cancel"
                             preset="outlined"
-                            onClick={onClose}
                             hoverColor={gray200}
                             textColor={gray700}
-                            boarderColor={gray300}
+                            borderColor={gray300}
                         ></CustomButton>
                         <CustomButton
                             label="Update"
                             preset="outlined"
-                            onClick={onClose}
                             backgroundColor={primary600}
                             textColor={basewhite}
-                            boarderColor={primary600}
+                            borderColor={primary600}
                         ></CustomButton>
                     </ButtonContainer>
                 </PopupFooter>
