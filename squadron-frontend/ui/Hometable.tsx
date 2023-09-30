@@ -17,6 +17,18 @@ margin-left: 150px;
 `;
 
 
+
+const StyledTableCell = styled(TableCell)`
+  color: var(--primary-700, #1B18E4);
+  font-family: 'Inter';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+`;
+
+
+
 const StyledAvatarGroup = styled(AvatarGroup)`
   & .MuiAvatar-root {
     width: 30px;
@@ -78,14 +90,10 @@ return(
                 </span>
              
                </TableCell>
-              <TableCell component="th" scope="row" sx={{  color: 'var(--primary-700, #1B18E4)',
-    fontFamily: 'Inter',
-    fontSize: '14px',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    lineHeight: '20px', }}>
+              <StyledTableCell>
                 {row.project}
-              </TableCell>
+                
+              </StyledTableCell>
               
               <TableCell  >
                 <Chip size="small" icon={<PermIdentityOutlinedIcon  style={{color: '#026AA2'}} />}label={row.role} style={{ backgroundColor: '#A0E7F8', color: '#026AA2' }}
