@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   display: flex;
-  flex-direction: column;  // 修改为 column 方向
+  flex-direction: column;  
   padding: 1rem 13rem;
   //background-color: #f2f2f2;
 `;
