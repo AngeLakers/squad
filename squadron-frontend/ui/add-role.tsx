@@ -7,6 +7,9 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Slider from '@mui/material/Slider';
+import ExitUncompletedPopup from "./exit-uncompleted-popup";
+import CustomButton from "./custom-button";
+import CustomTextarea from "./customtextarea";
 
 const Container = styled.div`
     display: flex;
@@ -21,25 +24,25 @@ const Container = styled.div`
 
 const TitleContainer = styled.div`
     width:100%;
-    padding: 3% 3%;
+    padding: 24px 24px 20px 24px;
     background-color:white;
     border: 1px solid white;
 `;
 
 const Title = styled.h1`
-    font-size: 1.5rem;
-    margin-bottom: 2%;
+    font-size: 18px;
+    margin-bottom: 4px;
 `;
 
 const Description = styled.p`
     color: grey;
-    font-size:0.9rem;
+    font-size: 14px;
 `;
 
 const ButtonContainer = styled.div`
     display: flex;
-    justify-content: space-between;
-    padding: 5%;
+    justify-content: flex-end;
+    padding: 24px;
     width: 100%;
 `;
 
@@ -47,70 +50,75 @@ const ScrollableContainer = styled.div`
     flex-grow: 1; 
     overflow-y: auto;
     width: 100%;
-    margin-top: 2%;
     height:40vh;
 `;
 
 const RoleDetailsContainer = styled.div`
     background-color: white;
-    margin: 2% 3%;  
-    padding: 3% 3%; 
+    margin: 16px;  
+    padding: 16px; 
     overflow-y: auto;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 8px;
 `;
 
 const RoleDetailsTitle = styled.h2`
-    font-size: 1.1rem;
-    color: grey;
+    font-size: 20px;
+    color: #111927;
     font-weight: normal; 
 `;
 
 const RoleTitleLabel = styled.label`
     display: block;
-    margin-top: 3%;
-    margin-bottom: 2%;
-    color: grey;
+    color: #384250;
     font-weight: normal; 
-    font-size:0.9rem;
+    font-size: 14px;
+    margin: 24px 0 8px 0;
+`;
+
+const TimeZoneLabel = styled.label`
+    display: block;
+    color: #384250;
+    font-weight: normal; 
+    font-size: 14px;
 `;
 
 const OverlapHoursLabel = styled.label`
-    color: grey;
+    color: #384250;
     font-weight: normal; 
-    font-size:0.9rem;
+    font-size:14px;
 `;
 
 const StyledDescription = styled.p`
-  color: grey;
-  font-weight: 300;
-  font-size: 0.8rem;
+    color: #384250;
+    font-weight: 300;
+    font-size: 14px;
 `;
 
 const LabelsContainer = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 1%;
+    margin: 16px 0 8px 0;
     align-items: center; 
 `;
 
 const StyledTextField = styled(TextField)`
   && .MuiInputLabel-root {
-    color: grey;
-    font-size: 0.8rem;
+    color: #6C737F;
+    font-size: 14px;
   }
 
   && .MuiInputBase-input {
-    color: grey;
-    font-size: 0.8rem;
+    color: #6C737F;
+    font-size: 14px;
   }
 `;
 
 const StyledFormControlLabel = styled(FormControlLabel)`
   && .MuiTypography-root {
-    color: grey;
-    font-size: 0.8rem;
+    color: #6C737F;
+    font-size: 14px;
   }
 `;
 
@@ -118,7 +126,7 @@ const TimeZoneAndOverlapContainer = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-bottom: 1%; 
+    margin-bottom: 16px; 
 `;
 
 const TimeZoneTextField = styled(StyledTextField)`
@@ -132,8 +140,8 @@ const OverlapTextField = styled(StyledTextField)`
 const Divider = styled.div`
     width: 100%;
     height: 1px;
-    background-color: grey;
-    margin-top:3%;
+    background-color: #D2D6DB;
+    margin:16px 0;
 `;  
 
 const marks = [
@@ -154,11 +162,15 @@ function hoursText(value: number) {
 
 interface AddRoleProps {
     onClose: () => void;
+    title?: string;
 }
 
-const AddRole: React.FC<AddRoleProps> = ({ onClose }) => {
+const AddRole: React.FC<AddRoleProps> = ({ onClose, title }) => {
+    const [isExitPopupVisible, setExitPopupVisible] = React.useState(false);
+
     return (
-    <PopupComponent onClose={onClose}>
+          
+    <PopupComponent onClose={onClose} minWidth="400px">
         <Container>
         <TitleContainer>
         <Title>Add role</Title>
@@ -169,14 +181,17 @@ const AddRole: React.FC<AddRoleProps> = ({ onClose }) => {
             <RoleDetailsContainer>
                 <RoleDetailsTitle>Role details</RoleDetailsTitle>
                 <RoleTitleLabel>Role title</RoleTitleLabel>
-                <StyledTextField fullWidth  id="fullWidth" select size="small">
+                <StyledTextField fullWidth  id="fullWidth" select size="small" value={title || ""}>
                 <MenuItem value="Product Manager">Product Manager</MenuItem>
                 <MenuItem value="Software Engineer">Software Engineer</MenuItem>
+                <MenuItem value="Front-End Developer">Front-End Developer</MenuItem>
+                <MenuItem value="Back-End Developer">Back-End Developer</MenuItem>
                 </StyledTextField>
                 <StyledFormControlLabel control={<Checkbox />} label="Squad Lead"/>
                 <StyledDescription>This role will be a squad leader</StyledDescription>
                 <RoleTitleLabel>Role description</RoleTitleLabel>
-                <StyledTextField fullWidth id="multiline-static" multiline rows={4}/>
+                <CustomTextarea maxCharCount={2000}/>
+                {/* <StyledTextField fullWidth id="multiline-static" multiline rows={4}/> */}
                 <RoleTitleLabel>Hourly rate</RoleTitleLabel>
                 <StyledTextField fullWidth  id="fullWidth" select size="small">
                 <MenuItem value="$50-60/h">$50-60/h</MenuItem>
@@ -195,7 +210,7 @@ const AddRole: React.FC<AddRoleProps> = ({ onClose }) => {
             <RoleDetailsContainer>
             <RoleDetailsTitle>Talent location & availability</RoleDetailsTitle>
             <LabelsContainer>
-            <RoleTitleLabel>Select time zone</RoleTitleLabel>
+            <TimeZoneLabel>Select time zone</TimeZoneLabel>
             <OverlapHoursLabel>Overlap hours</OverlapHoursLabel>
             </LabelsContainer>
             <TimeZoneAndOverlapContainer>
@@ -226,10 +241,14 @@ const AddRole: React.FC<AddRoleProps> = ({ onClose }) => {
         </RoleDetailsContainer>
         </ScrollableContainer>
         <ButtonContainer>
-            <Button variant="outlined" onClick={onClose}>Cancel</Button>
-            <Button variant="outlined">Add role</Button>
+            <CustomButton label="Cancel" borderColor="#D0D5DD" padding="10px 18px 10px 18px" margin="0 8px 0 0" backgroundColor="white" textColor="#344054" hoverColor="none" onClick={() => setExitPopupVisible(true)}/>
+            <CustomButton label="Add role" borderColor="#D0D5DD" padding="10px 18px 10px 18px" backgroundColor="#111927" textColor="white" hoverColor="none"/>
         </ButtonContainer>
         </Container>
+        {isExitPopupVisible && (
+            <ExitUncompletedPopup
+                onClose={() => setExitPopupVisible(false)}
+                onConfirm={onClose}/>)}
     </PopupComponent>
   );
 };

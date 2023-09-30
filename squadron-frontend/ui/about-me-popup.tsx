@@ -65,7 +65,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ onClose }) => {
   };
 
   return (
-    <PopupComponent onClose={onClose}>
+    <PopupComponent onClose={onClose} minWidth="640px" minHeight="367px">
       <Container>
         <Title>About me</Title>
         <Description>Description of this screen</Description>
@@ -75,7 +75,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ onClose }) => {
             <CustomTextarea 
               label="About me"
               borderStyle="1px solid #D2D6DB" 
-              width="650px" 
+              width="592px" 
               height="118px" 
               showHintText={false}       
               />
@@ -86,14 +86,14 @@ const AboutMe: React.FC<AboutMeProps> = ({ onClose }) => {
             label="Cancel"
             backgroundColor="#FFFFFF"
             textColor="#384250"
-            boarderColor="#D2D6DB" 
+            borderColor="#D2D6DB" 
             onClick={onClose}
           />
           <CustomButton
             label="Update"
             backgroundColor="#4B48EC"
             textColor="#FFFFFF"
-            boarderColor="#4B48EC"
+            borderColor="#4B48EC"
             onClick={handleUpdateClick} 
           />         
         </ButtonContainer>

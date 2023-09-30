@@ -3,14 +3,15 @@ import Button from '@mui/joy/Button';
 import styled from 'styled-components';
 import UploadVideoButton from '@/ui/upload-file-button';
 import PopupComponent from '@/ui/popup';
+import CustomButton from './custom-button';
 
 const Sidebar = styled.div`
-    width: 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 0;
-    background-color: #F5F5F5;
+    padding: 24px 8px;
+    background-color: #F3F4F6;
+    min-width:144px;
 `;
 
 const OptionButton = styled.button<{ isSelected: boolean }>`
@@ -23,7 +24,6 @@ const OptionButton = styled.button<{ isSelected: boolean }>`
     cursor: pointer;
 `;
 
-
 const ContentContainer = styled.div`
     flex: 3;
     padding: 20px;
@@ -33,7 +33,7 @@ const ContentContainer = styled.div`
 `;
 
 const UrlInputContainer = styled.div`
-    width: 100%;
+    width: 320px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,9 +41,12 @@ const UrlInputContainer = styled.div`
 
 const VideoUrlInput = styled.input`
     margin-top: 10px;
-    width: 80%;
-    border-radius: 5px;
-    border: 1px solid grey;
+    width: 100%;
+    height:40px;
+    border-radius: 8px;
+    border: 1px solid #D2D6DB;
+    align-self: flex-start;
+    margin-bottom: 16px;
 `;
 
 const SubmitButton = styled(Button)`
@@ -51,11 +54,17 @@ const SubmitButton = styled(Button)`
     margin-left: 60%;
 `;
 
+const VideoUrlLabel = styled.div`
+    align-self: flex-start;
+    font-size:14px;
+
+`;
+
 const VideoUpload: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const [selectedOption, setSelectedOption] = useState<string>('Upload video');
 
     return (
-        <PopupComponent onClose={onClose}>
+        <PopupComponent onClose={onClose} minWidth='500px'>
                 <Sidebar>
                     {['Upload video', 'Record video', 'Video URL'].map(option => (
                         <OptionButton 
@@ -69,14 +78,14 @@ const VideoUpload: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                     {selectedOption === 'Upload video' && <UploadVideoButton label="Upload a video"/>}
         
                     {selectedOption === 'Record video' && (
-                        <Button variant="outlined" color="neutral">Record</Button>
+                        <CustomButton label="Record" preset = "default"/>
                     )}
 
                     {selectedOption === 'Video URL' && (
                         <UrlInputContainer>
-                            <div>Video URL</div>
+                            <VideoUrlLabel>Video URL</VideoUrlLabel>
                             <VideoUrlInput type="text" placeholder="Enter video URL here..." />
-                            <SubmitButton variant="outlined">Submit</SubmitButton>
+                            <CustomButton label="Submit" alignSelf='flex-end' preset = "default"/>
                         </UrlInputContainer>
                     )}
                 </ContentContainer>

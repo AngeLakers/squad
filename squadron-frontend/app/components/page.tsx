@@ -39,7 +39,30 @@ import TalentInfo from "@/ui/talent-info-card";
 import TalentAnswers from "@/ui/talent-answers";
 import TalentNotes from "@/ui/talent-notes";
 import TalentDocuments from "@/ui/talent-documents";
-import TalentProfile from "@/ui/talent-profile-card";
+import TalentProfile, { ProfileDataType } from "@/ui/talent-profile-card";
+import SquadNav from "@/ui/squad-navigation";
+import EmptyRoleCard from "@/ui/empty-role-card";
+
+const mockProfileData: ProfileDataType = {
+  rate: "$90/h",
+  availability: "Immediately",
+  hoursToCommit: "40h / week",
+  location: "Sydney AU, GMT+11",
+  workingHours: "8:30 AM - 4:30 PM",
+  overlap: "7 hours",
+  experience: "5 years",
+  languages: {
+    English: "Native",
+    French: "Intermediate",
+  },
+  socialLinks: {
+    linkedin: "https://www.linkedin.com/in/your-profile/",
+    email: "mailto:your.email@example.com",
+    twitter: "https://twitter.com/your-profile",
+  },
+};
+import CompleteProfilePopup from "@/ui/complete-profile-popup";
+import CompleteSkillsPopup from "@/ui/complete-profile-skills-popup";
 
 const mockSkillsData: BadgeData[] = [
   { label: "Roadmapping", icon: <StarSVG />, preset: "outlined_green" },
@@ -74,10 +97,14 @@ const mockSkillsData: BadgeData[] = [
 const mockToolsData: BadgeData[] = [
   {
     label: "Photoshop",
-    icon: <img src="/photoshop.png" />,
+    icon: <img alt="photoshop logo" src="/photoshop.png" />,
     preset: "outlined_grey",
   },
-  { label: "Figma", icon: <img src="/figma.png" />, preset: "outlined_grey" },
+  {
+    label: "Figma",
+    icon: <img alt="figma logo" src="/figma.png" />,
+    preset: "outlined_grey",
+  },
 ];
 
 const mockQAData = [
@@ -163,6 +190,9 @@ export default function AllComponents() {
     useState(false);
   const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
   const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
+  const [isCompleteProfilePopupOpen, setCompleteProfilePopupOpen] = useState(false);
+  const [isCompleteSkillsPopupOpen, setCompleteSkillsPopupOpen] = useState(false);
+
   const icons = [
     <Image key="customizeImage" src={customizeImage} alt="Custom Icon" width="32" height="32" />,
     <Image
@@ -227,7 +257,7 @@ export default function AllComponents() {
         <CustomBadge
           label={"outlined_light_green badge with image icon"}
           preset={"outlined_light_green"}
-          icon={<img src="/figma.png" />}
+          icon={<img alt="figma logo" src="/figma.png" />}
           size="large"
         />
       </ComponentWrapper>
@@ -319,6 +349,13 @@ export default function AllComponents() {
       >
         <CollectingBar></CollectingBar>
       </ComponentWrapper>
+      <ComponentWrapper
+        filename="empty-role-card.tsx"
+        createdBy="Becky Xu"
+        description="C4 - empty role card "
+      >
+      <EmptyRoleCard title="Product Manager"></EmptyRoleCard>
+      </ComponentWrapper>
 
       <StyledH1>C5</StyledH1>
       <ComponentWrapper
@@ -345,7 +382,7 @@ export default function AllComponents() {
         createdBy="Mark Sun"
         description="C5 - TalentProfile card"
       >
-        <TalentProfile />
+        <TalentProfile data={mockProfileData} />
       </ComponentWrapper>
       <ComponentWrapper
         filename="info-bar.tsx"
@@ -361,6 +398,17 @@ export default function AllComponents() {
           icon={<AlertSVG />}
           link={""}
         ></InfoBar>
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="squad-navigation.tsx"
+        createdBy="Mark Sun"
+        description="C5 squad navigation bar"
+      >
+        <SquadNav
+          Top={true}
+          squadName="Suggested Squad #1"
+          talentInfo="Talent 1 of 5"
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="squad-card.tsx"
@@ -592,6 +640,16 @@ export default function AllComponents() {
         </Button>
       </ComponentWrapper>
 
+
+
+      <ComponentWrapper filename="complete-profile-popup.tsx" createdBy="Chelsea Guo" description="T5 - Complete Profile Popup">
+        <Button variant="outlined" onClick={() => setCompleteProfilePopupOpen(true)}>Complete Profile Popup</Button>
+      </ComponentWrapper>
+      <ComponentWrapper filename="complete-profile-skills-popup.tsx" createdBy="Chelsea Guo" description="T5 - Complete skills Popup">
+        <Button variant="outlined" onClick={() => setCompleteSkillsPopupOpen(true)}>Complete Skills Popup</Button>
+      </ComponentWrapper>
+
+
       {isModalOpen && (
         <SquadCustom
           closeModal={() => {
@@ -610,7 +668,6 @@ export default function AllComponents() {
             "Data",
           ]}
           icons={icons}
-          link={"/signup"}
         />
       )}
 
@@ -652,6 +709,8 @@ export default function AllComponents() {
       {aboutMePopupOpen && (
         <AboutMe onClose={() => setAboutMePopupOpen(false)} />
       )}
+      {isCompleteProfilePopupOpen && <CompleteProfilePopup onClose={() => setCompleteProfilePopupOpen(false)}/>}
+      {isCompleteSkillsPopupOpen && <CompleteSkillsPopup onClose={() => setCompleteSkillsPopupOpen(false)}/>}
     </div>
   );
 }
