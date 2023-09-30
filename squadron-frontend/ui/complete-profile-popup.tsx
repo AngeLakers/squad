@@ -1,31 +1,35 @@
 "use client"
-import React from "react";
+import * as React from "react";
+import { useState } from "react";
 import PopupComponent from "./popup";
 import styled from "styled-components";
 import { ReactNode } from 'react';
 import RightArrowIconButton from "./right-arrow-button";
-import { 
-    basewhite, 
-    borderColor, 
-    boxShadow, 
-    gray600, 
-    gray900, 
-    primary600, 
-    regularFontSize, 
-    mediumFontSize, 
-    titleFontSize, 
-    xxlargeFontSize, 
-    regularFontWeight, 
-    mediumFontWeight, 
-    regularLineHeight, 
-    mediumLineHeight, 
-    largeLineHeight, 
-    xxxlargeLineHeight, 
-    fontFamily, 
-    regularLetterSpacing, 
+import CompleteSkillsPopup from "./complete-profile-skills-popup";
+import {
+    basewhite,
+    borderColor,
+    boxShadow,
+    gray600,
+    gray900,
+    primary600,
+    regularFontSize,
+    mediumFontSize,
+    titleFontSize,
+    xxlargeFontSize,
+    regularFontWeight,
+    mediumFontWeight,
+    regularLineHeight,
+    mediumLineHeight,
+    largeLineHeight,
+    xxxlargeLineHeight,
+    fontFamily,
+    regularLetterSpacing,
     warning600,
     titleFontWeight
-  } from "@/styles/reuseParams";
+} from "@/styles/reuseParams";
+import AboutMe from "./about-me-popup";
+import { on } from "events";
 
 const ContentContainer = styled.div`
     display: flex;
@@ -43,14 +47,12 @@ const PopupHeader = styled.div`
     justify-content: center;
     padding: 24px 24px 16px 24px;
     gap: 4px;
-    // border: 2px solid red;
 `
 const PopupBody = styled.div`
     padding: 0px 24px 24px 24px;
     overflow-y: auto;
     width: 100%;
-    max-height: 456px;     
-    // border: 3px solid orange;
+    max-height: 456px;
 `
 const CompleletPercent = styled.div`
     font-weight: ${mediumFontWeight};
@@ -60,7 +62,6 @@ const CompleletPercent = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
-    // border: 2px solid orange;
 `
 
 const Title = styled.div`
@@ -68,7 +69,6 @@ const Title = styled.div`
     font-size: ${titleFontSize};
     line-height: ${largeLineHeight};
     margin-top: 2%;
-    // border: 2px solid red;
 `;
 const TitleDiscrption = styled.div`
     color: ${gray600};
@@ -76,7 +76,7 @@ const TitleDiscrption = styled.div`
     font-size: ${regularFontSize};
     line-height: ${regularLineHeight};
     margin-top: 2%;
-    // border: 2px solid green;
+
 `
 const ProfileItem = styled.div`
     align-items: flex-start;
@@ -88,7 +88,6 @@ const ProfileItem = styled.div`
     position: relative;
     height: 72px;
     width: 100%;
-    // border: 2px solid pink;
 `
 const ItemContainer = styled.div`
     display: flex;
@@ -98,14 +97,12 @@ const ItemName = styled.div`
     font-weight: ${mediumFontWeight};
     font-size: ${mediumFontSize};
     line-height: ${mediumLineHeight};
-    // border: 2px solid blue;
 `
 const ItemShortDescrip = styled.div`
     color: ${gray600};
     font-weight: ${regularFontWeight};
     font-size: ${regularFontSize};
     line-height: ${regularLineHeight};
-    // border: 2px solid green;
 `
 const ArrowIconButtonContainer = styled.div`
     display: flex;
@@ -113,16 +110,7 @@ const ArrowIconButtonContainer = styled.div`
     justify-content: center;
     width: 20px;
     height: 20px;
-    border: 2px solid violet;
 `
-
-const Description = styled.p`
-    margin: 2% 3%;
-    text-align: center;
-    margin-bottom:8%;
-    // border: 2px solid red;
-`;
-
 const Divider = styled.div`
     width: 100%;
     height: 1px;
@@ -140,84 +128,97 @@ interface CompleteProfilePopupProps {
     icon?: ReactNode;
 }
 
-const CompleteProfilePopup: React.FC<CompleteProfilePopupProps> = ({ 
+const CompleteProfilePopup: React.FC<CompleteProfilePopupProps> = ({
     onClose,
     showDivider = true,
-    icon
+    icon,
 }) => {
+    const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
+    const openAboutMePopup = () => {
+        setAboutMePopupOpen(true);
+    };
+    const [isCompleteSkillsPopupOpen, setCompleteSkillsPopupOpen] = useState(false);
+    const openSkillsPopup = () => {
+        setCompleteSkillsPopupOpen(true);
+    };
     return (
-        <PopupComponent onClose={onClose}
-            width="27.8%"
-            top="calc(50% - {finalHeight}/2)"
-            left="calc(50% - {width}/2)"
-            maxHeightPercent={0.3}
-        >
-            <ContentContainer>
-                <PopupHeader>
-                    <CompleletPercent>50% Completed</CompleletPercent>
-                    <Title>Complete your profile</Title>
-                    <TitleDiscrption>Fill up the sections below to complete your profile</TitleDiscrption>
-                </PopupHeader>
-                <PopupBody>
-                    {/* TODO: Need to confirm with the customer:
+        <>
+            <PopupComponent onClose={onClose}
+                width="27.8%"
+                top="calc(50% - {finalHeight}/2)"
+                left="calc(50% - {width}/2)"
+                maxHeightPercent={0.3}
+            >
+                <ContentContainer>
+                    <PopupHeader>
+                        <CompleletPercent>50% Completed</CompleletPercent>
+                        <Title>Complete your profile</Title>
+                        <TitleDiscrption>Fill up the sections below to complete your profile</TitleDiscrption>
+                    </PopupHeader>
+                    <PopupBody>
+                        {/* TODO: Need to confirm with the customer:
                             1. Whether the item in this place is consistent with the project filled in T2.
                             2. What's the exact content in "Intro about this
                             3. How to calculate the percentage of completion
                             4. Fill till 100% or all the items in the list" 
                     */}
-                    <ProfileItem>
-                        <ItemContainer>
-                            <ItemName>About me</ItemName>
-                            <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
-                        </ItemContainer>
-                        <ArrowIconButtonContainer>
-                            <RightArrowIconButton onClick={openNewPopup}/>
-                        </ArrowIconButtonContainer>
-                    </ProfileItem>
-                    {showDivider &&<Divider />} 
-                    <ProfileItem>
-                        <ItemContainer>
-                            <ItemName>Skills</ItemName>
-                            <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
-                        </ItemContainer>
-                        <ArrowIconButtonContainer>
-                            <RightArrowIconButton onClick={openNewPopup}/>
-                        </ArrowIconButtonContainer>
-                    </ProfileItem>
-                    {showDivider &&<Divider />}
-                    <ProfileItem>
-                        <ItemContainer>
-                            <ItemName>Experience</ItemName>
-                            <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
-                        </ItemContainer>
-                        <ArrowIconButtonContainer>
-                            <RightArrowIconButton onClick={openNewPopup} />
-                        </ArrowIconButtonContainer>
-                    </ProfileItem>
-                    {showDivider &&<Divider />}
-                    <ProfileItem>
-                        <ItemContainer>
-                            <ItemName>Projects</ItemName>
-                            <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
-                        </ItemContainer>
-                        <ArrowIconButtonContainer>
-                            <RightArrowIconButton onClick={openNewPopup}/>
-                        </ArrowIconButtonContainer>
-                    </ProfileItem>
-                    {showDivider &&<Divider />}
-                    <ProfileItem>
-                        <ItemContainer>
-                            <ItemName>Finer Details</ItemName>
-                            <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
-                        </ItemContainer>
-                        <ArrowIconButtonContainer>
-                            <RightArrowIconButton onClick={openNewPopup}/>
-                        </ArrowIconButtonContainer>
-                    </ProfileItem>
-                               
-                </PopupBody>
-            </ContentContainer>
-        </PopupComponent>
+                        <ProfileItem>
+                            <ItemContainer>
+                                <ItemName>About me</ItemName>
+                                <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
+                            </ItemContainer>
+                            <ArrowIconButtonContainer>
+                                <RightArrowIconButton onClick={openAboutMePopup} />
+                            </ArrowIconButtonContainer>
+                        </ProfileItem>
+                        {showDivider && <Divider />}
+                        <ProfileItem>
+                            <ItemContainer>
+                                <ItemName>Skills</ItemName>
+                                <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
+                            </ItemContainer>
+                            <ArrowIconButtonContainer>
+                                <RightArrowIconButton onClick={openSkillsPopup} />
+                            </ArrowIconButtonContainer>
+                        </ProfileItem>
+                        {showDivider && <Divider />}
+                        <ProfileItem>
+                            <ItemContainer>
+                                <ItemName>Experience</ItemName>
+                                <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
+                            </ItemContainer>
+                            <ArrowIconButtonContainer>
+                                <RightArrowIconButton onClick={openNewPopup} />
+                            </ArrowIconButtonContainer>
+                        </ProfileItem>
+                        {showDivider && <Divider />}
+                        <ProfileItem>
+                            <ItemContainer>
+                                <ItemName>Projects</ItemName>
+                                <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
+                            </ItemContainer>
+                            <ArrowIconButtonContainer>
+                                <RightArrowIconButton onClick={openNewPopup} />
+                            </ArrowIconButtonContainer>
+                        </ProfileItem>
+                        {showDivider && <Divider />}
+                        <ProfileItem>
+                            <ItemContainer>
+                                <ItemName>Finer Details</ItemName>
+                                <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
+                            </ItemContainer>
+                            <ArrowIconButtonContainer>
+                                <RightArrowIconButton onClick={openNewPopup} />
+                            </ArrowIconButtonContainer>
+                        </ProfileItem>
+
+                    </PopupBody>
+                </ContentContainer>
+            </PopupComponent>
+            {aboutMePopupOpen && (<AboutMe onClose={() => setAboutMePopupOpen(false)} />)};
+            {isCompleteSkillsPopupOpen && <CompleteSkillsPopup onClose={() => setCompleteSkillsPopupOpen(false)}/>}
+
+        </>
     );
 };
 
