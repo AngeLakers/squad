@@ -3,12 +3,14 @@ import styled from "styled-components";
 import Avatar from '@mui/material/Avatar';
 import squadImage from '@/public/squad.png';
 import Image from 'next/image';
+// import { ReactNode } from 'react';
 
 const Container = styled.div`
     border: 1px solid #E5E7EB;
     padding: 1%;
     width: 100%;
     border-radius:12px;
+    min-width: 1200px;
 `;
 
 const TitleRow = styled.div`
@@ -18,18 +20,21 @@ const TitleRow = styled.div`
 `;
 
 const SquadTitle = styled.span`
-    font-size: 0.9em;
+    font-size: 20px;
+    font-weight: 600;
 `;
 
 const SurveySwapTitle = styled.span`
-    font-size: 0.8em;
+    font-size: 14px;
+    font-weight: 400;
+    color: #4D5761;
 `;
 
 const AvatarContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2% 3%;
+    margin: 0 24px;
 
     &:last-child {
     margin-right: 0;
@@ -40,39 +45,39 @@ const AvatarGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: minmax(120px, auto);
-    margin:32px -24px;
+   
 `;
 
 const RoleTitle = styled.div`
-    margin-top: 5%;
-    font-size: 0.9em;
+    margin-top: 20px;
+    font-size: 16px;
 `;
 
 const NotAssigned = styled.div`
-    font-size: 0.7em;
+    font-size: 14px;
     color: #888;
-    margin-top: 3%;
+    margin-top: 4px;
 `;
 
 const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 23%; 
+    width: 273px; 
 `;
 
 const AddButton = styled.button`
     cursor: pointer;
-    padding: 1% 5%;
-    border-radius: 5px;
+    padding: 10px 16px;
+    border-radius: 8px;
     background-color: white;
-    color: grey;
-    border: 1px solid grey;
-    margin-left:-24px;
+    color: black;
+    border: 1px solid #D2D6DB;
+    font-size:14px;
 `;
 
 const ManageButton = styled.button`
     cursor: pointer;
-    color: grey;
+    color: #D2D6DB;
 `;
 
 const LogoContainer = styled.div`
@@ -87,16 +92,39 @@ const TextAndButtonContainer = styled.div`
     flex-grow: 1;
 `;
 
-export default function SquadSurveySwap() {
-    const roles: string[] = [
-        "UI Designer",
-        "UI Designer",
-        "Product Designer",
-        "UX Researcher",
-        "Front-End Engineer",
-        "Full-Stack Engineer",
-        "DevOps Engineer"
-      ];
+const AssignButton = styled.button`
+    width: 60px;
+    height: 22px;
+    border-radius: 16px;
+    padding: 2px 8px;
+    cursor: pointer;
+    background-color: white;
+    font-size: 12px;
+    margin:20px 0 40px 0;
+    background-color: #F2F4F7;
+`;
+
+interface Role {
+    title: string;
+    image?: String;
+    name?: string;
+    buttonText?: string;
+}
+
+interface SquadSurveySwapProps {
+    roles: Role[];
+}
+
+export default function SquadSurveySwap({ roles }: SquadSurveySwapProps){
+    // const roles=[
+    //     "UI Designer",
+    //     "UI Designer",
+    //     "Product Designer",
+    //     "UX Researcher",
+    //     "Front-End Engineer",
+    //     "Full-Stack Engineer",
+    //     "DevOps Engineer"
+    //   ];
 
   return (
     <Container>
@@ -121,24 +149,13 @@ export default function SquadSurveySwap() {
         <AvatarGrid>
         {roles.map((role, i) => (
           <AvatarContainer key={i}>
-            <Avatar src="/broken-image.jpg"/>
-            <RoleTitle>{role}</RoleTitle>
-            <NotAssigned>Not assigned yet</NotAssigned>
+            <Avatar src={typeof role.image === 'string' ? role.image : "/broken-image.jpg"} />
+            <RoleTitle>{role.title || "No Title"}</RoleTitle>
+            <NotAssigned>{role.name || "Not assigned yet"}</NotAssigned>
+            <AssignButton>{role.buttonText || "Unfilled"}</AssignButton>
           </AvatarContainer>
         ))}
       </AvatarGrid>
     </Container>
   );
 }
-
-function chunk(arr: string[], len: number): string[][] {
-    const chunks: string[][] = [];
-    let i = 0;
-    const n = arr.length;
-  
-    while (i < n) {
-      chunks.push(arr.slice(i, i += len));
-    }
-  
-    return chunks;
-  }

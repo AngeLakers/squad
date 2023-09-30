@@ -224,6 +224,30 @@ export default function AllComponents() {
     <Image key="dataImage" src={dataImage} alt="Data Icon" width="32" height="32" />,
   ];
 
+  const rolesData = [
+    {
+      title: "UI Designer"
+    },
+    {
+      title: "UI Designer"
+    },
+    {
+      title: "Product Designer"
+    },
+    {
+      title: "UX Researcher"
+    },
+    {
+      title: "Front-End Engineer"
+    },
+    {
+      title: "Full-Stack Engineer"
+    },
+    {
+      title: "UX Researcher"
+    }
+  ];
+
   return (
     <div
       style={{
@@ -391,7 +415,7 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C5 - My Squad - not assigned yet"
       >
-        <SquadSurveySwap></SquadSurveySwap>
+        <SquadSurveySwap roles={rolesData} />
       </ComponentWrapper>
       <ComponentWrapper
         filename="talent-profile-card.tsx"
