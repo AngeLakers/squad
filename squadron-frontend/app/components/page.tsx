@@ -637,7 +637,7 @@ export default function AllComponents() {
       <ComponentWrapper filename="complete-profile-popup.tsx" createdBy="Chelsea Guo" description="T5 - Complete Profile Popup">
         <Button variant="outlined" onClick={() => setCompleteProfilePopupOpen(true)}>Complete Profile Popup</Button>
       </ComponentWrapper>
-      <ComponentWrapper filename="complete-profile-aboutme-popup.tsx" createdBy="Chelsea Guo" description="T5 - Complete Profile Popup">
+      <ComponentWrapper filename="complete-profile-skills-popup.tsx" createdBy="Chelsea Guo" description="T5 - Complete skills Popup">
         <Button variant="outlined" onClick={() => setCompleteSkillsPopupOpen(true)}>Complete Skills Popup</Button>
       </ComponentWrapper>
 

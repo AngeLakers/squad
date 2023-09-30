@@ -296,6 +296,7 @@ const CompleteSkillsPopup: React.FC<CompleteSkillsPopupProps> = ({
                             hoverColor={gray200}
                             textColor={gray700}
                             borderColor={gray300}
+                            onClick={onClose}
                         ></CustomButton>
                         <CustomButton
                             label="Update"
