@@ -11,17 +11,20 @@ const DeepPurple = "#673AB7";
 const ModalContent = styled.div`
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: 24px 24px 24px 24px;
 `;
 
 const Title = styled.div`
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 18px;
     margin-bottom: 15px;
+    color: #101828;
 `;
 
 const Description = styled.div`
     margin-bottom: 20px;
+    font-size: 14px;
+    color: #475467;
 `;
 
 const Divider = styled.hr`
@@ -29,7 +32,7 @@ const Divider = styled.hr`
     height: 1px;
     background-color: lightgray;
     border: none;
-    margin: 15px 0;
+    margin: 24px 0;
 `;
 
 const RadioButtonGroupDiv = styled.div<{ optionsLength: number }>`
@@ -80,8 +83,8 @@ interface NextButtonProps {
 }
 
 const NextButton = styled.button<NextButtonProps>`
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 10px 25px;
+    border-radius: 8px;
     border: none;
     color: white;
     cursor: pointer;
@@ -111,7 +114,7 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
     return (
-      <PopupComponent onClose={closeModal}>
+      <PopupComponent onClose={closeModal} minWidth="612px">
       <ModalContent>
         <div>
           {" "}

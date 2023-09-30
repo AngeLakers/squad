@@ -109,19 +109,19 @@ const EmptyRoleCard: React.FC<EmptyRoleCardProps> = ({ title, logoSrc = "/icon/p
       <Divider />
       <ButtonsRow>
       <Button>
-          <Icon src="/icon/coins.svg" alt="Coins Icon" />
+          <Icon key="coinsIcon" src="/icon/coins.svg" alt="Coins Icon" />
           <ButtonText>--$ /h</ButtonText>
         </Button>
         <Button>
-          <Icon src="/icon/clock.svg" alt="Clock Icon" />
+          <Icon key="clockIcon" src="/icon/clock.svg" alt="Clock Icon" />
           <ButtonText>--h /week</ButtonText>
         </Button>
         <Button>
-          <Icon src="/icon/locationPin.svg" alt="Location Icon" />
+          <Icon key="locationIcon" src="/icon/locationPin.svg" alt="Location Icon" />
           <ButtonText>--</ButtonText>
         </Button>
         <Button>
-          <Icon src="/icon/calendar.svg" alt="Calendar Icon" />
+          <Icon key="calendarIcon" src="/icon/calendar.svg" alt="Calendar Icon" />
           <ButtonText>--</ButtonText>
         </Button>
     </ButtonsRow>

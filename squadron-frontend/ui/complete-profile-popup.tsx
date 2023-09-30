@@ -145,8 +145,7 @@ const CompleteProfilePopup: React.FC<CompleteProfilePopupProps> = ({
         <>
             <PopupComponent onClose={onClose}
                 width="27.8%"
-                top="calc(50% - {finalHeight}/2)"
-                left="calc(50% - {width}/2)"
+                minWidth="400px"
                 maxHeightPercent={0.3}
             >
                 <ContentContainer>

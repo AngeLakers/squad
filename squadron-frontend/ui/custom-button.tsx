@@ -11,8 +11,10 @@ type CustomButtonStyledProps = {
   fontWeight?: string;
   gap?: string;
   padding?: string;
+  margin?: string;
   width?: string;
   height?: string;
+  alignSelf?:string;
 };
 
 const CustomButtonStyled = styled.button<CustomButtonStyledProps>`
@@ -20,6 +22,7 @@ const CustomButtonStyled = styled.button<CustomButtonStyledProps>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  align-self: ${({ alignSelf = 'auto' }) => alignSelf};
   width: ${({ width = "auto" }) => width};
   height: ${({ height = "auto" }) => height};
   color: ${({ textColor = "#000000" }) => textColor};
@@ -27,6 +30,7 @@ const CustomButtonStyled = styled.button<CustomButtonStyledProps>`
   border: 1px solid ${({ borderColor = "#ffffff" }) => borderColor};
   background-color: ${({ backgroundColor = "transparent" }) => backgroundColor};
   padding: ${({ padding = "10px 16px 10px 16px" }) => padding};
+  margin: ${({ margin = "0" }) => margin};
   font-weight: 600;
   font-size: ${({ fontSize = "14px" }) => fontSize};
   line-height: ${({ lineHeight = "20px" }) => lineHeight};
@@ -90,9 +94,11 @@ export interface CustomButtonProps {
   lineHeight?: string;
   fontWeight?: string;
   padding?: string;
+  margin?: string;
   gap?: string;
   width?: string;
   height?: string;
+  alignSelf?:string;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
