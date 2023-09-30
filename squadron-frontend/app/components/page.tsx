@@ -15,6 +15,7 @@ import CostEstimator from "@/ui/cost-estimator";
 import CollectingBar from "@/ui/collecting-bar";
 import SquadSurveySwap from "@/ui/squad-surveyswap";
 import BookInterviewA from "@/ui/book-interview-a";
+import BookInterviewB from "@/ui/book-interview-b";
 import customizeImage from "../../public/customize.png";
 import worldWideWebImage from "../../public/world-wide-web.png";
 import mobilePhoneImage from "../../public/mobile-phone.png";
@@ -42,6 +43,7 @@ import TalentDocuments from "@/ui/talent-documents";
 import TalentProfile, { ProfileDataType } from "@/ui/talent-profile-card";
 import SquadNav from "@/ui/squad-navigation";
 import EmptyRoleCard from "@/ui/empty-role-card";
+import callImage from '@/public/call.png';
 
 const mockProfileData: ProfileDataType = {
   rate: "$90/h",
@@ -189,9 +191,11 @@ export default function AllComponents() {
   const [exitUncompletedPopupOpen, setexitUncompletedPopupOpen] =
     useState(false);
   const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
+  const [bookInterviewBPopupOpen, setbookInterviewBPopupOpen] = useState(false);
   const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
   const [isCompleteProfilePopupOpen, setCompleteProfilePopupOpen] = useState(false);
   const [isCompleteSkillsPopupOpen, setCompleteSkillsPopupOpen] = useState(false);
+  
 
   const icons = [
     <Image key="customizeImage" src={customizeImage} alt="Custom Icon" width="32" height="32" />,
@@ -367,7 +371,19 @@ export default function AllComponents() {
           variant="outlined"
           onClick={() => setbookInterviewAPopupOpen(true)}
         >
-          Book call
+          Book call A
+        </Button>
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="book-interview-b.tsx"
+        createdBy="Becky Xu"
+        description="C5 - Book a Call"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setbookInterviewBPopupOpen(true)}
+        >
+          Book call B
         </Button>
       </ComponentWrapper>
       <ComponentWrapper
@@ -705,6 +721,17 @@ export default function AllComponents() {
       )}
       {bookInterviewAPopupOpen && (
         <BookInterviewA onClose={() => setbookInterviewAPopupOpen(false)} />
+      )}
+      {bookInterviewBPopupOpen && (
+        <BookInterviewB icon={
+          <Image
+            key="callImage"
+            src={callImage}
+            alt="call image"
+            width="44"
+            height="44"
+          />
+        } name="Patricia" cancelButtonText="Cancel" confirmButtonText="Send interview request" onClose={() => setbookInterviewBPopupOpen(false)} />
       )}
       {aboutMePopupOpen && (
         <AboutMe onClose={() => setAboutMePopupOpen(false)} />
