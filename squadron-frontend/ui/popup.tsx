@@ -29,16 +29,16 @@ const Overlay = styled.div`
 interface PopupPropsStyled {
     finalHeight?: string;
     width?: string;
-    top?: string;
-    left?: string;
+    minWidth?: string;
+    minHeight?: string;
 }
 
 const Popup = styled.div<PopupPropsStyled>`
     position: fixed;
-    top: ${props => props.top || '25%'};
-    left: ${props => props.left || '25%'};
     width: ${props => props.width || '50%'};
     height: ${props => props.finalHeight || 'auto'};
+    min-width: ${props => props.minWidth || 'auto'};
+    min-height: ${props => props.minHeight || 'auto'};
     background-color: white;
     display: flex;
     max-height: calc(100vh - 100px);
@@ -62,12 +62,12 @@ interface PopupProps {
     children: React.ReactNode;
     onClose: () => void;
     width?: string;
-    top?: string;
-    left?: string;
+    minWidth?: string;
+    minHeight?: string;
     maxHeightPercent?: number;
 }
 
-const PopupComponent: React.FC<PopupProps> = ({ children, onClose, width, top, left, maxHeightPercent = 0.5}) => {
+const PopupComponent: React.FC<PopupProps> = ({ children, onClose, width, minWidth, minHeight, maxHeightPercent = 0.5}) => {
     const popupRef = useRef<HTMLDivElement | null>(null);
     const [finalHeight, setFinalHeight] = useState('auto');
 
@@ -85,7 +85,7 @@ const PopupComponent: React.FC<PopupProps> = ({ children, onClose, width, top, l
 
     return (
         <Overlay>
-            <Popup ref={popupRef} finalHeight={finalHeight} width={width} top={top} left={left}>
+            <Popup ref={popupRef} finalHeight={finalHeight} width={width} minWidth={minWidth} minHeight={minHeight}>
                 {children}
                 <CloseButton onClick={onClose}>×</CloseButton>
             </Popup>
