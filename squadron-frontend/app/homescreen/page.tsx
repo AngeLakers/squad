@@ -18,7 +18,7 @@ export default function Home() {
     <Topbar1></Topbar1>
     <Header></Header>
     <Application></Application>
-
+     <Wallet></Wallet>
     < Display>
      <Community> </Community>
     </Display>
