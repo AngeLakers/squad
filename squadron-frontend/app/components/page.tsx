@@ -61,6 +61,8 @@ const mockProfileData: ProfileDataType = {
     twitter: "https://twitter.com/your-profile",
   },
 };
+import CompleteProfilePopup from "@/ui/complete-profile-popup";
+import CompleteSkillsPopup from "@/ui/complete-profile-skills-popup";
 
 const mockSkillsData: BadgeData[] = [
   { label: "Roadmapping", icon: <StarSVG />, preset: "outlined_green" },
@@ -188,6 +190,9 @@ export default function AllComponents() {
     useState(false);
   const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
   const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
+  const [isCompleteProfilePopupOpen, setCompleteProfilePopupOpen] = useState(false);
+  const [isCompleteSkillsPopupOpen, setCompleteSkillsPopupOpen] = useState(false);
+
   const icons = [
     <Image key="customizeImage" src={customizeImage} alt="Custom Icon" width="32" height="32" />,
     <Image
@@ -635,6 +640,16 @@ export default function AllComponents() {
         </Button>
       </ComponentWrapper>
 
+
+
+      <ComponentWrapper filename="complete-profile-popup.tsx" createdBy="Chelsea Guo" description="T5 - Complete Profile Popup">
+        <Button variant="outlined" onClick={() => setCompleteProfilePopupOpen(true)}>Complete Profile Popup</Button>
+      </ComponentWrapper>
+      <ComponentWrapper filename="complete-profile-skills-popup.tsx" createdBy="Chelsea Guo" description="T5 - Complete skills Popup">
+        <Button variant="outlined" onClick={() => setCompleteSkillsPopupOpen(true)}>Complete Skills Popup</Button>
+      </ComponentWrapper>
+
+
       {isModalOpen && (
         <SquadCustom
           closeModal={() => {
@@ -694,6 +709,8 @@ export default function AllComponents() {
       {aboutMePopupOpen && (
         <AboutMe onClose={() => setAboutMePopupOpen(false)} />
       )}
+      {isCompleteProfilePopupOpen && <CompleteProfilePopup onClose={() => setCompleteProfilePopupOpen(false)}/>}
+      {isCompleteSkillsPopupOpen && <CompleteSkillsPopup onClose={() => setCompleteSkillsPopupOpen(false)}/>}
     </div>
   );
 }

@@ -86,14 +86,14 @@ const AboutMe: React.FC<AboutMeProps> = ({ onClose }) => {
             label="Cancel"
             backgroundColor="#FFFFFF"
             textColor="#384250"
-            boarderColor="#D2D6DB" 
+            borderColor="#D2D6DB" 
             onClick={onClose}
           />
           <CustomButton
             label="Update"
             backgroundColor="#4B48EC"
             textColor="#FFFFFF"
-            boarderColor="#4B48EC"
+            borderColor="#4B48EC"
             onClick={handleUpdateClick} 
           />         
         </ButtonContainer>
