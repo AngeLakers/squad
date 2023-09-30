@@ -45,9 +45,10 @@ const Icon = styled.div`
 
 interface ExitUncompletedPopupProps {
     onClose: () => void;
+    onConfirm?: () => void;
 }
 
-const ExitUncompletedPopup: React.FC<ExitUncompletedPopupProps> = ({ onClose }) => {
+const ExitUncompletedPopup: React.FC<ExitUncompletedPopupProps> = ({ onClose, onConfirm }) => {
     return (
         <PopupComponent onClose={onClose}  width="30%" top="37.5%" left="37.5%" maxHeightPercent={0.3}>
             <ContentContainer>
@@ -59,10 +60,11 @@ const ExitUncompletedPopup: React.FC<ExitUncompletedPopupProps> = ({ onClose }) 
                 <Description>If you close this screen your changes won't be saved</Description>
                 <ButtonContainer>
                     <Button variant="outlined" onClick={onClose}>Cancel</Button>
-                    <StyledButton variant="outlined" style={{ marginLeft: '50%'}}>Confirm</StyledButton>
+                    <StyledButton variant="outlined" style={{ marginLeft: '50%'}} onClick={onConfirm}>Confirm</StyledButton>
                 </ButtonContainer>
             </ContentContainer>
         </PopupComponent>
+        
     );
 };
 

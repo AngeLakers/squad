@@ -33,17 +33,17 @@ const ProjectDetails: React.FC = () => {
   const boxHeight = '30vh';
   const boxWidth = '28vw';
 
-  const sideBoxHeight = '10vh';
+  const sideBoxHeight = '90px';
   const sideBoxWidth = '50vw';
 
   type BoxTitles = 'Project Header' | 'Project Scope' | 'Admin Details' | 'Squad Details' | 'Additional Info(optional)';
 
   const expandedBoxHeights = {
-    'Project Header': '30vh',
-    'Project Scope': '50vh',
-    'Admin Details': '50vh',
-    'Squad Details': '30vh',
-    'Additional Info(optional)': '22vh',
+    'Project Header': 'auto',
+    'Project Scope': 'auto',
+    'Admin Details': 'auto',
+    'Squad Details': 'auto',
+    'Additional Info(optional)': 'auto',
   };
 
   interface DividerProps {

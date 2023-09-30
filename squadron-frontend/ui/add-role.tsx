@@ -7,6 +7,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Slider from '@mui/material/Slider';
+import ExitUncompletedPopup from "./exit-uncompleted-popup";
 
 const Container = styled.div`
     display: flex;
@@ -154,10 +155,14 @@ function hoursText(value: number) {
 
 interface AddRoleProps {
     onClose: () => void;
+    title?: string;
 }
 
-const AddRole: React.FC<AddRoleProps> = ({ onClose }) => {
+const AddRole: React.FC<AddRoleProps> = ({ onClose, title }) => {
+    const [isExitPopupVisible, setExitPopupVisible] = React.useState(false);
+
     return (
+          
     <PopupComponent onClose={onClose}>
         <Container>
         <TitleContainer>
@@ -169,9 +174,11 @@ const AddRole: React.FC<AddRoleProps> = ({ onClose }) => {
             <RoleDetailsContainer>
                 <RoleDetailsTitle>Role details</RoleDetailsTitle>
                 <RoleTitleLabel>Role title</RoleTitleLabel>
-                <StyledTextField fullWidth  id="fullWidth" select size="small">
+                <StyledTextField fullWidth  id="fullWidth" select size="small" value={title || ""}>
                 <MenuItem value="Product Manager">Product Manager</MenuItem>
                 <MenuItem value="Software Engineer">Software Engineer</MenuItem>
+                <MenuItem value="Front-End Developer">Front-End Developer</MenuItem>
+                <MenuItem value="Back-End Developer">Back-End Developer</MenuItem>
                 </StyledTextField>
                 <StyledFormControlLabel control={<Checkbox />} label="Squad Lead"/>
                 <StyledDescription>This role will be a squad leader</StyledDescription>
@@ -226,10 +233,14 @@ const AddRole: React.FC<AddRoleProps> = ({ onClose }) => {
         </RoleDetailsContainer>
         </ScrollableContainer>
         <ButtonContainer>
-            <Button variant="outlined" onClick={onClose}>Cancel</Button>
+            <Button variant="outlined" onClick={() => setExitPopupVisible(true)}>Cancel</Button>
             <Button variant="outlined">Add role</Button>
         </ButtonContainer>
         </Container>
+        {isExitPopupVisible && (
+            <ExitUncompletedPopup
+                onClose={() => setExitPopupVisible(false)}
+                onConfirm={onClose}/>)}
     </PopupComponent>
   );
 };
