@@ -10,6 +10,7 @@ import {Header} from '@/ui/Header'
 import styled from 'styled-components';
 const Display=styled.div`
 display: flex;
+margin-top: 150px;
 margin-top: 50px;
 `;
 export default function Home() {
