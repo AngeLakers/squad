@@ -6,6 +6,12 @@ import { SquadSVG, VerticalDotsSVG, TickSVG } from "./svgs";
 import CustomBadge from "./custom-badge";
 import SquadTable from "./squad-table";
 
+const mockMenuItems = [
+  [{ menu: "View profile" }, { menu: "My Work " }],
+  [{ menu: "Setting " }, { menu: "Help " }],
+  [{ menu: "Logout " }],
+];
+
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -86,7 +92,7 @@ const SquadCard: React.FC<CustomSquadCard> = ({}) => {
             <DropdownButton
               label={<VerticalDotsSVG />}
               preset="outlined"
-              menuItems={["Menu Item 1", "Menu Item 2", "Menu Item 3"]}
+              menuItems={mockMenuItems}
             />
           </ButtonContainer>
         </SquadHeader>

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import CustomButton from "./custom-button";
-import DropdownButton from "./dropdown-button";
 import { ArrowUpSVG, ArrowDownSVG } from "./svgs";
 import SquadPerson from "./squad-person";
 
