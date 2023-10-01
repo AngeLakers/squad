@@ -41,6 +41,7 @@ import TalentNotes from "@/ui/talent-notes";
 import TalentDocuments from "@/ui/talent-documents";
 import TalentProfile, { ProfileDataType } from "@/ui/talent-profile-card";
 import SquadNav from "@/ui/squad-navigation";
+import AddExperiencePopup from "@/ui/complete-profile-addexperience-popup";
 import EmptyRoleCard from "@/ui/empty-role-card";
 
 const mockProfileData: ProfileDataType = {
@@ -192,6 +193,7 @@ export default function AllComponents() {
   const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
   const [isCompleteProfilePopupOpen, setCompleteProfilePopupOpen] = useState(false);
   const [isCompleteSkillsPopupOpen, setCompleteSkillsPopupOpen] = useState(false);
+  const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] = useState(false);
 
   const icons = [
     <Image key="customizeImage" src={customizeImage} alt="Custom Icon" width="32" height="32" />,
@@ -648,6 +650,9 @@ export default function AllComponents() {
       <ComponentWrapper filename="complete-profile-skills-popup.tsx" createdBy="Chelsea Guo" description="T5 - Complete skills Popup">
         <Button variant="outlined" onClick={() => setCompleteSkillsPopupOpen(true)}>Complete Skills Popup</Button>
       </ComponentWrapper>
+      <ComponentWrapper filename="complete-profile-addexperience.tsx" createdBy="Chelsea Guo" description="T5 - Complete add experience Popup">
+        <Button variant="outlined" onClick={() => setCompleteExperiencePopupOpen(true)}>Complete add experience Popup</Button>
+      </ComponentWrapper>
 
 
       {isModalOpen && (
@@ -711,6 +716,7 @@ export default function AllComponents() {
       )}
       {isCompleteProfilePopupOpen && <CompleteProfilePopup onClose={() => setCompleteProfilePopupOpen(false)}/>}
       {isCompleteSkillsPopupOpen && <CompleteSkillsPopup onClose={() => setCompleteSkillsPopupOpen(false)}/>}
+      {isCompleteExperiencePopupOpen && <AddExperiencePopup onClose={() => setCompleteExperiencePopupOpen(false)}/>}
     </div>
   );
 }

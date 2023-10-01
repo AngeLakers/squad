@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { ReactNode } from 'react';
 import RightArrowIconButton from "./right-arrow-button";
 import CompleteSkillsPopup from "./complete-profile-skills-popup";
+import AddExperiencePopup from "./complete-profile-addexperience-popup"
 import {
     basewhite,
     borderColor,
@@ -141,6 +142,11 @@ const CompleteProfilePopup: React.FC<CompleteProfilePopupProps> = ({
     const openSkillsPopup = () => {
         setCompleteSkillsPopupOpen(true);
     };
+
+    const [isAddExperiencePopupOpen, setAddExperiencePopupOpen] = useState(false);
+    const openExperiencePopup = () => {
+        setAddExperiencePopupOpen(true);
+    };
     return (
         <>
             <PopupComponent onClose={onClose}
@@ -187,7 +193,7 @@ const CompleteProfilePopup: React.FC<CompleteProfilePopupProps> = ({
                                 <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
                             </ItemContainer>
                             <ArrowIconButtonContainer>
-                                <RightArrowIconButton onClick={openNewPopup} />
+                                <RightArrowIconButton onClick={openExperiencePopup} />
                             </ArrowIconButtonContainer>
                         </ProfileItem>
                         {showDivider && <Divider />}
@@ -210,13 +216,22 @@ const CompleteProfilePopup: React.FC<CompleteProfilePopupProps> = ({
                                 <RightArrowIconButton onClick={openNewPopup} />
                             </ArrowIconButtonContainer>
                         </ProfileItem>
-
+                        {showDivider && <Divider />}
+                        <ProfileItem>
+                            <ItemContainer>
+                                <ItemName>Social Links</ItemName>
+                                <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
+                            </ItemContainer>
+                            <ArrowIconButtonContainer>
+                                <RightArrowIconButton onClick={openNewPopup} />
+                            </ArrowIconButtonContainer>
+                        </ProfileItem>
                     </PopupBody>
                 </ContentContainer>
             </PopupComponent>
             {aboutMePopupOpen && (<AboutMe onClose={() => setAboutMePopupOpen(false)} />)};
             {isCompleteSkillsPopupOpen && <CompleteSkillsPopup onClose={() => setCompleteSkillsPopupOpen(false)}/>}
-
+            {isAddExperiencePopupOpen && <AddExperiencePopup onClose={() => setAddExperiencePopupOpen(false)}/>}
         </>
     );
 };

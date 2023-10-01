@@ -31,7 +31,6 @@ import {
     titleFontWeight,
     gray500,
 } from "@/styles/reuseParams";
-import { Label } from "@mui/icons-material";
 import { StarBorderSVG, StarSVG } from "./svgs";
 
 const ContentContainer = styled.div`
@@ -155,8 +154,8 @@ const CompleteSkillsPopup: React.FC<CompleteSkillsPopupProps> = ({
     return (
         <PopupComponent onClose={onClose}
             width="752px"
-            top="calc(50% - {finalHeight}/2)"
-            left="calc(50% - {width}/2)"
+            // top="calc(50% - {finalHeight}/2)"
+            // left="calc(50% - {width}/2)"
             maxHeightPercent={0.3}
         >
             <ContentContainer>
