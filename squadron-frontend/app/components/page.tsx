@@ -340,7 +340,7 @@ export default function AllComponents() {
       name: "Patricia Montero",
       bottomButton: {
         label: "Message",
-        preset: "outlined" as PresetTypes,
+        preset: "transparent" as PresetTypes,
       },
       // bottomButton: {
       //   label: "Message",

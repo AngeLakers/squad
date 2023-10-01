@@ -55,6 +55,12 @@ const presets = {
     textColor: "#384250",
     borderColor: "#d2d6db",
   },
+  transparent: {
+    backgroundColor: "#ffffff",
+    hoverColor: "#ffffff",
+    textColor: "#D2D6DB",
+    borderColor: "#E5E7EB",
+  },
   black: {
     backgroundColor: "#111927",
     hoverColor: "#111927",
