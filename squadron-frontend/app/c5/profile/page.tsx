@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import TalentProfile, { ProfileDataType } from "@/ui/talent-profile-card";
-import TalentInfo from "@/ui/talent-info-card";
+import TalentInfo from "@/ui/layout-card";
 import TalentAnswers from "@/ui/talent-answers";
 import TalentNotes from "@/ui/talent-notes";
 import TalentDocuments from "@/ui/talent-documents";

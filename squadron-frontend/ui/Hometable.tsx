@@ -16,6 +16,30 @@ width:1130px;
 margin-left: 150px;
 `;
 
+
+
+const StyledTableCell = styled(TableCell)`
+  color: var(--primary-700, #1B18E4);
+  font-family: 'Inter';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+`;
+
+
+
+const StyledAvatarGroup = styled(AvatarGroup)`
+  & .MuiAvatar-root {
+    width: 30px;
+    height: 30px;
+  }
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+
   function createData(
     name:string,
     project: string,
@@ -44,8 +68,7 @@ return(
             <TableCell >Transaction</TableCell>
             <TableCell >Project</TableCell>
             <TableCell >Role</TableCell>
-            <TableCell sx={{
-  }}>Team mates</TableCell>
+            <TableCell sx={{}}>Team mates</TableCell>
             
           </TableRow>
         </TableHead>
@@ -53,40 +76,38 @@ return(
           {rows.map((row) => (
              
             <TableRow key={row.project} >
-                 <TableCell sx={{display: 'flex',alignItems: 'center', }}>
-                <img src={row.image} />   {row.name}
+                 <TableCell style={{ position: 'relative' }}>
+                <img src={row.image} />   
+                <span
+          style={{
+            position: 'absolute',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            left: '70px', 
+          }}
+            >
+                {row.name}
+                </span>
              
                </TableCell>
-              <TableCell component="th" scope="row" 
-  sx={{  color: 'var(--primary-700, #1B18E4)',
-    fontFamily: 'Inter',
-    fontSize: '14px',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    lineHeight: '20px', }}>
+              <StyledTableCell>
                 {row.project}
-              </TableCell>
+                
+              </StyledTableCell>
               
               <TableCell  >
-                <Chip icon={<PermIdentityOutlinedIcon  style={{color: '#026AA2'}} />}label={row.role} style={{ backgroundColor: '#A0E7F8', color: '#026AA2' }}
+                <Chip size="small" icon={<PermIdentityOutlinedIcon  style={{color: '#026AA2'}} />}label={row.role} style={{ backgroundColor: '#A0E7F8', color: '#026AA2' }}
                  />
               
               </TableCell>
-              <TableCell sx={{ display: 'flex',justifyContent: 'flex-start',}} >
-      {/* <AvatarGroup  sx={{ width: 30, height: 30}}max={4}>
-      <Avatar  sx={{ width: 30, height: 30 }} src={row.teammateimage} />
-      <Avatar  sx={{ width: 30, height: 30 }}src={row.teammateimage} />
-      <Avatar sx={{ width: 30, height: 30 }} src={row.teammateimage} />
-      <Avatar  sx={{ width: 30, height: 30 }}src={row.teammateimage} />
-      <Avatar  sx={{ width: 30, height: 30 }}src={row.teammateimage} />
-    </AvatarGroup> */}
-                  <AvatarGroup max={4}>
+              <TableCell sx={{position: 'relative' }} >
+                  <StyledAvatarGroup max={4} >
       <Avatar  src={row.teammateimage} />
       <Avatar src={row.teammateimage} />
       <Avatar  src={row.teammateimage} />
       <Avatar src={row.teammateimage} />
       <Avatar src={row.teammateimage} />
-    </AvatarGroup>
+    </StyledAvatarGroup>
               
               </TableCell>
            

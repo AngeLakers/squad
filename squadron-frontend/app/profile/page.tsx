@@ -11,7 +11,7 @@ import WrapperWithNavigation from "@/ui/profile/WrapperWithNavigation";
 const ParentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;  // 开头对齐
+  align-items: flex-start; 
   width: 90rem !important;
   height: 100%;
   background-color: rgba(16, 24, 40, 0.06);

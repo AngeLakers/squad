@@ -54,8 +54,8 @@ const ExitUncompletedPopup: React.FC<ExitUncompletedPopupProps> = ({ onClose, on
                 <Title>Unsaved changes</Title>
                 <Description>If you close this screen your changes won't be saved</Description>
                 <ButtonContainer>
-                    <CustomButton label="Cancel" onClick={onClose} borderColor="#D0D5DD" padding="10px 24px" width="45vw" margin="0 8px 0 0" backgroundColor="white" textColor="#344054" hoverColor="none"/>
-                    <CustomButton label="Confirm" onClick={onConfirm} padding="10px 24px" width="45vw"/>
+                    <CustomButton label="Cancel" preset="default" onClick={onClose} borderColor="#D0D5DD" padding="10px 24px" width="45vw" margin="0 8px 0 0" backgroundColor="white" textColor="#344054" hoverColor="none"/>
+                    <CustomButton label="Confirm" preset="default" onClick={onConfirm} padding="10px 24px" width="45vw"/>
                 </ButtonContainer>
             </ContentContainer>
         </PopupComponent>

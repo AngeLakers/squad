@@ -109,7 +109,7 @@ const Preview: React.FC = () => {
       <RightButtonGroup>
         <SaveButton>Save to drafts</SaveButton>
         <EditButton onClick={handleBackClick}>Back to Edit</EditButton>
-        <a href="/c4/proj_live"><CustomButton label="Publish" /></a>
+        <a href="/c4/proj_live"><CustomButton preset="default" label="Publish" /></a>
       </RightButtonGroup>
     </Footer>
     </Container>

@@ -1,21 +1,17 @@
+"use client";
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import CustomButton from "./custom-button";
 import { RateSVG, ClockSVG, LocationSVG, CalenderSVG } from "./svgs";
-
-const SquadRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
+import RoleInfo from "./role-info";
 
 const PersonName = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 24px 17px 24px 24px;
-  flex: 2;
+  flex: 1;
 `;
 
 const PersonAvatar = styled.img`
@@ -51,7 +47,7 @@ const PersonInfo = styled.div`
   flex-direction: column;
   padding: 16px 24px 16px 0px;
   gap: 4px;
-  flex: 5;
+  flex: 1;
 `;
 
 const PersonTitle = styled.div`
@@ -76,8 +72,8 @@ const InfoRow = styled.div`
 `;
 
 const InfoIcon = styled.div`
-width: 16px
-height: 16px
+  width: 16px;
+  height: 16px;
 `;
 
 const InfoContent = styled.div`
@@ -90,10 +86,8 @@ const InfoContent = styled.div`
 `;
 
 const ViewApplicationButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1.5;
+  float: right;
+  padding-right: 5px;
 `;
 
 interface CustomSquadPerson {
@@ -118,47 +112,31 @@ const SquadPerson: React.FC<CustomSquadPerson> = ({
   availability,
 }) => {
   return (
-    <SquadRow>
-      <PersonName>
-        <PersonAvatar src={avatarSrc} alt={name + " Avatar"} />
-        <NameContainer>
-          <Name>{name}</Name>
-          <ProfileLink href={profileLink}>View Profile</ProfileLink>
-        </NameContainer>
-      </PersonName>
-      <PersonInfo>
-        <PersonTitle>{title}</PersonTitle>
-        <InfoContainer>
-          <InfoRow>
-            <InfoIcon>
-              <RateSVG />
-            </InfoIcon>
-            <InfoContent>{rate}</InfoContent>
-          </InfoRow>
-          <InfoRow>
-            <InfoIcon>
-              <ClockSVG />
-            </InfoIcon>
-            <InfoContent>{hoursPerWeek}</InfoContent>
-          </InfoRow>
-          <InfoRow>
-            <InfoIcon>
-              <LocationSVG />
-            </InfoIcon>
-            <InfoContent>{location}</InfoContent>
-          </InfoRow>
-          <InfoRow>
-            <InfoIcon>
-              <CalenderSVG />
-            </InfoIcon>
-            <InfoContent>{availability}</InfoContent>
-          </InfoRow>
-        </InfoContainer>
-      </PersonInfo>
-      <ViewApplicationButton>
-        <CustomButton label="View Application" preset="outlined" />
-      </ViewApplicationButton>
-    </SquadRow>
+    <tr>
+      <td>
+        <PersonName>
+          <PersonAvatar src={avatarSrc} alt={name + " Avatar"} />
+          <NameContainer>
+            <Name>{name}</Name>
+            <ProfileLink href={profileLink}>View Profile</ProfileLink>
+          </NameContainer>
+        </PersonName>
+      </td>
+      <td>
+        <RoleInfo
+          title={title}
+          rate={rate}
+          hoursPerWeek={hoursPerWeek}
+          location={location}
+          availability={availability}
+        />
+      </td>
+      <td>
+        <ViewApplicationButton>
+          <CustomButton label="View Application" preset="outlined" />
+        </ViewApplicationButton>
+      </td>
+    </tr>
   );
 };
 

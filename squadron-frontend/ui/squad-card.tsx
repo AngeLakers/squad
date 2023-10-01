@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import CustomButton from "./custom-button";
 import DropdownButton from "./dropdown-button";
-import {
-  ArrowUpSVG,
-  ArrowDownSVG,
-  SquadSVG,
-  VerticalDotsSVG,
-  TickSVG,
-} from "./svgs";
-import SquadPerson from "./squad-person";
+import { SquadSVG, VerticalDotsSVG, TickSVG } from "./svgs";
 import CustomBadge from "./custom-badge";
+import SquadTable from "./squad-table";
+
+const mockMenuItems = [
+  [{ menu: "View profile" }, { menu: "My Work " }],
+  [{ menu: "Setting " }, { menu: "Help " }],
+  [{ menu: "Logout " }],
+];
 
 const Card = styled.div`
   display: flex;
@@ -67,54 +67,9 @@ const ButtonContainer = styled.div`
   gap: 24px;
 `;
 
-const SquadTable = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const TitleRow = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const TableTitle = styled.div`
-  color: #4d5761;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 18px;
-`;
-
-const TableTitle1 = styled(TableTitle)`
-  padding: 12px 24px 12px 24px;
-  flex: 2;
-`;
-const TableTitle2 = styled(TableTitle)`
-  padding: 12px 24px 12px 0px;
-  flex: 5;
-`;
-const TableTitle3 = styled(TableTitle)`
-  padding: 12px 24px 12px 0px;
-  flex: 1.5;
-`;
-
-const ShowMoreButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  color: #4d5761;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: left;
-`;
-
 interface CustomSquadCard {}
 
 const SquadCard: React.FC<CustomSquadCard> = ({}) => {
-  const [showAll, setShowAll] = useState(false);
-
   return (
     <Card>
       <MatchContainer>
@@ -137,88 +92,12 @@ const SquadCard: React.FC<CustomSquadCard> = ({}) => {
             <DropdownButton
               label={<VerticalDotsSVG />}
               preset="outlined"
-              menuItems={["Menu Item 1", "Menu Item 2", "Menu Item 3"]}
+              menuItems={mockMenuItems}
             />
           </ButtonContainer>
         </SquadHeader>
-        <SquadTable>
-          <TitleRow>
-            <TableTitle1>Squad</TableTitle1>
-            <TableTitle2>Position</TableTitle2>
-            <TableTitle3></TableTitle3>
-          </TitleRow>
-          <Divider />
-          <SquadPerson
-            avatarSrc={"https://avatars.githubusercontent.com/u/12592949?v=1"}
-            name={"111Patricia Montero"}
-            profileLink={"#"}
-            title={"Front-End Engineer"}
-            rate={"$30 /h"}
-            hoursPerWeek={"20-25h /week"}
-            location={"Unitated States"}
-            availability={"Inmediate"}
-          />
 
-          <Divider />
-          <SquadPerson
-            avatarSrc={"https://avatars.githubusercontent.com/u/12592949?v=1"}
-            name={"111Patricia Montero"}
-            profileLink={"#"}
-            title={"Front-End Engineer"}
-            rate={"$30 /h"}
-            hoursPerWeek={"20-25h /week"}
-            location={"Unitated States"}
-            availability={"Inmediate"}
-          />
-          <Divider />
-          <SquadPerson
-            avatarSrc={"https://avatars.githubusercontent.com/u/12592949?v=1"}
-            name={"111Patricia Montero"}
-            profileLink={"#"}
-            title={"Front-End Engineer"}
-            rate={"$30 /h"}
-            hoursPerWeek={"20-25h /week"}
-            location={"Unitated States"}
-            availability={"Inmediate"}
-          />
-          <Divider />
-          {/* Conditionally render the rest based on showAll state */}
-          {showAll && (
-            <>
-              <SquadPerson
-                avatarSrc={
-                  "https://avatars.githubusercontent.com/u/12592949?v=1"
-                }
-                name={"111Patricia Montero"}
-                profileLink={"#"}
-                title={"Front-End Engineer"}
-                rate={"$30 /h"}
-                hoursPerWeek={"20-25h /week"}
-                location={"Unitated States"}
-                availability={"Inmediate"}
-              />
-              <Divider />
-              <SquadPerson
-                avatarSrc={
-                  "https://avatars.githubusercontent.com/u/12592949?v=1"
-                }
-                name={"111Patricia Montero"}
-                profileLink={"#"}
-                title={"Front-End Engineer"}
-                rate={"$30 /h"}
-                hoursPerWeek={"20-25h /week"}
-                location={"Unitated States"}
-                availability={"Inmediate"}
-              />
-              <Divider />
-            </>
-          )}
-        </SquadTable>
-
-        <ShowMoreButton onClick={() => setShowAll(!showAll)}>
-          {showAll ? "See Less" : "See More"}
-          {showAll ? <ArrowUpSVG /> : <ArrowDownSVG />}
-        </ShowMoreButton>
+        <SquadTable />
       </SquadContainer>
     </Card>
   );
