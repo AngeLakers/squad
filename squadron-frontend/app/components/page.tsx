@@ -44,6 +44,8 @@ import TalentProfile, { ProfileDataType } from "@/ui/talent-profile-card";
 import SquadNav from "@/ui/squad-navigation";
 import EmptyRoleCard from "@/ui/empty-role-card";
 import callImage from '@/public/call.png';
+import portraitAImage from '@/public/portraitA.png';
+// import { PresetTypes } from "@/ui/custom-button";
 
 const mockProfileData: ProfileDataType = {
   rate: "$90/h",
@@ -226,19 +228,75 @@ export default function AllComponents() {
 
   const rolesData = [
     {
-      title: "UI Designer"
+      image: <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon"/>,
+      title: "UX Designer",
+      name: "Patricia Montero",
+      assignButtonProps: {
+        smallButtonText:"Send Offer",
+      },
+      bottomButton: {
+        label: "Send Offer",
+        onClick: () => alert("Button Clicked")
+      }
     },
     {
-      title: "UI Designer"
+      image: <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon"/>,
+      title: "UI Designer",
+      assignButtonProps: {
+        smallButtonText:"offer sent",
+        backgroundColor: '#B54708',
+        textColor: '#FFFFFF',
+      },
+      name: "Patricia Montero",
+      // bottomButton:{
+      //   label: "Message",
+      //   preset:"outlined" as PresetTypes,
+      // }
+      bottomButton: {
+        label: "Message",
+        backgroundColor:"#FFFFFF",
+        textColor:"#E5E7EB",
+        borderColor:"#E5E7EB",
+      }
     },
     {
-      title: "Product Designer"
+      title: "Product Designer",
+      image: <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon"/>,
+      assignButtonProps: {
+        smallButtonText:"offer accepted",
+        backgroundColor: '#039855',
+        textColor: '#FFFFFF',
+      },
+      name: "Patricia Montero",
+
+      bottomButton: {
+        label: "Message",
+        backgroundColor:"#FFFFFF",
+        textColor:"black",
+        borderColor:"#E5E7EB",
+      }
     },
     {
-      title: "UX Researcher"
+      image: <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon"/>,
+      title: "UX Researcher",
+      assignButtonProps: {
+        smallButtonText:"offer sent",
+        backgroundColor: '#039855',
+        textColor: '#FFFFFF',
+      },
+      name: "Patricia Montero",
+      bottomButton: {
+        label: "Message",
+        backgroundColor:"#FFFFFF",
+        textColor:"black",
+        borderColor:"#E5E7EB",
+      }
     },
     {
-      title: "Front-End Engineer"
+      title: "Front-End Engineer",
+      bottomButton: {
+        label: "Find Talent",
+      }
     },
     {
       title: "Full-Stack Engineer"
