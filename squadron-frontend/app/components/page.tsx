@@ -229,9 +229,9 @@ const ComponentWrapper: React.FC<ComponentWrapperProps> = ({
   usage,
 }) => {
   return (
-    <div style={{ border: "1px solid black", padding: "1%" }}>
+    <div style={{ border: "1px solid black", padding: "10px" }}>
       <ComponentContainer>{children}</ComponentContainer>
-      <div style={{ marginTop: "1%" }}>
+      <div style={{ marginTop: "10px" }}>
         <div>File: {filename}</div>
         <div>Created by: {createdBy}</div>
         <div>Description: {description}</div>

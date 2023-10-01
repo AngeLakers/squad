@@ -13,6 +13,7 @@ const StepHeadingContainer = styled.div`
   padding: 16px 15% 24px 15%;
   gap: 16px;
   border-bottom: 1px solid ##e5e7eb;
+  flex: 1;
 `;
 
 const HeadingContainer = styled.div`
