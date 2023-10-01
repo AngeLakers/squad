@@ -94,6 +94,7 @@ const presets = {
 export type PresetTypes =
   | "default"
   | "outlined"
+  | "transparent"
   | "black"
   | "text"
   | "arrow"

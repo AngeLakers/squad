@@ -449,6 +449,7 @@ export default function AllComponents() {
       >
         <CustomButton label="default" preset="default" />
         <CustomButton label={"outlined"} preset="outlined" />
+        <CustomButton label={"balck"} preset="transparent" />
         <CustomButton label={"balck"} preset="black" />
         <CustomButton label={"text"} preset="text" />
         <CustomButton
