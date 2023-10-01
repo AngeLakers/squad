@@ -42,6 +42,7 @@ import TalentDocuments from "@/ui/talent-documents";
 import TalentProfile from "@/ui/talent-profile-card";
 import NotificationMessage, { NotificationProps } from "@/ui/notification-message";
 import NotificationBox from "@/ui/notification-message";
+import LiveProjectCard from "@/ui/liveproject-card";
 
 const mockSkillsData: BadgeData[] = [
   { label: "Roadmapping", icon: <StarSVG />, preset: "outlined_green" },
@@ -113,40 +114,56 @@ const mockDocumentData = [
   { title: "name_of_the_archive6.pdf", size: "123k" },
 ];
 
+
+
 const notificationsData: NotificationProps[] = [
   {
-    iconPath: "/icon/suitcase-failed.svg",
+    iconPath: "/icon/notification-suitcase-failed.svg",
     messageInfo: {
-      message: "Message 1",
-      websiteName: "Website Name 1",
-      organizationName: "Organization Name 1"
-    }
-  },
-  {
-    iconPath: "/icon/suitcase-failed.svg",
-    messageInfo: {
-      message: "Message 2",
-      websiteName: "Website Name 2",
-      organizationName: "Organization Name 2"
+      message: "Your application has been rejected",
+      websiteName: "Google",
+      organizationName: "Surveyswap"
     }
   },
 
   {
-    iconPath: "/icon/suitcase-failed.svg",
+    iconPath: "/icon/notification-suitcase-succeed.svg",
     messageInfo: {
-      message: "Message 1",
-      websiteName: "Website Name 1",
-      organizationName: "Organization Name 1"
+      message: "Your application has been successful",
+      websiteName: "Google",
+      organizationName: "Surveyswap"
     }
   },
   {
-    iconPath: "/icon/suitcase-failed.svg",
+    iconPath: "/icon/notification-add-friend.svg",
     messageInfo: {
-      message: "Message 2",
-      websiteName: "Website Name 2",
-      organizationName: "Organization Name 2"
+      message: "Message 1",
+      websiteName: "Spotify",
+      organizationName: "Tech team"
     }
   },
+  {
+    iconPath: "/icon/notification-question.svg",
+    messageInfo: {
+      message: "You have been invited to an interview",
+      websiteName: "Google",
+      organizationName: "Google"
+    }
+  },
+  {
+    iconPath: "/icon/notification-puzzle.svg",
+    messageInfo: {
+      message: "New match for you!",
+        websiteName: "",
+        organizationName: ""
+
+    }
+  },
+
+
+
+
+
 
 ];
 
@@ -642,6 +659,21 @@ export default function AllComponents() {
               <NotificationBox notifications={notificationsData} />
             </div>
           </ComponentWrapper >
+
+      <ComponentWrapper
+          filename="liveproject-card.tsx"
+          createdBy="Ne Liu"
+          description="T5 - Talent receives invitation for a role with a squad- live project card display"
+      >
+
+        <div>
+          <LiveProjectCard title="MVP for Serverless E-commerce..." memberCount={5} />
+        </div>
+      </ComponentWrapper >
+
+      <StyledH1>T3</StyledH1>
+
+
 
 
       {isModalOpen && (
