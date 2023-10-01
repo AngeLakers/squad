@@ -139,8 +139,8 @@ const SendOfferPopup: React.FC<SendOfferProps> = ({
         </CheckboxContainer>
         <Divider />
         <ButtonContainer>
-          <CustomButton label="Send Offer" borderColor="#D0D5DD" padding="10px 16px" hoverColor="none" backgroundColor={isChecked ? 'black' : '#D2D6DB'} textColor= 'white'/>
-          <CustomButton label="Cancel" padding="10px 16px" backgroundColor="white" textColor="#344054" hoverColor="none" borderColor="#D0D5DD" onClick={onClose}/>
+          <CustomButton label="Send Offer" preset="default" borderColor="#D0D5DD" padding="10px 16px" hoverColor="none" backgroundColor={isChecked ? 'black' : '#D2D6DB'} textColor= 'white'/>
+          <CustomButton label="Cancel" preset="default" padding="10px 16px" backgroundColor="white" textColor="#344054" hoverColor="none" borderColor="#D0D5DD" onClick={onClose}/>
         </ButtonContainer>
       </Container>
     </PopupComponent>

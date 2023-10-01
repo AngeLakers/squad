@@ -241,8 +241,8 @@ const AddRole: React.FC<AddRoleProps> = ({ onClose, title }) => {
         </RoleDetailsContainer>
         </ScrollableContainer>
         <ButtonContainer>
-            <CustomButton label="Cancel" borderColor="#D0D5DD" padding="10px 18px 10px 18px" margin="0 8px 0 0" backgroundColor="white" textColor="#344054" hoverColor="none" onClick={() => setExitPopupVisible(true)}/>
-            <CustomButton label="Add role" borderColor="#D0D5DD" padding="10px 18px 10px 18px" backgroundColor="#111927" textColor="white" hoverColor="none"/>
+            <CustomButton label="Cancel" preset="default" borderColor="#D0D5DD" padding="10px 18px 10px 18px" margin="0 8px 0 0" backgroundColor="white" textColor="#344054" hoverColor="none" onClick={() => setExitPopupVisible(true)}/>
+            <CustomButton label="Add role" preset="default" borderColor="#D0D5DD" padding="10px 18px 10px 18px" backgroundColor="#111927" textColor="white" hoverColor="none"/>
         </ButtonContainer>
         </Container>
         {isExitPopupVisible && (

@@ -96,8 +96,8 @@ const InviteAdmin: React.FC<InviteAdminProps> = ({ onClose }) => {
         </InputRow>
         <AddButton>+ Add another</AddButton>
         <ButtonContainer>
-            <CustomButton label="Cancel" borderColor="#D0D5DD" padding="10px 35px 10px 35px" backgroundColor="white" textColor="#344054" hoverColor="none" onClick={onClose}/>
-            <CustomButton label="Send invites" padding="10px 25px 10px 25px" backgroundColor="#111927" textColor="white" hoverColor="none" />
+            <CustomButton label="Cancel" preset="default" borderColor="#D0D5DD" padding="10px 35px 10px 35px" backgroundColor="white" textColor="#344054" hoverColor="none" onClick={onClose}/>
+            <CustomButton label="Send invites" preset="default" padding="10px 25px 10px 25px" backgroundColor="#111927" textColor="white" hoverColor="none" />
         </ButtonContainer>
       </Container>
     </PopupComponent>

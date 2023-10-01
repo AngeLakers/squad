@@ -335,7 +335,7 @@ const rightButtonGroupStyle: CSSProperties = {
       <button style={leftButtonStyle}>Cancel</button>
       <div style={rightButtonGroupStyle}>
         <button>Save to drafts</button>
-        <a href="/c4/preview"><CustomButton label="Preview" /></a>
+        <a href="/c4/preview"><CustomButton preset="default" label="Preview" /></a>
       </div>
   </div>
 </div>

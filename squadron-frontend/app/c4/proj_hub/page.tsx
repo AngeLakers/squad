@@ -109,8 +109,8 @@ const ProjectHub: React.FC = () => {
         {showProjectDetails && (
             <>
             <NewButtonContainer>
-            <CustomButton label="Share" backgroundColor='white' textColor='black' borderColor="#D2D6DB"/>
-            <CustomButton label="Edit Project" onClick={() => setEditprojPopupOpen(true)}/>
+            <CustomButton label="Share" preset="default" backgroundColor='white' textColor='black' borderColor="#D2D6DB"/>
+            <CustomButton label="Edit Project" preset="default" onClick={() => setEditprojPopupOpen(true)}/>
             {editprojPopupOpen && (
                 <EditProjPopup
                     onClose={() => setEditprojPopupOpen(false)}
