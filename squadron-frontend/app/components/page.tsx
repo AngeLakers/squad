@@ -46,6 +46,7 @@ import SquadNav from "@/ui/squad-navigation";
 import EmptyRoleCard from "@/ui/empty-role-card";
 import callImage from "@/public/call.png";
 import portraitAImage from "@/public/portraitA.png";
+import SendOfferPopup from "@/ui/send-offer-popup";
 // import { PresetTypes } from "@/ui/custom-button";
 
 const MockrolesData = [
@@ -124,6 +125,7 @@ import CompleteSkillsPopup from "@/ui/complete-profile-skills-popup";
 import StepHeading from "@/ui/step-heading";
 import Heading from "@/ui/heading";
 import RatioButtonsTable from "@/ui/ratio-buttons-table";
+import SendOffer from "@/ui/send-offer-popup";
 
 const mockSkillsData: BadgeData[] = [
   { label: "Roadmapping", icon: <StarSVG />, preset: "outlined_green" },
@@ -252,6 +254,7 @@ export default function AllComponents() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [videoUploadOpen, setVideoUploadOpen] = useState<boolean>(false);
   const [isAdminInvite, setAdminInviteOpen] = useState(false);
+  const [isOfferSend, setOfferSendOpen] = useState(false);
   const [isRoleAdd, setAddRoleOpen] = useState(false);
   const [editprojPopupOpen, setEditprojPopupOpen] = useState(false);
   const [exitUncompletedPopupOpen, setexitUncompletedPopupOpen] =
@@ -460,57 +463,46 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C4 - Squad Presets"
       >
-        <Button variant="outlined" onClick={() => setModalOpen(true)}>
-          Create project
-        </Button>
+        <CustomButton label="Create project" onClick={() => setModalOpen(true)}/>
+  
       </ComponentWrapper>
       <ComponentWrapper
         filename="video-upload.tsx"
         createdBy="Becky Xu"
         description="C4 - Upload Video"
       >
-        <Button variant="outlined" onClick={() => setVideoUploadOpen(true)}>
-          Upload video
-        </Button>
+        <CustomButton label="Upload video" onClick={() => setVideoUploadOpen(true)}/>
       </ComponentWrapper>
       <ComponentWrapper
         filename="invite-admin.tsx"
         createdBy="Becky Xu"
         description="C4 - Adding Admin"
       >
-        <Button variant="outlined" onClick={() => setAdminInviteOpen(true)}>
-          Add admins
-        </Button>
+        <CustomButton label="Add admins" onClick={() => setAdminInviteOpen(true)}/>
       </ComponentWrapper>
       <ComponentWrapper
         filename="add-role.tsx"
         createdBy="Becky Xu"
         description="C4 - Adding a Role"
       >
-        <Button variant="outlined" onClick={() => setAddRoleOpen(true)}>
-          Add role
-        </Button>
+        <CustomButton label="Add role" onClick={() => setAddRoleOpen(true)}/>
       </ComponentWrapper>
       <ComponentWrapper
         filename="editproj-popup.tsx"
         createdBy="Becky Xu"
         description="C4 - Edit Project Popup"
       >
-        <Button variant="outlined" onClick={() => setEditprojPopupOpen(true)}>
-          Edit project
-        </Button>
+         <CustomButton label="Edit project" onClick={() => setEditprojPopupOpen(true)}/>
+          
       </ComponentWrapper>
       <ComponentWrapper
         filename="exit-uncompleted-popup.tsx"
         createdBy="Becky Xu"
         description="C4 - Exit Uncompleted Project Popup"
       >
-        <Button
-          variant="outlined"
+         <CustomButton label="Exit Uncompleted Role"
           onClick={() => setexitUncompletedPopupOpen(true)}
-        >
-          Exit Uncompleted Role
-        </Button>
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="cost-estimator.tsx"
@@ -540,24 +532,28 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C5 - Book a Call"
       >
-        <Button
-          variant="outlined"
+        <CustomButton label="Book call A"
           onClick={() => setbookInterviewAPopupOpen(true)}
-        >
-          Book call A
-        </Button>
+        />
+
       </ComponentWrapper>
       <ComponentWrapper
         filename="book-interview-b.tsx"
         createdBy="Becky Xu"
         description="C5 - Book a Call"
       >
-        <Button
-          variant="outlined"
+        <CustomButton label="Book call B"
           onClick={() => setbookInterviewBPopupOpen(true)}
-        >
-          Book call B
-        </Button>
+        />
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="send-offer-popup.tsx"
+        createdBy="Becky Xu"
+        description="C5 - Send offer"
+      >
+        <CustomButton label="Send offer"
+          onClick={() => setOfferSendOpen(true)}
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="squad-surveyswap.tsx"
@@ -935,6 +931,9 @@ export default function AllComponents() {
       )}
       {isAdminInvite && (
         <InviteAdmin onClose={() => setAdminInviteOpen(false)} />
+      )}
+      {isOfferSend && (
+        <SendOffer onClose={() => setOfferSendOpen(false)} />
       )}
       {isRoleAdd && <AddRole onClose={() => setAddRoleOpen(false)} />}
       {exitUncompletedPopupOpen && (
