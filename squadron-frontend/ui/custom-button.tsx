@@ -113,3 +113,4 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 };
 
 export default CustomButton;
+// export type { PresetTypes };

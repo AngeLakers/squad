@@ -53,6 +53,30 @@ const TabButton = styled.button<{ active: boolean }>`
     cursor: pointer;
 `;
 
+const rolesData = [
+    {
+      title: "UI Designer"
+    },
+    {
+      title: "UI Designer"
+    },
+    {
+      title: "Product Designer"
+    },
+    {
+      title: "UX Researcher"
+    },
+    {
+      title: "Front-End Engineer"
+    },
+    {
+      title: "Full-Stack Engineer"
+    },
+    {
+      title: "DevOps Engineer"
+    }
+  ];
+
 const ProjectHub: React.FC = () => {
     const [activeTab, setActiveTab] = useState("Project Details");
     const showProjectDetails = activeTab === "Project Details";
@@ -150,7 +174,7 @@ const ProjectHub: React.FC = () => {
         <>
             <CollectingBar/>
             <SquadContainer>
-                <SquadSurveySwap />
+                <SquadSurveySwap roles={rolesData}/>
             </SquadContainer>
         </>
         )}
