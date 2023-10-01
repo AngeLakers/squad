@@ -89,8 +89,8 @@ const BookInterviewB: React.FC<BookInterviewBProps> = ({
                 />
                 <Divider/>
                 <ButtonContainer>
-                    <CustomButton label={cancelButtonText} borderColor="#D0D5DD" padding="10px 18px" margin="0 8px 0 0" backgroundColor="white" textColor="#344054" hoverColor="none" onClick={onClose}/>
-                    <a href={button2Link || "#"}><CustomButton label={confirmButtonText} borderColor="#D0D5DD" padding="10px 18px" backgroundColor="#111927" textColor="white" hoverColor="none"/></a>
+                    <CustomButton label={cancelButtonText} preset="default" borderColor="#D0D5DD" padding="10px 18px" margin="0 8px 0 0" backgroundColor="white" textColor="#344054" hoverColor="none" onClick={onClose}/>
+                    <a href={button2Link || "#"}><CustomButton label={confirmButtonText} preset="default" borderColor="#D0D5DD" padding="10px 18px" backgroundColor="#111927" textColor="white" hoverColor="none"/></a>
                 </ButtonContainer>
             </ContentContainer>
         </PopupComponent>

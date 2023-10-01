@@ -463,7 +463,7 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C4 - Squad Presets"
       >
-        <CustomButton label="Create project" onClick={() => setModalOpen(true)}/>
+        <CustomButton preset="default" label="Create project" onClick={() => setModalOpen(true)}/>
   
       </ComponentWrapper>
       <ComponentWrapper
@@ -471,28 +471,28 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C4 - Upload Video"
       >
-        <CustomButton label="Upload video" onClick={() => setVideoUploadOpen(true)}/>
+        <CustomButton preset="default" label="Upload video" onClick={() => setVideoUploadOpen(true)}/>
       </ComponentWrapper>
       <ComponentWrapper
         filename="invite-admin.tsx"
         createdBy="Becky Xu"
         description="C4 - Adding Admin"
       >
-        <CustomButton label="Add admins" onClick={() => setAdminInviteOpen(true)}/>
+        <CustomButton preset="default" label="Add admins" onClick={() => setAdminInviteOpen(true)}/>
       </ComponentWrapper>
       <ComponentWrapper
         filename="add-role.tsx"
         createdBy="Becky Xu"
         description="C4 - Adding a Role"
       >
-        <CustomButton label="Add role" onClick={() => setAddRoleOpen(true)}/>
+        <CustomButton preset="default" label="Add role" onClick={() => setAddRoleOpen(true)}/>
       </ComponentWrapper>
       <ComponentWrapper
         filename="editproj-popup.tsx"
         createdBy="Becky Xu"
         description="C4 - Edit Project Popup"
       >
-         <CustomButton label="Edit project" onClick={() => setEditprojPopupOpen(true)}/>
+         <CustomButton preset="default" label="Edit project" onClick={() => setEditprojPopupOpen(true)}/>
           
       </ComponentWrapper>
       <ComponentWrapper
@@ -500,7 +500,7 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C4 - Exit Uncompleted Project Popup"
       >
-         <CustomButton label="Exit Uncompleted Role"
+         <CustomButton label="Exit Uncompleted Role" preset="default" 
           onClick={() => setexitUncompletedPopupOpen(true)}
         />
       </ComponentWrapper>
@@ -532,7 +532,7 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C5 - Book a Call"
       >
-        <CustomButton label="Book call A"
+        <CustomButton label="Book call A" preset="default" 
           onClick={() => setbookInterviewAPopupOpen(true)}
         />
 
@@ -542,7 +542,7 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C5 - Book a Call"
       >
-        <CustomButton label="Book call B"
+        <CustomButton label="Book call B" preset="default" 
           onClick={() => setbookInterviewBPopupOpen(true)}
         />
       </ComponentWrapper>
@@ -551,7 +551,7 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C5 - Send offer"
       >
-        <CustomButton label="Send offer"
+        <CustomButton label="Send offer" preset="default" 
           onClick={() => setOfferSendOpen(true)}
         />
       </ComponentWrapper>
