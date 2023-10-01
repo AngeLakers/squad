@@ -1,181 +1,204 @@
 import React from "react";
 import styled from "styled-components";
-import squadImage from '@/public/squad.png';
-import Image from 'next/image';
-import { ReactNode } from 'react';
+import squadImage from "@/public/squad.png";
+import Image from "next/image";
+import { ReactNode } from "react";
 import CustomButton from "./custom-button";
-import unfilledImage from '@/public/unfilled.png';
-// import { PresetTypes } from "./custom-button";
+import unfilledImage from "@/public/unfilled.png";
+import { PresetTypes } from "./custom-button";
 
 const Container = styled.div`
-    border: 1px solid #E5E7EB;
-    padding: 1%;
-    width: 100%;
-    border-radius:12px;
-    min-width: 1200px;
+  border: 1px solid #e5e7eb;
+  padding: 1%;
+  width: 100%;
+  border-radius: 12px;
+  min-width: 1200px;
 `;
 
 const TitleRow = styled.div`
-    display: flex;
-    justify-content: center;
-    padding: 24px;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
 `;
 
 const SquadTitle = styled.span`
-    font-size: 20px;
-    font-weight: 600;
+  font-size: 20px;
+  font-weight: 600;
 `;
 
 const SurveySwapTitle = styled.span`
-    font-size: 14px;
-    font-weight: 400;
-    color: #4D5761;
+  font-size: 14px;
+  font-weight: 400;
+  color: #4d5761;
 `;
 
 const CustomAvatar = styled.div`
-    width: 112px;
-    height: 112px;
-    border-radius: 50%;
-    overflow: hidden;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  overflow: hidden;
 `;
 
 const AvatarContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 32px 24px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 32px 24px 16px 24px;
 `;
 
 const AvatarGrid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-auto-rows: minmax(120px, auto);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(120px, auto);
 `;
 
 const RoleTitle = styled.div`
-    font-size: 16px;
+  font-size: 16px;
 `;
 
 const NotAssigned = styled.div`
-    font-size: 14px;
-    color: #888;
-    margin-top: 4px;
-    margin-bottom: 20px;
+  font-size: 14px;
+  color: #888;
+  margin-top: 4px;
+  margin-bottom: 20px;
 `;
 
 const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 273px; 
+  display: flex;
+  justify-content: space-between;
+  width: 273px;
 `;
 
 const AddButton = styled.button`
-    cursor: pointer;
-    padding: 10px 16px;
-    border-radius: 8px;
-    background-color: white;
-    color: black;
-    border: 1px solid #D2D6DB;
-    font-size:14px;
+  cursor: pointer;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  border: 1px solid #d2d6db;
+  font-size: 14px;
 `;
 
 const ManageButton = styled.button`
-    cursor: pointer;
-    color: #D2D6DB;
+  cursor: pointer;
+  color: #d2d6db;
 `;
 
 const LogoContainer = styled.div`
-    display: flex;
-    align-items: center;
-    margin-right: 5px;
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
 `;
 const TextAndButtonContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
 `;
 
 type AssignButtonProps = {
-    backgroundColor?: string;
-    textColor?: string;
-    smallButtonText?: string;
-  };
+  backgroundColor?: string;
+  textColor?: string;
+  smallButtonText?: string;
+};
 
 const AssignButton = styled.button<AssignButtonProps>`
-    width: auto;
-    height: 22px;
-    border-radius: 16px;
-    padding: 2px 8px;
-    cursor: pointer;
-    font-size: 12px;
-    margin:8px 0 16px 0;
-    background-color: ${props => props.backgroundColor || '#F2F4F7'};
-    color: ${props => props.textColor || 'black'};
+  width: auto;
+  height: 22px;
+  border-radius: 16px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  margin: 8px 0 16px 0;
+  background-color: ${(props) => props.backgroundColor || "#F2F4F7"};
+  color: ${(props) => props.textColor || "black"};
 `;
 
 interface Role {
-    title: string;
-    image?: ReactNode;
-    name?: string;
-    assignButtonProps?: AssignButtonProps;
-    bottomButton?: {
-        label: string;
-        onClick?: () => void;
-        backgroundColor?: string;
-        textColor?: string;
-        borderColor?: string;
-        // preset?: PresetTypes;
-    };
+  title: string;
+  image?: ReactNode;
+  name?: string;
+  assignButtonProps?: AssignButtonProps;
+  bottomButton?: {
+    label: string;
+    onClick?: () => void;
+    backgroundColor?: string;
+    textColor?: string;
+    borderColor?: string;
+    preset?: PresetTypes;
+  };
 }
 
 interface SquadSurveySwapProps {
-    roles: Role[];
+  roles: Role[];
 }
 
-export default function SquadSurveySwap({ roles }: SquadSurveySwapProps){
-
+export default function SquadSurveySwap({ roles }: SquadSurveySwapProps) {
   return (
     <Container>
-        <TitleRow>
-            <LogoContainer>
-            <Image key="squadImage" src={squadImage} alt="logo" width="56" height="56" />
-            </LogoContainer>
-            <TextAndButtonContainer>
-            <div>
-                <SquadTitle>My Squad</SquadTitle>
-                <br />
-                <SurveySwapTitle>SurveySwap</SurveySwapTitle>
-            </div>
-            <ButtonContainer>
-                <AddButton>+ Add role</AddButton>
-                <ManageButton>Manage squad</ManageButton>
-            </ButtonContainer>
-            </TextAndButtonContainer>
-        </TitleRow>
+      <TitleRow>
+        <LogoContainer>
+          <Image
+            key="squadImage"
+            src={squadImage}
+            alt="logo"
+            width="56"
+            height="56"
+          />
+        </LogoContainer>
+        <TextAndButtonContainer>
+          <div>
+            <SquadTitle>My Squad</SquadTitle>
+            <br />
+            <SurveySwapTitle>SurveySwap</SurveySwapTitle>
+          </div>
+          <ButtonContainer>
+            <AddButton>+ Add role</AddButton>
+            <ManageButton>Manage squad</ManageButton>
+          </ButtonContainer>
+        </TextAndButtonContainer>
+      </TitleRow>
 
-      
-        <AvatarGrid>
+      <AvatarGrid>
         {roles.map((role, i) => (
           <AvatarContainer key={i}>
             {role.image ? (
-                <CustomAvatar>{role.image}</CustomAvatar>
-                ) : (
-                <CustomAvatar>
-                    <Image key="unfilledImage" src={unfilledImage} alt="Unfilled Icon"/>
-                </CustomAvatar>
-                )}
-            <AssignButton 
-            backgroundColor={role.assignButtonProps?.backgroundColor} 
-            textColor={role.assignButtonProps?.textColor}>
-            {role.assignButtonProps?.smallButtonText || "Unfilled"}
+              <CustomAvatar>{role.image}</CustomAvatar>
+            ) : (
+              <CustomAvatar>
+                <Image
+                  key="unfilledImage"
+                  src={unfilledImage}
+                  alt="Unfilled Icon"
+                />
+              </CustomAvatar>
+            )}
+            <AssignButton
+              backgroundColor={role.assignButtonProps?.backgroundColor}
+              textColor={role.assignButtonProps?.textColor}
+            >
+              {role.assignButtonProps?.smallButtonText || "Unfilled"}
             </AssignButton>
             <RoleTitle>{role.title || "No Title"}</RoleTitle>
             <NotAssigned>{role.name || "Not assigned yet"}</NotAssigned>
-            {role.bottomButton && (
-                <CustomButton label={role.bottomButton.label} onClick={role.bottomButton.onClick} backgroundColor={role.bottomButton.backgroundColor ||  "#4B48EC"} textColor={role.bottomButton.textColor || "#ffffff"} borderColor={role.bottomButton.borderColor || "none"}/>
-            //   <CustomButton label={role.bottomButton.label} preset={role.bottomButton.preset} onClick={role.bottomButton.onClick} backgroundColor={role.bottomButton.backgroundColor ||  "#4B48EC"} textColor={role.bottomButton.textColor || "#ffffff"} borderColor={role.bottomButton.borderColor || "none"}/>
-            )}
+            {role.bottomButton &&
+              (role.bottomButton.preset ? (
+                <CustomButton
+                  label={role.bottomButton.label}
+                  onClick={role.bottomButton.onClick}
+                  preset={role.bottomButton.preset}
+                />
+              ) : (
+                <CustomButton
+                  label={role.bottomButton.label}
+                  onClick={role.bottomButton.onClick}
+                  backgroundColor={
+                    role.bottomButton.backgroundColor || "#4B48EC"
+                  }
+                  textColor={role.bottomButton.textColor || "#ffffff"}
+                  borderColor={role.bottomButton.borderColor || "none"}
+                />
+              ))}
           </AvatarContainer>
         ))}
       </AvatarGrid>

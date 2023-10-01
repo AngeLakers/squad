@@ -154,7 +154,14 @@ const mockSkillsData: BadgeData[] = [
     preset: "outlined_grey",
   },
 ];
-
+const mockMenuItems = [
+  [
+    { title: "Profile", link: "/profile" },
+    { title: "Settings", link: "/settings" },
+  ],
+  [{ title: "Help", link: "/help" }],
+  [{ title: "Logout", link: "/logout" }],
+];
 const mockToolsData: BadgeData[] = [
   {
     label: "Photoshop",
@@ -328,16 +335,16 @@ export default function AllComponents() {
         textColor: "#FFFFFF",
       },
       name: "Patricia Montero",
-      // bottomButton:{
-      //   label: "Message",
-      //   preset:"outlined" as PresetTypes,
-      // }
       bottomButton: {
         label: "Message",
-        backgroundColor: "#FFFFFF",
-        textColor: "#E5E7EB",
-        borderColor: "#E5E7EB",
+        preset: "outlined",
       },
+      // bottomButton: {
+      //   label: "Message",
+      //   backgroundColor: "#FFFFFF",
+      //   textColor: "#E5E7EB",
+      //   borderColor: "#E5E7EB",
+      // },
     },
     {
       title: "Product Designer",
@@ -437,7 +444,7 @@ export default function AllComponents() {
         description="Button with different styles. You can use preset style or add your own style to the preset."
         usage="<CustomButton label='custom padding' preset='outlined' padding='10px 30px'/>"
       >
-        <CustomButton label="default" />
+        <CustomButton label="default" preset="default" />
         <CustomButton label={"outlined"} preset="outlined" />
         <CustomButton label={"balck"} preset="black" />
         <CustomButton label={"text"} preset="text" />
