@@ -47,6 +47,8 @@ import EmptyRoleCard from "@/ui/empty-role-card";
 import callImage from "@/public/call.png";
 import portraitAImage from "@/public/portraitA.png";
 import SendOfferPopup from "@/ui/send-offer-popup";
+import LaunchMissionPopup from "@/ui/launch-mission";
+import launchMissionImage from "@/public/launch-mission.png";
 // import { PresetTypes } from "@/ui/custom-button";
 
 const MockrolesData = [
@@ -257,6 +259,7 @@ export default function AllComponents() {
   const [isOfferSend, setOfferSendOpen] = useState(false);
   const [isRoleAdd, setAddRoleOpen] = useState(false);
   const [editprojPopupOpen, setEditprojPopupOpen] = useState(false);
+  const [launchMissionPopupOpen, setlaunchMissionPopupOpen] = useState(false);
   const [exitUncompletedPopupOpen, setexitUncompletedPopupOpen] =
     useState(false);
   const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
@@ -555,6 +558,14 @@ export default function AllComponents() {
         <CustomButton label="Send offer" preset="default" 
           onClick={() => setOfferSendOpen(true)}
         />
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="launch-mission.tsx"
+        createdBy="Becky Xu"
+        description="C5 - Launch Mission Popup"
+      >
+         <CustomButton preset="default" label="Launch Mission" onClick={() => setlaunchMissionPopupOpen(true)}/>
+          
       </ComponentWrapper>
       <ComponentWrapper
         filename="squad-surveyswap.tsx"
@@ -924,6 +935,23 @@ export default function AllComponents() {
             />
           }
           //showDivider={false}
+        />
+      )}
+      {launchMissionPopupOpen && (
+        <LaunchMissionPopup
+          onClose={() => setlaunchMissionPopupOpen(false)}
+          title="Mission Launched"
+          description="Your project hub and lifecycle management tools are now available. We recommend booking a kick off call with your Squad."
+          confirmButtonText="Confirm"
+          icon={
+            <Image
+              key="launchMissionImage"
+              src={launchMissionImage}
+              alt="Launch Mission Icon"
+              width="80"
+              height="80"
+            />
+          }
         />
       )}
 
