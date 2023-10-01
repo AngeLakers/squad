@@ -35,13 +35,67 @@ import { AlertSVG, StarSVG, TickSVG } from "@/ui/svgs";
 import InfoBar from "@/ui/info-bar";
 import SquadCard from "@/ui/squad-card";
 import TalentSkills, { BadgeData } from "@/ui/talent-skills";
-import TalentInfo from "@/ui/talent-info-card";
+import TalentInfo from "@/ui/layout-card";
+import CardLayout from "@/ui/layout-card";
 import TalentAnswers from "@/ui/talent-answers";
 import TalentNotes from "@/ui/talent-notes";
 import TalentDocuments from "@/ui/talent-documents";
 import TalentProfile, { ProfileDataType } from "@/ui/talent-profile-card";
 import SquadNav from "@/ui/squad-navigation";
 import EmptyRoleCard from "@/ui/empty-role-card";
+
+const rolesData = [
+  {
+    label: "Front-End Engineer",
+    info: {
+      title: "Front-End Engineer",
+      rate: "30$-50$ /h",
+      hoursPerWeek: "20-25h /week",
+      location: "Amsterdam, NL",
+      availability: "20/12/23",
+    },
+  },
+  {
+    label: "Back-End Engineer1",
+    info: {
+      title: "Back-End Engineer1",
+      rate: "30$-50$ /h",
+      hoursPerWeek: "20-25h /week",
+      location: "Amsterdam, NL",
+      availability: "20/12/23",
+    },
+  },
+  {
+    label: "Back-End Engineer2",
+    info: {
+      title: "Back-End Engineer2",
+      rate: "30$-50$ /h",
+      hoursPerWeek: "20-25h /week",
+      location: "Amsterdam, NL",
+      availability: "20/12/23",
+    },
+  },
+  {
+    label: "Back-End Engineer3",
+    info: {
+      title: "Back-End Engineer3",
+      rate: "30$-50$ /h",
+      hoursPerWeek: "20-25h /week",
+      location: "Amsterdam, NL",
+      availability: "20/12/23",
+    },
+  },
+  {
+    label: "Back-End Engineer4",
+    info: {
+      title: "Back-End Engineer4",
+      rate: "30$-50$ /h",
+      hoursPerWeek: "20-25h /week",
+      location: "Amsterdam, NL",
+      availability: "20/12/23",
+    },
+  },
+];
 
 const mockProfileData: ProfileDataType = {
   rate: "$90/h",
@@ -63,6 +117,9 @@ const mockProfileData: ProfileDataType = {
 };
 import CompleteProfilePopup from "@/ui/complete-profile-popup";
 import CompleteSkillsPopup from "@/ui/complete-profile-skills-popup";
+import StepHeading from "@/ui/step-heading";
+import Heading from "@/ui/heading";
+import RatioButtonsTable from "@/ui/ratio-buttons-table";
 
 const mockSkillsData: BadgeData[] = [
   { label: "Roadmapping", icon: <StarSVG />, preset: "outlined_green" },
@@ -190,11 +247,19 @@ export default function AllComponents() {
     useState(false);
   const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
   const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
-  const [isCompleteProfilePopupOpen, setCompleteProfilePopupOpen] = useState(false);
-  const [isCompleteSkillsPopupOpen, setCompleteSkillsPopupOpen] = useState(false);
+  const [isCompleteProfilePopupOpen, setCompleteProfilePopupOpen] =
+    useState(false);
+  const [isCompleteSkillsPopupOpen, setCompleteSkillsPopupOpen] =
+    useState(false);
 
   const icons = [
-    <Image key="customizeImage" src={customizeImage} alt="Custom Icon" width="32" height="32" />,
+    <Image
+      key="customizeImage"
+      src={customizeImage}
+      alt="Custom Icon"
+      width="32"
+      height="32"
+    />,
     <Image
       key="worldWideWebImage"
       src={worldWideWebImage}
@@ -216,8 +281,20 @@ export default function AllComponents() {
       width="32"
       height="32"
     />,
-    <Image key="growthImage" src={growthImage} alt="Growth Icon" width="32" height="32" />,
-    <Image key="dataImage" src={dataImage} alt="Data Icon" width="32" height="32" />,
+    <Image
+      key="growthImage"
+      src={growthImage}
+      alt="Growth Icon"
+      width="32"
+      height="32"
+    />,
+    <Image
+      key="dataImage"
+      src={dataImage}
+      alt="Data Icon"
+      width="32"
+      height="32"
+    />,
   ];
 
   return (
@@ -354,7 +431,7 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C4 - empty role card "
       >
-      <EmptyRoleCard title="Product Manager"></EmptyRoleCard>
+        <EmptyRoleCard title="Product Manager"></EmptyRoleCard>
       </ComponentWrapper>
 
       <StyledH1>C5</StyledH1>
@@ -418,12 +495,16 @@ export default function AllComponents() {
         <SquadCard />
       </ComponentWrapper>
       <ComponentWrapper
-        filename="talent-info-card.tsx"
+        filename="layout-card.tsx"
         createdBy="Mark Sun"
-        description="layout of talent info card"
+        description="layout of card"
       >
         <TalentInfo
-          title={"Talent Info layout"}
+          title={"card layout"}
+          content={<div>{"add component here"}</div>}
+        />
+        <TalentInfo
+          titleComponent={<div>{"title component"}</div>}
           content={<div>{"add component here"}</div>}
         />
       </ComponentWrapper>
@@ -478,7 +559,36 @@ export default function AllComponents() {
           content={<TalentDocuments documents={mockDocumentData} />}
         />
       </ComponentWrapper>
+
       <StyledH1>T5</StyledH1>
+      <ComponentWrapper
+        filename="combanation of card-layout, heading, ratio-buttons-table.tsx"
+        createdBy="Mark Sun"
+        description="ratio buttons table"
+      >
+        <CardLayout
+          titleComponent={
+            <Heading
+              title={"Select your role"}
+              description={
+                "Before you add the rest of the team, select your role and fill up your details"
+              }
+            />
+          }
+          content={<RatioButtonsTable roles={rolesData}></RatioButtonsTable>}
+        />
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="step-heading.tsx"
+        createdBy="Mark Sun"
+        description="step heading"
+      >
+        <StepHeading
+          progress={33}
+          step={"Step 01/03"}
+          heading={"Select your role"}
+        />
+      </ComponentWrapper>
       <ComponentWrapper
         filename="project-profile"
         createdBy="Chelsea Guo"
@@ -640,15 +750,30 @@ export default function AllComponents() {
         </Button>
       </ComponentWrapper>
 
-
-
-      <ComponentWrapper filename="complete-profile-popup.tsx" createdBy="Chelsea Guo" description="T5 - Complete Profile Popup">
-        <Button variant="outlined" onClick={() => setCompleteProfilePopupOpen(true)}>Complete Profile Popup</Button>
+      <ComponentWrapper
+        filename="complete-profile-popup.tsx"
+        createdBy="Chelsea Guo"
+        description="T5 - Complete Profile Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setCompleteProfilePopupOpen(true)}
+        >
+          Complete Profile Popup
+        </Button>
       </ComponentWrapper>
-      <ComponentWrapper filename="complete-profile-skills-popup.tsx" createdBy="Chelsea Guo" description="T5 - Complete skills Popup">
-        <Button variant="outlined" onClick={() => setCompleteSkillsPopupOpen(true)}>Complete Skills Popup</Button>
+      <ComponentWrapper
+        filename="complete-profile-skills-popup.tsx"
+        createdBy="Chelsea Guo"
+        description="T5 - Complete skills Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setCompleteSkillsPopupOpen(true)}
+        >
+          Complete Skills Popup
+        </Button>
       </ComponentWrapper>
-
 
       {isModalOpen && (
         <SquadCustom
@@ -709,8 +834,16 @@ export default function AllComponents() {
       {aboutMePopupOpen && (
         <AboutMe onClose={() => setAboutMePopupOpen(false)} />
       )}
-      {isCompleteProfilePopupOpen && <CompleteProfilePopup onClose={() => setCompleteProfilePopupOpen(false)}/>}
-      {isCompleteSkillsPopupOpen && <CompleteSkillsPopup onClose={() => setCompleteSkillsPopupOpen(false)}/>}
+      {isCompleteProfilePopupOpen && (
+        <CompleteProfilePopup
+          onClose={() => setCompleteProfilePopupOpen(false)}
+        />
+      )}
+      {isCompleteSkillsPopupOpen && (
+        <CompleteSkillsPopup
+          onClose={() => setCompleteSkillsPopupOpen(false)}
+        />
+      )}
     </div>
   );
 }
