@@ -30,7 +30,7 @@ import CustomTextarea from "@/ui/customtextarea";
 import { Badge } from "@/ui/badge";
 import Skill from "@/ui/titled-badge";
 import AboutMe from "@/ui/about-me-popup";
-import CustomButton from "@/ui/custom-button";
+import CustomButton, { PresetTypes } from "@/ui/custom-button";
 import CustomBadge from "@/ui/custom-badge";
 import { AlertSVG, StarSVG, TickSVG } from "@/ui/svgs";
 import InfoBar from "@/ui/info-bar";
@@ -337,7 +337,7 @@ export default function AllComponents() {
       name: "Patricia Montero",
       bottomButton: {
         label: "Message",
-        preset: "outlined",
+        preset: "outlined" as PresetTypes,
       },
       // bottomButton: {
       //   label: "Message",
