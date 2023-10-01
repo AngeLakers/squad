@@ -15,6 +15,7 @@ import CostEstimator from "@/ui/cost-estimator";
 import CollectingBar from "@/ui/collecting-bar";
 import SquadSurveySwap from "@/ui/squad-surveyswap";
 import BookInterviewA from "@/ui/book-interview-a";
+import BookInterviewB from "@/ui/book-interview-b";
 import customizeImage from "../../public/customize.png";
 import worldWideWebImage from "../../public/world-wide-web.png";
 import mobilePhoneImage from "../../public/mobile-phone.png";
@@ -43,8 +44,11 @@ import TalentDocuments from "@/ui/talent-documents";
 import TalentProfile, { ProfileDataType } from "@/ui/talent-profile-card";
 import SquadNav from "@/ui/squad-navigation";
 import EmptyRoleCard from "@/ui/empty-role-card";
+import callImage from "@/public/call.png";
+import portraitAImage from "@/public/portraitA.png";
+// import { PresetTypes } from "@/ui/custom-button";
 
-const rolesData = [
+const MockrolesData = [
   {
     label: "Front-End Engineer",
     info: {
@@ -246,6 +250,7 @@ export default function AllComponents() {
   const [exitUncompletedPopupOpen, setexitUncompletedPopupOpen] =
     useState(false);
   const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
+  const [bookInterviewBPopupOpen, setbookInterviewBPopupOpen] = useState(false);
   const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
   const [isCompleteProfilePopupOpen, setCompleteProfilePopupOpen] =
     useState(false);
@@ -295,6 +300,94 @@ export default function AllComponents() {
       width="32"
       height="32"
     />,
+  ];
+
+  const rolesData = [
+    {
+      image: (
+        <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
+      ),
+      title: "UX Designer",
+      name: "Patricia Montero",
+      assignButtonProps: {
+        smallButtonText: "Send Offer",
+      },
+      bottomButton: {
+        label: "Send Offer",
+        onClick: () => alert("Button Clicked"),
+      },
+    },
+    {
+      image: (
+        <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
+      ),
+      title: "UI Designer",
+      assignButtonProps: {
+        smallButtonText: "offer sent",
+        backgroundColor: "#B54708",
+        textColor: "#FFFFFF",
+      },
+      name: "Patricia Montero",
+      // bottomButton:{
+      //   label: "Message",
+      //   preset:"outlined" as PresetTypes,
+      // }
+      bottomButton: {
+        label: "Message",
+        backgroundColor: "#FFFFFF",
+        textColor: "#E5E7EB",
+        borderColor: "#E5E7EB",
+      },
+    },
+    {
+      title: "Product Designer",
+      image: (
+        <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
+      ),
+      assignButtonProps: {
+        smallButtonText: "offer accepted",
+        backgroundColor: "#039855",
+        textColor: "#FFFFFF",
+      },
+      name: "Patricia Montero",
+
+      bottomButton: {
+        label: "Message",
+        backgroundColor: "#FFFFFF",
+        textColor: "black",
+        borderColor: "#E5E7EB",
+      },
+    },
+    {
+      image: (
+        <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
+      ),
+      title: "UX Researcher",
+      assignButtonProps: {
+        smallButtonText: "offer sent",
+        backgroundColor: "#039855",
+        textColor: "#FFFFFF",
+      },
+      name: "Patricia Montero",
+      bottomButton: {
+        label: "Message",
+        backgroundColor: "#FFFFFF",
+        textColor: "black",
+        borderColor: "#E5E7EB",
+      },
+    },
+    {
+      title: "Front-End Engineer",
+      bottomButton: {
+        label: "Find Talent",
+      },
+    },
+    {
+      title: "Full-Stack Engineer",
+    },
+    {
+      title: "UX Researcher",
+    },
   ];
 
   return (
@@ -444,7 +537,19 @@ export default function AllComponents() {
           variant="outlined"
           onClick={() => setbookInterviewAPopupOpen(true)}
         >
-          Book call
+          Book call A
+        </Button>
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="book-interview-b.tsx"
+        createdBy="Becky Xu"
+        description="C5 - Book a Call"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setbookInterviewBPopupOpen(true)}
+        >
+          Book call B
         </Button>
       </ComponentWrapper>
       <ComponentWrapper
@@ -452,7 +557,7 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C5 - My Squad - not assigned yet"
       >
-        <SquadSurveySwap></SquadSurveySwap>
+        <SquadSurveySwap roles={rolesData} />
       </ComponentWrapper>
       <ComponentWrapper
         filename="talent-profile-card.tsx"
@@ -575,7 +680,9 @@ export default function AllComponents() {
               }
             />
           }
-          content={<RatioButtonsTable roles={rolesData}></RatioButtonsTable>}
+          content={
+            <RatioButtonsTable roles={MockrolesData}></RatioButtonsTable>
+          }
         />
       </ComponentWrapper>
       <ComponentWrapper
@@ -830,6 +937,23 @@ export default function AllComponents() {
       )}
       {bookInterviewAPopupOpen && (
         <BookInterviewA onClose={() => setbookInterviewAPopupOpen(false)} />
+      )}
+      {bookInterviewBPopupOpen && (
+        <BookInterviewB
+          icon={
+            <Image
+              key="callImage"
+              src={callImage}
+              alt="call image"
+              width="44"
+              height="44"
+            />
+          }
+          name="Patricia"
+          cancelButtonText="Cancel"
+          confirmButtonText="Send interview request"
+          onClose={() => setbookInterviewBPopupOpen(false)}
+        />
       )}
       {aboutMePopupOpen && (
         <AboutMe onClose={() => setAboutMePopupOpen(false)} />

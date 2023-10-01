@@ -1,14 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import Avatar from '@mui/material/Avatar';
 import squadImage from '@/public/squad.png';
 import Image from 'next/image';
+import { ReactNode } from 'react';
+import CustomButton from "./custom-button";
+import unfilledImage from '@/public/unfilled.png';
+// import { PresetTypes } from "./custom-button";
 
 const Container = styled.div`
     border: 1px solid #E5E7EB;
     padding: 1%;
     width: 100%;
     border-radius:12px;
+    min-width: 1200px;
 `;
 
 const TitleRow = styled.div`
@@ -18,61 +22,66 @@ const TitleRow = styled.div`
 `;
 
 const SquadTitle = styled.span`
-    font-size: 0.9em;
+    font-size: 20px;
+    font-weight: 600;
 `;
 
 const SurveySwapTitle = styled.span`
-    font-size: 0.8em;
+    font-size: 14px;
+    font-weight: 400;
+    color: #4D5761;
+`;
+
+const CustomAvatar = styled.div`
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    overflow: hidden;
 `;
 
 const AvatarContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2% 3%;
-
-    &:last-child {
-    margin-right: 0;
-    }
+    margin: 32px 24px 16px 24px;
 `;
 
 const AvatarGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: minmax(120px, auto);
-    margin:32px -24px;
 `;
 
 const RoleTitle = styled.div`
-    margin-top: 5%;
-    font-size: 0.9em;
+    font-size: 16px;
 `;
 
 const NotAssigned = styled.div`
-    font-size: 0.7em;
+    font-size: 14px;
     color: #888;
-    margin-top: 3%;
+    margin-top: 4px;
+    margin-bottom: 20px;
 `;
 
 const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 23%; 
+    width: 273px; 
 `;
 
 const AddButton = styled.button`
     cursor: pointer;
-    padding: 1% 5%;
-    border-radius: 5px;
+    padding: 10px 16px;
+    border-radius: 8px;
     background-color: white;
-    color: grey;
-    border: 1px solid grey;
-    margin-left:-24px;
+    color: black;
+    border: 1px solid #D2D6DB;
+    font-size:14px;
 `;
 
 const ManageButton = styled.button`
     cursor: pointer;
-    color: grey;
+    color: #D2D6DB;
 `;
 
 const LogoContainer = styled.div`
@@ -87,16 +96,44 @@ const TextAndButtonContainer = styled.div`
     flex-grow: 1;
 `;
 
-export default function SquadSurveySwap() {
-    const roles: string[] = [
-        "UI Designer",
-        "UI Designer",
-        "Product Designer",
-        "UX Researcher",
-        "Front-End Engineer",
-        "Full-Stack Engineer",
-        "DevOps Engineer"
-      ];
+type AssignButtonProps = {
+    backgroundColor?: string;
+    textColor?: string;
+    smallButtonText?: string;
+  };
+
+const AssignButton = styled.button<AssignButtonProps>`
+    width: auto;
+    height: 22px;
+    border-radius: 16px;
+    padding: 2px 8px;
+    cursor: pointer;
+    font-size: 12px;
+    margin:8px 0 16px 0;
+    background-color: ${props => props.backgroundColor || '#F2F4F7'};
+    color: ${props => props.textColor || 'black'};
+`;
+
+interface Role {
+    title: string;
+    image?: ReactNode;
+    name?: string;
+    assignButtonProps?: AssignButtonProps;
+    bottomButton?: {
+        label: string;
+        onClick?: () => void;
+        backgroundColor?: string;
+        textColor?: string;
+        borderColor?: string;
+        // preset?: PresetTypes;
+    };
+}
+
+interface SquadSurveySwapProps {
+    roles: Role[];
+}
+
+export default function SquadSurveySwap({ roles }: SquadSurveySwapProps){
 
   return (
     <Container>
@@ -121,24 +158,27 @@ export default function SquadSurveySwap() {
         <AvatarGrid>
         {roles.map((role, i) => (
           <AvatarContainer key={i}>
-            <Avatar src="/broken-image.jpg"/>
-            <RoleTitle>{role}</RoleTitle>
-            <NotAssigned>Not assigned yet</NotAssigned>
+            {role.image ? (
+                <CustomAvatar>{role.image}</CustomAvatar>
+                ) : (
+                <CustomAvatar>
+                    <Image key="unfilledImage" src={unfilledImage} alt="Unfilled Icon"/>
+                </CustomAvatar>
+                )}
+            <AssignButton 
+            backgroundColor={role.assignButtonProps?.backgroundColor} 
+            textColor={role.assignButtonProps?.textColor}>
+            {role.assignButtonProps?.smallButtonText || "Unfilled"}
+            </AssignButton>
+            <RoleTitle>{role.title || "No Title"}</RoleTitle>
+            <NotAssigned>{role.name || "Not assigned yet"}</NotAssigned>
+            {role.bottomButton && (
+                <CustomButton label={role.bottomButton.label} onClick={role.bottomButton.onClick} backgroundColor={role.bottomButton.backgroundColor ||  "#4B48EC"} textColor={role.bottomButton.textColor || "#ffffff"} borderColor={role.bottomButton.borderColor || "none"}/>
+            //   <CustomButton label={role.bottomButton.label} preset={role.bottomButton.preset} onClick={role.bottomButton.onClick} backgroundColor={role.bottomButton.backgroundColor ||  "#4B48EC"} textColor={role.bottomButton.textColor || "#ffffff"} borderColor={role.bottomButton.borderColor || "none"}/>
+            )}
           </AvatarContainer>
         ))}
       </AvatarGrid>
     </Container>
   );
 }
-
-function chunk(arr: string[], len: number): string[][] {
-    const chunks: string[][] = [];
-    let i = 0;
-    const n = arr.length;
-  
-    while (i < n) {
-      chunks.push(arr.slice(i, i += len));
-    }
-  
-    return chunks;
-  }
