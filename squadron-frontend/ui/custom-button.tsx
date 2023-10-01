@@ -14,15 +14,19 @@ type CustomButtonStyledProps = {
   margin?: string;
   width?: string;
   height?: string;
-  alignSelf?:string;
+  alignSelf?: string;
 };
 
 const CustomButtonStyled = styled.button<CustomButtonStyledProps>`
+  ${(props) => props.alignSelf && `align-self: ${props.alignSelf};`}
+  ${(props) => props.margin && `margin: ${props.margin};`}
+  ${(props) =>
+    props.hoverColor && `&:hover {background-color:${props.hoverColor};}`}
+  
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  ${props => props.alignSelf && `align-self: ${props.alignSelf};`}
   width: ${({ width = "auto" }) => width};
   height: ${({ height = "auto" }) => height};
   color: ${({ textColor = "#000000" }) => textColor};
@@ -30,17 +34,12 @@ const CustomButtonStyled = styled.button<CustomButtonStyledProps>`
   border: 1px solid ${({ borderColor = "#ffffff" }) => borderColor};
   background-color: ${({ backgroundColor = "transparent" }) => backgroundColor};
   padding: ${({ padding = "10px 16px 10px 16px" }) => padding};
-  ${props => props.margin !== undefined && `margin: ${props.margin};`}
   font-weight: 600;
   font-size: ${({ fontSize = "14px" }) => fontSize};
   line-height: ${({ lineHeight = "20px" }) => lineHeight};
   transition: background-color 0.3s ease;
   align-items: center;
   gap: ${({ gap = "8px" }) => gap};
-  &:hover {
-    background-color: ${({ hoverColor, backgroundColor }) =>
-      hoverColor || backgroundColor};
-  }
 `;
 
 const presets = {
@@ -79,9 +78,20 @@ const presets = {
     width: "50px",
     height: "50px",
   },
+  avatar: {
+    padding: "0px",
+    backgroundColor: "transparent",
+    borderColor: "none",
+  },
 };
 
-type PresetTypes = "default" | "outlined" | "black" | "text" | "arrow";
+export type PresetTypes =
+  | "default"
+  | "outlined"
+  | "black"
+  | "text"
+  | "arrow"
+  | "avatar";
 export interface CustomButtonProps {
   label: React.ReactNode;
   preset?: PresetTypes;
@@ -98,19 +108,19 @@ export interface CustomButtonProps {
   gap?: string;
   width?: string;
   height?: string;
-  alignSelf?:string;
+  alignSelf?: string;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
   label,
-  preset = "default",
+  preset,
   ...overriddenStyles
 }) => {
-  const defaultStyles = presets[preset];
+  //console.log("Preset:", preset);
+  const defaultStyles = preset ? presets[preset] : null;
   const styles = { ...defaultStyles, ...overriddenStyles };
-
+  //console.log("styles:", styles);
   return <CustomButtonStyled {...styles}>{label}</CustomButtonStyled>;
 };
 
 export default CustomButton;
-// export type { PresetTypes };
