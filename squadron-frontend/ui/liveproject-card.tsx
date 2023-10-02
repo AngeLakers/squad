@@ -123,21 +123,39 @@ const StyledBalanceBox = styled(Box)`
   height: 100%;
   flex: 1;
   width: 100%;
-  position: relative;
+  
 `;
 
 
 const BalanceInfo = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items:  flex-end;
+  position: relative;
 `;
 
 const Percentage = styled.div`
-  background-color: #e5e7eb;
-  border-radius: 8px;
-  padding: 0.25rem 0.5rem;
+
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: auto;
+  border-radius: 1rem;
+  background-color: #f3f4f6;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.13rem 0.5rem;
+  box-sizing: border-box;
+  mix-blend-mode: multiply;
+  text-align: center;
   font-size: 0.75rem;
+  color: #384250;
+
+
+ 
+
 `;
 
 const StyledBox = styled(Box)`
@@ -256,6 +274,7 @@ const TextPart2 = styled.span`
 
 const BalanceTypography = styled(Typography)`
   text-align: left; 
+  margin-bottom: 1rem !important;
 `;
 
 
@@ -270,7 +289,9 @@ const BalanceBox: React.FC<BalanceBoxProps> = ({time, currentBalance, percentage
                     <TextPart1>Current Balance</TextPart1>
                     <TextPart2>${currentBalance}</TextPart2>
                 </BalanceTypography>
-                <Percentage>{percentage}</Percentage>
+                <Percentage>
+                    {time === 0 ? '--%' : `${percentage}%`}
+                </Percentage>
 
             </BalanceInfo>
         </StyledBalanceBox>
@@ -312,7 +333,7 @@ const LiveProjectCard: React.FC<LiveProjectCardProps> = ({title, memberCount}) =
             <StyledCardContent>
                 <DateTypography variant="subtitle1">Feb 01 - 07</DateTypography>
                 <Box display="flex" gap="1rem" width="100%" height="100%">
-                    <BalanceBox time={12} currentBalance={5000} percentage={75}/>
+                    <BalanceBox time={0} currentBalance={0} percentage={75}/>
                     <SatisfactionBox score={4.5}/>
                 </Box>
             </StyledCardContent>

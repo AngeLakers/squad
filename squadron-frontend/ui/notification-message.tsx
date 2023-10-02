@@ -2,6 +2,8 @@ import styled from "styled-components";
 import {CloseIcon} from "next/dist/client/components/react-dev-overlay/internal/icons/CloseIcon";
 
 import Image from 'next/image';
+import React from "react";
+import {Link} from "react-router-dom";
 
 
 
@@ -72,14 +74,17 @@ const MessageText = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
+
   gap: 0.31rem;
   text-align: left;
   font-size: 0.88rem;
   position: relative;
   line-height: 1.25rem;
-  font-family: Inter, sans-serif;  
+  font-family: Inter, sans-serif;   
   
+  justify-content: flex-start;
+ 
+
 
 `;
 
@@ -92,6 +97,7 @@ const SingleMessage = styled.p`
   font-size: 0.88rem;
   line-height: 1.25rem;
   text-align: left;
+  margin: auto 0;
 `;
 
 const CombinedMessage = styled.p`
@@ -99,6 +105,9 @@ const CombinedMessage = styled.p`
   justify-content: space-between;
   align-items: center;
   color: #0b0f00;
+  ${SingleMessage} & {
+    margin: 0;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -115,14 +124,33 @@ const CloseButton = styled.button`
   z-index: 1;
   margin-left: auto;
 `;
+
+const SeeAllButton = styled.button`
+    width: 100%;
+  position: relative;
+  border-bottom: 1px solid #e5e7eb;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.88rem;
+  color: #4d5761;
+  
+    
+    `;
+
 export interface NotificationProps {
     iconPath: string;
-
+    linkUrl: string;
     messageInfo: {
         message: string;
         websiteName: string;
         organizationName: string;
     };
+    onClose?: () => void;
 }
 
 export interface NotificationBoxProps {
@@ -130,9 +158,16 @@ export interface NotificationBoxProps {
 }
 
 
-const NotificationMessage: React.FC<NotificationProps> = ({ iconPath, messageInfo }) => {
+const NotificationMessage: React.FC<NotificationProps & { onClose: () => void }> = ({ iconPath, messageInfo, onClose, linkUrl}) => {
+
+    const handleNotificationClick = () => {
+        if (linkUrl) {
+            window.location.href = linkUrl;
+        }
+    };
+
     return (
-        <Notification>
+        <Notification onClick={handleNotificationClick}>
             <ContentWrapper>
                 <Icon>
                     <Image src={iconPath}  alt="Notification Icon" width={48} height={48}/>
@@ -150,23 +185,40 @@ const NotificationMessage: React.FC<NotificationProps> = ({ iconPath, messageInf
                     )}
                 </MessageText>
             </ContentWrapper>
-            <CloseButton>
+            <CloseButton onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+            }}>
                 <Image src="/icon/x-close-16px.svg" alt="Close Icon" width={16} height={16}/>
             </CloseButton>
         </Notification>
     );
+
 }
 
 const NotificationBox: React.FC<NotificationBoxProps> = ({ notifications }) => {
+    const [currentNotifications, setCurrentNotifications] = React.useState(notifications);
+
+    const handleCloseNotification = (index: number) => {
+        const newNotifications = [...currentNotifications];
+        newNotifications.splice(index, 1);
+        setCurrentNotifications(newNotifications);
+    };
     return (
         <NotificationBoxWrapper>
-            {notifications.map((notification, index) => (
+            {currentNotifications.map((notification, index) => (
                 <NotificationMessage
                     key={index}
                     iconPath={notification.iconPath}
                     messageInfo={notification.messageInfo}
+                    onClose={() => handleCloseNotification(index)}
+                    linkUrl={notification.linkUrl || ""}
                 />
             ))}
+
+            <SeeAllButton>
+                <span>See all notifications!</span>
+            </SeeAllButton>
         </NotificationBoxWrapper>
     );
 };
