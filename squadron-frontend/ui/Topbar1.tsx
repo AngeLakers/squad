@@ -13,33 +13,43 @@ import styled from 'styled-components';
 
 const Cardnav = styled(Card)`
   height: 70px; 
-  flex-grow: 1;
-  margin-top: 0;
+  width: 1000px;
   margin-bottom: 50px;
   display: flex;
   align-items: center;
-  border: 0; 
+  border: 0;   margin-left: 150px;
+`;
+
+const StyledPaper = styled(Paper)`
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  width: 400px;
+  margin-left: 20px;
+`;
+const StyledInputBase = styled(InputBase)`
+  margin-left: 1px;
+  flex: 1;
+`;
+
+const StyledStack = styled(Stack)`
+
+margin-left: 500px;
+
 `;
 
 
 export function Topbar1() {
     return (
-      // <ThemeProvider theme={theme}>
-       
-
-
-        
       <Cardnav  elevation={1} >
     
-      <Paper
+      <StyledPaper
             component="form"
-            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400,ml:20 }}
           >
                 <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
               <SearchIcon />
             </IconButton>
-            <InputBase
-              sx={{ ml: 1, flex: 1 }}
+            <StyledInputBase
               placeholder="Search jobs"
               inputProps={{ 'aria-label': 'search google maps' }}
             />
@@ -47,19 +57,18 @@ export function Topbar1() {
            
             <IconButton color="primary" sx={{ p: '10px' }} aria-label="directions">
             </IconButton>
-          </Paper>
+          </StyledPaper>
          
-            {/* <Link href="/perk/page">Dashboard</Link> */}
       
        
       
-          <Stack direction="row" spacing={5} sx={{ml:500}}>
+          < StyledStack direction="row" spacing={5} >
           <ChatBubbleOutlineOutlinedIcon  />
           <StarBorderRoundedIcon />
           <NotificationsNoneRoundedIcon/>
           <Avatar alt="Remy Sharp" src="/images/01.png" />
           
-      </Stack>
+      </ StyledStack>
               
           </Cardnav>
             
