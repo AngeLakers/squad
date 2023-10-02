@@ -49,6 +49,16 @@ import portraitAImage from "@/public/portraitA.png";
 import SendOfferPopup from "@/ui/send-offer-popup";
 import LaunchMissionPopup from "@/ui/launch-mission";
 import launchMissionImage from "@/public/launch-mission.png";
+import Community from "@/ui/Community";  
+import Community2 from "@/ui/Community2";  
+import Application from "@/ui/Application";  
+import Topbar1 from "@/ui/Topbar1";  
+import Wallet from "@/ui/Wallet ";  
+import Header from "@/ui/Header ";
+
+
+
+
 // import { PresetTypes } from "@/ui/custom-button";
 
 const MockrolesData = [
@@ -231,6 +241,12 @@ interface ComponentWrapperProps {
   children: ReactNode;
   usage?: string;
 }
+  
+  const Display=styled.div`
+margin-left:150px;
+display: flex;
+margin-top: 50px;
+`;
 
 const ComponentWrapper: React.FC<ComponentWrapperProps> = ({
   filename,
@@ -679,6 +695,34 @@ export default function AllComponents() {
           content={<TalentDocuments documents={mockDocumentData} />}
         />
       </ComponentWrapper>
+      
+      
+      
+
+      <StyledH1>T3</StyledH1>
+      
+        <ComponentWrapper
+        filename="Application.tsx"
+        createdBy="Bojia Zhang"
+        description="the components in homescreen"
+      >
+      <Topbar1></Topbar1>
+    <Header></Header>
+    <Application></Application>
+    <Wallet></Wallet>
+
+    <Display>
+     <Community> </Community>
+    </Display>
+    <Display>
+    <Community2>  </Community2>
+     </Display>
+      
+      </ComponentWrapper>
+      
+      
+      
+      
 
       <StyledH1>T5</StyledH1>
       <ComponentWrapper
