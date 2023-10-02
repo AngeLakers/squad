@@ -50,6 +50,8 @@ import SendOfferPopup from "@/ui/send-offer-popup";
 import LaunchMissionPopup from "@/ui/launch-mission";
 import launchMissionImage from "@/public/launch-mission.png";
 import RequiredMissingPopup from "@/ui/required-missing-popup";
+import LocationMissingPopup from "@/ui/location-missing-popup";
+import Spain from "@/public/spain.png";
 // import { PresetTypes } from "@/ui/custom-button";
 
 const MockrolesData = [
@@ -272,6 +274,8 @@ export default function AllComponents() {
     useState(false);
   const [isSkillMissingPopupOpen, setSkillMissingPopupOpen] = useState(false);
   const [isToolMissingPopupOpen, setToolMissingPopupOpen] = useState(false);
+  const [isLocationMissingPopupOpen, setLocationMissingPopupOpen] =
+    useState(false);
 
   const icons = [
     <Image
@@ -923,6 +927,18 @@ export default function AllComponents() {
           Tool Missing Popup
         </Button>
       </ComponentWrapper>
+      <ComponentWrapper
+        filename="location-missing-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T5 - Location Missing Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setLocationMissingPopupOpen(true)}
+        >
+          Location Missing Popup
+        </Button>
+      </ComponentWrapper>
 
       {isModalOpen && (
         <SquadCustom
@@ -1052,6 +1068,18 @@ export default function AllComponents() {
           description="Text and supporting text"
           noRequiredButtonLabel="I don't use these tools"
           addRequiredButtonLabel="Add tools"
+        />
+      )}
+      {isLocationMissingPopupOpen && (
+        <LocationMissingPopup 
+          onClose={() => setLocationMissingPopupOpen(false)} 
+          title="Title about location mismatch"
+          description="Text and supporting text"
+          noRequiredButtonLabel="I don't live here"
+          addRequiredButtonLabel="update my locations"
+          imgSrc={Spain}  // passing image
+          imgText="Barcelona"  // passing text
+          imgDescription="Spain" // passing description
         />
       )}
     </div>
