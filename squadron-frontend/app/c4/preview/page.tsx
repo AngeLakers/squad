@@ -5,11 +5,17 @@ import ProjectProfile from "@/ui/project-profile";
 import RoleCard from "@/ui/role-detail";
 import styled from "styled-components";
 import CustomButton from "@/ui/custom-button";
+import Footer from '@/ui/footer';
 
 const Container = styled.div`
+
+  margin-bottom: 100px;
+`;
+
+const InnerContainer = styled.div`
   margin-left: 8vw;
   margin-right: 8vw;
-  margin-bottom: 100px;
+
 `;
 
 const Text = styled.p`
@@ -17,40 +23,27 @@ const Text = styled.p`
   font-size: 24px;
 `;
 
-const Footer = styled.div`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 80px;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  align-items: center;
-  border-top: 1px solid #f3f4f6;
-`;
+// const LeftButton = styled.button`
 
-const LeftButton = styled.button`
+//   color: black;
+// `;
 
-  color: black;
-`;
+// const RightButtonGroup = styled.div`
+//   display: flex;
+//   margin-right: 14vw;
+//   gap: 80px;
+//   color: black;
+// `;
 
-const RightButtonGroup = styled.div`
-  display: flex;
-  margin-right: 14vw;
-  gap: 80px;
-  color: black;
-`;
+// const EditButton = styled.button`
+// border: 1px solid #D2D6DB;
+// border-radius: 8px;
+// padding: 10px 18px;
+// `;
 
-const EditButton = styled.button`
-border: 1px solid #D2D6DB;
-border-radius: 8px;
-padding: 10px 18px;
-`;
-
-const SaveButton = styled.button`
-color: #1B18E4
-`;
+// const SaveButton = styled.button`
+// color: #1B18E4
+// `;
 
 const Preview: React.FC = () => {
   const handleBackClick = () => {
@@ -58,6 +51,7 @@ const Preview: React.FC = () => {
   };
   return (
     <Container>
+      <InnerContainer>
       <SimpleHeader />
       <ProjectProfile
           projectLogoLink='/icon/projectLogo.svg'
@@ -103,15 +97,8 @@ const Preview: React.FC = () => {
           expectedHoursPerWeek={20}
           skills={["skill 1", "skill 2"]}
           tools={["tool 1", "tool 2", "tool 3"]} />
-
-    <Footer>
-      <LeftButton>Cancel</LeftButton>
-      <RightButtonGroup>
-        <SaveButton>Save to drafts</SaveButton>
-        <EditButton onClick={handleBackClick}>Back to Edit</EditButton>
-        <a href="/c4/proj_live"><CustomButton preset="default" label="Publish" /></a>
-      </RightButtonGroup>
-    </Footer>
+    </InnerContainer>
+    <Footer onRMiddleClick={handleBackClick} rightLink='/c4/proj_live'/>
     </Container>
     
   );
