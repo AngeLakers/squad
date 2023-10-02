@@ -39,6 +39,7 @@ interface FooterProps {
     isRMiddleButtonVisible?: boolean;
     rLeftButtonTextColor?: string;
     isRRightButtonPadding?: string;
+    isRRightBackgroundColor?: string;
 }
 
 const Footer: React.FC<FooterProps> = ({
@@ -57,6 +58,7 @@ const Footer: React.FC<FooterProps> = ({
     isRMiddleButtonVisible = true,
     rLeftButtonTextColor = "#1B18E4",
     isRRightButtonPadding = "10px 18px",
+    isRRightBackgroundColor = "#4B48EC"
   }) => {
     return (
       <FooterDiv>
@@ -67,7 +69,7 @@ const Footer: React.FC<FooterProps> = ({
         {isRMiddleButtonVisible && 
           <CustomButton preset={rMiddleButtonStyle} onClick={onRMiddleClick} label={rMiddleButtonLabel} />}
           <a href={rightLink}> 
-            <CustomButton preset="default" onClick={onRRightClick} label={rRightButtonLabel} padding={isRRightButtonPadding}/> 
+            <CustomButton preset="default" onClick={onRRightClick} label={rRightButtonLabel} padding={isRRightButtonPadding} backgroundColor={isRRightBackgroundColor}/> 
           </a>
         </RightButtonGroup>
       </FooterDiv>
