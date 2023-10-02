@@ -17,18 +17,6 @@ margin-left: 150px;
 `;
 
 
-
-const StyledTableCell = styled(TableCell)`
-  color: var(--primary-700, #1B18E4);
-  font-family: 'Inter';
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 20px;
-`;
-
-
-
 const StyledAvatarGroup = styled(AvatarGroup)`
   & .MuiAvatar-root {
     width: 30px;
@@ -39,6 +27,21 @@ const StyledAvatarGroup = styled(AvatarGroup)`
   transform: translateY(-50%);
 `;
 
+const StyledTableCell = styled(TableCell)`
+  color: var(--primary-700, #1B18E4);
+  font-family: 'Inter';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+`;
+
+const StyledSpan = styled.span`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 70px;
+`;
 
   function createData(
     name:string,
@@ -64,11 +67,22 @@ return(
 <Containertable component={Paper} >
       <Table >
         <TableHead>
+
+
+        <TableRow>     
+            <TableCell >Transaction</TableCell>
+            <TableCell >Project</TableCell>
+            <TableCell >Role</TableCell>
+            <TableCell >Team mates</TableCell>
+            
+          </TableRow>
+
+            
           <TableRow>     
             <TableCell >Transaction</TableCell>
             <TableCell >Project</TableCell>
             <TableCell >Role</TableCell>
-            <TableCell sx={{}}>Team mates</TableCell>
+            <TableCell >Team mates</TableCell>
             
           </TableRow>
         </TableHead>
@@ -78,21 +92,13 @@ return(
             <TableRow key={row.project} >
                  <TableCell style={{ position: 'relative' }}>
                 <img src={row.image} />   
-                <span
-          style={{
-            position: 'absolute',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            left: '70px', 
-          }}
-            >
+                <StyledSpan>
                 {row.name}
-                </span>
+                </StyledSpan>
              
                </TableCell>
-              <StyledTableCell>
+              <StyledTableCell component="th" scope="row" >
                 {row.project}
-                
               </StyledTableCell>
               
               <TableCell  >
@@ -113,6 +119,16 @@ return(
            
             </TableRow>
           ))}
+  <TableRow>
+      <TableCell colSpan={3} />
+        <TableCell style={{ textAlign: 'right' }}>  
+        <Button size="small" style={{ textTransform: 'none',color:'#1B18E4' }}>
+        View al 
+        </Button>
+      </TableCell>
+      </TableRow>
+
+
         </TableBody>
       </Table>
     </Containertable>
