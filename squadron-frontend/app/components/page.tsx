@@ -675,6 +675,21 @@ export default function AllComponents() {
 
 
 
+      <ComponentWrapper
+          filename="liveproject-card.tsx"
+          createdBy="Ne Liu"
+          description="T5 - Talent receives invitation for a role with a squad- live project card display"
+      >
+
+        <div>
+         <LiveProjectCard />
+        </div>
+      </ComponentWrapper >
+
+      <StyledH1>T3</StyledH1>
+
+
+
 
       {isModalOpen && (
         <SquadCustom
