@@ -22,6 +22,13 @@ margin-left: 680px;
   padding: 10px 16px;
 
 `;
+
+const StyledDivider = styled(Divider)`
+  width: 1130px;
+  margin-left: 19px;
+`;
+
+
 const Buttonh2 =styled.button`
 margin-left: 10px;
   border-radius: 8px;
@@ -60,7 +67,7 @@ export function Header() {
 
 
 </Head>
-<Divider sx={{ width:1130 , ml:19}}/>
+<StyledDivider/>
 </>
 
     )}
