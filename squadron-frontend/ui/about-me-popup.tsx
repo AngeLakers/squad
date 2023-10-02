@@ -75,7 +75,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ onClose }) => {
             <CustomTextarea 
               label="About me"
               borderStyle="1px solid #D2D6DB" 
-              width="592px" 
+              width="640px" 
               height="118px" 
               showHintText={false}       
               />
