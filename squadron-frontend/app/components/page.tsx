@@ -678,12 +678,30 @@ export default function AllComponents() {
             >
 
                 <div>
-                    <LiveProjectCard title="MVP for Serverless E-commerce..." memberCount={5}/>
+                    <LiveProjectCard
+                    title="MVP for Serverless E-commerce..."
+                    memberCount={5}
+                    balanceInfo={{
+                        time: 0,
+                        currentBalance:0,
+                        percentage: 75
+                    }}
+                    score={4.5}
+                />
+                    <LiveProjectCard
+                        title="MVP for Serverless E-commerce..."
+                        memberCount={5}
+                        balanceInfo={{
+                            time: 12,
+                            currentBalance: 1680,
+                            percentage: 3.7,
+                        }}
+                        score={4.5}
+                    />
+
+
                 </div>
             </ComponentWrapper>
-
-            <StyledH1>T3</StyledH1>
-
 
             <StyledH1>T3</StyledH1>
 

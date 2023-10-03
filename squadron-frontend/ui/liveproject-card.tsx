@@ -123,14 +123,14 @@ const StyledBalanceBox = styled(Box)`
   height: 100%;
   flex: 1;
   width: 100%;
-  
+
 `;
 
 
 const BalanceInfo = styled.div`
   display: flex;
   flex-direction: column;
-  align-items:  flex-end;
+  align-items: flex-end;
   position: relative;
 `;
 
@@ -146,15 +146,45 @@ const Percentage = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  padding: 0.13rem 0.5rem;
+
+  padding: 0.13rem 0.5rem ;
   box-sizing: border-box;
   mix-blend-mode: multiply;
   text-align: center;
   font-size: 0.75rem;
   color: #384250;
+  gap: 0.25rem;
+
+  ${props => props.isActive && `
+  
+  
+        position: absolute;
+  bottom: 0;
+  right: 0;
+  width: auto;
+  border-radius: 1rem;
+
+  mix-blend-mode: multiply;
+  text-align: center;
+  font-size: 0.75rem;
+
+      
+      
+        background-color: #ecfdf3;
+     
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0.13rem 0.5rem ;
+        box-sizing: border-box;
+       font-weight: 600;
+   
+        color: #027a48;
+    `}
 
 
- 
+
 
 `;
 
@@ -189,19 +219,28 @@ const StyledScoreBackground = styled.div`
   position: relative;
   border-radius: 1rem;
   background-color: #039855;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0rem 1rem;
-  align-items: center;
-  justify-content: center;
+  padding: 0 1rem;
+
   margin-top: 0.75rem;
+
+
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 1.5rem;
+
 `;
 
 const ScoreTypography = styled(Typography)`
+  margin:0;
   position: relative;
   line-height: 2rem;
   font-weight: 600;
+  color: #fff;
 
 
 `;
@@ -237,14 +276,14 @@ const TimeIcon: React.FC<{ time: number }> = ({time, children}) => {
     if (isSVG) {
         return (
             <div style={containerStyle}>
-                <img src={imageURL} alt="Time Icon" style={{ width: "100%", height: "100%" }} />
+                <img src={imageURL} alt="Time Icon" style={{width: "100%", height: "100%"}}/>
                 <span style={textStyle}>{children}</span>
             </div>
         );
     } else {
         return (
             <div style={containerStyle}>
-                <img src={imageURL} alt="Time Icon" style={{ width: "100%", height: "100%" }} />
+                <img src={imageURL} alt="Time Icon" style={{width: "100%", height: "100%"}}/>
                 <span style={textStyle}>{children}</span>
             </div>
         );
@@ -258,7 +297,7 @@ const TextPart1 = styled.span`
   font-weight: 500;
   color: #6c737f;
   display: block;
-  vertical-align: top; 
+  vertical-align: top;
 `;
 
 const TextPart2 = styled.span`
@@ -268,14 +307,16 @@ const TextPart2 = styled.span`
   line-height: 2.75rem;
   font-weight: 600;
   color: #111927;
-  display: inline-block; 
-  vertical-align: top; 
+  display: inline-block;
+  vertical-align: top;
 `;
 
 const BalanceTypography = styled(Typography)`
-  text-align: left; 
+  text-align: left;
   margin-bottom: 1rem !important;
 `;
+
+
 
 
 const BalanceBox: React.FC<BalanceBoxProps> = ({time, currentBalance, percentage}) => {
@@ -285,11 +326,14 @@ const BalanceBox: React.FC<BalanceBoxProps> = ({time, currentBalance, percentage
                 {time}h
             </TimeIcon>
             <BalanceInfo>
-                <BalanceTypography >
+                <BalanceTypography>
                     <TextPart1>Current Balance</TextPart1>
                     <TextPart2>${currentBalance}</TextPart2>
                 </BalanceTypography>
-                <Percentage>
+                <Percentage isActive={time !== 0}>
+                    {time !== 0 &&
+                        <img src="/icon/arrow-up.svg" alt="Increase"  />}
+
                     {time === 0 ? '--%' : `${percentage}%`}
                 </Percentage>
 
@@ -314,6 +358,8 @@ const SatisfactionBox: React.FC<{ score: number }> = ({score}) => {
 interface LiveProjectCardProps {
     title: string;
     memberCount: number;
+    balanceInfo: BalanceBoxProps;
+    score: number;
 }
 
 interface BalanceBoxProps {
@@ -323,7 +369,7 @@ interface BalanceBoxProps {
 }
 
 
-const LiveProjectCard: React.FC<LiveProjectCardProps> = ({title, memberCount}) => {
+const LiveProjectCard: React.FC<LiveProjectCardProps> = ({title, memberCount, score, balanceInfo}) => {
     return (
         <StyledCard>
             <StyledCardHeader
@@ -333,8 +379,9 @@ const LiveProjectCard: React.FC<LiveProjectCardProps> = ({title, memberCount}) =
             <StyledCardContent>
                 <DateTypography variant="subtitle1">Feb 01 - 07</DateTypography>
                 <Box display="flex" gap="1rem" width="100%" height="100%">
-                    <BalanceBox time={0} currentBalance={0} percentage={75}/>
-                    <SatisfactionBox score={4.5}/>
+                    <BalanceBox time={balanceInfo.time} currentBalance={balanceInfo.currentBalance}
+                                percentage={balanceInfo.percentage}/>
+                    <SatisfactionBox score={score}/>
                 </Box>
             </StyledCardContent>
 
