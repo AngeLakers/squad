@@ -13,8 +13,8 @@ import CostEstimator from '@/ui/cost-estimator';
 import InviteAdmin from '@/ui/invite-admin';
 import AddRole from '@/ui/add-role';
 import UploadVideoButton from '@/ui/upload-file-button';
-import CustomButton from "@/ui/custom-button";
 import EmptyRoleCard from '@/ui/empty-role-card';
+import Footer from '@/ui/footer';
 
 const ProjectDetailsPreset: React.FC = () => {
   // const [expandBox, setExpandBox] = useState<number | null>(null);
@@ -161,30 +161,6 @@ const ProjectDetailsPreset: React.FC = () => {
     justifyContent: 'flex-end',
     alignItems: 'center',
     borderRadius: '10px',
-};
-
-const footerStyle: CSSProperties = {
-  position: 'fixed',
-  bottom: '0',
-  width: '100%',
-  height: '80px',
-  backgroundColor: 'white',
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '0 20px',
-  alignItems: 'center'
-};
-
-const leftButtonStyle: CSSProperties = {
-  marginLeft:'8vw',
-  color:'black'
-};
-
-const rightButtonGroupStyle: CSSProperties = {
-  display: 'flex',
-  marginRight:'8vw',
-  gap: '10vw',
-  color:'black'
 };
 
   const descriptions = [
@@ -334,13 +310,7 @@ const rightButtonGroupStyle: CSSProperties = {
     ))}
 
   </div>
-  <div style={footerStyle}>
-      <button style={leftButtonStyle}>Cancel</button>
-      <div style={rightButtonGroupStyle}>
-        <button>Save to drafts</button>
-        <a href="/c4/preview"><CustomButton preset="default" label="Preview" /></a>
-      </div>
-  </div>
+  <Footer isRMiddleButtonVisible={false} rRightButtonLabel='Preview' rightLink='/c4/preview'/>
 </div>
   {videoUploadOpen && <VideoUpload onClose={() => setVideoUploadOpen(false)} />}
 </div>
