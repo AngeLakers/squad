@@ -55,6 +55,7 @@ import LocationMissingPopup from "@/ui/location-missing-popup";
 import Spain from "@/public/Spain.png";
 // import { PresetTypes } from "@/ui/custom-button";
 import Footer from "@/ui/footer";
+import CustomProjectHeader from "@/ui/custom-project-header";
 import RequireDontMatchPopup from "@/ui/require-dont-match";
 
 const MockrolesData = [
@@ -733,6 +734,19 @@ export default function AllComponents() {
         />
       </ComponentWrapper>
       <ComponentWrapper
+        filename="custom-project-header.tsx"
+        createdBy="Chelsea Guo"
+        description="custom project header"
+        >
+        <CustomProjectHeader
+          projectLogoLink="icon/projectLogo.svg"
+          projectName="THIS IS PROJECT NAME"
+          projectPostDate="1 Jan, 2023"
+          companyLogo="icon/projectLogo.svg"
+          companyName="This is Company Name"
+          />
+        </ComponentWrapper>
+      <ComponentWrapper
         filename="project-profile"
         createdBy="Chelsea Guo"
         description="T5 - In project view page"
@@ -761,18 +775,6 @@ export default function AllComponents() {
             "deliverable 4",
             "deliverable 5",
             "deliverable 6",
-            "deliverable 7",
-            "deliverable 8",
-            "deliverable 9",
-            "deliverable 10",
-            "deliverable 11",
-            "deliverable 12",
-            "deliverable 13",
-            "deliverable 14",
-            "deliverable 15",
-            "deliverable 16",
-            "deliverable 17",
-            "deliverable 18",
           ]}
         />
       </ComponentWrapper>
