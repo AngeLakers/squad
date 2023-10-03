@@ -50,7 +50,7 @@ import portraitAImage from "@/public/portraitA.png";
 import SendOfferPopup from "@/ui/send-offer-popup";
 import LaunchMissionPopup from "@/ui/launch-mission";
 import launchMissionImage from "@/public/launch-mission.png";
-// import { PresetTypes } from "@/ui/custom-button";
+import Footer from "@/ui/footer";
 
 const MockrolesData = [
   {
@@ -530,6 +530,14 @@ export default function AllComponents() {
         description="C4 - empty role card "
       >
         <EmptyRoleCard title="Product Manager"></EmptyRoleCard>
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="footer.tsx"
+        createdBy="Becky Xu"
+        description="C4 - See footer for this page "
+      >
+        <Footer/>
+        {/* <Footer isRLeftButtonVisible={false}/> */}
       </ComponentWrapper>
 
       <StyledH1>C5</StyledH1>
