@@ -91,7 +91,7 @@ const TabPanel = (props) => {
 };
 
 const HorizontalTabs = () => {
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(1);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -109,20 +109,26 @@ const HorizontalTabs = () => {
 
                 <StyledTab
                     label={
-                        <StyledBadge badgeContent={4} color="secondary">
+                        <StyledBadge badgeContent={6} color="secondary">
                            Saved Jobs
+                        </StyledBadge>
+                    }
+                />
+                <StyledTab label="Invite" />
+                <StyledTab
+                    label={
+                        <StyledBadge badgeContent={6} color="secondary">
+                            Application
                         </StyledBadge>
                     }
                 />
                 <StyledTab
                     label={
                         <StyledBadge badgeContent={4} color="secondary">
-                            Invite
+                            Offers
                         </StyledBadge>
                     }
                 />
-                <StyledTab label="Application" />
-                <StyledTab label="Offers" />
                 <StyledTab label="Projects" />
                 <StyledTab label="Documents" />
             </StyledTabs>
