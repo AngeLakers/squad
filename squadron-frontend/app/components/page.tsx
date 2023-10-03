@@ -54,6 +54,8 @@ import {Application} from "@/ui/Application";
 import {Topbar1} from "@/ui/Topbar1";
 import {Wallet} from "@/ui/Wallet";
 import {Header} from "@/ui/Header";
+import {Hometable} from "@/ui/Hometable";
+import {Hometable2} from "@/ui/Hometable2";
 
 
 
@@ -138,6 +140,8 @@ import Heading from "@/ui/heading";
 import RatioButtonsTable from "@/ui/ratio-buttons-table";
 import SendOffer from "@/ui/send-offer-popup";
 import HorizontalTabs from "@/ui/horizontal-tabs";
+import {NotificationProps} from "@/ui/notification-message";
+import BookInterviewB from "@/ui/book-interview-b";
 
 const mockSkillsData: BadgeData[] = [
     {label: "Roadmapping", icon: <StarSVG/>, preset: "outlined_green"},
@@ -786,8 +790,17 @@ export default function AllComponents() {
 
       </ComponentWrapper>
 
+    <ComponentWrapper
+        filename="Hometable2.tsx"
+        createdBy="Bojia Zhang"
+        description="the component of t5">
+        <Hometable>
+        </Hometable>
 
+    <Hometable2>
+</Hometable2>
 
+</ComponentWrapper>
 
 
       <StyledH1>T5</StyledH1>
@@ -1027,15 +1040,8 @@ export default function AllComponents() {
           icons={icons}
         />
       )}
-            <ComponentWrapper
-                filename="liveproject-card.tsx"
-                createdBy="Ne Liu"
-                description="T5 - Talent receives invitation for a role with a squad- live project card display"
-            >
 
 
-
-            </ComponentWrapper>
 
             <ComponentWrapper
                 filename="liveproject-card.tsx"

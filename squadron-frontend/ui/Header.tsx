@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const  Head = styled.header`
 margin-bottom: 30px;
   font-size: 25px;
-  margin-left: 150px;
+
  font-weight: bold;
 
 `;
@@ -24,8 +24,8 @@ margin-left: 680px;
 `;
 
 const StyledDivider = styled(Divider)`
-  width: 1130px;
-  margin-left: 19px;
+  width: 1120px;
+
 `;
 
 
