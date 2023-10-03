@@ -43,6 +43,7 @@ import TalentNotes from "@/ui/talent-notes";
 import TalentDocuments from "@/ui/talent-documents";
 import TalentProfile, { ProfileDataType } from "@/ui/talent-profile-card";
 import SquadNav from "@/ui/squad-navigation";
+import AddExperiencePopup from "@/ui/complete-profile-addexperience-popup";
 import EmptyRoleCard from "@/ui/empty-role-card";
 import callImage from "@/public/call.png";
 import portraitAImage from "@/public/portraitA.png";
@@ -277,6 +278,7 @@ export default function AllComponents() {
   const [isToolMissingPopupOpen, setToolMissingPopupOpen] = useState(false);
   const [isLocationMissingPopupOpen, setLocationMissingPopupOpen] =
     useState(false);
+  const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] = useState(false);
 
   const icons = [
     <Image
@@ -912,6 +914,9 @@ export default function AllComponents() {
           Complete Skills Popup
         </Button>
       </ComponentWrapper>
+      <ComponentWrapper filename="complete-profile-addexperience.tsx" createdBy="Chelsea Guo" description="T5 - Complete add experience Popup">
+        <Button variant="outlined" onClick={() => setCompleteExperiencePopupOpen(true)}>Complete add experience Popup</Button>
+      </ComponentWrapper>
       <ComponentWrapper
         filename="required-missing-popup.tsx"
         createdBy="Wenzhuo Li"
@@ -1091,6 +1096,7 @@ export default function AllComponents() {
           imgDescription="Spain" 
         />
       )}
+      {isCompleteExperiencePopupOpen && <AddExperiencePopup onClose={() => setCompleteExperiencePopupOpen(false)}/>}
     </div>
   );
 }

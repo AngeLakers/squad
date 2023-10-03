@@ -1,7 +1,6 @@
 "use client"
 import styled from 'styled-components';
-import { Button } from '@mui/material';
-import { Chip } from '@mui/material';
+import CustomButton from './custom-button';
 import { Badge } from '@/ui/badge';
 import {
     basewhite,
@@ -22,8 +21,6 @@ import {
     largeLineHeight,
     fontFamily,
 } from "@/styles/reuseParams"
-
-
 const RoleCardTalent = styled.div`
     align-items: flex-start;
     background-color: ${basewhite};
@@ -168,7 +165,6 @@ const BadgeContainer = styled.div`
     align-items: flex-start;
     align-self: stretch;
     display: flex;
-    // flex: 0 0 auto;
     gap: 16px;
     position: relative;
 `
@@ -185,9 +181,24 @@ interface RoleDetailProps {
     skills?: string[];
     recommendedSkills?: string[];
     tools?: string[];
+    onClick?: () => void;
 }
 
-const RoleCard: React.FC<RoleDetailProps> = ({ status, roleLogoUrl, positionName, description, startDate, hourlyRateMin, hourlyRateMax, expectedHoursPerWeek, location, skills, tools, recommendedSkills }) => {
+const RoleCard: React.FC<RoleDetailProps> = ({ 
+    status, 
+    roleLogoUrl, 
+    positionName, 
+    description, 
+    startDate, 
+    hourlyRateMin, 
+    hourlyRateMax, 
+    expectedHoursPerWeek, 
+    location, 
+    skills, 
+    tools, 
+    recommendedSkills,
+    onClick
+ }) => {
 
     return (
         <RoleCardTalent>
@@ -209,10 +220,8 @@ const RoleCard: React.FC<RoleDetailProps> = ({ status, roleLogoUrl, positionName
                         {positionName}
                     </RoleTitle>
                     <ButtonContainer>
-                        <Button variant="outlined" href=''>Refer</Button>
-                        <Button variant="contained" href="/t5_proj_apply/application_apply">
-                            Apply
-                        </Button>
+                        <CustomButton label={"Refer"} preset='outlined'/>
+                        <CustomButton label={"Apply"} preset='default' onClick={onClick}/>
                     </ButtonContainer>
                 </RoleLogoTitle>
                 <RolePositionDiscription>
