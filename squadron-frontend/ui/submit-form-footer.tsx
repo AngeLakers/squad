@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import styles from 'styled-components';
 import { styled } from '@mui/material/styles';
 import { gray300, gray600,gray700, primary600, borderColor, basewhite } from "@/styles/reuseParams"
+import ApplyCancelPopup from "./apply_cancel";
 
 // TODO: The style of Button in footer is not exactly same as figma(fontWeight, button width, etc.)
 const SubmitFormFooter = styles.div`
@@ -42,11 +43,19 @@ const SaveApplyButtonContainer = styled('div')({
 });
 
 export const SubmitCancelFooter = () => {
+  const [isApplyCancelPopupOpen, setApplyCancelPopupOpen] = React.useState(false);
+  const openApplyCancelPopup = () => {
+    setApplyCancelPopupOpen(true);
+  }
   return (
+    <>
     <SubmitFormFooter>
       <FooterContainer>
         <Container>
-            <Button variant="text" sx={{ color: gray600  }}>Cancel</Button>     
+            <Button 
+              variant="text" 
+              sx={{ color: gray600  }}
+              onClick={openApplyCancelPopup}>Cancel</Button>     
             <SaveApplyButtonContainer>
                 <Button variant="outlined" sx={{ borderColor: gray300, color: gray700 }}>Save as draft</Button>
                 <Button variant="contained" href="application_sent" sx={{ backgroundColor: primary600, color: basewhite }}>Apply</Button>
@@ -54,6 +63,9 @@ export const SubmitCancelFooter = () => {
         </Container>
       </FooterContainer>
     </SubmitFormFooter>
+
+    {isApplyCancelPopupOpen && (<ApplyCancelPopup onClose={() => setApplyCancelPopupOpen(false)} />)}
+    </>
   );
 };
 

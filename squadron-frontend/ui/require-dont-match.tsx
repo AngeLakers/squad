@@ -232,7 +232,7 @@ const RequireDontMatchPopup: React.FC<RequireDontMatchProps> = ({
                             />
                             <a href="/t5_proj_apply/application_apply">
                                 <CustomButton
-                                    label="Update"
+                                    label="Apply"
                                     backgroundColor="#4B48EC"
                                     width="170px"
                                     height="44px"

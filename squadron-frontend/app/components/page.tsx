@@ -56,6 +56,7 @@ import Spain from "@/public/Spain.png";
 // import { PresetTypes } from "@/ui/custom-button";
 import Footer from "@/ui/footer";
 import RequireDontMatchPopup from "@/ui/require-dont-match";
+import ApplyCancelPopup from "@/ui/apply_cancel";
 
 const MockrolesData = [
   {
@@ -282,6 +283,7 @@ export default function AllComponents() {
   const [isRequireDontMatchPopupOpen, setRequireDontMatchPopupOpen] = 
     useState(false);
   const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] = useState(false);
+  const [isApplyCancelPopupOpen, setApplyCancelPopupOpen] = useState(false);
 
   const icons = [
     <Image
@@ -968,6 +970,19 @@ export default function AllComponents() {
           Require Dont Match Popup
         </Button>
       </ComponentWrapper>
+      <ComponentWrapper
+        filename="apply-cancel-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T5 - Apply Cancel Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setApplyCancelPopupOpen(true)}
+        >
+          Apply Cancel Popup
+        </Button>
+      </ComponentWrapper>
+    
 
       {isModalOpen && (
         <SquadCustom
@@ -1118,10 +1133,9 @@ export default function AllComponents() {
       {isRequireDontMatchPopupOpen && (
         <RequireDontMatchPopup 
           onClose={() => setRequireDontMatchPopupOpen(false)} 
-          
         />
       )}
-
+      {isApplyCancelPopupOpen && <ApplyCancelPopup onClose={() => setApplyCancelPopupOpen(false)} />}
     </div>
   );
 }
