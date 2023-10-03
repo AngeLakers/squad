@@ -12,12 +12,17 @@ import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneR
 import styled from 'styled-components';
 
 const Cardnav = styled(Card)`
-  height: 70px; 
-  width: 1000px;
-  margin-bottom: 50px;
-  display: flex;
-  align-items: center;
-  border: 0;   margin-left: 150px;
+margin-top: 0;
+margin-bottom: 50px;
+display: flex;
+align-items: center;
+border: 0;
+padding-left: 150px;
+justify-content: space-between;
+flex-grow: 1;
+min-height: 70px;
+min-width: 800px;
+flex-shrink: 0;
 `;
 
 const StyledPaper = styled(Paper)`
@@ -28,15 +33,28 @@ const StyledPaper = styled(Paper)`
   margin-left: 20px;
 `;
 const StyledInputBase = styled(InputBase)`
-  margin-left: 1px;
-  flex: 1;
+padding-left: 2px;
+display: flex;
+align-items: center;
+min-width: 200px;
+flex-shrink: 0;
+flex-grow:1;
 `;
 
 const StyledStack = styled(Stack)`
 
-margin-left: 500px;
+padding-right: 150px;
+flex-shrink: 0;
 
 `;
+
+
+
+
+
+
+
+
 
 
 export function Topbar1() {
@@ -63,16 +81,28 @@ export function Topbar1() {
        
       
           < StyledStack direction="row" spacing={5} >
-          <ChatBubbleOutlineOutlinedIcon  />
-          <StarBorderRoundedIcon />
-          <NotificationsNoneRoundedIcon/>
+
+
+
+     <IconButton>
+      <ChatBubbleOutlineOutlinedIcon  />
+      </IconButton>
+
+      <IconButton>
+      <StarBorderRoundedIcon />
+      </IconButton>
+
+      <IconButton>
+      <NotificationsNoneRoundedIcon/>
+      </IconButton>
+
+
+
           <Avatar alt="Remy Sharp" src="/images/01.png" />
           
       </ StyledStack>
               
           </Cardnav>
             
-        
-      // </ThemeProvider>
     );
   };
