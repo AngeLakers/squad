@@ -137,6 +137,7 @@ import StepHeading from "@/ui/step-heading";
 import Heading from "@/ui/heading";
 import RatioButtonsTable from "@/ui/ratio-buttons-table";
 import SendOffer from "@/ui/send-offer-popup";
+import HorizontalTabs from "@/ui/horizontal-tabs";
 
 const mockSkillsData: BadgeData[] = [
     {label: "Roadmapping", icon: <StarSVG/>, preset: "outlined_green"},
