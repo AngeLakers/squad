@@ -9,7 +9,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ProjectProfile from '@/ui/project-profile'
 import RoleCard from '@/ui/role-detail'
 import CompleteProfilePopup from '@/ui/complete-profile-popup';
-
+import RequireDontMatchPopup from '@/ui/require-dont-match';
 
 
 export const metadata: Metadata = {
@@ -123,6 +123,7 @@ export default function Home() {
 
       {isCompleteProfilePopupOpen && (<CompleteProfilePopup onClose={() => setCompleteProfilePopupOpen(false)}/> )}
       {/* added requirements popup */}
+      {isCompleteRequirementsPopupOpen && (<RequireDontMatchPopup onClose={() => setCompleteRequirementsPopupOpen(false)}/> )}
     </>
   )
 }
