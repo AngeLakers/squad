@@ -7,26 +7,28 @@ import YouTube, { YouTubeProps } from "react-youtube";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import ShareIcon from '@mui/icons-material/Share';
-import { 
-    basewhite, 
-    borderColor, 
-    boxShadow, 
-    gray600, 
-    gray900, 
-    primary600, 
-    regularFontSize, 
-    mediumFontSize, 
-    titleFontSize, 
-    xxlargeFontSize, 
-    regularFontWeight, 
-    mediumFontWeight, 
-    regularLineHeight, 
-    mediumLineHeight, 
-    largeLineHeight, 
-    xxxlargeLineHeight, 
-    fontFamily, 
-    regularLetterSpacing 
-  } from "@/styles/reuseParams";
+import CustomProjectHeader from './custom-project-header';
+import CustomButton from './custom-button';
+import {
+    basewhite,
+    borderColor,
+    boxShadow,
+    gray600,
+    gray900,
+    primary600,
+    regularFontSize,
+    mediumFontSize,
+    titleFontSize,
+    xxlargeFontSize,
+    regularFontWeight,
+    mediumFontWeight,
+    regularLineHeight,
+    mediumLineHeight,
+    largeLineHeight,
+    xxxlargeLineHeight,
+    fontFamily,
+    regularLetterSpacing
+} from "@/styles/reuseParams";
 
 
 const ProjectCardTalent = styled.div`
@@ -306,7 +308,6 @@ const HeaderTitleContainer = styled.div`
     flex: 0 0 auto;
     flex-direction: column;
     gap: 12px;
-    margin-right: -32px;
     position: relative;
 `
 const HeaderTitle = styled.div`
@@ -386,29 +387,38 @@ const ProjectProfile: React.FC<ProjectProfileProps> = (props) => {
     return (
 
         <ProjectCardTalent>
-            <ProjectCardHeader>
-                <CompanyLogoName>
-                    <HeaderLogoContainer>
-                        <img src={props.projectLogoLink} alt="Project" height={"89px"} width={"89px"}></img>
-                    </HeaderLogoContainer>
-                    <HeaderTitleContainer>
-                        <HeaderTitle>
-                            <Titles>Stir</Titles>
-                            <ProjectName>{props.projectName}</ProjectName>
-                            <ProjectPostDate>Posted: {props.projectPostDate} </ProjectPostDate>
-                        </HeaderTitle>
-                    </HeaderTitleContainer>
-                </CompanyLogoName>
-                <CompanyLogoName>
-                    <ShareIcon style={{ color: '#A0D909' }} />
-                    <div onClick={handleClick}>
-                        {isStarFilled ? <StarIcon style={{ color: '#A0D909' }} /> : <StarBorderIcon style={{ color: '#A0D909' }} />}
-                    </div>
-                    <ContainedButton variant="contained">Apply as squad</ContainedButton>
-                </CompanyLogoName>
+                <CustomProjectHeader
+                    backgroundImage="/images/testCustomHeaderBackgroud.png"
+                    titleAndAvatarContent={(
+                        <>
+                            <HeaderLogoContainer>
+                                <img src="/icon/projectLogo.svg" alt="avatar" height={"89px"} width={"89px"}/>
+                            </HeaderLogoContainer>
+                            <HeaderTitleContainer>
+                                <HeaderTitle>
+                                    <Titles>test</Titles>
+                                    <ProjectName>THIS IS A CUSTOM HEADER</ProjectName>
+                                    <ProjectPostDate>test</ProjectPostDate>
+                                </HeaderTitle>
+                            </HeaderTitleContainer>
+                        </>
+                    )}
+                    buttonContent={(
+                        <>
+                            <CompanyLogoName>
+                                <ShareIcon style={{ color: '#A0D909' }} />
+                                <div onClick={handleClick}>
+                                    {isStarFilled ? <StarIcon style={{ color: '#A0D909' }} /> : <StarBorderIcon style={{ color: '#A0D909' }} />}
+                                </div>
+                                <CustomButton label="Apply as squad" preset="default" />
+                            </CompanyLogoName>
 
-            </ProjectCardHeader>
+                        </>
+                    )}
 
+                />
+
+            {/* </ProjectCardHeader> */}
             <ProjectCardDetails>
                 <ProjectCardBody>
                     <CompanyDetail>

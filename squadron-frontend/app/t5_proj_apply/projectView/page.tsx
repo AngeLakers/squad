@@ -47,9 +47,7 @@ export default function Home() {
   return (
     <>
       <Container>
-        {/* <Sidebar> */}
           <SideNav />
-        {/* </Sidebar> */}
         <MainContent>
           <Button href="/application" className="justify-start">
             <ArrowBackIosIcon />Back to projects
@@ -122,7 +120,6 @@ export default function Home() {
       </Container>
 
       {isCompleteProfilePopupOpen && (<CompleteProfilePopup onClose={() => setCompleteProfilePopupOpen(false)}/> )}
-      {/* added requirements popup */}
       {isCompleteRequirementsPopupOpen && (<RequireDontMatchPopup onClose={() => setCompleteRequirementsPopupOpen(false)}/> )}
     </>
   )

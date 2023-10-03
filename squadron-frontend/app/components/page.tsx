@@ -55,6 +55,7 @@ import LocationMissingPopup from "@/ui/location-missing-popup";
 import Spain from "@/public/Spain.png";
 // import { PresetTypes } from "@/ui/custom-button";
 import Footer from "@/ui/footer";
+import CustomProjectHeader from "@/ui/custom-project-header";
 import RequireDontMatchPopup from "@/ui/require-dont-match";
 import ApplyCancelPopup from "@/ui/apply_cancel";
 
@@ -735,6 +736,14 @@ export default function AllComponents() {
         />
       </ComponentWrapper>
       <ComponentWrapper
+        filename="custom-project-header.tsx"
+        createdBy="Chelsea Guo"
+        description="custom project header"
+        >
+        <CustomProjectHeader/>
+        In http://localhost:3000/t5_proj_apply/projectView 
+        </ComponentWrapper>
+      <ComponentWrapper
         filename="project-profile"
         createdBy="Chelsea Guo"
         description="T5 - In project view page"
@@ -763,18 +772,6 @@ export default function AllComponents() {
             "deliverable 4",
             "deliverable 5",
             "deliverable 6",
-            "deliverable 7",
-            "deliverable 8",
-            "deliverable 9",
-            "deliverable 10",
-            "deliverable 11",
-            "deliverable 12",
-            "deliverable 13",
-            "deliverable 14",
-            "deliverable 15",
-            "deliverable 16",
-            "deliverable 17",
-            "deliverable 18",
           ]}
         />
       </ComponentWrapper>
