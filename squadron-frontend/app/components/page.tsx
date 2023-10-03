@@ -738,13 +738,8 @@ export default function AllComponents() {
         createdBy="Chelsea Guo"
         description="custom project header"
         >
-        <CustomProjectHeader
-          projectLogoLink="icon/projectLogo.svg"
-          projectName="THIS IS PROJECT NAME"
-          projectPostDate="1 Jan, 2023"
-          companyLogo="icon/projectLogo.svg"
-          companyName="This is Company Name"
-          />
+        <CustomProjectHeader/>
+        In http://localhost:3000/t5_proj_apply/projectView 
         </ComponentWrapper>
       <ComponentWrapper
         filename="project-profile"
