@@ -9,13 +9,13 @@ import { Button,Paper,Stack} from '@mui/material';
 import { Divider } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 import React from 'react';
 import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined';
-
+import {useHistory, useNavigate} from 'react-router-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -31,7 +31,7 @@ import { TabsList } from '@mui/base/TabsList';
 import { TabPanel } from '@mui/base/TabPanel';
 import { buttonClasses } from '@mui/base/Button';
 import { Tab, tabClasses } from '@mui/base/Tab';
-import { styled } from '@mui/system';
+
 
 const StyledSpan = styled.span`
   position: absolute;
@@ -106,10 +106,11 @@ const StyledTabPanel = styled(TabPanel)(
   background: '#fff';
   border-radius: 12px;
   height: 500px;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  
 
   `,
 );
+// border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
 
 const StyledTabsList = styled(TabsList)(
   ({ theme }) => `
@@ -151,6 +152,11 @@ const StyledSpan2 = styled.span`
 
  export function Hometable2(){
 
+     const handleNotificationClick = () => {
+
+             window.location.href = '/t5_proj_apply/application_apply';
+
+     };
     return(
     
 
@@ -210,9 +216,13 @@ const StyledSpan2 = styled.span`
             </TableCell>
    <TableCell align="right">  
      <Button size="small" style={{ textTransform: 'none',color: 'var(--gray-600, #4D5761)' }}>Ignore</Button>
-     <Button variant="contained" style={{ backgroundColor: '#6633ff', color: 'white' }}>
-     View
-     </Button>
+       <Button
+           variant="contained"
+           style={{ backgroundColor: '#6633ff', color: 'white' }}
+           onClick={handleNotificationClick}
+       >
+           View
+       </Button>
 
     </TableCell>
          </TableRow>

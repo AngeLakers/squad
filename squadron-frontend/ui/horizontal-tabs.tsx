@@ -1,6 +1,8 @@
+'use client'
 import React, { useState } from 'react';
 import {Tabs, Tab, Box, Typography, Badge} from '@mui/material';
 import styled from "styled-components";
+import {Hometable2} from "@/ui/Hometable2";
 
 
 const StyledBadge = styled(Badge)`
@@ -70,11 +72,18 @@ const StyledTab = styled(Tab)`
   }
 `;
 
+const StyledTabPanel = styled.div`
+    padding-top: 3.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+`;
+
+
 const TabPanel = (props) => {
     const { children, value, index, ...other } = props;
 
     return (
-        <div
+        <StyledTabPanel
             role="tabpanel"
             hidden={value !== index}
             id={`tabpanel-${index}`}
@@ -86,7 +95,7 @@ const TabPanel = (props) => {
                     <Typography>{children}</Typography>
                 </Box>
             )}
-        </div>
+        </StyledTabPanel>
     );
 };
 
@@ -136,7 +145,7 @@ const HorizontalTabs = () => {
                 Content of Saved Jobs
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Content of Invite
+               <Hometable2/>
             </TabPanel>
             <TabPanel value={value} index={2}>
                 Content of Application

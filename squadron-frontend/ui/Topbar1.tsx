@@ -41,7 +41,7 @@ const notificationsData: NotificationProps[] = [
     },
     {
         iconPath: "/icon/notification-add-friend.svg",
-        linkUrl: "www.google.com",
+        linkUrl: "/t5_proj_apply/my_profile",
         messageInfo: {
             message: "You have been invited to a project",
             websiteName: "Spotify",

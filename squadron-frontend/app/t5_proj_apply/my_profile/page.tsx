@@ -9,6 +9,7 @@ import LiveProjectCard from "@/ui/liveproject-card";
 import * as React from "react";
 import styled from "styled-components";
 import HorizontalTabs from "@/ui/horizontal-tabs";
+import {Hometable2} from "@/ui/Hometable2";
 
 const Container = styled.div`
     display: flex;
@@ -46,6 +47,7 @@ export default function Home() {
                 My Header Content
             </Header>
             <HorizontalTabs/>
+
         </div>
     )
 }
