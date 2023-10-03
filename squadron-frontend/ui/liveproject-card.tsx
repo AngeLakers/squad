@@ -16,9 +16,10 @@ const StyledCard = styled(Card)`
   position: relative;
 
   border: 1px solid #e5e7eb;
-
+  flex-shrink: 0;
+ 
   gap: 1rem;
-  width: 32.375rem;
+  width: 32rem;
   height: 21.25rem;
   border-radius: 0.75rem;
   flex-direction: column;

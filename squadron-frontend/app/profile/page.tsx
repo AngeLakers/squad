@@ -6,13 +6,16 @@ import ReviewCard from "@/ui/profile/Reviews";
 import ProjectCard from "@/ui/profile/ProjectCard";
 import ProfileCard from "@/ui/profile/ProfileCard";
 import WrapperWithNavigation from "@/ui/profile/WrapperWithNavigation";
+import CardWrapper from "@/ui/profile/card-wrapper";
+import LiveProjectCard from "@/ui/liveproject-card";
 
 
 const ParentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start; 
-  width: 90rem !important;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 100%;
   background-color: rgba(16, 24, 40, 0.06);
   overflow-x: hidden;
@@ -25,6 +28,81 @@ export default function Home() {
           <ParentContainer>
 
 
+                  <CardWrapper title="Live projects">
+                      <LiveProjectCard
+                          title="MVP for Serverless E-commerce..."
+                          memberCount={5}
+                          balanceInfo={{
+                              time: 0,
+                              currentBalance:0,
+                              percentage: 75
+                          }}
+                          score={0}
+                      />
+                      <LiveProjectCard
+                          title="MVP for Serverless E-commerce..."
+                          memberCount={5}
+                          balanceInfo={{
+                              time: 12,
+                              currentBalance: 1680,
+                              percentage: 3.7,
+                          }}
+                          score={4.5}
+                      />
+
+                      <LiveProjectCard
+                          title="MVP for Serverless E-commerce..."
+                          memberCount={6}
+                          balanceInfo={{
+                              time: 0,
+                              currentBalance:0,
+                              percentage: 75
+                          }}
+                          score={0}
+                      />
+                      <LiveProjectCard
+                          title="MVP for Serverless E-commerce..."
+                          memberCount={3}
+                          balanceInfo={{
+                              time: 12,
+                              currentBalance:2000,
+                              percentage: 4.7,
+                          }}
+                          score={4.5}
+                      />
+
+                      <LiveProjectCard
+                          title="MVP for Serverless E-commerce..."
+                          memberCount={5}
+                          balanceInfo={{
+                              time: 0,
+                              currentBalance:0,
+                              percentage: 75
+                          }}
+                          score={0}
+                      />
+                      <LiveProjectCard
+                          title="MVP for Serverless E-commerce..."
+                          memberCount={8}
+                          balanceInfo={{
+                              time: 12,
+                              currentBalance:2000,
+                              percentage: 4.7,
+                          }}
+                          score={4.5}
+                      />
+
+                      <LiveProjectCard
+                          title="MVP for Serverless E-commerce..."
+                          memberCount={7}
+                          balanceInfo={{
+                              time: 0,
+                              currentBalance:0,
+                              percentage: 75
+                          }}
+                          score={0}
+                      />
+                  </CardWrapper>
 
 
           <ProfileCard

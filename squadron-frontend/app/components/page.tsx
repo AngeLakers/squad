@@ -43,6 +43,8 @@ import TalentProfile from "@/ui/talent-profile-card";
 import NotificationMessage, {NotificationProps} from "@/ui/notification-message";
 import NotificationBox from "@/ui/notification-message";
 import LiveProjectCard from "@/ui/liveproject-card";
+import CardWrapper from "@/ui/profile/card-wrapper";
+import HorizontalTabs from "@/ui/horizontal-tabs";
 
 const mockSkillsData: BadgeData[] = [
     {label: "Roadmapping", icon: <StarSVG/>, preset: "outlined_green"},
@@ -677,30 +679,20 @@ export default function AllComponents() {
                 description="T5 - Talent receives invitation for a role with a squad- live project card display"
             >
 
-                <div>
-                    <LiveProjectCard
-                    title="MVP for Serverless E-commerce..."
-                    memberCount={5}
-                    balanceInfo={{
-                        time: 0,
-                        currentBalance:0,
-                        percentage: 75
-                    }}
-                    score={0}
-                />
-                    <LiveProjectCard
-                        title="MVP for Serverless E-commerce..."
-                        memberCount={5}
-                        balanceInfo={{
-                            time: 12,
-                            currentBalance: 1680,
-                            percentage: 3.7,
-                        }}
-                        score={4.5}
-                    />
 
 
-                </div>
+            </ComponentWrapper>
+
+            <ComponentWrapper
+                filename="liveproject-card.tsx"
+                createdBy="Ne Liu"
+                description="T5 - Talent receives invitation for a role with a squad- live project card display"
+            >
+            <HorizontalTabs/>
+
+
+
+
             </ComponentWrapper>
 
             <StyledH1>T3</StyledH1>
