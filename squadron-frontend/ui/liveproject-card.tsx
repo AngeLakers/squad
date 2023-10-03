@@ -214,11 +214,15 @@ const StyledIcon = styled(Icon)`
   width: 2.5rem;
   height: 2.5rem;
 `;
+interface ScoreBackgroundProps {
+    score: number;
+}
 
-const StyledScoreBackground = styled.div`
+const StyledScoreBackground = styled.div<ScoreBackgroundProps>`
+  
   position: relative;
   border-radius: 1rem;
-  background-color: #039855;
+  background-color: ${({ score }) => (score === 0 ? '#f3f4f6' : '#039855')};
   display: flex;
   flex-direction: column;
   padding: 0 1rem;
@@ -346,9 +350,10 @@ const BalanceBox: React.FC<BalanceBoxProps> = ({time, currentBalance, percentage
 const SatisfactionBox: React.FC<{ score: number }> = ({score}) => {
     return (
         <StyledBox>
-            <StyledIcon/>
-            <StyledScoreBackground>
-                <ScoreTypography variant="h6">{score} </ScoreTypography>
+            {score !== 0 && <StyledIcon/>}
+            <StyledScoreBackground score={score}>
+
+                <ScoreTypography variant="h6">{score === 0 ? '--' : score} </ScoreTypography>
             </StyledScoreBackground>
         </StyledBox>
     );

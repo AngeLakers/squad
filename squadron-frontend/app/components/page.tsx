@@ -686,7 +686,7 @@ export default function AllComponents() {
                         currentBalance:0,
                         percentage: 75
                     }}
-                    score={4.5}
+                    score={0}
                 />
                     <LiveProjectCard
                         title="MVP for Serverless E-commerce..."
