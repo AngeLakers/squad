@@ -49,12 +49,12 @@ import portraitAImage from "@/public/portraitA.png";
 import SendOfferPopup from "@/ui/send-offer-popup";
 import LaunchMissionPopup from "@/ui/launch-mission";
 import launchMissionImage from "@/public/launch-mission.png";
-import Community from "@/ui/Community";  
-import Community2 from "@/ui/Community2";  
-import Application from "@/ui/Application";  
-import Topbar1 from "@/ui/Topbar1";  
-import Wallet from "@/ui/Wallet ";  
-import Header from "@/ui/Header ";
+import {Community} from "@/ui/Community";  
+import {Community2} from "@/ui/Community2";  
+import {Application} from "@/ui/Application";  
+import {Topbar1} from "@/ui/Topbar1";  
+import {Wallet} from "@/ui/Wallet ";  
+import {Header} from "@/ui/Header ";
 
 
 
