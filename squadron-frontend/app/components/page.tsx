@@ -52,9 +52,10 @@ import LaunchMissionPopup from "@/ui/launch-mission";
 import launchMissionImage from "@/public/launch-mission.png";
 import RequiredMissingPopup from "@/ui/required-missing-popup";
 import LocationMissingPopup from "@/ui/location-missing-popup";
-import Spain from "@/public/spain.png";
+import Spain from "@/public/Spain.png";
 // import { PresetTypes } from "@/ui/custom-button";
 import Footer from "@/ui/footer";
+import RequireDontMatchPopup from "@/ui/require-dont-match";
 
 const MockrolesData = [
   {
@@ -277,6 +278,8 @@ export default function AllComponents() {
   const [isSkillMissingPopupOpen, setSkillMissingPopupOpen] = useState(false);
   const [isToolMissingPopupOpen, setToolMissingPopupOpen] = useState(false);
   const [isLocationMissingPopupOpen, setLocationMissingPopupOpen] =
+    useState(false);
+  const [isRequireDontMatchPopupOpen, setRequireDontMatchPopupOpen] = 
     useState(false);
   const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] = useState(false);
 
@@ -953,6 +956,18 @@ export default function AllComponents() {
           Location Missing Popup
         </Button>
       </ComponentWrapper>
+      <ComponentWrapper
+        filename="require-dont-match-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T5 - Require Dont Match Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setRequireDontMatchPopupOpen(true)}
+        >
+          Require Dont Match Popup
+        </Button>
+      </ComponentWrapper>
 
       {isModalOpen && (
         <SquadCustom
@@ -1065,6 +1080,7 @@ export default function AllComponents() {
           badges={[
           { label: "Label", preset: "outlined_grey" },
           { label: "UX Design", preset: "outlined_grey" },
+          { label: "Skill", preset: "outlined_grey" },
           ]}
           title="Required Skills Missing"
           description="Text and supporting text"
@@ -1096,7 +1112,16 @@ export default function AllComponents() {
           imgDescription="Spain" 
         />
       )}
+
       {isCompleteExperiencePopupOpen && <AddExperiencePopup onClose={() => setCompleteExperiencePopupOpen(false)}/>}
+
+      {isRequireDontMatchPopupOpen && (
+        <RequireDontMatchPopup 
+          onClose={() => setRequireDontMatchPopupOpen(false)} 
+          
+        />
+      )}
+
     </div>
   );
 }

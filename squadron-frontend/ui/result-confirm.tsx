@@ -177,7 +177,7 @@ const ApplicationSent: React.FC<Props> = ({
     button1Link,
     button2Link,
     showButton1 = true,
-    showButton2 = false,
+    showButton2 = true,
     showNewDiv = false,
 }) => {
     const handleCopy = () => {
