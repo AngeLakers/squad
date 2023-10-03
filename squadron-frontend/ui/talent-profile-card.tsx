@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import React, { ReactElement, useEffect, useState } from "react";
 import styled from "styled-components";
 import {
@@ -12,6 +11,55 @@ import {
   EmailSVG,
   TwitterSVG,
 } from "./svgs";
+import Link from "next/link";
+
+export interface Languages {
+  [key: string]: string;
+}
+
+export interface SocialLinks {
+  linkedin: string;
+  email: string;
+  twitter: string;
+}
+
+export interface ProfileDataType {
+  rate: string;
+  availability: string;
+  hoursToCommit: string;
+  location: string;
+  workingHours: string;
+  overlap: string;
+  experience: string;
+  languages: Languages;
+  socialLinks: SocialLinks;
+}
+
+export interface ProfileData {
+  id: string;
+  content: string;
+}
+
+const getSvgAndTitleById = (
+  id: string
+): { Svg: ReactElement; title: string } => {
+  switch (id) {
+    case "rate":
+      return { Svg: <LargeRateSVG />, title: "Hourly Rate" };
+    case "availability":
+      return { Svg: <LargeCalenderSVG />, title: "Availability" };
+    case "hoursToCommit":
+      return { Svg: <LargeClockSVG />, title: "Hours to commit" };
+    case "location":
+      return { Svg: <LargeLocationSVG />, title: "Location" };
+    case "workingHours":
+      return { Svg: <LargeHoursSVG />, title: "Working hours" };
+    case "overlap":
+      return { Svg: <LargeBarSVG />, title: "Overlap" };
+    default:
+      return { Svg: <></>, title: "" };
+  }
+};
 
 const VerticalDivider = styled.div`
   width: 1px;
@@ -41,16 +89,31 @@ const ProfileBody = styled.div`
   }
 `;
 
-interface TalentProfileProps {}
+interface TalentProfileProps {
+  data: ProfileDataType;
+}
 
-const TalentProfile: React.FC<TalentProfileProps> = ({}) => {
+const TalentProfile: React.FC<TalentProfileProps> = ({ data }) => {
+  const tableData: ProfileData[] = Object.entries(data)
+    .filter(([key]) =>
+      [
+        "rate",
+        "availability",
+        "hoursToCommit",
+        "location",
+        "workingHours",
+        "overlap",
+      ].includes(key)
+    )
+    .map(([key, value]) => ({ id: key, content: value as string }));
+
   return (
     <Profile>
-      <ProfileHeader></ProfileHeader>
+      <ProfileHeader />
       <ProfileBody>
-        <ProfileList />
+        <ProfileList data={data} />
         <VerticalDivider />
-        <ProfileTable />
+        <ProfileTable data={tableData} />
       </ProfileBody>
     </Profile>
   );
@@ -120,34 +183,42 @@ const SocialMediaContainer = styled.div`
   gap: 24px;
 `;
 
-const ProfileList: React.FC = ({}) => {
+interface ProfileListProps {
+  data: ProfileDataType;
+}
+
+const ProfileList: React.FC<ProfileListProps> = ({ data }) => {
   return (
     <List>
       <ProfileListItem>
         <ProfileListItemTitle>Experience</ProfileListItemTitle>
-        <ProfileListItemContentValue>5 years</ProfileListItemContentValue>
+        <ProfileListItemContentValue>
+          {data.experience}
+        </ProfileListItemContentValue>
       </ProfileListItem>
       <ProfileListItem>
         <ProfileListItemTitle>Languages</ProfileListItemTitle>
         <ProfileListItemContentContainer>
-          <ProfileListItemContent>
-            <ProfileListItemContentTitle>English:</ProfileListItemContentTitle>
-            <ProfileListItemContentValue>Native</ProfileListItemContentValue>
-          </ProfileListItemContent>
-          <ProfileListItemContent>
-            <ProfileListItemContentTitle>French:</ProfileListItemContentTitle>
-            <ProfileListItemContentValue>
-              Intermediate
-            </ProfileListItemContentValue>
-          </ProfileListItemContent>
+          {Object.entries(data.languages).map(([key, value]) => (
+            <ProfileListItemContent key={key}>
+              <ProfileListItemContentTitle>{key}:</ProfileListItemContentTitle>
+              <ProfileListItemContentValue>{value}</ProfileListItemContentValue>
+            </ProfileListItemContent>
+          ))}
         </ProfileListItemContentContainer>
       </ProfileListItem>
       <ProfileListItem>
         <ProfileListItemTitle>Social Links</ProfileListItemTitle>
         <SocialMediaContainer>
-          <LinkedInSVG />
-          <EmailSVG />
-          <TwitterSVG />
+          <Link href={data.socialLinks.linkedin}>
+            <LinkedInSVG />
+          </Link>
+          <Link href={data.socialLinks.email}>
+            <EmailSVG />
+          </Link>
+          <Link href={data.socialLinks.twitter}>
+            <TwitterSVG />
+          </Link>
         </SocialMediaContainer>
       </ProfileListItem>
     </List>
@@ -169,61 +240,50 @@ const ProfileTableColumn = styled.div`
   flex: 1;
 `;
 
-const ProfileTable: React.FC = ({}) => {
-  const [windowWidth, setWindowWidth] = useState<number>(0);
+const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState<number | null>(null);
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
+    setWindowSize(window.innerWidth);
+
+    const handleResize = () => {
+      setWindowSize(window.innerWidth);
+    };
+
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
-  const cardsData = [
-    { Svg: <LargeRateSVG />, title: "Hourly Rate", content: "$90/h" },
-    {
-      Svg: <LargeCalenderSVG />,
-      title: "Availability",
-      content: "Immediately",
-    },
-    {
-      Svg: <LargeClockSVG />,
-      title: "Hours to commit",
-      content: "40h / week",
-    },
-    {
-      Svg: <LargeLocationSVG />,
-      title: "Location",
-      content: "Sydney AU, GMT+11",
-    },
-    {
-      Svg: <LargeHoursSVG />,
-      title: "Working hours",
-      content: "8:30 AM - 4:30 PM",
-    },
-    { Svg: <LargeBarSVG />, title: "Overlap", content: "7 hours" },
-  ];
+  return windowSize;
+};
+
+interface ProfileTableProps {
+  data: ProfileData[];
+}
+
+const ProfileTable: React.FC<ProfileTableProps> = ({ data }) => {
+  const windowWidth = useWindowSize();
+
+  const renderCards = (cards: ProfileData[]) => (
+    <ProfileTableColumn>
+      {cards.map((card) => (
+        <ProfileCard key={card.id} {...card} />
+      ))}
+    </ProfileTableColumn>
+  );
 
   return (
     <Table>
-      {windowWidth > 1460 ? (
+      {windowWidth !== null && windowWidth > 1460 ? (
         <>
-          <ProfileTableColumn>
-            {cardsData.slice(0, 3).map((card) => (
-              <ProfileCard {...card} />
-            ))}
-          </ProfileTableColumn>
-          <ProfileTableColumn>
-            {cardsData.slice(3).map((card) => (
-              <ProfileCard {...card} />
-            ))}
-          </ProfileTableColumn>
+          {renderCards(data.slice(0, 3))}
+          {renderCards(data.slice(3))}
         </>
       ) : (
-        <ProfileTableColumn>
-          {cardsData.map((card) => (
-            <ProfileCard {...card} />
-          ))}
-        </ProfileTableColumn>
+        renderCards(data)
       )}
     </Table>
   );
@@ -276,7 +336,8 @@ interface ProfileCardProps {
   content: string;
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ Svg, title, content }) => {
+const ProfileCard: React.FC<ProfileData> = ({ id, content }) => {
+  const { Svg, title } = getSvgAndTitleById(id);
   return (
     <Card>
       <CardLabel>

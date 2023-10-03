@@ -53,6 +53,9 @@ color: #1B18E4
 `;
 
 const Preview: React.FC = () => {
+  const handleBackClick = () => {
+    window.history.back();
+  };
   return (
     <Container>
       <SimpleHeader />
@@ -105,8 +108,8 @@ const Preview: React.FC = () => {
       <LeftButton>Cancel</LeftButton>
       <RightButtonGroup>
         <SaveButton>Save to drafts</SaveButton>
-        <EditButton>Back to Edit</EditButton>
-        <a href="/c4/proj_live"><CustomButton label="Publish" /></a>
+        <EditButton onClick={handleBackClick}>Back to Edit</EditButton>
+        <a href="/c4/proj_live"><CustomButton preset="default" label="Publish" /></a>
       </RightButtonGroup>
     </Footer>
     </Container>

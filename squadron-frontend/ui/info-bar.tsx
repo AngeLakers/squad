@@ -7,6 +7,7 @@ const BarContainer = styled.div<{
   borderColor: string;
 }>`
   display: flex;
+  flex: 1;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;

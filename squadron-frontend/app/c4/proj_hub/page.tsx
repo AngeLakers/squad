@@ -53,6 +53,30 @@ const TabButton = styled.button<{ active: boolean }>`
     cursor: pointer;
 `;
 
+const rolesData = [
+    {
+      title: "UI Designer"
+    },
+    {
+      title: "UI Designer"
+    },
+    {
+      title: "Product Designer"
+    },
+    {
+      title: "UX Researcher"
+    },
+    {
+      title: "Front-End Engineer"
+    },
+    {
+      title: "Full-Stack Engineer"
+    },
+    {
+      title: "DevOps Engineer"
+    }
+  ];
+
 const ProjectHub: React.FC = () => {
     const [activeTab, setActiveTab] = useState("Project Details");
     const showProjectDetails = activeTab === "Project Details";
@@ -85,8 +109,8 @@ const ProjectHub: React.FC = () => {
         {showProjectDetails && (
             <>
             <NewButtonContainer>
-            <CustomButton label="Share" backgroundColor='white' textColor='black' borderColor="#D2D6DB"/>
-            <CustomButton label="Edit Project" onClick={() => setEditprojPopupOpen(true)}/>
+            <CustomButton label="Share" preset="default" backgroundColor='white' textColor='black' borderColor="#D2D6DB"/>
+            <CustomButton label="Edit Project" preset="default" onClick={() => setEditprojPopupOpen(true)}/>
             {editprojPopupOpen && (
                 <EditProjPopup
                     onClose={() => setEditprojPopupOpen(false)}
@@ -150,7 +174,7 @@ const ProjectHub: React.FC = () => {
         <>
             <CollectingBar/>
             <SquadContainer>
-                <SquadSurveySwap />
+                <SquadSurveySwap roles={rolesData}/>
             </SquadContainer>
         </>
         )}

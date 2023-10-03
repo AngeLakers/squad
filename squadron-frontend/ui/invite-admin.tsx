@@ -3,56 +3,64 @@ import PopupComponent from "./popup";
 import styled from "styled-components";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import CustomButton from "./custom-button";
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
     width: 100%;
-    padding: 5% 10%;
+    padding: 24px 24px 0 24px;
 `;
 
 const Title = styled.h1`
     font-weight: bold;
-    font-size: 1.5rem;
-    margin-bottom: 2%;
+    font-size: 18px;
+    margin-bottom: 4px;
 `;
 
 const Description = styled.p`
-    margin-bottom: 3%;
+    margin-bottom: 24px;
+    color: #475467;
+    font-size: 14px;
 `;
 
 const Divider = styled.hr`
     width: 100%; 
-    margin-bottom: 3%;
+    margin-bottom: 24px;
 `;
 
 const InputContainer = styled.div`
     display: flex;
     flex-direction: column;
+    margin-right:6px;
 `;
 
 const InputRow = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-bottom: 3%;
+    margin-bottom: 14px;
     width: 100%;
 `;
 
 const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-top: 5%;
+    padding: 24px 0;
     width: 100%;
 `;
 
 const AddButton = styled.button`
+    margin-top:10px;
     cursor: pointer;
+    color: #1B18E4;
 `;
 
 const Label = styled.label`
     display: block;
-    margin-bottom: 3%;
+    margin-bottom: 12px;
+    color: #384250;
+    font-size: 14px;
 `;
 
 interface InviteAdminProps {
@@ -61,7 +69,7 @@ interface InviteAdminProps {
 
 const InviteAdmin: React.FC<InviteAdminProps> = ({ onClose }) => {
   return (
-    <PopupComponent onClose={onClose}>
+    <PopupComponent onClose={onClose} width="35%" minWidth="500px" minHeight="max-contents">
       <Container>
         <Title>Invite admin(s)</Title>
         <Description>description</Description>
@@ -86,10 +94,10 @@ const InviteAdmin: React.FC<InviteAdminProps> = ({ onClose }) => {
             <TextField id="email-2" variant="outlined" size="small"/>
         </InputContainer>
         </InputRow>
-        <AddButton>+ add another</AddButton>
+        <AddButton>+ Add another</AddButton>
         <ButtonContainer>
-            <Button variant="outlined" onClick={onClose}>Cancel</Button>
-            <Button variant="outlined">Send invites</Button>
+            <CustomButton label="Cancel" preset="default" borderColor="#D0D5DD" padding="10px 35px 10px 35px" backgroundColor="white" textColor="#344054" hoverColor="none" onClick={onClose}/>
+            <CustomButton label="Send invites" preset="default" padding="10px 25px 10px 25px" backgroundColor="#111927" textColor="white" hoverColor="none" />
         </ButtonContainer>
       </Container>
     </PopupComponent>

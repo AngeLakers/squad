@@ -1,13 +1,33 @@
 "use client";
 import * as React from "react";
-import TalentProfile from "@/ui/talent-profile-card";
-import TalentInfo from "@/ui/talent-info-card";
+import TalentProfile, { ProfileDataType } from "@/ui/talent-profile-card";
+import TalentInfo from "@/ui/layout-card";
 import TalentAnswers from "@/ui/talent-answers";
 import TalentNotes from "@/ui/talent-notes";
 import TalentDocuments from "@/ui/talent-documents";
 import styled from "styled-components";
 import TalentSkills, { BadgeData } from "@/ui/talent-skills";
 import { StarSVG } from "@/ui/svgs";
+import SquadNav from "@/ui/squad-navigation";
+
+const mockProfileData: ProfileDataType = {
+  rate: "$90/h",
+  availability: "Immediately",
+  hoursToCommit: "40h / week",
+  location: "Sydney AU, GMT+11",
+  workingHours: "8:30 AM - 4:30 PM",
+  overlap: "7 hours",
+  experience: "5 years",
+  languages: {
+    English: "Native",
+    French: "Intermediate",
+  },
+  socialLinks: {
+    linkedin: "https://www.linkedin.com/in/your-profile/",
+    email: "mailto:your.email@example.com",
+    twitter: "https://twitter.com/your-profile",
+  },
+};
 
 const mockSkillsData: BadgeData[] = [
   { label: "Roadmapping", icon: <StarSVG />, preset: "outlined_green" },
@@ -42,10 +62,14 @@ const mockSkillsData: BadgeData[] = [
 const mockToolsData: BadgeData[] = [
   {
     label: "Photoshop",
-    icon: <img src="/photoshop.png" />,
+    icon: <img alt="photoshop logo" src="/photoshop.png" />,
     preset: "outlined_grey",
   },
-  { label: "Figma", icon: <img src="/figma.png" />, preset: "outlined_grey" },
+  {
+    label: "Figma",
+    icon: <img alt="figma logo" src="/figma.png" />,
+    preset: "outlined_grey",
+  },
 ];
 
 const mockQAData = [
@@ -84,7 +108,7 @@ const Profile = styled.div`
   flex-direction: column;
   gap: 32px;
   min-width: fit-content;
-  margin: 0 10%;
+  margin: 50px 10%;
 `;
 
 const TalentInfoWrapper = styled.div`
@@ -95,35 +119,51 @@ const TalentInfoWrapper = styled.div`
 
 export default function AllComponents() {
   return (
-    <Profile>
-      <TalentProfile />
-      <TalentInfo
-        title={"Skills & Tools"}
-        content={
-          <TalentSkills skillsData={mockSkillsData} toolsData={mockToolsData} />
-        }
-      />
-      <TalentInfo
-        title={"Talent answers"}
-        content={<TalentAnswers qaData={mockQAData} />}
+    <>
+      <SquadNav
+        Top={true}
+        squadName="Suggested Squad #1"
+        talentInfo="Talent 1 of 5"
       />
 
-      <TalentInfoWrapper>
+      <Profile>
+        <TalentProfile data={mockProfileData} />
         <TalentInfo
-          title={"Additional notes"}
+          title={"Skills & Tools"}
           content={
-            <TalentNotes
-              content={
-                "Lorem ipsum dolor sit amet consectetur. Leo sit tristique arcu ornare faucibus. Sit lobortis vel ut pharetra integer odio. Venenatis eu sit sit turpis feugiat. Egestas adipiscing morbi tortor hendrerit."
-              }
+            <TalentSkills
+              skillsData={mockSkillsData}
+              toolsData={mockToolsData}
             />
           }
         />
         <TalentInfo
-          title={"Documents attached"}
-          content={<TalentDocuments documents={mockDocumentData} />}
+          title={"Talent answers"}
+          content={<TalentAnswers qaData={mockQAData} />}
         />
-      </TalentInfoWrapper>
-    </Profile>
+
+        <TalentInfoWrapper>
+          <TalentInfo
+            title={"Additional notes"}
+            content={
+              <TalentNotes
+                content={
+                  "Lorem ipsum dolor sit amet consectetur. Leo sit tristique arcu ornare faucibus. Sit lobortis vel ut pharetra integer odio. Venenatis eu sit sit turpis feugiat. Egestas adipiscing morbi tortor hendrerit."
+                }
+              />
+            }
+          />
+          <TalentInfo
+            title={"Documents attached"}
+            content={<TalentDocuments documents={mockDocumentData} />}
+          />
+        </TalentInfoWrapper>
+      </Profile>
+      <SquadNav
+        Top={false}
+        squadName="Suggested Squad #1"
+        talentInfo="Talent 1 of 5"
+      />
+    </>
   );
 }

@@ -14,8 +14,9 @@ import InviteAdmin from '@/ui/invite-admin';
 import AddRole from '@/ui/add-role';
 import UploadVideoButton from '@/ui/upload-file-button';
 import CustomButton from "@/ui/custom-button";
+import EmptyRoleCard from '@/ui/empty-role-card';
 
-const ProjectDetails: React.FC = () => {
+const ProjectDetailsPreset: React.FC = () => {
   // const [expandBox, setExpandBox] = useState<number | null>(null);
   const [expandBox, setExpandBox] = useState<number[]>([]);
   const [videoUploadOpen, setVideoUploadOpen] = useState<boolean>(false);
@@ -39,11 +40,11 @@ const ProjectDetails: React.FC = () => {
   type BoxTitles = 'Project Header' | 'Project Scope' | 'Admin Details' | 'Squad Details' | 'Additional Info(optional)';
 
   const expandedBoxHeights = {
-    'Project Header': '30vh',
-    'Project Scope': '50vh',
-    'Admin Details': '50vh',
-    'Squad Details': '30vh',
-    'Additional Info(optional)': '22vh',
+    'Project Header': 'auto',
+    'Project Scope': 'auto',
+    'Admin Details': 'auto',
+    'Squad Details': 'auto',
+    'Additional Info(optional)': 'auto',
   };
 
   interface DividerProps {
@@ -282,8 +283,10 @@ const rightButtonGroupStyle: CSSProperties = {
               <Button variant="outlined" onClick={() => setAddRoleOpen(true)}>Add role</Button>
             </div>
             {isRoleAdd && <AddRole onClose={() => setAddRoleOpen(false)} />}
-            <div style={{ ...showAdminSquadBoxStyle, justifyContent: 'center' }}>
-              You haven't added any roles yet.
+            <div style={{marginTop: '43px'}}>
+            <EmptyRoleCard title="Product Manager"></EmptyRoleCard>
+            <EmptyRoleCard title="Front-End Developer"></EmptyRoleCard>
+            <EmptyRoleCard title="Back-End Developer"></EmptyRoleCard>
             </div>
           </>
             ):title === 'Additional Info(optional)' ? (
@@ -335,7 +338,7 @@ const rightButtonGroupStyle: CSSProperties = {
       <button style={leftButtonStyle}>Cancel</button>
       <div style={rightButtonGroupStyle}>
         <button>Save to drafts</button>
-        <a href="/c4/preview"><CustomButton label="Preview" /></a>
+        <a href="/c4/preview"><CustomButton preset="default" label="Preview" /></a>
       </div>
   </div>
 </div>
@@ -344,4 +347,4 @@ const rightButtonGroupStyle: CSSProperties = {
   );
 }
 
-export default ProjectDetails;
+export default ProjectDetailsPreset;

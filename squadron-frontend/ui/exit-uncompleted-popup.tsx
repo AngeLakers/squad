@@ -2,6 +2,7 @@ import React from "react";
 import PopupComponent from "./popup";
 import styled from "styled-components";
 import Button from '@mui/material/Button';
+import CustomButton from "./custom-button";
 
 const ContentContainer = styled.div`
     display: flex;
@@ -10,46 +11,41 @@ const ContentContainer = styled.div`
     justify-content: center;
     width: 100%;
     height: 100%;
-    margin: 0 5%;
+    padding: 24px;
 `;
 
 const Title = styled.h2`
     text-align: left;
-    font-weight: 500;
-    font-size: 1.2rem;
-    margin-top: 2%;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 16px;
 `;
 
 const Description = styled.p`
-    margin: 2% 0;
+    margin: 4px 0;
+    font-size: 14px;
+    font-weight: 400;
 `;
 
 const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-around;
     width: 100%;
-    padding-bottom: 6%;
-    margin-top:4%;
+    margin-top:24px;
 `;
-
-const StyledButton = styled(Button)`
-    && {
-        margin-left: 45%;
-    }
-`;
-
 
 const Icon = styled.div`
-    margin-top: 3%;
+    margin-top: 8px;
 `;
 
 interface ExitUncompletedPopupProps {
     onClose: () => void;
+    onConfirm?: () => void;
 }
 
-const ExitUncompletedPopup: React.FC<ExitUncompletedPopupProps> = ({ onClose }) => {
+const ExitUncompletedPopup: React.FC<ExitUncompletedPopupProps> = ({ onClose, onConfirm }) => {
     return (
-        <PopupComponent onClose={onClose}  width="30%" top="37.5%" left="37.5%" maxHeightPercent={0.3}>
+        <PopupComponent onClose={onClose}  width="30%" maxHeightPercent={0.3} minWidth="300px" minHeight="150px" >
             <ContentContainer>
                 <Icon><svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="4" y="4" width="48" height="48" rx="24" fill="#FEF0C7"/>
@@ -58,11 +54,12 @@ const ExitUncompletedPopup: React.FC<ExitUncompletedPopupProps> = ({ onClose }) 
                 <Title>Unsaved changes</Title>
                 <Description>If you close this screen your changes won't be saved</Description>
                 <ButtonContainer>
-                    <Button variant="outlined" onClick={onClose}>Cancel</Button>
-                    <StyledButton variant="outlined" style={{ marginLeft: '50%'}}>Confirm</StyledButton>
+                    <CustomButton label="Cancel" preset="default" onClick={onClose} borderColor="#D0D5DD" padding="10px 24px" width="45vw" margin="0 8px 0 0" backgroundColor="white" textColor="#344054" hoverColor="none"/>
+                    <CustomButton label="Confirm" preset="default" onClick={onConfirm} padding="10px 24px" width="45vw"/>
                 </ButtonContainer>
             </ContentContainer>
         </PopupComponent>
+        
     );
 };
 

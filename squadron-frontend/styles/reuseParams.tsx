@@ -10,6 +10,7 @@ export const gray700 = '#384250';
 export const gray900 = '#111927';
 export const success50 = '#ECFDF3';
 export const success700 = '#027a48';
+export const warning600 = '#DC6803'
 export const primary600 = '#4B48EC';
 
 export const regularFontSize = '14px';
