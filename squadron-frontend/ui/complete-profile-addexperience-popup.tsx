@@ -8,8 +8,6 @@ import CustomInput from "./custom-input";
 import { SearchSVG } from "./svgs";
 import {
     basewhite,
-    borderColor,
-    boxShadow,
     gray200,
     gray300,
     gray500,
@@ -20,16 +18,10 @@ import {
     regularFontSize,
     mediumFontSize,
     titleFontSize,
-    xxlargeFontSize,
     regularFontWeight,
     mediumFontWeight,
     regularLineHeight,
-    mediumLineHeight,
     largeLineHeight,
-    xxxlargeLineHeight,
-    fontFamily,
-    regularLetterSpacing,
-    warning600,
     titleFontWeight,
 } from "@/styles/reuseParams";
 
@@ -54,8 +46,7 @@ const PopupBody = styled.div`
     gap: 20px;
     overflow-y: auto;
     width: 100%;
-    max-height: 658px; 
-    border: 3px solid green;    
+    max-height: 658px;   
 `
 const PopupFooter = styled.div`
     display: flex;
@@ -73,7 +64,6 @@ const BodyContentContainer = styled.div`
     justify-content: center;
     gap: 16px;
     width: 100%;
-    border: 3px solid red;
 `
 const InputWithTitleContainer = styled.div`
     display: flex;
@@ -89,47 +79,18 @@ const CompanyIndustrySearchContainer = styled.div`
     justify-content: space-between;
     gap: 16px;
     width: 100%;
-    border: 3px solid blue;
 `
-const ItemTitleContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-`
-
 const Title = styled.div`
     color: ${gray900};
     font-weight: ${titleFontWeight};
     font-size: ${titleFontSize};
     line-height: ${largeLineHeight};
-    // margin-top: 2%;
 `;
 const TitleDiscrption = styled.div`
     color: ${gray600};
     font-weight: ${regularFontWeight};
     font-size: ${regularFontSize};
     line-height: ${regularLineHeight};
-    // margin-top: 2%;
-`
-const SecondTitle = styled.div`
-    color: ${gray700};
-    font-weight: ${mediumFontWeight};
-    font-size: ${regularFontSize};
-    line-height: ${regularLineHeight};
-`
-const SkillBadgeContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    position: relative;
-    max-height: 80px;
-    width: 100%;
-    border: 2px solid ${gray300};
-    border-radius: 8px;
-    padding: 12px 14px 12px 14px;
-    gap: 8px;
-    overflow-y: auto;
-
 `
 const WorkHereCheckboxContainer = styled.div`
     color: ${gray600};
@@ -137,6 +98,15 @@ const WorkHereCheckboxContainer = styled.div`
     font-size: ${regularFontSize};
     line-height: ${regularLineHeight};
 `
+const CheckboxContainer = styled.label`
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+`;
+
+const WorkHereCheckbox = styled.input.attrs({ type: 'checkbox' })`
+  margin-right: 0.5rem;
+`;
 
 const Divider = styled.div`
     width: 100%;
@@ -162,17 +132,11 @@ const AddExperiencePopup: React.FC<AddExperiencePopupProps> = ({
     showDivider = true,
     icon
 }) => {
-    const [borderColor, setBorderColor] = useState<string>(gray300);
-    const [width, setWidth] = useState<string>('100%');
-    const [height, setHeight] = useState<string>('100%');
-    const [fontSize, setFontSize] = useState<string>(regularFontSize);
-    const [fontWeight, setFontWeight] = useState<string>(regularFontWeight);
-    const [fontColor, setFontColor] = useState<string>(gray500);
-    const [padding, setPadding] = useState<string>('10px 14px 10px 14px');
+    const [workHere, setWorkHere] = useState(false);
+    
     return (
         <PopupComponent onClose={onClose}
             width="640px"
-        // maxHeightPercent={0.3}
         >
             <ContentContainer>
                 <PopupHeader>
@@ -194,9 +158,9 @@ const AddExperiencePopup: React.FC<AddExperiencePopupProps> = ({
                                 inputHeight="40px"
                                 inputWidth="100%"
                                 borderWidth="1px"
-                                inputTextColor={gray500}
+                                inputTextColor={gray900}
                                 inputTextSize={mediumFontSize}
-                                inputTextWeight={regularFontWeight}
+                                inputTextWeight={mediumFontWeight}
                                 placeholder="What is your title?"
                             />
                         </InputWithTitleContainer>
@@ -204,6 +168,9 @@ const AddExperiencePopup: React.FC<AddExperiencePopupProps> = ({
                             {/* TODO: Change the input to search
                                     ask client: what's the data from */}
                             <InputWithTitleContainer>
+                            {/* todo:
+                                1. Company name style incorrect: it's not a text, it's a badge
+                                2. Missing search icon  */}
                                 <CustomInput
                                     title="Company *"
                                     type="searchableSelect"
@@ -223,6 +190,8 @@ const AddExperiencePopup: React.FC<AddExperiencePopupProps> = ({
                                 />
                             </InputWithTitleContainer>
                             <InputWithTitleContainer>
+                            {/* todo: 
+                                1. Missing search icon */}
                                 <CustomInput
                                     title="Industry *"
                                     type="searchableSelect"
@@ -234,10 +203,10 @@ const AddExperiencePopup: React.FC<AddExperiencePopupProps> = ({
                                     inputHeight="40px"
                                     inputWidth="100%"
                                     borderWidth="1px"
-                                    inputTextColor={gray500}
+                                    inputTextColor={gray900}
                                     inputTextSize={mediumFontSize}
-                                    inputTextWeight={regularFontWeight}
-                                    options={["", "Google", "Facebook", "Amazon"]}
+                                    inputTextWeight={mediumFontWeight}
+                                    options={["Design", "Education", "Amazon"]}
                                     placeholder="Search for Search for industry"
                                 />
                             </InputWithTitleContainer>
@@ -348,31 +317,39 @@ const AddExperiencePopup: React.FC<AddExperiencePopupProps> = ({
                             </InputWithTitleContainer>
                         </CompanyIndustrySearchContainer>
                         <WorkHereCheckboxContainer>
-                            I currently work here
+                            {/* todo: 
+                                1. checked style not same as figma
+                                2. company  */}
+                            <CheckboxContainer>
+                                <WorkHereCheckbox checked={workHere} onChange={(e) => setWorkHere(e.target.checked)} />
+                                I currently work here
+                            </CheckboxContainer>
                         </WorkHereCheckboxContainer>
+
+                        {showDivider && <Divider />}
+                        <InputWithTitleContainer>
+                        {/* todo:
+                            1. Input box cannot automatically expand. */}
+                            <CustomInput
+                                title="Description*"
+                                type="text"
+                                titleFontSize={regularFontSize}
+                                titleFontWeight={mediumFontWeight}
+                                titleColor={gray700}
+                                borderColor={gray300}
+                                borderRadius="8px"
+                                inputHeight="40px"
+                                inputWidth="100%"
+                                borderWidth="1px"
+                                inputTextColor={gray500}
+                                inputTextSize={mediumFontSize}
+                                inputTextWeight={regularFontWeight}
+                                placeholder="Describe your experience"
+                            />
+                        </InputWithTitleContainer>
                     </BodyContentContainer>
-                    {showDivider && <Divider />}
-                    <InputWithTitleContainer>
-                        <CustomInput
-                            title="Description*"
-                            type="text"
-                            titleFontSize={regularFontSize}
-                            titleFontWeight={mediumFontWeight}
-                            titleColor={gray700}
-                            borderColor={gray300}
-                            borderRadius="8px"
-                            inputHeight="40px"
-                            inputWidth="100%"
-                            borderWidth="1px"
-                            inputTextColor={gray500}
-                            inputTextSize={mediumFontSize}
-                            inputTextWeight={regularFontWeight}
-                            placeholder="Describe your experience"
-                        />
-                    </InputWithTitleContainer>
                 </PopupBody>
                 <PopupFooter>
-                    {/* {showDivider && <Divider />} */}
                     <ButtonContainer>
                         <CustomButton
                             label="Cancel"

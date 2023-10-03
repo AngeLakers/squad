@@ -26,6 +26,9 @@ const Title = styled.h4<{ fontSize?: string, fontWeight?: string | number, color
     font-size: ${props => props.fontSize || '14px'};
     font-weight: ${props => props.fontWeight || 'inherit'};
     color: ${props => props.color || '#384250'};
+    height: 20px;
+    display: block;
+    overflow: hidden;
 `;
 
 const StyledInput = styled.input<{ 
@@ -84,7 +87,9 @@ const CustomInput: React.FC<CustomInputProps> = ({
                     <Title 
                       fontSize={titleFontSize} 
                       fontWeight={titleFontWeight} 
-                      color={titleColor}>{title}</Title>
+                      color={titleColor}>
+                        {title || ' '}
+                    </Title>
                     <StyledInput 
                       type="text" 
                       borderColor={borderColor} 

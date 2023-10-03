@@ -7,29 +7,18 @@ import CustomButton from "./custom-button";
 import CustomBadge from "./custom-badge";
 import {
     basewhite,
-    borderColor,
-    boxShadow,
     gray200,
     gray300,
     gray600,
     gray700,
-    gray900,
     primary600,
     regularFontSize,
-    mediumFontSize,
     titleFontSize,
-    xxlargeFontSize,
     regularFontWeight,
     mediumFontWeight,
     regularLineHeight,
-    mediumLineHeight,
     largeLineHeight,
-    xxxlargeLineHeight,
-    fontFamily,
-    regularLetterSpacing,
-    warning600,
     titleFontWeight,
-    gray500,
 } from "@/styles/reuseParams";
 import { StarBorderSVG, StarSVG } from "./svgs";
 
@@ -54,8 +43,7 @@ const PopupBody = styled.div`
     padding: 24px 24px 0px 24px;
     gap: 24px;
     overflow-y: auto;
-    width: 100%;
-    // max-height: 296px;     
+    width: 100%;  
 `
 const PopupFooter = styled.div`
     display: flex;
@@ -154,8 +142,6 @@ const CompleteSkillsPopup: React.FC<CompleteSkillsPopupProps> = ({
     return (
         <PopupComponent onClose={onClose}
             width="752px"
-            // top="calc(50% - {finalHeight}/2)"
-            // left="calc(50% - {width}/2)"
             maxHeightPercent={0.3}
         >
             <ContentContainer>
