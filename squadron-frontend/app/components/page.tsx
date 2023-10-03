@@ -53,11 +53,11 @@ import launchMissionImage from "@/public/launch-mission.png";
 import RequiredMissingPopup from "@/ui/required-missing-popup";
 import LocationMissingPopup from "@/ui/location-missing-popup";
 import Spain from "@/public/Spain.png";
-// import { PresetTypes } from "@/ui/custom-button";
 import Footer from "@/ui/footer";
 import CustomProjectHeader from "@/ui/custom-project-header";
 import RequireDontMatchPopup from "@/ui/require-dont-match";
 import ApplyCancelPopup from "@/ui/apply_cancel";
+import BuildApplySquad from "@/ui/build-apply-squad";
 
 const MockrolesData = [
   {
@@ -598,6 +598,16 @@ export default function AllComponents() {
       >
         <SquadSurveySwap roles={rolesData} />
       </ComponentWrapper>
+
+      <ComponentWrapper
+        filename="build-apply-squad.tsx"
+        createdBy="Becky Xu"
+        description="C5 - build-apply-squad, also for T5"
+      >
+        <BuildApplySquad />
+      </ComponentWrapper>
+      
+
       <ComponentWrapper
         filename="talent-profile-card.tsx"
         createdBy="Mark Sun"
