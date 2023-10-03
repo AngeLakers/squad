@@ -49,6 +49,10 @@ import portraitAImage from "@/public/portraitA.png";
 import SendOfferPopup from "@/ui/send-offer-popup";
 import LaunchMissionPopup from "@/ui/launch-mission";
 import launchMissionImage from "@/public/launch-mission.png";
+import RequiredMissingPopup from "@/ui/required-missing-popup";
+import LocationMissingPopup from "@/ui/location-missing-popup";
+import Spain from "@/public/spain.png";
+// import { PresetTypes } from "@/ui/custom-button";
 import Footer from "@/ui/footer";
 
 const MockrolesData = [
@@ -268,6 +272,10 @@ export default function AllComponents() {
   const [isCompleteProfilePopupOpen, setCompleteProfilePopupOpen] =
     useState(false);
   const [isCompleteSkillsPopupOpen, setCompleteSkillsPopupOpen] =
+    useState(false);
+  const [isSkillMissingPopupOpen, setSkillMissingPopupOpen] = useState(false);
+  const [isToolMissingPopupOpen, setToolMissingPopupOpen] = useState(false);
+  const [isLocationMissingPopupOpen, setLocationMissingPopupOpen] =
     useState(false);
 
   const icons = [
@@ -904,6 +912,42 @@ export default function AllComponents() {
           Complete Skills Popup
         </Button>
       </ComponentWrapper>
+      <ComponentWrapper
+        filename="required-missing-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T5 - Skill Missing Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setSkillMissingPopupOpen(true)}
+        >
+          Skill Missing Popup
+        </Button>
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="required-missing-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T5 - Tool Missing Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setToolMissingPopupOpen(true)}
+        >
+          Tool Missing Popup
+        </Button>
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="location-missing-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T5 - Location Missing Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setLocationMissingPopupOpen(true)}
+        >
+          Location Missing Popup
+        </Button>
+      </ComponentWrapper>
 
       {isModalOpen && (
         <SquadCustom
@@ -1009,6 +1053,42 @@ export default function AllComponents() {
       {isCompleteSkillsPopupOpen && (
         <CompleteSkillsPopup
           onClose={() => setCompleteSkillsPopupOpen(false)}
+        />
+      )}
+      {isSkillMissingPopupOpen && (
+        <RequiredMissingPopup onClose={() => setSkillMissingPopupOpen(false)} 
+          badges={[
+          { label: "Label", preset: "outlined_grey" },
+          { label: "UX Design", preset: "outlined_grey" },
+          ]}
+          title="Required Skills Missing"
+          description="Text and supporting text"
+          noRequiredButtonLabel="I don't have these skills"
+          addRequiredButtonLabel="Add skills"
+        />
+      )}
+      {isToolMissingPopupOpen && (
+        <RequiredMissingPopup onClose={() => setToolMissingPopupOpen(false)} 
+          badges={[
+          { label: "Tool", preset: "outlined_grey", icon: <img alt="photoshop logo" src="/photoshop.png" /> },
+          { label: "Tool", preset: "outlined_grey", icon: <img alt="photoshop logo" src="/photoshop.png" /> },
+          ]}
+          title="Required Tools Missing"
+          description="Text and supporting text"
+          noRequiredButtonLabel="I don't use these tools"
+          addRequiredButtonLabel="Add tools"
+        />
+      )}
+      {isLocationMissingPopupOpen && (
+        <LocationMissingPopup 
+          onClose={() => setLocationMissingPopupOpen(false)} 
+          title="Title about location mismatch"
+          description="Text and supporting text"
+          noRequiredButtonLabel="I don't live here"
+          addRequiredButtonLabel="update my locations"
+          imgSrc={Spain}  
+          imgText="Barcelona"  
+          imgDescription="Spain" 
         />
       )}
     </div>
