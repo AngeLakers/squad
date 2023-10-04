@@ -172,15 +172,13 @@ const RoleIntroContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding: 0 24px 0 24px;
     width: 100%;
     border: 3px solid blue;
 `
 const TitleAndLogoContainer = styled.div`
-    align-items: flex-start;
+    align-items: center;
     display: inline-flex;
-    flex: 0 0 auto;
-    flex-direction: column;
+    flex-direction: row;
     gap: 16px;
     position: relative;
 `

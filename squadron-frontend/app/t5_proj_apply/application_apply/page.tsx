@@ -31,10 +31,10 @@ const Container = styled.div`
 `
 
 const ApplyRoleContainer = styled.div`
-    width: 70%;
+    width: 80%;
     box-sizing: border-box;
     display: flex;
-    // border: 2px solid black;
+    gap: 32px;
     position: relative;
     flex-direction: column;
     height: fit-content;
@@ -108,7 +108,6 @@ export default function Home() {
 
     return (
         <Container>
-            <SimpleHeader />
             <ApplyRoleContainer>
                 <ApplyRoleTitle>
                     <div> Apply to this Role</div>

@@ -18,13 +18,6 @@ export const metadata: Metadata = {
   title: 'Squadron',
   description: 'Squadron frontend',
 };
-interface BuildApplySquadProps {
-  title?: string;
-  description?: string;
-  buttonLabel?: string;
-  backgroundImage?: string;
-}
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -71,11 +64,6 @@ const TitleContainer = styled.div`
   height: fit-content;
   width: fit-content;
 `
-// extend the BuildApplySquad component and apply custom styles
-// the parent component must have a defined className property
-const Banner = styled(BuildApplySquad)`
-  width: 100%;
-`
 export default function Home() {
 
   // for scenario 1, no issues
@@ -103,7 +91,6 @@ export default function Home() {
           <CustomButton label={"Back to projects"} preset='text' />
         </BackButtonContainer>
         <MainContent>
-          {/* <ProjectCardContainer> */}
           <ProjectProfile
             projectLogoLink='/icon/projectLogo.svg'
             projectName='THIS IS PROJECT NAME'
@@ -123,7 +110,6 @@ export default function Home() {
             projectOutline='This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline '
             keyDeliverables={['deliverable 1', 'deliverable 2', 'deliverable 3', 'deliverable 4', 'deliverable 5', 'deliverable 6']}
           />
-          {/* </ProjectCardContainer> */}
           <RoleCardContainer>
             <TitleContainer>
               Apply for a Role
