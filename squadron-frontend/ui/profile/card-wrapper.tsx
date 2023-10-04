@@ -1,13 +1,12 @@
-import React, {useRef} from 'react';
+import React, {FC, useRef} from 'react';
 import styled from 'styled-components';
 
-// Styled components
-const WrapperStyled = styled.div`
-  
+const WrapperStyled = styled.div<{ width?: string, flexDirection?: 'row' | 'column'  }>`
+    width: ${props => props.width || '100%'}; 
     padding: 2rem;
     //background-color: #f8f8f8;
-  width: 70rem;
   overflow: hidden;
+  flex-direction: ${(props) => props.flexDirection || 'row'};
 
 `;
 
@@ -24,7 +23,7 @@ const Header = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-  gap: 1rem;
+
   position: relative;
 `;
 
@@ -33,24 +32,14 @@ const Title = styled.h1`
   font-size: 1.5rem;
   line-height: 2rem;
   font-weight: 500;
-
+ width: fit-content;
   color: #111927;
   text-align: left;
+  flex-shrink: 0;
 
 `;
 
-const SeeAllButton = styled.button`
-    background-color: #4CAF50; 
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-`;
+
 const ButtonGroup = styled.div`
   display: flex;
   gap: 2rem;
@@ -64,7 +53,7 @@ const ButtonGroup = styled.div`
 `;
  const HeadGroup = styled.div`
     display: flex;
-   gap:1rem;
+    gap: 1rem;
    align-items: center;
 
  ` ;
@@ -102,12 +91,45 @@ const CardsContainer = styled.div`
   scroll-behavior: smooth;
 `;
 
+const SeeAllButton = styled.button`
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+
+  justify-content: flex-start;
+  text-align: left;
+  font-size: 1rem;
+  color: #1b18e4;
+  font-weight: 600;
+  border: none;
+  background: none;
+  cursor: pointer;
+  
+`;
+
+
 interface WrapperProps {
     title: string;
     children: React.ReactNode;
+    scrollable?: number;
+    showSeeAll?: boolean;
+    showLogo?: boolean;
+    width?: string;
+    flexDirection?: 'row' | 'column' ;
+
 }
 
-const CardWrapper: React.FC<WrapperProps> = ({ title, children }) => {
+const CardWrapper: FC<WrapperProps> = ({
+                                           title,
+                                           children,
+                                           scrollable,
+                                           showSeeAll = false,
+                                           showLogo = false,
+                                           width,
+                                           flexDirection
+                                       }) => {
 
 
     const cardContainerRef = useRef<HTMLDivElement>(null);
@@ -116,7 +138,7 @@ const CardWrapper: React.FC<WrapperProps> = ({ title, children }) => {
         const container = cardContainerRef.current;
         if (container) {
             const remInPixels = parseFloat(getComputedStyle(document.documentElement).fontSize);
-            const amountToScrollRem = 34;
+            const amountToScrollRem = scrollable ? scrollable : 30;
             const amountToScrollPx = amountToScrollRem * remInPixels;
 
             const scrollOptions = {
@@ -130,15 +152,15 @@ const CardWrapper: React.FC<WrapperProps> = ({ title, children }) => {
     };
 
     return (
-        <WrapperStyled>
+        <WrapperStyled width={width} flexDirection={flexDirection}>
             <Header>
                 <HeadGroup>
-                <StyledImage src="/profile-icon/ellipse-green.svg" alt="Logo" />
-                <Title>{title}</Title>
+                    {showLogo && <StyledImage src="/profile-icon/ellipse-green.svg" alt="Logo" />}
+                    <Title>{title}</Title>
+                    {showSeeAll && <SeeAllButton>See All</SeeAllButton>}
                 </HeadGroup>
 
 
-                {/*<SeeAllButton>See All</SeeAllButton>*/}
                 <ButtonGroup>
                 <NavigateButton onClick={() => handleNavigate('left')}>{'<'}</NavigateButton>
 
