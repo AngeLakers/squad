@@ -604,7 +604,7 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C5 - build-apply-squad, also for T5"
       >
-        <BuildApplySquad />
+        <BuildApplySquad width="80%" />
       </ComponentWrapper>
       
 

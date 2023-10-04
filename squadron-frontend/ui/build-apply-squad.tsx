@@ -6,16 +6,22 @@ import blackBackgroundImage from "@/public/black-background.png";
 import Image from "next/image";
 
 interface BuildApplySquadProps {
+    width?: string;
     title?: string;
     description?: string;
     buttonLabel?: string;
     backgroundImage?: string;
 }
 
-const Container = styled.div`
+type ContainerProps = {
+    containerWidth?: string;
+  }
+
+  
+const Container = styled.div<ContainerProps>`
     display: flex;
     border-radius: 12px;
-    width: 80%;
+    width: ${props => props.containerWidth || '100%'};
     overflow: hidden; 
 `;
 
@@ -53,9 +59,10 @@ const BuildApplySquad: React.FC<BuildApplySquadProps> = ({
     description = "View all applicants and put together a custom Squad from scratch.",
     buttonLabel = "Start Building",
     backgroundImage = blackBackgroundImage,
+    width,
 }) => {
   return (
-    <Container>
+    <Container containerWidth={width}>
         <LeftSide>
             <h1>{title}</h1>
             <p>{description}</p>
