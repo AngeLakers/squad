@@ -367,7 +367,7 @@ const RoleDetail: React.FC = () => {
             <Div3>
               <RoleDescriptionContainer>
                 <RelatedItemName>Role Description</RelatedItemName>
-                <DiscriptionText>This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role </DiscriptionText>
+                <DiscriptionText>This is discription of the role This is discription of the role This is discription of the role This is discription of the role This is discription of the role  </DiscriptionText>
               </RoleDescriptionContainer>
             </Div3>
             <Div3>

@@ -32,6 +32,11 @@ const MainContent = styled.div`
 
 export default function Home() {
 
+  // for scenario 1, no issues
+  const openApplyRolePage = () => {
+    window.open('/t5_proj_apply/application_apply')
+  }
+
   // for scenario 2, incomplete profile
   const [isCompleteProfilePopupOpen, setCompleteProfilePopupOpen] = useState(false);
   const openCompleteProfilePopup = () => {
@@ -47,7 +52,7 @@ export default function Home() {
   return (
     <>
       <Container>
-          <SideNav />
+        <SideNav />
         <MainContent>
           <Button href="/application" className="justify-start">
             <ArrowBackIosIcon />Back to projects
@@ -65,7 +70,7 @@ export default function Home() {
             companyProfileLink='www.testcompanylink.com'
             timelineEstimate='January 1 2023'
             projectStartDate='1 Feb, 2023'
-            projectLeaderAvatarLink='/icon/projectLogo.svg'
+            projectLeaderAvatarLink='../portraitA.png'
             projectLeaderName='Leader Name'
             projectLeaderRole='Manager'
             projectOutline='This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline '
@@ -82,7 +87,7 @@ export default function Home() {
             skills={["skill 1", "skill 2"]}
             recommendedSkills={["skill 3", "skill 4"]}
             tools={["tool 1", "tool 2", "tool 3"]}
-            onClick={() => { console.log('') }}
+            onClick={openApplyRolePage}
           />
 
           <RoleCard
@@ -113,14 +118,14 @@ export default function Home() {
             expectedHoursPerWeek={20}
             skills={["skill 1", "skill 2"]}
             recommendedSkills={["skill 3", "skill 4"]}
-            tools={["tool 1", "tool 2", "tool 3"]} 
+            tools={["tool 1", "tool 2", "tool 3"]}
             onClick={openCompleteRequirementsPopup}
-            />
+          />
         </MainContent>
       </Container>
 
-      {isCompleteProfilePopupOpen && (<CompleteProfilePopup onClose={() => setCompleteProfilePopupOpen(false)}/> )}
-      {isCompleteRequirementsPopupOpen && (<RequireDontMatchPopup onClose={() => setCompleteRequirementsPopupOpen(false)}/> )}
+      {isCompleteProfilePopupOpen && (<CompleteProfilePopup onClose={() => setCompleteProfilePopupOpen(false)} />)}
+      {isCompleteRequirementsPopupOpen && (<RequireDontMatchPopup onClose={() => setCompleteRequirementsPopupOpen(false)} />)}
     </>
   )
 }
