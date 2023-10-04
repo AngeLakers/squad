@@ -179,11 +179,6 @@ export default function Home() {
               description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ut aliquam metus, a id vel. '
               buttonLabel='Apply as a Squad'
             />
-            <Banner
-              title='Banner'
-              description='adasda'
-              buttonLabel='Apply'
-            />
         </MainContent>
       </Container>
 
