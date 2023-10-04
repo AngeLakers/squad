@@ -65,6 +65,7 @@ const ApplyCancelPopup: React.FC<ApplyCancelProps> = ({
                 <Title>Cancel application</Title>
                 <Description>You will lose all the date entered. Do you want to save as a draft instead?</Description>
                 <ButtonContainer>
+                    <a href="/t5_proj_apply/projectView">
                     <CustomButton 
                         label='Cancel application'
                         backgroundColor="#FFFFFF"
@@ -75,6 +76,7 @@ const ApplyCancelPopup: React.FC<ApplyCancelProps> = ({
                         height= '44px'
                         padding='10px, 18px, 10px, 18px'
                     />
+                    </a>
                     {/*to do: complete the function save as draft*/}
                         <CustomButton 
                             label='Save as draft' 

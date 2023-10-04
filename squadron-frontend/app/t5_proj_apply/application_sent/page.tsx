@@ -24,7 +24,7 @@ export default function Home() {
         <MainContent>
          
         <ApplicationSent
-            iconName='sent'
+            iconName='send'
             titleText="Application sent"
             subtitleText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci massa mauris justo, urna et feugiat sagittis et. Aliquet amet suspendisse tellus ultrices hac id imperdiet. Pellentesque sit sit suspendisse at. Mauris duis pharetra dictum aenean ac sed amet."
             button1Text="View my application"
