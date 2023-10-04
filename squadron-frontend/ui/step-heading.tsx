@@ -14,6 +14,7 @@ const StepHeadingContainer = styled.div`
   gap: 16px;
   border-bottom: 1px solid ##e5e7eb;
   flex: 1;
+  width: 100%;
 `;
 
 const HeadingContainer = styled.div`
