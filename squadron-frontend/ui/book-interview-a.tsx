@@ -8,6 +8,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 import { TextField} from "@mui/material"; 
 import dayjs from "dayjs";
+import CustomButton from "./custom-button";
 
 
 const Container = styled.div`
@@ -19,14 +20,14 @@ const FirstPart = styled.div`
     width:25%;
     flex-direction: column;
     align-items: left;
-    padding: 3%;
+    padding: 24px;
 `;
 
 const SecondPart = styled.div`
     width: 75%;
     flex-direction: column;
     align-items: center;
-    padding: 5%;
+    padding: 24px;
 `;
 
 const NameText = styled.div`
@@ -59,7 +60,7 @@ const ReviewSection = styled.div`
 
 const ReivewDateDiv = styled.div`
     background-color: #f3f4f6;
-    padding: 2% 3%;
+    padding: 16px;
     border-radius: 10px;
 `;
 
@@ -67,11 +68,19 @@ const UserDetails = styled.div`
     margin-top: 15px;
 `;
 
+const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 32px;
+    gap: 12px;
+`;
+
 interface BookInterviewAProps {
     onClose: () => void;
+    onBookCallClick?: () => void;
 }
 
-const BookInterviewA: React.FC<BookInterviewAProps> = ({ onClose }) => {
+const BookInterviewA: React.FC<BookInterviewAProps> = ({ onClose, onBookCallClick }) => {
     const [selectedDateTime, setSelectedDateTime] = React.useState<Date | null>(null);
     const [isConfirmed, setIsConfirmed] = React.useState(false);
     const handleConfirm = () => {
@@ -124,6 +133,12 @@ const BookInterviewA: React.FC<BookInterviewAProps> = ({ onClose }) => {
           <Label htmlFor="email">Email</Label>
           <TextField id="email" variant="outlined" size="small" />
         </UserDetails>
+
+        <ButtonContainer>
+        <CustomButton label="Cancel" preset="outlined" onClick={onClose}/>
+          <CustomButton label="Book Call" preset="black" onClick={onBookCallClick}/>
+
+      </ButtonContainer>
       </>
     )
   )}
