@@ -410,7 +410,9 @@ const ProjectProfile: React.FC<ProjectProfileProps> = (props) => {
                                 <div onClick={handleClick}>
                                     {isStarFilled ? <StarIcon style={{ color: '#A0D909' }} /> : <StarBorderIcon style={{ color: '#A0D909' }} />}
                                 </div>
-                                <CustomButton label="Apply as squad" preset="default" />
+                                <a href="../t5_proj_apply/apply_as_squad">
+                                    <CustomButton label="Apply as squad" preset="default" />
+                                </a>
                             </CompanyLogoName>
 
                         </>

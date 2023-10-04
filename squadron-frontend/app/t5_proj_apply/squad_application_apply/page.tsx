@@ -1,11 +1,12 @@
 "use client"
 import "@/styles/globals.css";
-import type { Metadata } from "next";
 import styled from "styled-components";
 import ConfirmDetail from "@/ui/apply-role-confirm-details";
 import Questionaire from "@/ui/apply-role-answer-question";
 import RoleDetail from "@/ui/apply-role-detail-card";
 import UploadFile from "@/ui/apply-role-upload-file";
+import { SimpleHeader } from "@/ui/simple-header";
+import StepHeading from "@/ui/step-heading";
 import Footer from "@/ui/footer";
 import ApplyCancelPopup from "@/ui/apply_cancel";
 import { useState } from "react";
@@ -19,7 +20,6 @@ import {
     xxlargeLineHeight,
     basewhite
 } from "@/styles/reuseParams";
-import { SimpleHeader } from "@/ui/simple-header";
 
 const Container = styled.div`
     display: flex;
@@ -28,6 +28,7 @@ const Container = styled.div`
     align-items: center;
     position: relative;
     background-color: #F9FAFB;
+    
 `
 
 const ApplyRoleContainer = styled.div`
@@ -38,21 +39,8 @@ const ApplyRoleContainer = styled.div`
     position: relative;
     flex-direction: column;
     height: fit-content;
+    margin-top: 5%;
     margin-bottom: 20%;
-`
-const ApplyRoleTitle = styled.div`
-    font-family: ${fontFamily};
-    font-weight: ${mediumFontWeight};
-    font-size: ${xlargeFontSize};
-    line-height: ${xxlargeLineHeight};
-    color: ${gray900};
-    position: relative;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    margin: 5% 0;
 `
 const RoleDetailsContainer = styled.div`
     align-items: center;
@@ -100,7 +88,6 @@ const UploadContainer = styled.div`
 `
 
 export default function Home() {
-
     const [isCancelPopupVisible, setIsCancelPopupVisible] = useState(false);
     const openCancelPopup = () => {
         setIsCancelPopupVisible(true);
@@ -109,38 +96,43 @@ export default function Home() {
     return (
         <Container>
             <SimpleHeader />
-            <ApplyRoleContainer>
-                <ApplyRoleTitle>
-                    <div> Apply to this Role</div>
-                </ApplyRoleTitle>
-                <RoleDetailsContainer>
-                    <RoleDetail />
-                </RoleDetailsContainer>
-                <ConfirmDetailContainer>
-                    <ConfirmDetail />
-                </ConfirmDetailContainer>
-                <QuestionaireContainer>
-                    <Questionaire />
-                </QuestionaireContainer>
-                <UploadContainer>
-                    <UploadFile />
-                </UploadContainer>
+            <StepHeading
+                    progress={66}
+                    step={"Step 02/03"}
+                    heading={"Complete your individual application"}  
+                />
 
-            </ApplyRoleContainer>
-            <Footer 
+        <ApplyRoleContainer>
+            
+            <RoleDetailsContainer>
+                <RoleDetail />
+            </RoleDetailsContainer>
+            <ConfirmDetailContainer>
+                <ConfirmDetail />
+            </ConfirmDetailContainer>
+            <QuestionaireContainer>
+                <Questionaire />
+            </QuestionaireContainer>
+            <UploadContainer>
+                <UploadFile />
+            </UploadContainer>
+
+        </ApplyRoleContainer>
+        
+        <Footer 
                 leftButtonLabel="Cancel"
                 onLeftClick={() => setIsCancelPopupVisible(true)}
                 rMiddleButtonLabel="Save as draft"
                 rRightButtonLabel="Apply"
                 rightLink="application_sent"
                 isRLeftButtonVisible={false}
-                isButtonDisabled={false}  
+                isButtonDisabled={true}  
             />
     
         {isCancelPopupVisible && (
         <ApplyCancelPopup onClose={() => setIsCancelPopupVisible(false)} />
       )}
         </Container>
-        
+    
     );
-}
+};
