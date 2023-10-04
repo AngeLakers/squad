@@ -75,6 +75,7 @@ const InfoBar: React.FC<CustomCollectingBar> = ({
   buttonLabel,
   icon,
   buttonPreset = "default",
+  link,
 }) => {
   return (
     <BarContainer backgroundColor={backgroundColor} borderColor={borderColor}>
@@ -85,7 +86,7 @@ const InfoBar: React.FC<CustomCollectingBar> = ({
           <BarSubHeader>{description}</BarSubHeader>
         </TextContainer>
       </InfoContainer>
-      <CustomButton label={buttonLabel} preset={buttonPreset} />
+      <a href={link || "#"}><CustomButton label={buttonLabel} preset={buttonPreset} /></a>
     </BarContainer>
   );
 };
