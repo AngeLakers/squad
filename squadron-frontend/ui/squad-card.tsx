@@ -88,7 +88,7 @@ const SquadCard: React.FC<CustomSquadCard> = ({}) => {
           </TitleContainer>
           <ButtonContainer>
             <CustomButton label="Meet Squad" preset="outlined" />
-            <CustomButton label="Hire Squad" />
+            <CustomButton label="Hire Squad" preset="default"/>
             <DropdownButton
               label={<VerticalDotsSVG />}
               preset="outlined"
