@@ -62,13 +62,17 @@ const RadioInput = styled.input`
 
 interface RatioButtonsTableProps {
   roles: { label: string; info: RoleInfoProps }[];
+  onSelectRole?: (role: string) => void;
 }
 
-const RatioButtonsTable: React.FC<RatioButtonsTableProps> = ({ roles }) => {
+const RatioButtonsTable: React.FC<RatioButtonsTableProps> = ({ roles, onSelectRole}) => {
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
 
   const handleChange = (value: string) => {
     setSelectedValue(value);
+    if (onSelectRole) {
+      onSelectRole(value);
+    }
   };
 
   return (
