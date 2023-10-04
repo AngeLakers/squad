@@ -44,6 +44,7 @@ const LeftSide = styled.div`
         font-size: 16px;
         font-weight: 400;
         color: white;
+        opacity: 80%;
         margin-bottom: 32px;
     }
 `;

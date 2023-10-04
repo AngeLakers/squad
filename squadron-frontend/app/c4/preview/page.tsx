@@ -98,7 +98,7 @@ const Preview: React.FC = () => {
           skills={["skill 1", "skill 2"]}
           tools={["tool 1", "tool 2", "tool 3"]} />
     </InnerContainer>
-    <Footer onRMiddleClick={handleBackClick} rightLink='/c4/proj_live'/>
+    <Footer onRMiddleClick={handleBackClick} isButtonDisabled={false} rightLink='/c4/proj_live'/>
     </Container>
     
   );

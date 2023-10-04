@@ -11,40 +11,39 @@ import dayjs from "dayjs";
 
 
 const Container = styled.div`
-  display: flex;
-  width: 100%;
+    display: flex;
+    width: 100%;
 `;
 
 const FirstPart = styled.div`
-width:25%;
-  flex-direction: column;
-  align-items: left;
-  padding: 3%;
+    width:25%;
+    flex-direction: column;
+    align-items: left;
+    padding: 3%;
 `;
 
 const SecondPart = styled.div`
     width: 75%;
-  flex-direction: column;
-  align-items: center;
-  padding: 5%;
+    flex-direction: column;
+    align-items: center;
+    padding: 5%;
 `;
 
 const NameText = styled.div`
-  font-size: 0.8em;
-  margin-bottom: 15%;
-  margin-top: 3%;
-  color: grey;
+    font-size: 0.8em;
+    margin-bottom: 15%;
+    margin-top: 3%;
+    color: grey;
 `;
 
 const BookCallText = styled.div`
-margin-top: 5%;
-  font-size: 0.8em;
-  color: grey;
+    margin-top: 5%;
+    font-size: 0.8em;
+    color: grey;
 `;
 
 const SelectText = styled.div`
-margin-left:3%;
-
+    margin-left:3%;
 `;
 
 const Label = styled.label`
@@ -53,19 +52,19 @@ const Label = styled.label`
 `;
 
 const ReviewSection = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
 `;
 
 const ReivewDateDiv = styled.div`
-  background-color: #f3f4f6;
-  padding: 2% 3%;
-  border-radius: 10px;
+    background-color: #f3f4f6;
+    padding: 2% 3%;
+    border-radius: 10px;
 `;
 
 const UserDetails = styled.div`
-  margin-top: 15px;
+    margin-top: 15px;
 `;
 
 interface BookInterviewAProps {
@@ -79,7 +78,7 @@ const BookInterviewA: React.FC<BookInterviewAProps> = ({ onClose }) => {
         setIsConfirmed(true);
       };
   return (
-    <PopupComponent onClose={onClose} width="60%">
+    <PopupComponent onClose={onClose} width="60%" minWidth="700px">
       <Container>
       <FirstPart>
           <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
