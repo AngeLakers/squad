@@ -102,7 +102,7 @@ const FeaturedIcon = styled.div<FeaturedIconProps>`
     background-color: ${({ bgColor }) => bgColor || '#D0FC4A'};
     width: 56px;
     height: 56px;
-    padding: 14px;
+    
     border-radius: 28px;
     img {
         width: 100%;
