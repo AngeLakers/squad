@@ -129,7 +129,7 @@ export default function Home() {
                 rRightButtonLabel="Next"
                 isRLeftButtonVisible={false}
                 isButtonDisabled={!isRoleSelected}
-                rightLink="application_apply"
+                rightLink="squad_application_apply"
             
             />
         </Container>
