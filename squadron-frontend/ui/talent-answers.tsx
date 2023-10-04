@@ -69,7 +69,7 @@ const ShowMoreButton = styled.button`
   background-color: transparent;
   border: none;
   color: #4b48ec;
-  padding: 0;
+  padding-left: 3px;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -87,30 +87,28 @@ interface TalentAnswerProps {
 
 const TalentAnswer: React.FC<TalentAnswerProps> = ({ question, answer }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isOverflowing, setIsOverflowing] = useState(false);
-  const answerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const element = answerRef.current;
-    if (element) {
-      const isOverflow = element.scrollHeight > element.clientHeight;
-      setIsOverflowing(isOverflow);
-    }
-  }, [answer]);
+  const isLongAnswer = answer.length > 200;
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
   };
 
+  const shownText = isLongAnswer ? answer.substring(0, 350) : answer;
+  const hiddenText = isLongAnswer ? answer.substring(350) : "";
+
   return (
     <AnswerContainer>
       <Question>{question}</Question>
-      <AnswerText ref={answerRef} isExpanded={isExpanded}>
-        {answer}
+      <AnswerText isExpanded={isExpanded}>
+        {shownText}
+        {!isExpanded && isLongAnswer && <span>...</span>}
+        {isExpanded && <span>{hiddenText}</span>}
+        {isLongAnswer && (
+          <ShowMoreButton onClick={toggleExpanded}>
+            {isExpanded ? "See Less" : "See More"}
+          </ShowMoreButton>
+        )}
       </AnswerText>
-      {!isExpanded && isOverflowing && (
-        <ShowMoreButton onClick={toggleExpanded}>See More</ShowMoreButton>
-      )}
     </AnswerContainer>
   );
 };
