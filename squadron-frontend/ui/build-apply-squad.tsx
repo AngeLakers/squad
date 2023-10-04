@@ -55,6 +55,7 @@ const RightSide = styled.div`
 `;
 
 const BuildApplySquad: React.FC<BuildApplySquadProps> = ({
+    className,
     title = "Build Your Own Squad",
     description = "View all applicants and put together a custom Squad from scratch.",
     buttonLabel = "Start Building",

@@ -42,7 +42,6 @@ const ProjectCardTalent = styled.div`
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    margin: 2% 0;
     width: 100%;
 `
 const ProjectCardDetails = styled.div`
@@ -479,7 +478,8 @@ const ProjectProfile: React.FC<ProjectProfileProps> = (props) => {
                             </AvatarAndInfoContainer>
                         </FrameWrapper>
                     </CompanyLogoName>
-                    <ContainedButton variant="contained">Ask a question</ContainedButton>
+                    <CustomButton label="Ask a question" preset="default" />
+                    {/* <ContainedButton variant="contained">Ask a question</ContainedButton> */}
                 </ProjectCardBody>
                 <OulineDeliverableContainer>
                     <DetailedContainer>
