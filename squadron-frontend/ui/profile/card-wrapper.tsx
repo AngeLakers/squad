@@ -89,7 +89,11 @@ const CardsContainer = styled.div`
   width: 100%;
   white-space: nowrap;
   scroll-behavior: smooth;
+padding-bottom:1rem;
+    flex-shrink: 0;
+
 `;
+
 
 const SeeAllButton = styled.button`
   position: relative;
