@@ -44,7 +44,7 @@ export default function Home() {
     return (
         <div>
             <Header>
-                My Header Content
+                My Profile
             </Header>
             <HorizontalTabs/>
 

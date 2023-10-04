@@ -45,6 +45,7 @@ padding: 10px 16px;
 `;
 export function Header() {
     return (
+
         <>
 <Head>
   Hi, Taylor

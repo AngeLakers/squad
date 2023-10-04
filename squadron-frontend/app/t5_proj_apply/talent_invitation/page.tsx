@@ -17,7 +17,6 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
 
-  background-color: rgba(16, 24, 40, 0.06);
 
 `;
 export default function Home() {

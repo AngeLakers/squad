@@ -1,9 +1,12 @@
+'use client'
 import styled from "styled-components";
 import {CloseIcon} from "next/dist/client/components/react-dev-overlay/internal/icons/CloseIcon";
 
 import Image from 'next/image';
 import React from "react";
 import {Link} from "react-router-dom";
+import {useRouter} from "next/navigation";
+
 
 
 
@@ -159,6 +162,11 @@ export interface NotificationBoxProps {
 
 
 const NotificationMessage: React.FC<NotificationProps & { onClose: () => void }> = ({ iconPath, messageInfo, onClose, linkUrl}) => {
+    const router = useRouter();
+
+    const handleNavigation = () => {
+        router.push(linkUrl);
+    };
 
     const handleNotificationClick = () => {
         if (linkUrl) {
@@ -167,7 +175,7 @@ const NotificationMessage: React.FC<NotificationProps & { onClose: () => void }>
     };
 
     return (
-        <Notification onClick={handleNotificationClick}>
+        <Notification onClick={handleNavigation}>
             <ContentWrapper>
                 <Icon>
                     <Image src={iconPath}  alt="Notification Icon" width={48} height={48}/>

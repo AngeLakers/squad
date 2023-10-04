@@ -43,7 +43,29 @@ const notificationsData: NotificationProps[] = [
         iconPath: "/icon/notification-add-friend.svg",
         linkUrl: "/t5_proj_apply/my_profile",
         messageInfo: {
-            message: "You have been invited to a project",
+            message: "You have been invited to a project  1",
+            websiteName: "Spotify",
+            organizationName: "Tech team",
+
+        },
+
+    },
+    {
+        iconPath: "/icon/notification-add-friend.svg",
+        linkUrl: "/t5_proj_apply/my_profile",
+        messageInfo: {
+            message: "You have been invited to a project  2",
+            websiteName: "Spotify",
+            organizationName: "Tech team",
+
+        },
+
+    },
+    {
+        iconPath: "/icon/notification-add-friend.svg",
+        linkUrl: "/t5_proj_apply/my_profile",
+        messageInfo: {
+            message: "You have been invited to a project  3",
             websiteName: "Spotify",
             organizationName: "Tech team",
 
