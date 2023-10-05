@@ -21,7 +21,6 @@ export const metadata: Metadata = {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  border: 6px solid green;
   background-color: #F9FAFB;
 `;
 const MainContent = styled.div`
@@ -32,7 +31,6 @@ const MainContent = styled.div`
   gap: 56px;
   padding: 0 32px 0 32px;
   height: fit-content;
-  border: 3px solid red;
 `;
 const BackButtonContainer = styled.div`
   display: flex;
@@ -42,7 +40,6 @@ const BackButtonContainer = styled.div`
   width: fit-content;
   margin-top: 64px;
   margin-left: 48px;
-  border: 3px solid yellow;
 `
 const RoleCardContainer = styled.div`
   display: flex;
@@ -50,7 +47,6 @@ const RoleCardContainer = styled.div`
   height: fit-content;
   width: 100%;
   gap: 32px;
-  border: 3px solid blue;
 `
 const TitleContainer = styled.div`
   font-size: ${xlargeFontSize};

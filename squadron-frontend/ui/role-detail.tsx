@@ -49,7 +49,6 @@ const RoleCardTalentBody = styled.div`
     width: 100%;
     padding: 16px 24px 16px 24px;
     gap: 20px;
-    border: 3px solid red;
 `
 const RoleLogoTitle = styled.div`
     width: 100%;
@@ -58,7 +57,6 @@ const RoleLogoTitle = styled.div`
     gap: 8px;
     position: relative;
     justify-content: space-between;
-    border: 3px solid green;
 `
 const RoleLogo = styled.div`
     background-color: #f5f5f5;
@@ -83,9 +81,7 @@ const RoleTitle = styled.div`
     font-size: ${largeFontSize};
 `
 const RolePositionDiscription = styled.div`
-    border-bottom: 1.5px solid;
     border-color: ${borderColor};
-    padding: 2% 0;
     align-self: stretch;
     color: ${gray600};
     font-family: ${fontFamily};
@@ -173,7 +169,6 @@ const RoleIntroContainer = styled.div`
     flex-direction: column;
     gap: 16px;
     width: 100%;
-    border: 3px solid blue;
 `
 const TitleAndLogoContainer = styled.div`
     align-items: center;
@@ -182,6 +177,12 @@ const TitleAndLogoContainer = styled.div`
     gap: 16px;
     position: relative;
 `
+const Divider = styled.div`
+    width: 100%;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin-top: 20px;
+`;
 interface RoleDetailProps {
     status?: string[];
     roleLogoUrl?: string;
@@ -196,8 +197,8 @@ interface RoleDetailProps {
     recommendedSkills?: string[];
     tools?: string[];
     onClick?: () => void;
+    showDivider?: boolean;
 }
-
 const RoleCard: React.FC<RoleDetailProps> = ({
     status,
     roleLogoUrl,
@@ -211,6 +212,7 @@ const RoleCard: React.FC<RoleDetailProps> = ({
     skills,
     tools,
     recommendedSkills,
+    showDivider = true,
     onClick
 }) => {
 
@@ -241,6 +243,8 @@ const RoleCard: React.FC<RoleDetailProps> = ({
                         {description}
                     </RolePositionDiscription>
                 </RoleIntroContainer>
+                {showDivider && <Divider />}
+
                 <RoleRateHourLocationDate>
                     <IconAndCategory>
                         <IconInRateHourLocationDate >
