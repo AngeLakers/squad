@@ -11,12 +11,23 @@ import SquadSurveySwap from '@/ui/squad-surveyswap';
 import EditProjPopup from '@/ui/editproj-popup';
 import editProjImage from '@/public/edit-proj.png';
 import Image from 'next/image';
+import CustomProjectHeader from '@/ui/custom-project-header';
 
 const Container = styled.div`
     margin-left: 8vw;
     margin-right: 8vw;
     margin-bottom: 100px;
 `;
+
+const OutsideContainer = styled.div`
+    margin-bottom: 100px;
+`;
+
+const Header = styled.div`
+    margin-left: 8vw;
+    margin-right: 8vw;
+`;
+
 
 const SquadContainer = styled.div`
     display: flex;
@@ -31,6 +42,7 @@ const Text = styled.p`
 `;
 
 const ButtonContainer = styled.div`
+    padding-top: 32px;
     display: flex;
     margin-bottom: 40px;
 `;
@@ -83,9 +95,30 @@ const ProjectHub: React.FC = () => {
     const showSquad = activeTab === "Squad";
     const [editprojPopupOpen, setEditprojPopupOpen] = useState(false);
     return (
+        <OutsideContainer>
+            <Header><SimpleHeader /></Header>
+    
+        <CustomProjectHeader
+          backgroundColor="#0B0F00"
+          avatarImagePath="/google.png"
+          avatarHeight={"89px"}
+          avatarWidth={"89px"}
+          title1="Google"
+          title2="SurveySwap"
+          title3="Posted: 3 September, 2022"
+          button={{
+            isVisible: false,
+          }}
+          shareIcon={{
+            isVisible: false,
+          }}
+          starIcon={{
+            isVisible: false,
+          }}
+        />
+
     <Container>
-        <SimpleHeader />
-        <Text>Waiting for Chelsea to seperate the below component</Text>
+        
         <ButtonContainer>
         <TabButton
             active={showProjectDetails}
@@ -125,6 +158,7 @@ const ProjectHub: React.FC = () => {
         </NewButtonContainer>
         
         <ProjectProfile
+            showHeader={false}
             projectLogoLink='/icon/projectLogo.svg'
             projectName='THIS IS PROJECT NAME'
             projectPostDate='1 Jan, 2023'
@@ -180,6 +214,7 @@ const ProjectHub: React.FC = () => {
         )}
 
     </Container>
+    </OutsideContainer>
     );
 };
 

@@ -54,6 +54,7 @@ const Preview: React.FC = () => {
       <InnerContainer>
       <SimpleHeader />
       <ProjectProfile
+          showHeader={true}
           projectLogoLink='/icon/projectLogo.svg'
           projectName='THIS IS PROJECT NAME'
           projectPostDate='1 Jan, 2023'

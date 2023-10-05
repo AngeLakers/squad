@@ -364,6 +364,7 @@ interface ProjectProfileProps {
     projectVideo?: string;
     applyButton?: string;
     askQuestionButton?: string;
+    showHeader?: boolean; 
 
 }
 const ProjectProfile: React.FC<ProjectProfileProps> = (props) => {
@@ -388,6 +389,7 @@ const ProjectProfile: React.FC<ProjectProfileProps> = (props) => {
     return (
 
         <ProjectCardTalent>
+            {props.showHeader && (
                 <CustomProjectHeader
                     backgroundImage="/images/testCustomHeaderBackgroud.png" 
                     avatarImagePath="/icon/projectLogo.svg"
@@ -414,7 +416,7 @@ const ProjectProfile: React.FC<ProjectProfileProps> = (props) => {
                         color: "#A0D909",
                         onClick: () => { console.log("Star icon clicked!"); }
                     }}
-                />
+                />)}
             <ProjectCardDetails>
                 <ProjectCardBody>
                     <CompanyDetail>

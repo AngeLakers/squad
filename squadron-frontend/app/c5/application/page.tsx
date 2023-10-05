@@ -4,12 +4,23 @@ import SquadCard from "@/ui/squad-card";
 import { SimpleHeader } from "@/ui/simple-header";
 import styled from "styled-components";
 import BuildApplySquad from "@/ui/build-apply-squad";
+import CustomProjectHeader from "@/ui/custom-project-header";
 
 const Container = styled.div`
     margin-left: 10vw;
     margin-right: 10vw;
     margin-bottom: 100px;
 `;
+
+const OutsideContainer = styled.div`
+    margin-bottom: 100px;
+`;
+
+const Header = styled.div`
+    margin-left: 8vw;
+    margin-right: 8vw;
+`;
+
 
 const Text = styled.p`
     margin: 32px 0; 
@@ -18,6 +29,9 @@ const Text = styled.p`
 
 const SuggestedSquads = styled.div`
     margin-bottom: 48px;
+    &:first-child {
+        margin-top: 48px;
+    }
 `;
 
 const SquadCardDiv = styled.div`
@@ -49,10 +63,26 @@ const Description = styled.p`
 export default function AllComponents() {
   return (
     <>
-    
+    <OutsideContainer>
+            <Header><SimpleHeader /></Header>
+            <CustomProjectHeader
+          backgroundColor="black"
+          avatarImagePath="/icon/projectLogo.svg"
+          avatarHeight={"89px"}
+          avatarWidth={"89px"}
+          title1="Stir"
+          title2="MVP for Serverless E-commerce Return Portal"
+          button={{
+            isVisible: false,
+          }}
+          shareIcon={{
+            isVisible: false,
+          }}
+          starIcon={{
+            isVisible: false,
+          }}
+        />
       <Container>
-        <SimpleHeader />
-        <Text>Waiting for the black header</Text>
         <SuggestedSquads>
           <Title>Suggested Squads</Title>
           <Description>Squads that Squadron has tailored for you based on your preferences.</Description>
@@ -72,6 +102,8 @@ export default function AllComponents() {
         </SuggestedSquads>
         <BuildApplySquad />
       </Container>
+      </OutsideContainer>
     </>
+    
   );
 }

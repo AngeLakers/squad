@@ -8,6 +8,7 @@ import CollectingBar from '@/ui/collecting-bar';
 import SquadSurveySwap from '@/ui/squad-surveyswap';
 import InfoBar from '@/ui/info-bar';
 import { AlertSVG} from "@/ui/svgs";
+import CustomProjectHeader from '@/ui/custom-project-header';
 
 const Container = styled.div`
     margin-left: 10vw;
@@ -21,6 +22,16 @@ const SquadContainer = styled.div`
     width: 100%;
     padding-top:48px;
 `;
+
+const OutsideContainer = styled.div`
+    margin-bottom: 100px;
+`;
+
+const Header = styled.div`
+    margin-left: 8vw;
+    margin-right: 8vw;
+`;
+
 
 const Text = styled.p`
     margin: 32px 0; 
@@ -71,6 +82,26 @@ const C5ProjectHub: React.FC = () => {
     const showSquad = activeTab === "Squad";
 
     return (
+        <OutsideContainer>
+            <Header><SimpleHeader /></Header>
+    
+        <CustomProjectHeader
+          backgroundColor="#0B0F00"
+          avatarImagePath="/google.png"
+          avatarHeight={"89px"}
+          avatarWidth={"89px"}
+          title1="Google"
+          title2="SurveySwap"
+          button={{
+            isVisible: false,
+          }}
+          shareIcon={{
+            isVisible: false,
+          }}
+          starIcon={{
+            isVisible: false,
+          }}
+        />
     <Container>
         <SimpleHeader />
         <Text>Waiting for black header</Text>
@@ -113,6 +144,7 @@ const C5ProjectHub: React.FC = () => {
         )}
 
     </Container>
+    </OutsideContainer>
     );
 };
 
