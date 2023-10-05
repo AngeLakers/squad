@@ -15,6 +15,8 @@ interface CustomTextareaProps {
 const StyledLabel = styled.label`
   display: block;
   margin-bottom: 6px;
+  color: #384250;
+  font-size: 14px;
 `;
 
 const StyledTextarea = styled(TextareaAutosize)<CustomTextareaProps>`
