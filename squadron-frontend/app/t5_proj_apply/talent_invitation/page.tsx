@@ -31,7 +31,7 @@ export default function Home() {
                <Header></Header>
                <Hometable/>
 
-               <CardWrapper title="My Title" showLogo={true} width="70rem" flexDirection="row" scrollable={34}>
+               <CardWrapper title="Live projects" showLogo={true} width="70rem" flexDirection="row" scrollable={34}>
                <LiveProjectCard
                    title="MVP for Serverless E-commerce..."
                    memberCount={5}

@@ -6,7 +6,7 @@ const PageContainer = styled.div`
   height: 100vh;
   flex-direction: column;
     background-color: rgba(16, 24, 40, 0.06);
-  align-content: flex-start;
+  //align-content: flex-start;
 `;
 
 export default function Layout({
