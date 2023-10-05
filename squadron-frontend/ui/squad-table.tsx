@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { ArrowUpSVG, ArrowDownSVG } from "./svgs";
 import SquadPerson from "./squad-person";
+import SquadPersonBook from "./squad-person-book";
 
 const TableHeader = styled.th`
   padding: 12px 24px;
@@ -24,7 +25,7 @@ const ShowMoreButton = styled.button`
   text-align: left;
 `;
 
-const Table = styled.table`
+const Table = styled.table<{ tableType: string }>`
   width: 100%;
   border-collapse: collapse;
 
@@ -33,97 +34,131 @@ const Table = styled.table`
     border-bottom: 1px solid #e5e7eb;
   }
 
-  th:nth-child(1) {
-    width: 25%;
-  }
+  ${({ tableType }) =>
+    tableType === "view" &&
+    `
+    th:nth-child(1) {
+      width: 25%;
+    }
 
-  th:nth-child(2) {
-    padding-left: 0px;
-    width: 60%;
-  }
+    th:nth-child(2) {
+      padding-left: 0px;
+      width: 60%;
+    }
 
-  th:nth-child(3) {
-    width: 15%;
-  }
+    th:nth-child(3) {
+      width: 15%;
+    }
+  `}
+
+  ${({ tableType }) =>
+    tableType === "book" &&
+    `
+    th:nth-child(1) {
+      width: 15%;
+    }
+
+    th:nth-child(2) {
+      padding-left: 0px;
+      width: 35%;
+    }
+    th:nth-child(3) {
+      padding-left: 0px;
+      width: 35%;
+    }
+
+    th:nth-child(4) {
+      width: 15%;
+    }
+  `}
 `;
 
-interface CustomSquadTable {}
+interface CommonProps {
+  avatarSrc: string;
+  name: string;
+  profileLink: string;
+  title: string;
+}
 
-const SquadTable: React.FC<CustomSquadTable> = ({}) => {
+interface BookProps extends CommonProps {
+  state: "viewing" | "interviewing" | "interviewed";
+}
+
+interface ViewProps extends CommonProps {
+  rate: string;
+  hoursPerWeek: string;
+  location: string;
+  availability: string;
+}
+
+export type PersonData = BookProps | ViewProps;
+
+interface SquadTableProps {
+  type?: "book" | "view";
+  data: Array<PersonData>;
+}
+
+const SquadTable: React.FC<SquadTableProps> = ({ type = "view", data }) => {
   const [showAll, setShowAll] = useState(false);
+
   return (
     <>
-      <Table>
+      <Table tableType={type}>
         <thead>
           <tr>
-            <TableHeader>Squad</TableHeader>
-            <TableHeader>Position</TableHeader>
+            {type === "view" ? (
+              <>
+                <TableHeader>Squad</TableHeader>
+                <TableHeader>Position</TableHeader>
+              </>
+            ) : (
+              <>
+                <TableHeader>Squad</TableHeader>
+                <TableHeader>Position</TableHeader>
+                <TableHeader>State</TableHeader>
+              </>
+            )}
             <TableHeader></TableHeader>
           </tr>
         </thead>
         <tbody>
-          <SquadPerson
-            avatarSrc={"https://avatars.githubusercontent.com/u/12592949?v=1"}
-            name={"111Patricia Montero"}
-            profileLink={"#"}
-            title={"Front-End Engineer"}
-            rate={"$30 /h"}
-            hoursPerWeek={"20-25h /week"}
-            location={"Unitated States"}
-            availability={"Inmediate"}
-          />
-
-          <SquadPerson
-            avatarSrc={"https://avatars.githubusercontent.com/u/12592949?v=1"}
-            name={"111Patricia Montero"}
-            profileLink={"#"}
-            title={"Front-End Engineer"}
-            rate={"$30 /h"}
-            hoursPerWeek={"20-25h /week"}
-            location={"Unitated States"}
-            availability={"Inmediate"}
-          />
-          <SquadPerson
-            avatarSrc={"https://avatars.githubusercontent.com/u/12592949?v=1"}
-            name={"111Patricia Montero"}
-            profileLink={"#"}
-            title={"Front-End Engineer"}
-            rate={"$30 /h"}
-            hoursPerWeek={"20-25h /week"}
-            location={"Unitated States"}
-            availability={"Inmediate"}
-          />
-          {showAll && (
-            <>
-              <SquadPerson
-                avatarSrc={
-                  "https://avatars.githubusercontent.com/u/12592949?v=1"
-                }
-                name={"111Patricia Montero"}
-                profileLink={"#"}
-                title={"Front-End Engineer"}
-                rate={"$30 /h"}
-                hoursPerWeek={"20-25h /week"}
-                location={"Unitated States"}
-                availability={"Inmediate"}
-              />
-              <SquadPerson
-                avatarSrc={
-                  "https://avatars.githubusercontent.com/u/12592949?v=1"
-                }
-                name={"111Patricia Montero"}
-                profileLink={"#"}
-                title={"Front-End Engineer"}
-                rate={"$30 /h"}
-                hoursPerWeek={"20-25h /week"}
-                location={"Unitated States"}
-                availability={"Inmediate"}
-              />
-            </>
-          )}
+          {type === "book"
+            ? data.map((person, index) => {
+                return (
+                  <SquadPersonBook
+                    key={index}
+                    avatarSrc={person.avatarSrc}
+                    name={person.name}
+                    profileLink={person.profileLink}
+                    title={person.title}
+                    state={(person as BookProps).state}
+                  />
+                );
+              })
+            : data.map((person, index) => {
+                if (!showAll && index >= 3) return null;
+                return (
+                  <SquadPerson
+                    key={index}
+                    avatarSrc={person.avatarSrc}
+                    name={person.name}
+                    profileLink={person.profileLink}
+                    title={person.title}
+                    rate={(person as ViewProps).rate}
+                    hoursPerWeek={(person as ViewProps).hoursPerWeek}
+                    location={(person as ViewProps).location}
+                    availability={(person as ViewProps).availability}
+                  />
+                );
+              })}
         </tbody>
       </Table>
-      <ShowMoreButton onClick={() => setShowAll(!showAll)}>
+      <ShowMoreButton
+        onClick={() => setShowAll(!showAll)}
+        style={{
+          display: data.length > 3 && type !== "book" ? "flex" : "none",
+        }}
+      >
         {showAll ? "See Less" : "See More"}
         {showAll ? <ArrowUpSVG /> : <ArrowDownSVG />}
       </ShowMoreButton>

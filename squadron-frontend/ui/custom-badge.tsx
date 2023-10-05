@@ -82,15 +82,16 @@ const presets = {
   },
 };
 
+export type PresetTypes =
+  | "green"
+  | "red"
+  | "outlined_grey"
+  | "outlined_green"
+  | "outlined_light_green";
 export interface CustomButtonProps {
   label: string;
   icon?: React.ReactNode;
-  preset?:
-    | "green"
-    | "red"
-    | "outlined_grey"
-    | "outlined_green"
-    | "outlined_light_green";
+  preset?: PresetTypes;
   backgroundColor?: string;
   textColor?: string;
   borderColor?: string;
