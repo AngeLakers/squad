@@ -17,9 +17,9 @@ const StyledCard = styled(Card)`
   background-color: #fff;
   border: 0.0625rem solid #e5e7eb;
 
-  font-family: Inter;
 
-  margin-left: 13rem;
+
+
   position: relative;
 
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
@@ -31,6 +31,8 @@ const StyledCard = styled(Card)`
   justify-content: flex-start;
   text-align: left;
   font-size: 30px;
+ margin-left: 2rem;
+  margin-top: 3rem;
 
 
 
