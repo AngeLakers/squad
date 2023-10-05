@@ -5,9 +5,9 @@ import styled from 'styled-components';
 
 const PageContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  background-color: #F9FAFB;
+  flex-direction: row;
   height: fit-content;
+  background-color: white;
 `;
 export const metadata: Metadata = {
   title: 'Squadron',

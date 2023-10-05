@@ -2,10 +2,12 @@
 import styled from 'styled-components';
 import CustomButton from './custom-button';
 import { Badge } from '@/ui/badge';
+import CustomBadge from './custom-badge';
 import {
     basewhite,
     borderColor,
     boxShadow,
+    gray200,
     gray500,
     gray600,
     gray700,
@@ -25,7 +27,7 @@ const RoleCardTalent = styled.div`
     align-items: flex-start;
     background-color: ${basewhite};
     border: 1.5px solid;
-    border-color: ${borderColor};
+    border-color: ${gray200};
     border-radius: 12px;
     box-shadow: ${boxShadow};
     display: flex;
@@ -33,25 +35,23 @@ const RoleCardTalent = styled.div`
     position: relative;
     width: 100%;
     align-items: center;
-    margin: 2% 0;
 `
 const RoleCardTalentStatusBar = styled.div`
-    align-items: flex-start;
-    align-self: stretch;
     display: flex;
-    flex: 0 0 auto;
+    flex-direction: row;
     gap: 16px;
-    padding: 16px 24px;
+    padding: 16px 24px 16px 24px;
     position: relative;
     width: 100%;
     border-bottom: 1.5px solid ${borderColor};
 `
 const RoleCardTalentBody = styled.div`
-    width: 95%;
-    margin: 2%;
+    width: 100%;
+    padding: 16px 24px 16px 24px;
+    gap: 20px;
 `
 const RoleLogoTitle = styled.div`
-    padding: 2% 0;
+    width: 100%;
     align-items: center;
     display: flex;
     gap: 8px;
@@ -81,9 +81,7 @@ const RoleTitle = styled.div`
     font-size: ${largeFontSize};
 `
 const RolePositionDiscription = styled.div`
-    border-bottom: 1.5px solid;
     border-color: ${borderColor};
-    padding: 2% 0;
     align-self: stretch;
     color: ${gray600};
     font-family: ${fontFamily};
@@ -158,8 +156,6 @@ const ButtonContainer = styled.div`
 
     margin-left:auto;
     margin-right: 2%;
-    
-
 `
 const BadgeContainer = styled.div`
     align-items: flex-start;
@@ -168,6 +164,25 @@ const BadgeContainer = styled.div`
     gap: 16px;
     position: relative;
 `
+const RoleIntroContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+`
+const TitleAndLogoContainer = styled.div`
+    align-items: center;
+    display: inline-flex;
+    flex-direction: row;
+    gap: 16px;
+    position: relative;
+`
+const Divider = styled.div`
+    width: 100%;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin-top: 20px;
+`;
 interface RoleDetailProps {
     status?: string[];
     roleLogoUrl?: string;
@@ -182,51 +197,54 @@ interface RoleDetailProps {
     recommendedSkills?: string[];
     tools?: string[];
     onClick?: () => void;
+    showDivider?: boolean;
 }
-
-const RoleCard: React.FC<RoleDetailProps> = ({ 
-    status, 
-    roleLogoUrl, 
-    positionName, 
-    description, 
-    startDate, 
-    hourlyRateMin, 
-    hourlyRateMax, 
-    expectedHoursPerWeek, 
-    location, 
-    skills, 
-    tools, 
+const RoleCard: React.FC<RoleDetailProps> = ({
+    status,
+    roleLogoUrl,
+    positionName,
+    description,
+    startDate,
+    hourlyRateMin,
+    hourlyRateMax,
+    expectedHoursPerWeek,
+    location,
+    skills,
+    tools,
     recommendedSkills,
+    showDivider = true,
     onClick
- }) => {
+}) => {
 
     return (
         <RoleCardTalent>
             <RoleCardTalentStatusBar>
-                {
-                    status?.map((status, index) => (
-                        <div key={index}>
-                            <Badge text={status} textColor={success700} borderColor={success700} />
-                        </div>
-                    ))
-                }
+                {status?.map((status, index) => (
+                    <CustomBadge label={status} preset={"green"} />
+                ))}
             </RoleCardTalentStatusBar>
             <RoleCardTalentBody>
-                <RoleLogoTitle>
-                    <RoleLogo>
-                        <img src={roleLogoUrl} alt="Role Icon" />
-                    </RoleLogo>
-                    <RoleTitle>
-                        {positionName}
-                    </RoleTitle>
-                    <ButtonContainer>
-                        <CustomButton label={"Refer"} preset='outlined'/>
-                        <CustomButton label={"Apply"} preset='default' onClick={onClick}/>
-                    </ButtonContainer>
-                </RoleLogoTitle>
-                <RolePositionDiscription>
-                    {description}
-                </RolePositionDiscription>
+                <RoleIntroContainer>
+                    <RoleLogoTitle>
+                        <TitleAndLogoContainer>
+                            <RoleLogo>
+                                <img src={roleLogoUrl} alt="Role Icon" />
+                            </RoleLogo>
+                            <RoleTitle>
+                                {positionName}
+                            </RoleTitle>
+                        </TitleAndLogoContainer>
+                        <ButtonContainer>
+                            <CustomButton label={"Refer"} preset='outlined' />
+                            <CustomButton label={"Apply"} preset='default' onClick={onClick} />
+                        </ButtonContainer>
+                    </RoleLogoTitle>
+                    <RolePositionDiscription>
+                        {description}
+                    </RolePositionDiscription>
+                </RoleIntroContainer>
+                {showDivider && <Divider />}
+
                 <RoleRateHourLocationDate>
                     <IconAndCategory>
                         <IconInRateHourLocationDate >
@@ -266,24 +284,15 @@ const RoleCard: React.FC<RoleDetailProps> = ({
                     <BadgeContainer>
                         {
                             skills?.map((skill, index) => (
-                                <Badge
-                                    text={skill}
-                                    textColor={success700}
-                                    borderColor={success700}
-                                />
+                                <CustomBadge label={skill} preset={"outlined_light_green"} />
                             ))
                         }
-
                     </BadgeContainer>
                     <SkillTitle>Recommended skills</SkillTitle>
                     <BadgeContainer>
                         {
                             recommendedSkills?.map((skill, index) => (
-                                <Badge
-                                    text={skill}
-                                    textColor={gray500}
-                                    borderColor={gray500}
-                                />
+                                <CustomBadge label={skill} preset={"outlined_grey"} />
                             ))
                         }
                     </BadgeContainer>
@@ -291,12 +300,10 @@ const RoleCard: React.FC<RoleDetailProps> = ({
                     <BadgeContainer>
                         {
                             tools?.map((tool, index) => (
-                                <Badge
-                                    text={tool}
-                                    textColor={gray500}
-                                    borderColor={gray500}
-                                    iconUrl='/icon/toolLogoSample.svg'
-                                />
+                                <CustomBadge
+                                    label={tool}
+                                    preset={"outlined_grey"}
+                                    icon={<img alt="tool logo" src="/icon/toolLogoSample.svg" />} />
                             ))
                         }
                     </BadgeContainer>
