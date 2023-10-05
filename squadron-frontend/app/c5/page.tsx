@@ -2,11 +2,81 @@
 import * as React from "react";
 import InfoBar from "@/ui/info-bar";
 import SquadCard from "@/ui/squad-card";
-import { AlertSVG } from "@/ui/svgs";
+import { AlertSVG, SquadSVG } from "@/ui/svgs";
 import RatioButtonsTable from "@/ui/ratio-buttons-table";
 import CardLayout from "@/ui/layout-card";
 import Heading from "@/ui/heading";
 import StepHeading from "@/ui/step-heading";
+import { PersonData } from "@/ui/squad-table";
+
+const bookData: Array<PersonData> = [
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/1",
+    title: "Front-End Engineer",
+    state: "viewing",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Jane Doe",
+    profileLink: "/profile/2",
+    title: "Designer",
+    state: "interviewing",
+  },
+];
+const viewData: Array<PersonData> = [
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/3",
+    title: "Front-End Engineer",
+    rate: "$50/hr",
+    hoursPerWeek: "20-25h /week",
+    location: "United States or Australia",
+    availability: "Immediate",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/3",
+    title: "Front-End Engineer",
+    rate: "$50/hr",
+    hoursPerWeek: "20-25h /week",
+    location: "United States or Australia",
+    availability: "Immediate",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/3",
+    title: "Front-End Engineer",
+    rate: "$50/hr",
+    hoursPerWeek: "20-25h /week",
+    location: "United States or Australia",
+    availability: "Immediate",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/3",
+    title: "Front-End Engineer",
+    rate: "$50/hr",
+    hoursPerWeek: "20-25h /week",
+    location: "United States or Australia",
+    availability: "Immediate",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/3",
+    title: "Front-End Engineer",
+    rate: "$50/hr",
+    hoursPerWeek: "20-25h /week",
+    location: "United States or Australia",
+    availability: "Immediate",
+  },
+];
 
 const rolesData = [
   {
@@ -73,8 +143,22 @@ export default function AllComponents() {
         icon={<AlertSVG />}
         link={""}
       ></InfoBar>
-      <SquadCard></SquadCard>
-      
+      <SquadCard
+        badgeTitle="Good Match 80%"
+        badgeColor="green"
+        squadTitle="Suggested Squad #1"
+        squadDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. morLorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. morLorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. mor"
+        icon={<SquadSVG backgroundColor="#E5E7EB" />}
+        type="book"
+        data={bookData}
+      />
+      <SquadCard
+        badgeTitle="Good Match 80%"
+        badgeColor="green"
+        squadTitle="Suggested Squad #1"
+        type="view"
+        data={viewData}
+      />
       <StepHeading
         progress={33}
         step={"Step 01/03"}
