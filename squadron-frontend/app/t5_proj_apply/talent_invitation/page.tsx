@@ -94,7 +94,7 @@ export default function Home() {
                    score={4.5}
                />
            </CardWrapper>
-
+              <div style={{height: '2rem'}}></div>
               </Container>
 
          </div>
