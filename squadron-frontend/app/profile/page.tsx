@@ -12,7 +12,9 @@ import ProfileCard from "@/ui/profile/ProfileCard";
 export default function Home() {
     return (
       <div>
-         <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100vh"}}>
+
+          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                <h1>Profile</h1>
 
           <ProfileCard
               avatarUrl="https://example.com/avatar.jpg"
