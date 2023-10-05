@@ -78,6 +78,7 @@ const ApplyCancelPopup: React.FC<ApplyCancelProps> = ({
                     />
                     </a>
                     {/*to do: complete the function save as draft*/}
+                    <a href="/t5_proj_apply/projectView">
                         <CustomButton 
                             label='Save as draft' 
                             backgroundColor="#4B48EC"
@@ -88,6 +89,7 @@ const ApplyCancelPopup: React.FC<ApplyCancelProps> = ({
                             padding='10px, 18px, 10px, 18px'
                             onClick={onClose}
                         />
+                    </a>
                     
                 </ButtonContainer>
             </ContentContainer>

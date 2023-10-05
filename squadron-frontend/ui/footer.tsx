@@ -67,12 +67,13 @@ const Footer: React.FC<FooterProps> = ({
         <CustomButton preset="text" onClick={onLeftClick} label={leftButtonLabel} />
         <RightButtonGroup>
         {isRLeftButtonVisible && 
-          <CustomButton preset={rLeftButtonStyle} onClick={onRLeftClick} label={rLeftButtonLabel} textColor={rLeftButtonTextColor}/>}
+          <CustomButton preset={rLeftButtonStyle} width="144px" onClick={onRLeftClick} label={rLeftButtonLabel} textColor={rLeftButtonTextColor}/>}
         {isRMiddleButtonVisible && 
-          <CustomButton preset={rMiddleButtonStyle} onClick={onRMiddleClick} label={rMiddleButtonLabel} />}
+          <CustomButton preset={rMiddleButtonStyle} width="144px" onClick={onRMiddleClick} label={rMiddleButtonLabel} />}
           <a href={rightLink}> 
             <CustomButton 
               preset="default" 
+              width="144px"
               onClick={onRRightClick} 
               label={rRightButtonLabel} 
               padding={isRRightButtonPadding} 

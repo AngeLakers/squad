@@ -8,6 +8,7 @@ import Heading from "@/ui/heading";
 import CardLayout from "@/ui/layout-card";
 import RatioButtonsTable from "@/ui/ratio-buttons-table";
 import Footer from "@/ui/footer";
+import ApplyCancelPopup from "@/ui/apply_cancel";
 
 const MockrolesData = [
     {
@@ -94,6 +95,8 @@ export default function Home() {
     setRoleSelected(true);
   };
 
+  const [isCancelPopupVisible, setIsCancelPopupVisible] = useState(false);
+
     return (
         <Container>
             <SimpleHeader />
@@ -125,13 +128,18 @@ export default function Home() {
             </ContentContainer>
             <Footer 
                 leftButtonLabel="Cancel"
+                onLeftClick={() => setIsCancelPopupVisible(true)}
                 rMiddleButtonLabel="Save as draft"
                 rRightButtonLabel="Next"
                 isRLeftButtonVisible={false}
                 isButtonDisabled={!isRoleSelected}
-                rightLink="application_apply"
+                rightLink="squad_application_apply"
             
             />
+
+          {isCancelPopupVisible && (
+              <ApplyCancelPopup onClose={() => setIsCancelPopupVisible(false)} />
+          )}  
         </Container>
     );
 }
