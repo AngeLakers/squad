@@ -101,7 +101,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ onClose }) => {
   return (
     <PopupComponent onClose={onClose}
     width="640px"
-    maxHeightPercent={0.45}>
+    maxHeightPercent={0.1}>
       <Container>
         <PopupHeader>
           <Title>About me</Title>
