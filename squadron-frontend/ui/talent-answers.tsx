@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+import ShowMoreText from "./text-showmore";
 
 const Divider = styled.div`
   height: 1px;
@@ -52,63 +53,23 @@ const Question = styled.div`
   color: #111927;
 `;
 
-const AnswerText = styled.div<{ isExpanded: boolean }>`
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: #4d5761;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: ${({ isExpanded }) => (isExpanded ? "none" : "2")};
-  -webkit-box-orient: vertical;
-`;
-
-const ShowMoreButton = styled.button`
-  background-color: transparent;
-  border: none;
-  color: #4b48ec;
-  padding-left: 3px;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: left;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
 interface TalentAnswerProps {
   question: string;
   answer: string;
 }
 
 const TalentAnswer: React.FC<TalentAnswerProps> = ({ question, answer }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const isLongAnswer = answer.length > 200;
-
-  const toggleExpanded = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const shownText = isLongAnswer ? answer.substring(0, 350) : answer;
-  const hiddenText = isLongAnswer ? answer.substring(350) : "";
-
   return (
     <AnswerContainer>
       <Question>{question}</Question>
-      <AnswerText isExpanded={isExpanded}>
-        {shownText}
-        {!isExpanded && isLongAnswer && <span>...</span>}
-        {isExpanded && <span>{hiddenText}</span>}
-        {isLongAnswer && (
-          <ShowMoreButton onClick={toggleExpanded}>
-            {isExpanded ? "See Less" : "See More"}
-          </ShowMoreButton>
-        )}
-      </AnswerText>
+      <ShowMoreText
+        text={answer}
+        showMoreLength={350}
+        fontSize="16px"
+        fontColor="#4d5761"
+        lineHeight="24px"
+        fontWeight={400}
+      />
     </AnswerContainer>
   );
 };
