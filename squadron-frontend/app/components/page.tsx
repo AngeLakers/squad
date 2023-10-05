@@ -864,8 +864,68 @@ export default function AllComponents() {
         createdBy="Chelsea Guo"
         description="custom project header"
       >
-        <CustomProjectHeader />
-        In http://localhost:3000/t5_proj_apply/projectView
+        <CustomProjectHeader
+          backgroundImage="/images/testCustomHeaderBackgroud.png"
+          avatarImagePath="/icon/projectLogo.svg"
+          avatarHeight={"89px"}
+          avatarWidth={"89px"}
+          title1="test title 1"
+          title2="test title 2"
+          title3="test title3"
+          button={{
+            isVisible: true,
+            text: "Apply as squad",
+            backgroundColor: "#A0D909",
+            textColor: "#ffffff",
+            onClick: () => console.log("Apply as squad"),
+            href: "../t5_proj_apply/apply_as_squad",
+          }}
+          shareIcon={{
+            isVisible: true,
+            color: "#A0D909",
+            onClick: () => {
+              console.log("Share icon clicked!");
+            },
+          }}
+          starIcon={{
+            isVisible: true,
+            color: "#FFFF00",
+            onClick: () => {
+              console.log("Star icon clicked!");
+            },
+          }}
+        />
+        <CustomProjectHeader
+          backgroundImage="/images/testCustomHeaderBackgroud.png"
+          avatarImagePath="/icon/projectLogo.svg"
+          avatarHeight={"54px"}
+          avatarWidth={"54px"}
+          title1="test title 1"
+          title2="test title 2"
+          title3="test title3"
+          button={{
+            isVisible: true,
+            text: "Apply as squad",
+            backgroundColor: "#ffffff",
+            textColor: "#A0D909",
+            onClick: () => console.log("Apply as squad"),
+            href: "../t5_proj_apply/apply_as_squad",
+          }}
+          shareIcon={{
+            isVisible: false,
+            color: "#00FF00",
+            onClick: () => {
+              console.log("Share icon clicked!");
+            },
+          }}
+          starIcon={{
+            isVisible: true,
+            color: "#FFFF00",
+            onClick: () => {
+              console.log("Star icon clicked!");
+            },
+          }}
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="project-profile"

@@ -9,6 +9,8 @@ import StarIcon from '@mui/icons-material/Star';
 import ShareIcon from '@mui/icons-material/Share';
 import CustomProjectHeader from './custom-project-header';
 import CustomButton from './custom-button';
+// import CustomProjectHeader from './custom-project-header-update';
+ 
 import {
     basewhite,
     borderColor,
@@ -42,7 +44,6 @@ const ProjectCardTalent = styled.div`
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    margin: 2% 0;
     width: 100%;
 `
 const ProjectCardDetails = styled.div`
@@ -388,39 +389,32 @@ const ProjectProfile: React.FC<ProjectProfileProps> = (props) => {
 
         <ProjectCardTalent>
                 <CustomProjectHeader
-                    backgroundImage="/images/testCustomHeaderBackgroud.png"
-                    titleAndAvatarContent={(
-                        <>
-                            <HeaderLogoContainer>
-                                <img src="/icon/projectLogo.svg" alt="avatar" height={"89px"} width={"89px"}/>
-                            </HeaderLogoContainer>
-                            <HeaderTitleContainer>
-                                <HeaderTitle>
-                                    <Titles>test</Titles>
-                                    <ProjectName>THIS IS A CUSTOM HEADER</ProjectName>
-                                    <ProjectPostDate>test</ProjectPostDate>
-                                </HeaderTitle>
-                            </HeaderTitleContainer>
-                        </>
-                    )}
-                    buttonContent={(
-                        <>
-                            <CompanyLogoName>
-                                <ShareIcon style={{ color: '#A0D909' }} />
-                                <div onClick={handleClick}>
-                                    {isStarFilled ? <StarIcon style={{ color: '#A0D909' }} /> : <StarBorderIcon style={{ color: '#A0D909' }} />}
-                                </div>
-                                <a href="../t5_proj_apply/apply_as_squad">
-                                    <CustomButton label="Apply as squad" preset="default" />
-                                </a>
-                            </CompanyLogoName>
-
-                        </>
-                    )}
-
+                    backgroundImage="/images/testCustomHeaderBackgroud.png" 
+                    avatarImagePath="/icon/projectLogo.svg"
+                    avatarHeight={"89px"}
+                    avatarWidth={"89px"}
+                    title1="test title 1"
+                    title2="test title 2"
+                    title3="test title3"
+                    button={{
+                        isVisible: true,
+                        text: "Apply as squad",
+                        backgroundColor: "#A0D909",
+                        textColor: "#FFFFFF",
+                        onClick: () => console.log("Apply as squad"),
+                        href: "../t5_proj_apply/apply_as_squad",
+                    }}
+                    shareIcon={{
+                        isVisible: true,
+                        color: "#A0D909",
+                        onClick: () => { console.log("Share icon clicked!"); }
+                    }}
+                    starIcon={{
+                        isVisible: true,
+                        color: "#A0D909",
+                        onClick: () => { console.log("Star icon clicked!"); }
+                    }}
                 />
-
-            {/* </ProjectCardHeader> */}
             <ProjectCardDetails>
                 <ProjectCardBody>
                     <CompanyDetail>
@@ -479,7 +473,8 @@ const ProjectProfile: React.FC<ProjectProfileProps> = (props) => {
                             </AvatarAndInfoContainer>
                         </FrameWrapper>
                     </CompanyLogoName>
-                    <ContainedButton variant="contained">Ask a question</ContainedButton>
+                    <CustomButton label="Ask a question" preset="default" />
+                    {/* <ContainedButton variant="contained">Ask a question</ContainedButton> */}
                 </ProjectCardBody>
                 <OulineDeliverableContainer>
                     <DetailedContainer>

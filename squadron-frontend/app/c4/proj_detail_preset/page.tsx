@@ -310,7 +310,7 @@ const ProjectDetailsPreset: React.FC = () => {
     ))}
 
   </div>
-  <Footer isRMiddleButtonVisible={false} rRightButtonLabel='Preview' rightLink='/c4/preview'/>
+  <Footer isRMiddleButtonVisible={false} rRightButtonLabel='Preview' isButtonDisabled={false} rightLink='/c4/preview'/>
 </div>
   {videoUploadOpen && <VideoUpload onClose={() => setVideoUploadOpen(false)} />}
 </div>

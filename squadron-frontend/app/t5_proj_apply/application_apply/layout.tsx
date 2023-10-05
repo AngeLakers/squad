@@ -32,7 +32,7 @@ export default function Layout({
 }) {
     return (
         <PageContainer>
-        
+            <SimpleHeader />
             <MainContent>
                 {children}
             </MainContent>
