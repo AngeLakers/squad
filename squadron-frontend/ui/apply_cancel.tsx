@@ -57,8 +57,6 @@ const ApplyCancelPopup: React.FC<ApplyCancelProps> = ({
         <PopupComponent 
             onClose={onClose}  
             width="30%" 
-            minWidth="400px"
-            minHeight="260px"
             maxHeightPercent={0.3}  
         >
             <ContentContainer>
