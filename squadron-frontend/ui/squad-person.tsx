@@ -87,7 +87,7 @@ const InfoContent = styled.div`
 
 const ViewApplicationButton = styled.div`
   float: right;
-  padding-right: 5px;
+  padding-right: 16px;
 `;
 
 interface CustomSquadPerson {

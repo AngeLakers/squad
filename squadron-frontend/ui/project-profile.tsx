@@ -7,26 +7,30 @@ import YouTube, { YouTubeProps } from "react-youtube";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import ShareIcon from '@mui/icons-material/Share';
-import { 
-    basewhite, 
-    borderColor, 
-    boxShadow, 
-    gray600, 
-    gray900, 
-    primary600, 
-    regularFontSize, 
-    mediumFontSize, 
-    titleFontSize, 
-    xxlargeFontSize, 
-    regularFontWeight, 
-    mediumFontWeight, 
-    regularLineHeight, 
-    mediumLineHeight, 
-    largeLineHeight, 
-    xxxlargeLineHeight, 
-    fontFamily, 
-    regularLetterSpacing 
-  } from "@/styles/reuseParams";
+import CustomProjectHeader from './custom-project-header';
+import CustomButton from './custom-button';
+// import CustomProjectHeader from './custom-project-header-update';
+ 
+import {
+    basewhite,
+    borderColor,
+    boxShadow,
+    gray600,
+    gray900,
+    primary600,
+    regularFontSize,
+    mediumFontSize,
+    titleFontSize,
+    xxlargeFontSize,
+    regularFontWeight,
+    mediumFontWeight,
+    regularLineHeight,
+    mediumLineHeight,
+    largeLineHeight,
+    xxxlargeLineHeight,
+    fontFamily,
+    regularLetterSpacing
+} from "@/styles/reuseParams";
 
 
 const ProjectCardTalent = styled.div`
@@ -40,7 +44,6 @@ const ProjectCardTalent = styled.div`
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    margin: 2% 0;
     width: 100%;
 `
 const ProjectCardDetails = styled.div`
@@ -306,7 +309,6 @@ const HeaderTitleContainer = styled.div`
     flex: 0 0 auto;
     flex-direction: column;
     gap: 12px;
-    margin-right: -32px;
     position: relative;
 `
 const HeaderTitle = styled.div`
@@ -362,9 +364,32 @@ interface ProjectProfileProps {
     projectVideo?: string;
     applyButton?: string;
     askQuestionButton?: string;
+    showHeader?: boolean; 
 
 }
-const ProjectProfile: React.FC<ProjectProfileProps> = (props) => {
+const ProjectProfile: React.FC<ProjectProfileProps> = ({
+    showHeader = true,
+    projectLogoLink,
+    projectName,
+    projectPostDate,
+    companyLogo,
+    companyName,
+    companyWebLink,
+    companyIndustry,
+    companyLocation,
+    companyDescription,
+    companyProfileLink,
+    timelineEstimate,
+    projectStartDate,
+    projectLeaderAvatarLink,
+    projectLeaderName,
+    projectLeaderRole,
+    projectOutline,
+    keyDeliverables,
+    projectVideo,
+    applyButton,
+    askQuestionButton
+}) => {
     const onPlayerReady: YouTubeProps["onReady"] = (event) => {
         // access to player in all event handlers via event.target
         event.target.pauseVideo();
@@ -386,29 +411,34 @@ const ProjectProfile: React.FC<ProjectProfileProps> = (props) => {
     return (
 
         <ProjectCardTalent>
-            <ProjectCardHeader>
-                <CompanyLogoName>
-                    <HeaderLogoContainer>
-                        <img src={props.projectLogoLink} alt="Project" height={"89px"} width={"89px"}></img>
-                    </HeaderLogoContainer>
-                    <HeaderTitleContainer>
-                        <HeaderTitle>
-                            <Titles>Stir</Titles>
-                            <ProjectName>{props.projectName}</ProjectName>
-                            <ProjectPostDate>Posted: {props.projectPostDate} </ProjectPostDate>
-                        </HeaderTitle>
-                    </HeaderTitleContainer>
-                </CompanyLogoName>
-                <CompanyLogoName>
-                    <ShareIcon style={{ color: '#A0D909' }} />
-                    <div onClick={handleClick}>
-                        {isStarFilled ? <StarIcon style={{ color: '#A0D909' }} /> : <StarBorderIcon style={{ color: '#A0D909' }} />}
-                    </div>
-                    <ContainedButton variant="contained">Apply as squad</ContainedButton>
-                </CompanyLogoName>
-
-            </ProjectCardHeader>
-
+            {showHeader && (
+                <CustomProjectHeader
+                    backgroundImage="/images/testCustomHeaderBackgroud.png" 
+                    avatarImagePath="/icon/projectLogo.svg"
+                    avatarHeight={"89px"}
+                    avatarWidth={"89px"}
+                    title1="test title 1"
+                    title2="test title 2"
+                    title3="test title3"
+                    button={{
+                        isVisible: true,
+                        text: "Apply as squad",
+                        backgroundColor: "#A0D909",
+                        textColor: "#FFFFFF",
+                        onClick: () => console.log("Apply as squad"),
+                        href: "../t5_proj_apply/apply_as_squad",
+                    }}
+                    shareIcon={{
+                        isVisible: true,
+                        color: "#A0D909",
+                        onClick: () => { console.log("Share icon clicked!"); }
+                    }}
+                    starIcon={{
+                        isVisible: true,
+                        color: "#A0D909",
+                        onClick: () => { console.log("Star icon clicked!"); }
+                    }}
+                />)}
             <ProjectCardDetails>
                 <ProjectCardBody>
                     <CompanyDetail>
@@ -417,29 +447,29 @@ const ProjectProfile: React.FC<ProjectProfileProps> = (props) => {
                                 <ProjectCardImage>
                                     <ImageWrapper>
                                         <CompanyAndPeopleAvatar>
-                                            <img src={props.companyLogo} alt="Project" ></img>
+                                            <img src={companyLogo} alt="Project" ></img>
                                         </CompanyAndPeopleAvatar>
                                     </ImageWrapper>
                                 </ProjectCardImage>
                                 <FrameWrapper>
                                     <AvatarAndInfoContainer>
-                                        <Titles>{props.companyName}</Titles>
-                                        <WebLink>{props.companyWebLink}</WebLink>
+                                        <Titles>{companyName}</Titles>
+                                        <WebLink>{companyWebLink}</WebLink>
                                     </AvatarAndInfoContainer>
                                 </FrameWrapper>
                             </CompanyLogoName>
                             <IndustryAndLocation>
                                 <IconAndInfoContainer>
                                     <img src="/icon/building.svg" alt="Building Icon" />
-                                    <Department>{props.companyIndustry}</Department>
+                                    <Department>{companyIndustry}</Department>
                                 </IconAndInfoContainer>
                                 {/* TODO: Long place names will exceed the container instead of wrapping. */}
                                 <IconAndInfoContainer>
                                     <img src="/icon/locationPin.svg" alt="Pin Icon" />
-                                    <Department>{props.companyLocation}</Department>
+                                    <Department>{companyLocation}</Department>
                                 </IconAndInfoContainer>
                             </IndustryAndLocation>
-                            <P>{props.companyDescription}</P>
+                            <P>{companyDescription}</P>
                             {/* TODO: add company profile link */}
                             <CompanyProfileLink>View company profile</CompanyProfileLink>
                         </CompanyProfile>
@@ -447,39 +477,40 @@ const ProjectProfile: React.FC<ProjectProfileProps> = (props) => {
                     <CompanyProfile>
                         <TimelineStartDateContainer>
                             <TimelineEstimateAndStart>Timeline estimate</TimelineEstimateAndStart>
-                            <Date>{props.timelineEstimate}</Date>
+                            <Date>{timelineEstimate}</Date>
                         </TimelineStartDateContainer>
                         <StartDate>
                             <TimelineEstimateAndStart>Start date</TimelineEstimateAndStart>
-                            <Date>{props.projectStartDate}</Date>
+                            <Date>{projectStartDate}</Date>
                         </StartDate>
                     </CompanyProfile>
                     <CompanyLogoName>
                         <ProjectCardImage>
                             <CompanyAndPeopleAvatar>
-                                <img src={props.projectLeaderAvatarLink} alt="Project Leader" ></img>
+                                <img src={projectLeaderAvatarLink} alt="Project Leader" ></img>
                             </CompanyAndPeopleAvatar>
                         </ProjectCardImage>
                         <FrameWrapper>
                             <AvatarAndInfoContainer>
-                                <P>{props.projectLeaderName}</P>
-                                <TimelineEstimateAndStart>{props.projectLeaderRole}</TimelineEstimateAndStart>
+                                <P>{projectLeaderName}</P>
+                                <TimelineEstimateAndStart>{projectLeaderRole}</TimelineEstimateAndStart>
                             </AvatarAndInfoContainer>
                         </FrameWrapper>
                     </CompanyLogoName>
-                    <ContainedButton variant="contained">Ask a question</ContainedButton>
+                    <CustomButton label="Ask a question" preset="default" />
+                    {/* <ContainedButton variant="contained">Ask a question</ContainedButton> */}
                 </ProjectCardBody>
                 <OulineDeliverableContainer>
                     <DetailedContainer>
                         <Titles>Project outline</Titles>
-                        <P>{props.projectOutline}<br /></P>
+                        <P>{projectOutline}<br /></P>
                     </DetailedContainer>
                     <DetailedContainer>
                         <Titles>Key deliverables</Titles>
 
                         <DiscUl>
                             {
-                                props.keyDeliverables?.map((deliverable, index) => (
+                                keyDeliverables?.map((deliverable, index) => (
                                     <li key={index}>
                                         <P>{deliverable}</P>
                                     </li>

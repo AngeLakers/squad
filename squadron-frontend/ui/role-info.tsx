@@ -48,10 +48,10 @@ const InfoContent = styled.div`
 
 export interface RoleInfoProps {
   title: string;
-  rate: string;
-  hoursPerWeek: string;
-  location: string;
-  availability: string;
+  rate?: string;
+  hoursPerWeek?: string;
+  location?: string;
+  availability?: string;
 }
 
 const RoleInfo: React.FC<RoleInfoProps> = ({
@@ -61,35 +61,47 @@ const RoleInfo: React.FC<RoleInfoProps> = ({
   location,
   availability,
 }) => {
+  const hasAdditionalInfo = rate || hoursPerWeek || location || availability;
+
   return (
     <Role>
       <RoleTitle>{title}</RoleTitle>
-      <InfoContainer>
-        <InfoRow>
-          <InfoIcon>
-            <RateSVG />
-          </InfoIcon>
-          <InfoContent>{rate}</InfoContent>
-        </InfoRow>
-        <InfoRow>
-          <InfoIcon>
-            <ClockSVG />
-          </InfoIcon>
-          <InfoContent>{hoursPerWeek}</InfoContent>
-        </InfoRow>
-        <InfoRow>
-          <InfoIcon>
-            <LocationSVG />
-          </InfoIcon>
-          <InfoContent>{location}</InfoContent>
-        </InfoRow>
-        <InfoRow>
-          <InfoIcon>
-            <CalenderSVG />
-          </InfoIcon>
-          <InfoContent>{availability}</InfoContent>
-        </InfoRow>
-      </InfoContainer>
+      {hasAdditionalInfo && (
+        <InfoContainer>
+          {rate && (
+            <InfoRow>
+              <InfoIcon>
+                <RateSVG />
+              </InfoIcon>
+              <InfoContent>{rate}</InfoContent>
+            </InfoRow>
+          )}
+          {hoursPerWeek && (
+            <InfoRow>
+              <InfoIcon>
+                <ClockSVG />
+              </InfoIcon>
+              <InfoContent>{hoursPerWeek}</InfoContent>
+            </InfoRow>
+          )}
+          {location && (
+            <InfoRow>
+              <InfoIcon>
+                <LocationSVG />
+              </InfoIcon>
+              <InfoContent>{location}</InfoContent>
+            </InfoRow>
+          )}
+          {availability && (
+            <InfoRow>
+              <InfoIcon>
+                <CalenderSVG />
+              </InfoIcon>
+              <InfoContent>{availability}</InfoContent>
+            </InfoRow>
+          )}
+        </InfoContainer>
+      )}
     </Role>
   );
 };
