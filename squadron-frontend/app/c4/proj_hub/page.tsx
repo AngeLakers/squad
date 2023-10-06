@@ -57,10 +57,12 @@ const NewButtonContainer = styled.div`
 `;
 
 const TabButton = styled.button<{ active: boolean }>`
-    margin-right: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 16px;
     border: none;
-    border-bottom: ${({ active }) => (active ? "2px solid #1B18E4" : "none")};
-    color: ${({ active }) => (active ? "#1B18E4" : "#6C737F")};
+    border-bottom: ${({ active }) => (active ? "2px solid #6941C6" : "none")};
+    color: ${({ active }) => (active ? "#6941C6" : "#667085")};
     background-color: transparent;
     cursor: pointer;
 `;
