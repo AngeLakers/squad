@@ -32,9 +32,9 @@ import Skill from "@/ui/titled-badge";
 import AboutMe from "@/ui/about-me-popup";
 import CustomButton, { PresetTypes } from "@/ui/custom-button";
 import CustomBadge from "@/ui/custom-badge";
-import { AlertSVG, StarSVG, TickSVG } from "@/ui/svgs";
+import { AlertSVG, SquadSVG, StarSVG, TickSVG } from "@/ui/svgs";
 import InfoBar from "@/ui/info-bar";
-import SquadCard from "@/ui/squad-card";
+import SquadCard, { ButtonContainerPresets } from "@/ui/squad-card";
 import TalentSkills, { BadgeData } from "@/ui/talent-skills";
 import TalentInfo from "@/ui/layout-card";
 import CardLayout from "@/ui/layout-card";
@@ -58,6 +58,75 @@ import CustomProjectHeader from "@/ui/custom-project-header";
 import RequireDontMatchPopup from "@/ui/require-dont-match";
 import ApplyCancelPopup from "@/ui/apply_cancel";
 import BuildApplySquad from "@/ui/build-apply-squad";
+
+const bookData: Array<PersonData> = [
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/1",
+    title: "Front-End Engineer",
+    state: "viewing",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Jane Doe",
+    profileLink: "/profile/2",
+    title: "Designer",
+    state: "interviewing",
+  },
+];
+const viewData: Array<PersonData> = [
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/3",
+    title: "Front-End Engineer",
+    rate: "$50/hr",
+    hoursPerWeek: "20-25h /week",
+    location: "United States or Australia",
+    availability: "Immediate",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/3",
+    title: "Front-End Engineer",
+    rate: "$50/hr",
+    hoursPerWeek: "20-25h /week",
+    location: "United States or Australia",
+    availability: "Immediate",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/3",
+    title: "Front-End Engineer",
+    rate: "$50/hr",
+    hoursPerWeek: "20-25h /week",
+    location: "United States or Australia",
+    availability: "Immediate",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/3",
+    title: "Front-End Engineer",
+    rate: "$50/hr",
+    hoursPerWeek: "20-25h /week",
+    location: "United States or Australia",
+    availability: "Immediate",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/3",
+    title: "Front-End Engineer",
+    rate: "$50/hr",
+    hoursPerWeek: "20-25h /week",
+    location: "United States or Australia",
+    availability: "Immediate",
+  },
+];
 
 const MockrolesData = [
   {
@@ -136,6 +205,7 @@ import StepHeading from "@/ui/step-heading";
 import Heading from "@/ui/heading";
 import RatioButtonsTable from "@/ui/ratio-buttons-table";
 import SendOffer from "@/ui/send-offer-popup";
+import { PersonData } from "@/ui/squad-table";
 
 const mockSkillsData: BadgeData[] = [
   { label: "Roadmapping", icon: <StarSVG />, preset: "outlined_green" },
@@ -283,7 +353,8 @@ export default function AllComponents() {
     useState(false);
   const [isRequireDontMatchPopupOpen, setRequireDontMatchPopupOpen] =
     useState(false);
-  const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] = useState(false);
+  const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] =
+    useState(false);
   const [isApplyCancelPopupOpen, setApplyCancelPopupOpen] = useState(false);
 
   const icons = [
@@ -483,44 +554,64 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C4 - Squad Presets"
       >
-        <CustomButton preset="default" label="Create project" onClick={() => setModalOpen(true)} />
-
+        <CustomButton
+          preset="default"
+          label="Create project"
+          onClick={() => setModalOpen(true)}
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="video-upload.tsx"
         createdBy="Becky Xu"
         description="C4 - Upload Video"
       >
-        <CustomButton preset="default" label="Upload video" onClick={() => setVideoUploadOpen(true)} />
+        <CustomButton
+          preset="default"
+          label="Upload video"
+          onClick={() => setVideoUploadOpen(true)}
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="invite-admin.tsx"
         createdBy="Becky Xu"
         description="C4 - Adding Admin"
       >
-        <CustomButton preset="default" label="Add admins" onClick={() => setAdminInviteOpen(true)} />
+        <CustomButton
+          preset="default"
+          label="Add admins"
+          onClick={() => setAdminInviteOpen(true)}
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="add-role.tsx"
         createdBy="Becky Xu"
         description="C4 - Adding a Role"
       >
-        <CustomButton preset="default" label="Add role" onClick={() => setAddRoleOpen(true)} />
+        <CustomButton
+          preset="default"
+          label="Add role"
+          onClick={() => setAddRoleOpen(true)}
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="editproj-popup.tsx"
         createdBy="Becky Xu"
         description="C4 - Edit Project Popup"
       >
-        <CustomButton preset="default" label="Edit project" onClick={() => setEditprojPopupOpen(true)} />
-
+        <CustomButton
+          preset="default"
+          label="Edit project"
+          onClick={() => setEditprojPopupOpen(true)}
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="exit-uncompleted-popup.tsx"
         createdBy="Becky Xu"
         description="C4 - Exit Uncompleted Project Popup"
       >
-        <CustomButton label="Exit Uncompleted Role" preset="default"
+        <CustomButton
+          label="Exit Uncompleted Role"
+          preset="default"
           onClick={() => setexitUncompletedPopupOpen(true)}
         />
       </ComponentWrapper>
@@ -560,17 +651,20 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C5 - Book a Call"
       >
-        <CustomButton label="Book call A" preset="default"
+        <CustomButton
+          label="Book call A"
+          preset="default"
           onClick={() => setbookInterviewAPopupOpen(true)}
         />
-
       </ComponentWrapper>
       <ComponentWrapper
         filename="book-interview-b.tsx"
         createdBy="Becky Xu"
         description="C5 - Book a Call"
       >
-        <CustomButton label="Book call B" preset="default"
+        <CustomButton
+          label="Book call B"
+          preset="default"
           onClick={() => setbookInterviewBPopupOpen(true)}
         />
       </ComponentWrapper>
@@ -579,7 +673,9 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C5 - Send offer"
       >
-        <CustomButton label="Send offer" preset="default"
+        <CustomButton
+          label="Send offer"
+          preset="default"
           onClick={() => setOfferSendOpen(true)}
         />
       </ComponentWrapper>
@@ -588,8 +684,11 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C5 - Launch Mission Popup"
       >
-        <CustomButton preset="default" label="Launch Mission" onClick={() => setlaunchMissionPopupOpen(true)} />
-
+        <CustomButton
+          preset="default"
+          label="Launch Mission"
+          onClick={() => setlaunchMissionPopupOpen(true)}
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="squad-surveyswap.tsx"
@@ -606,7 +705,6 @@ export default function AllComponents() {
       >
         <BuildApplySquad width="80%" />
       </ComponentWrapper>
-
 
       <ComponentWrapper
         filename="talent-profile-card.tsx"
@@ -646,7 +744,23 @@ export default function AllComponents() {
         createdBy="Mark Sun"
         description="C5 - My Squad - not assigned yet"
       >
-        <SquadCard />
+        <SquadCard
+          badgeTitle="Good Match 80%"
+          badgeColor="green"
+          squadTitle="Suggested Squad #1"
+          squadDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. morLorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. morLorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. mor"
+          icon={<SquadSVG backgroundColor="#E5E7EB" />}
+          type="book"
+          buttonPreset={ButtonContainerPresets.EMPTY}
+          data={bookData}
+        />
+        <SquadCard
+          badgeTitle="Good Match 80%"
+          badgeColor="green"
+          squadTitle="Suggested Squad #1"
+          type="view"
+          data={viewData}
+        />
       </ComponentWrapper>
       <ComponentWrapper
         filename="layout-card.tsx"
@@ -762,19 +876,23 @@ export default function AllComponents() {
             isVisible: true,
             text: "Apply as squad",
             backgroundColor: "#A0D909",
-            textColor:"#ffffff",
+            textColor: "#ffffff",
             onClick: () => console.log("Apply as squad"),
             href: "../t5_proj_apply/apply_as_squad",
           }}
           shareIcon={{
             isVisible: true,
             color: "#A0D909",
-            onClick: () => { console.log("Share icon clicked!"); }
+            onClick: () => {
+              console.log("Share icon clicked!");
+            },
           }}
           starIcon={{
             isVisible: true,
             color: "#FFFF00",
-            onClick: () => { console.log("Star icon clicked!"); }
+            onClick: () => {
+              console.log("Star icon clicked!");
+            },
           }}
         />
         <CustomProjectHeader
@@ -789,22 +907,25 @@ export default function AllComponents() {
             isVisible: true,
             text: "Apply as squad",
             backgroundColor: "#ffffff",
-            textColor:"#A0D909",
+            textColor: "#A0D909",
             onClick: () => console.log("Apply as squad"),
             href: "../t5_proj_apply/apply_as_squad",
           }}
           shareIcon={{
             isVisible: false,
             color: "#00FF00",
-            onClick: () => { console.log("Share icon clicked!"); }
+            onClick: () => {
+              console.log("Share icon clicked!");
+            },
           }}
           starIcon={{
             isVisible: true,
             color: "#FFFF00",
-            onClick: () => { console.log("Star icon clicked!"); }
+            onClick: () => {
+              console.log("Star icon clicked!");
+            },
           }}
         />
-
       </ComponentWrapper>
       <ComponentWrapper
         filename="project-profile"
@@ -979,8 +1100,17 @@ export default function AllComponents() {
           Complete Skills Popup
         </Button>
       </ComponentWrapper>
-      <ComponentWrapper filename="complete-profile-addexperience.tsx" createdBy="Chelsea Guo" description="T5 - Complete add experience Popup">
-        <Button variant="outlined" onClick={() => setCompleteExperiencePopupOpen(true)}>Complete add experience Popup</Button>
+      <ComponentWrapper
+        filename="complete-profile-addexperience.tsx"
+        createdBy="Chelsea Guo"
+        description="T5 - Complete add experience Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setCompleteExperiencePopupOpen(true)}
+        >
+          Complete add experience Popup
+        </Button>
       </ComponentWrapper>
       <ComponentWrapper
         filename="required-missing-popup.tsx"
@@ -1043,7 +1173,6 @@ export default function AllComponents() {
         </Button>
       </ComponentWrapper>
 
-
       {isModalOpen && (
         <SquadCustom
           closeModal={() => {
@@ -1081,7 +1210,7 @@ export default function AllComponents() {
               height="57"
             />
           }
-        //showDivider={false}
+          //showDivider={false}
         />
       )}
       {launchMissionPopupOpen && (
@@ -1108,9 +1237,7 @@ export default function AllComponents() {
       {isAdminInvite && (
         <InviteAdmin onClose={() => setAdminInviteOpen(false)} />
       )}
-      {isOfferSend && (
-        <SendOffer onClose={() => setOfferSendOpen(false)} />
-      )}
+      {isOfferSend && <SendOffer onClose={() => setOfferSendOpen(false)} />}
       {isRoleAdd && <AddRole onClose={() => setAddRoleOpen(false)} />}
       {exitUncompletedPopupOpen && (
         <ExitUncompletedPopup
@@ -1151,7 +1278,8 @@ export default function AllComponents() {
         />
       )}
       {isSkillMissingPopupOpen && (
-        <RequiredMissingPopup onClose={() => setSkillMissingPopupOpen(false)}
+        <RequiredMissingPopup
+          onClose={() => setSkillMissingPopupOpen(false)}
           badges={[
             { label: "Label", preset: "outlined_grey" },
             { label: "UX Design", preset: "outlined_grey" },
@@ -1164,10 +1292,19 @@ export default function AllComponents() {
         />
       )}
       {isToolMissingPopupOpen && (
-        <RequiredMissingPopup onClose={() => setToolMissingPopupOpen(false)}
+        <RequiredMissingPopup
+          onClose={() => setToolMissingPopupOpen(false)}
           badges={[
-            { label: "Tool", preset: "outlined_grey", icon: <img alt="photoshop logo" src="/photoshop.png" /> },
-            { label: "Tool", preset: "outlined_grey", icon: <img alt="photoshop logo" src="/photoshop.png" /> },
+            {
+              label: "Tool",
+              preset: "outlined_grey",
+              icon: <img alt="photoshop logo" src="/photoshop.png" />,
+            },
+            {
+              label: "Tool",
+              preset: "outlined_grey",
+              icon: <img alt="photoshop logo" src="/photoshop.png" />,
+            },
           ]}
           title="Required Tools Missing"
           description="Text and supporting text"
@@ -1188,14 +1325,20 @@ export default function AllComponents() {
         />
       )}
 
-      {isCompleteExperiencePopupOpen && <AddExperiencePopup onClose={() => setCompleteExperiencePopupOpen(false)} />}
+      {isCompleteExperiencePopupOpen && (
+        <AddExperiencePopup
+          onClose={() => setCompleteExperiencePopupOpen(false)}
+        />
+      )}
 
       {isRequireDontMatchPopupOpen && (
         <RequireDontMatchPopup
           onClose={() => setRequireDontMatchPopupOpen(false)}
         />
       )}
-      {isApplyCancelPopupOpen && <ApplyCancelPopup onClose={() => setApplyCancelPopupOpen(false)} />}
+      {isApplyCancelPopupOpen && (
+        <ApplyCancelPopup onClose={() => setApplyCancelPopupOpen(false)} />
+      )}
     </div>
   );
 }

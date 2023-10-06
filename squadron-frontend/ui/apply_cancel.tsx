@@ -39,6 +39,7 @@ const ButtonContainer = styled.div`
     width: 100%;
     margin-top: 24px;
     margin-bottom: 12px;
+    gap: 12px;
 `;
 
 const Icon = styled.div`
@@ -55,10 +56,9 @@ const ApplyCancelPopup: React.FC<ApplyCancelProps> = ({
 }) => {
     return (
         <PopupComponent 
-            onClose={onClose}  
-            width="30%" 
-            maxHeightPercent={0.3} 
-            minHeight="150px" 
+            onClose={onClose} 
+            width="400px" 
+            maxHeightPercent={0.1}
         >
             <ContentContainer>
                 <Icon><Image src={cancelIcon} alt="Cancel" width={48} height={48} /></Icon>

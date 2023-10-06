@@ -3,52 +3,86 @@ import PopupComponent from "./popup";
 import styled from "styled-components";
 import CustomTextarea from "./customtextarea";
 import CustomButton from "./custom-button";
-
+import {
+  basewhite,
+  gray200,
+  gray300,
+  gray600,
+  gray700,
+  primary600,
+  regularFontSize,
+  titleFontSize,
+  regularFontWeight,
+  mediumFontWeight,
+  regularLineHeight,
+  largeLineHeight,
+  titleFontWeight,
+} from "@/styles/reuseParams";
 
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    padding: 5% 5%;
+
 `;
 
-const Title = styled.h1`
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin-bottom: 2%;
-`;
-
-const Description = styled.p`
-    margin-bottom: 3%;
-    color: #4D5761;
-`;
-
-const Divider = styled.hr`
-    width: 100%; 
-    margin-bottom: 3%;
-`;
-
-const InputContainer = styled.div`
+const PopupHeader = styled.div`
+    align-items: flex-start;
+    align-self: stretch;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    padding: 24px 24px 0px 24px;
+    gap: 16px; 
+    margin-bottom: 24px;
 `;
 
-const InputRow = styled.div`
+const PopupBody = styled.div`
+    padding: 16px 24px 0px 24px;
+    gap: 20px;
+    overflow-y: auto;
+    width: 100%;  
+   
+`;
+
+const PopupFooter = styled.div`
     display: flex;
-    justify-content: space-between; 
+    justify-content: flex-end;
     width: 100%;
+    padding:32px 0px 0px 0px;
+    
+`;
+
+const Title = styled.div`
+    font-weight: 600;
+    font-size: 18px;
+    line-height: ${largeLineHeight};
+`;
+
+const Description = styled.div`
+    color: ${gray600};
+    font-weight: ${regularFontWeight};
+    font-size: ${regularFontSize};
+    line-height: ${regularLineHeight};
+`;
+
+const Divider = styled.div`
+    width: 100%;
+    height: 1px;
+    background-color: #e0e0e0;
 `;
 
 const ButtonContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     & > button:not(:last-child) {
-      margin-right: 8px;
+      margin-right: 12px;
     }
-    margin-top: 5%;
     width: 100%;
+    padding: 0px 24px 24px 24px;
 `;
 
 interface AboutMeProps {
@@ -65,38 +99,43 @@ const AboutMe: React.FC<AboutMeProps> = ({ onClose }) => {
   };
 
   return (
-    <PopupComponent onClose={onClose} minWidth="640px" minHeight="367px">
+    <PopupComponent onClose={onClose}
+    width="640px"
+    maxHeightPercent={0.1}>
       <Container>
-        <Title>About me</Title>
-        <Description>Description of this screen</Description>
+        <PopupHeader>
+          <Title>About me</Title>
+          <Description>Description of this screen</Description>
+        </PopupHeader>
         <Divider />
-        <InputRow>
-        <InputContainer>
+        <PopupBody>
             <CustomTextarea 
-              label="About me"
-              borderStyle="1px solid #D2D6DB" 
-              width="640px" 
-              height="118px" 
-              showHintText={false}       
+                label="About me"
+                borderStyle="1px solid #D2D6DB" 
+                width="100%" 
+                height="80%" 
+                showHintText={false}       
+            />
+        </PopupBody>
+            
+        <PopupFooter>
+            <ButtonContainer>
+              <CustomButton
+                label="Cancel"
+                backgroundColor="#FFFFFF"
+                textColor="#384250"
+                borderColor="#D2D6DB" 
+                onClick={onClose}
               />
-        </InputContainer>
-        </InputRow> 
-        <ButtonContainer>
-          <CustomButton
-            label="Cancel"
-            backgroundColor="#FFFFFF"
-            textColor="#384250"
-            borderColor="#D2D6DB" 
-            onClick={onClose}
-          />
-          <CustomButton
-            label="Update"
-            backgroundColor="#4B48EC"
-            textColor="#FFFFFF"
-            borderColor="#4B48EC"
-            onClick={handleUpdateClick} 
-          />         
-        </ButtonContainer>
+              <CustomButton
+                label="Update"
+                backgroundColor="#4B48EC"
+                textColor="#FFFFFF"
+                borderColor="#4B48EC"
+                onClick={handleUpdateClick} 
+              />         
+            </ButtonContainer>
+        </PopupFooter>
       </Container>
     </PopupComponent>
   );

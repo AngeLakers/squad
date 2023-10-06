@@ -42,75 +42,41 @@ const ProfileLink = styled(Link)`
   color: #6c5fff;
 `;
 
-const PersonInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 16px 24px 16px 0px;
-  gap: 4px;
-  flex: 1;
+const ViewApplicationButton = styled.div`
+  float: right;
+  padding-right: 16px;
 `;
 
-const PersonTitle = styled.div`
+const StateSelection = styled.select`
+  padding: 10px 14px 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d2d6db;
+  background-color: #ffffff;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
   color: #111927;
+  gap: 8px;
 `;
 
-const InfoContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-`;
-
-const InfoRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
-`;
-
-const InfoIcon = styled.div`
-  width: 16px;
-  height: 16px;
-`;
-
-const InfoContent = styled.div`
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: #4d5761;
-`;
-
-const ViewApplicationButton = styled.div`
-  float: right;
-  padding-right: 16px;
-`;
-
-interface CustomSquadPerson {
+interface SquadPersonBookProps {
   avatarSrc: string;
   name: string;
   profileLink: string;
   title: string;
-  rate: string;
-  hoursPerWeek: string;
-  location: string;
-  availability: string;
+  state: "viewing" | "interviewing" | "interviewed";
 }
 
-const SquadPerson: React.FC<CustomSquadPerson> = ({
+const SquadPersonBook: React.FC<SquadPersonBookProps> = ({
   avatarSrc,
   name,
   profileLink,
   title,
-  rate,
-  hoursPerWeek,
-  location,
-  availability,
+  state,
 }) => {
+  const isButtonDisabled = state === "interviewed";
   return (
     <tr>
       <td>
@@ -123,21 +89,22 @@ const SquadPerson: React.FC<CustomSquadPerson> = ({
         </PersonName>
       </td>
       <td>
-        <RoleInfo
-          title={title}
-          rate={rate}
-          hoursPerWeek={hoursPerWeek}
-          location={location}
-          availability={availability}
-        />
+        <RoleInfo title={title} />
+      </td>
+      <td>
+        <StateSelection defaultValue={state}>
+          <option value="viewing">Viewing application</option>
+          <option value="interviewing">Interviewing</option>
+          <option value="interviewed">Interviewed</option>
+        </StateSelection>
       </td>
       <td>
         <ViewApplicationButton>
-          <CustomButton label="View Application" preset="outlined" />
+          <CustomButton label="Book Call" preset="default" />
         </ViewApplicationButton>
       </td>
     </tr>
   );
 };
 
-export default SquadPerson;
+export default SquadPersonBook;
