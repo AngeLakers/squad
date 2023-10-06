@@ -10,6 +10,7 @@ import mobilePhoneImage from '../../public/mobile-phone.png';
 import marketingImage from '../../public/marketing.png';
 import growthImage from '../../public/growth.png';
 import dataImage from '../../public/data.png';
+import CustomButton from '@/ui/custom-button';
 
 export default function CreateProjectComponent() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function CreateProjectComponent() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={() => setModalOpen(true)}>Create project</Button>
+      <CustomButton label="Create project" preset="default" onClick={() => setModalOpen(true)}/>
 
       {isModalOpen && (
         <SquadCustom

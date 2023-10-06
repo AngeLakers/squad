@@ -8,7 +8,6 @@ import CustomButton from "@/ui/custom-button";
 import Footer from '@/ui/footer';
 
 const Container = styled.div`
-
   margin-bottom: 100px;
 `;
 
@@ -22,28 +21,6 @@ const Text = styled.p`
   margin: 32px 0; 
   font-size: 24px;
 `;
-
-// const LeftButton = styled.button`
-
-//   color: black;
-// `;
-
-// const RightButtonGroup = styled.div`
-//   display: flex;
-//   margin-right: 14vw;
-//   gap: 80px;
-//   color: black;
-// `;
-
-// const EditButton = styled.button`
-// border: 1px solid #D2D6DB;
-// border-radius: 8px;
-// padding: 10px 18px;
-// `;
-
-// const SaveButton = styled.button`
-// color: #1B18E4
-// `;
 
 const Preview: React.FC = () => {
   const handleBackClick = () => {

@@ -11,12 +11,23 @@ import SquadSurveySwap from '@/ui/squad-surveyswap';
 import EditProjPopup from '@/ui/editproj-popup';
 import editProjImage from '@/public/edit-proj.png';
 import Image from 'next/image';
+import CustomProjectHeader from '@/ui/custom-project-header';
 
 const Container = styled.div`
     margin-left: 8vw;
     margin-right: 8vw;
     margin-bottom: 100px;
 `;
+
+const OutsideContainer = styled.div`
+    margin-bottom: 100px;
+`;
+
+const Header = styled.div`
+    margin-left: 8vw;
+    margin-right: 8vw;
+`;
+
 
 const SquadContainer = styled.div`
     display: flex;
@@ -31,6 +42,7 @@ const Text = styled.p`
 `;
 
 const ButtonContainer = styled.div`
+    padding-top: 32px;
     display: flex;
     margin-bottom: 40px;
 `;
@@ -45,10 +57,12 @@ const NewButtonContainer = styled.div`
 `;
 
 const TabButton = styled.button<{ active: boolean }>`
-    margin-right: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 16px;
     border: none;
-    border-bottom: ${({ active }) => (active ? "2px solid #1B18E4" : "none")};
-    color: ${({ active }) => (active ? "#1B18E4" : "#6C737F")};
+    border-bottom: ${({ active }) => (active ? "2px solid #6941C6" : "none")};
+    color: ${({ active }) => (active ? "#6941C6" : "#667085")};
     background-color: transparent;
     cursor: pointer;
 `;
@@ -83,9 +97,30 @@ const ProjectHub: React.FC = () => {
     const showSquad = activeTab === "Squad";
     const [editprojPopupOpen, setEditprojPopupOpen] = useState(false);
     return (
+        <OutsideContainer>
+            <Header><SimpleHeader /></Header>
+    
+        <CustomProjectHeader
+          backgroundColor="#0B0F00"
+          avatarImagePath="/google.png"
+          avatarHeight={"89px"}
+          avatarWidth={"89px"}
+          title1="Google"
+          title2="SurveySwap"
+          title3="Posted: 3 September, 2022"
+          button={{
+            isVisible: false,
+          }}
+          shareIcon={{
+            isVisible: false,
+          }}
+          starIcon={{
+            isVisible: false,
+          }}
+        />
+
     <Container>
-        <SimpleHeader />
-        <Text>Waiting for Chelsea to seperate the below component</Text>
+        
         <ButtonContainer>
         <TabButton
             active={showProjectDetails}
@@ -125,6 +160,7 @@ const ProjectHub: React.FC = () => {
         </NewButtonContainer>
         
         <ProjectProfile
+            showHeader={false}
             projectLogoLink='/icon/projectLogo.svg'
             projectName='THIS IS PROJECT NAME'
             projectPostDate='1 Jan, 2023'
@@ -180,6 +216,7 @@ const ProjectHub: React.FC = () => {
         )}
 
     </Container>
+    </OutsideContainer>
     );
 };
 

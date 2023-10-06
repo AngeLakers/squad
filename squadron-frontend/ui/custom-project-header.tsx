@@ -26,7 +26,7 @@ const TitleAndAvatarSlot = styled.div`
     position: relative;
     display:flex;
 `
-const CustomProjectHeaderContainer = styled.div`
+const CustomProjectHeaderContainer = styled.div<{ bgColor?: string }>`
     align-items: flex-start;
     align-self: stretch;
     display: flex;
@@ -36,6 +36,7 @@ const CustomProjectHeaderContainer = styled.div`
     padding: 24px 32px;
     position: relative;
     width: 100%;
+    background-color: ${({ bgColor }) => bgColor || 'transparent'};
 `
 const ButtonSlot = styled.div`
     align-items: center;
@@ -70,7 +71,7 @@ const HeaderTitle = styled.div`
     position: relative;
 `
 const Titles = styled.div`
-    color: ${gray900};
+    color: white;
     flex: 1;
     font-family: ${fontFamily};
     font-size: ${titleFontSize}
@@ -82,7 +83,7 @@ const Titles = styled.div`
     white-space: nowrap;
 `
 const ProjectName = styled.div`
-    color: ${gray900};
+    color: white;
     flex: 1;
     font-family: ${fontFamily};
     font-size: ${xxlargeFontSize};
@@ -94,7 +95,7 @@ const ProjectName = styled.div`
     white-space: nowrap;
 `
 const ProjectPostDate = styled.div`
-    color: ${gray900};
+    color: white;
     font-family: ${fontFamily};
     font-size: ${mediumFontSize};
     font-weight: ${regularFontWeight};
@@ -107,6 +108,7 @@ const ProjectPostDate = styled.div`
 `
 interface CustomProjectHeaderProps {
     backgroundImage?: string; // Prop for background image
+
 }
 
 interface ButtonProp {
@@ -126,6 +128,7 @@ interface IconProps {
 
 interface CustomProjectHeaderProps {
     backgroundImage?: string;
+    backgroundColor?: string;
     avatarHeight?: string;
     avatarWidth?: string;
     avatarImagePath?: string;
@@ -139,6 +142,7 @@ interface CustomProjectHeaderProps {
 
 const CustomProjectHeader: React.FC<CustomProjectHeaderProps> = ({
     backgroundImage,
+    backgroundColor,
     avatarImagePath,
     avatarHeight,
     avatarWidth,
@@ -156,7 +160,7 @@ const CustomProjectHeader: React.FC<CustomProjectHeaderProps> = ({
         starIcon?.onClick?.();
     };
     return (
-        <CustomProjectHeaderContainer style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <CustomProjectHeaderContainer style={{ backgroundImage: `url(${backgroundImage})` } } bgColor={backgroundColor}>
             <TitleAndAvatarSlot>
                 <HeaderLogoContainer>
                     <img src={avatarImagePath} alt="avatar" height={avatarHeight} width={avatarWidth} />

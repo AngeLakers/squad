@@ -8,6 +8,7 @@ import CollectingBar from '@/ui/collecting-bar';
 import SquadSurveySwap from '@/ui/squad-surveyswap';
 import InfoBar from '@/ui/info-bar';
 import { AlertSVG} from "@/ui/svgs";
+import CustomProjectHeader from '@/ui/custom-project-header';
 
 const Container = styled.div`
     margin-left: 10vw;
@@ -22,23 +23,36 @@ const SquadContainer = styled.div`
     padding-top:48px;
 `;
 
-const Text = styled.p`
-    margin: 32px 0; 
-    font-size: 24px;
+const OutsideContainer = styled.div`
+    margin-bottom: 100px;
+`;
+
+const Header = styled.div`
+    margin-left: 8vw;
+    margin-right: 8vw;
 `;
 
 const ButtonContainer = styled.div`
     display: flex;
     margin-bottom: 40px;
+    padding-top: 32px;
 `;
 
-const TabButton = styled.button<{ active: boolean }>`
-    margin-right: 20px;
+const TabButton = styled.button<{ active?: boolean }>`
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 16px;
     border: none;
-    border-bottom: ${({ active }) => (active ? "2px solid #1B18E4" : "none")};
-    color: ${({ active }) => (active ? "#1B18E4" : "#6C737F")};
+    padding-bottom: 12px;
+    border-bottom: ${({ active }) => (active ? "2px solid #6941C6" : "none")};
+    color: ${({ active }) => (active ? "#6941C6" : "#667085")};
     background-color: transparent;
     cursor: pointer;
+`;
+
+const InactiveTabButton = styled(TabButton)`
+    color: #6C737F;
+    opacity: 20%;
 `;
 
 const rolesData = [
@@ -71,9 +85,27 @@ const C5ProjectHub: React.FC = () => {
     const showSquad = activeTab === "Squad";
 
     return (
+        <OutsideContainer>
+            <Header><SimpleHeader /></Header>
+    
+        <CustomProjectHeader
+          backgroundColor="#0B0F00"
+          avatarImagePath="/google.png"
+          avatarHeight={"89px"}
+          avatarWidth={"89px"}
+          title1="Google"
+          title2="SurveySwap"
+          button={{
+            isVisible: false,
+          }}
+          shareIcon={{
+            isVisible: false,
+          }}
+          starIcon={{
+            isVisible: false,
+          }}
+        />
     <Container>
-        <SimpleHeader />
-        <Text>Waiting for black header</Text>
         <ButtonContainer>
         <TabButton
             active={showProjectDetails}
@@ -87,12 +119,18 @@ const C5ProjectHub: React.FC = () => {
         >
             Squad
         </TabButton>
-        <TabButton
-            active={activeTab === "Settings"}
-            onClick={() => setActiveTab("Settings")}
-        >
-            Settings
-        </TabButton>
+        <InactiveTabButton>
+        Time tracking
+        </InactiveTabButton>
+        <InactiveTabButton>
+            Invoices
+        </InactiveTabButton>
+        <InactiveTabButton>
+            Contracts
+        </InactiveTabButton>
+        <InactiveTabButton>
+            Team pulse
+        </InactiveTabButton>
         </ButtonContainer>
 
         {showSquad && (
@@ -113,6 +151,7 @@ const C5ProjectHub: React.FC = () => {
         )}
 
     </Container>
+    </OutsideContainer>
     );
 };
 
