@@ -156,7 +156,7 @@ export function Hometable2() {
     const router = useRouter();
 
     const handleNavigation = () => {
-        router.push('/t5_proj_apply/application_apply'); // 你想要导航到的路径
+        router.push('/t5_proj_apply/application_apply');
     };
 
 

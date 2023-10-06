@@ -4,7 +4,6 @@ import {CloseIcon} from "next/dist/client/components/react-dev-overlay/internal/
 
 import Image from 'next/image';
 import React from "react";
-import {Link} from "react-router-dom";
 import {useRouter} from "next/navigation";
 
 
@@ -168,11 +167,7 @@ const NotificationMessage: React.FC<NotificationProps & { onClose: () => void }>
         router.push(linkUrl);
     };
 
-    const handleNotificationClick = () => {
-        if (linkUrl) {
-            window.location.href = linkUrl;
-        }
-    };
+
 
     return (
         <Notification onClick={handleNavigation}>
