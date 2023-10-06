@@ -14,6 +14,7 @@ const Nav = styled.nav`
   border-bottom: 1px solid #f3f4f6;
   position: relative;
   width: 100%;
+  background-color: white;
 `;
 
 const NavRow = styled.div`

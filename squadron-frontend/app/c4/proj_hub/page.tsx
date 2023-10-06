@@ -119,7 +119,7 @@ const ProjectHub: React.FC = () => {
                     cancelButtonText="Cancel"
                     confirmButtonText="Confirm"
                     icon={<Image key="editProjImage" src={editProjImage} alt="Edit Project Icon" width="57" height="57" />}
-                    button2Link={"/c4/proj_detail"}
+                    button2Link={"/c4/proj_detail_custom"}
                 />
             )}
         </NewButtonContainer>

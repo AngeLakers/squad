@@ -2,11 +2,14 @@
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 import styled from "styled-components";
-import { Container } from "@mui/joy";
 import ConfirmDetail from "@/ui/apply-role-confirm-details";
 import Questionaire from "@/ui/apply-role-answer-question";
 import RoleDetail from "@/ui/apply-role-detail-card";
 import UploadFile from "@/ui/apply-role-upload-file";
+import Footer from "@/ui/footer";
+import ApplyCancelPopup from "@/ui/apply_cancel";
+import { useState } from "react";
+
 import {
     gray900,
     gray200,
@@ -16,15 +19,26 @@ import {
     xxlargeLineHeight,
     basewhite
 } from "@/styles/reuseParams";
+import { SimpleHeader } from "@/ui/simple-header";
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    background-color: #F9FAFB;
+`
 
 const ApplyRoleContainer = styled.div`
-    width: 70%;
+    width: 80%;
     box-sizing: border-box;
     display: flex;
-    // border: 2px solid black;
+    gap: 32px;
     position: relative;
     flex-direction: column;
     height: fit-content;
+    margin-bottom: 20%;
 `
 const ApplyRoleTitle = styled.div`
     font-family: ${fontFamily};
@@ -86,24 +100,46 @@ const UploadContainer = styled.div`
 `
 
 export default function Home() {
-    return (
-        <ApplyRoleContainer>
-            <ApplyRoleTitle>
-                <div> Apply to this Role</div>
-            </ApplyRoleTitle>
-            <RoleDetailsContainer>
-                <RoleDetail />
-            </RoleDetailsContainer>
-            <ConfirmDetailContainer>
-                <ConfirmDetail />
-            </ConfirmDetailContainer>
-            <QuestionaireContainer>
-                <Questionaire />
-            </QuestionaireContainer>
-            <UploadContainer>
-                <UploadFile />
-            </UploadContainer>
 
-        </ApplyRoleContainer>
+    const [isCancelPopupVisible, setIsCancelPopupVisible] = useState(false);
+    const openCancelPopup = () => {
+        setIsCancelPopupVisible(true);
+    }
+
+    return (
+        <Container>
+            <ApplyRoleContainer>
+                <ApplyRoleTitle>
+                    <div> Apply to this Role</div>
+                </ApplyRoleTitle>
+                <RoleDetailsContainer>
+                    <RoleDetail />
+                </RoleDetailsContainer>
+                <ConfirmDetailContainer>
+                    <ConfirmDetail />
+                </ConfirmDetailContainer>
+                <QuestionaireContainer>
+                    <Questionaire />
+                </QuestionaireContainer>
+                <UploadContainer>
+                    <UploadFile />
+                </UploadContainer>
+
+            </ApplyRoleContainer>
+            <Footer 
+                leftButtonLabel="Cancel"
+                onLeftClick={() => setIsCancelPopupVisible(true)}
+                rMiddleButtonLabel="Save as draft"
+                rRightButtonLabel="Apply"
+                rightLink="application_sent"
+                isRLeftButtonVisible={false}
+                isButtonDisabled={false}  
+            />
+    
+        {isCancelPopupVisible && (
+        <ApplyCancelPopup onClose={() => setIsCancelPopupVisible(false)} />
+      )}
+        </Container>
+        
     );
 }

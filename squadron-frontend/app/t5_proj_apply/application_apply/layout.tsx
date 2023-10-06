@@ -5,7 +5,7 @@ import { MainNav } from "@/ui/main-nav";
 import { Container } from "@mui/joy";
 import styled from "styled-components";
 import {SimpleHeader} from "@/ui/simple-header";
-import {SubmitCancelFooter} from "@/ui/submit-form-footer";
+
 
 const PageContainer = styled.div`
     display: flex;
@@ -19,10 +19,11 @@ const MainContent = styled.div`
     position: relative;
     background-color: #F9FAFB;
 `
+/*
 export const metadata: Metadata = {
     title: "Squadron",
     description: "Squadron frontend",
-};
+};*/
 
 export default function Layout({
     children,
@@ -35,7 +36,7 @@ export default function Layout({
             <MainContent>
                 {children}
             </MainContent>
-            <SubmitCancelFooter />
+            
         </PageContainer>
 
     );

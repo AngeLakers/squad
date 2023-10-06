@@ -3,8 +3,9 @@ import styled from "styled-components";
 import CustomButton from "./custom-button";
 import DropdownButton from "./dropdown-button";
 import { SquadSVG, VerticalDotsSVG, TickSVG } from "./svgs";
-import CustomBadge from "./custom-badge";
-import SquadTable from "./squad-table";
+import CustomBadge, { PresetTypes } from "./custom-badge";
+import SquadTable, { PersonData } from "./squad-table";
+import ShowMoreText from "./text-showmore";
 
 const mockMenuItems = [
   [{ menu: "View profile" }, { menu: "My Work " }],
@@ -43,6 +44,12 @@ const SquadContainer = styled.div`
 
 const SquadHeader = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+const Heading = styled.div`
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -67,40 +74,104 @@ const ButtonContainer = styled.div`
   gap: 24px;
 `;
 
-interface CustomSquadCard {}
+interface SquadCardProps {
+  badgeTitle?: string;
+  badgeColor?: PresetTypes;
+  squadTitle: string;
+  squadDescription?: string;
+  customBadges?: React.ReactNode[];
+  buttonPreset?: ButtonContainerPresets;
+  type?: "book" | "view";
+  data: Array<PersonData>;
+  icon?: React.ReactNode;
+}
 
-const SquadCard: React.FC<CustomSquadCard> = ({}) => {
+const SquadCard: React.FC<SquadCardProps> = ({
+  badgeTitle,
+  badgeColor,
+  customBadges,
+  squadTitle,
+  squadDescription,
+  buttonPreset = ButtonContainerPresets.DEFAULT,
+  icon = <SquadSVG />,
+  type,
+  data,
+}) => {
   return (
     <Card>
       <MatchContainer>
-        <CustomBadge
-          preset="green"
-          icon={<TickSVG />}
-          label="90% Great match"
-        />
+        {customBadges ? (
+          customBadges
+        ) : (
+          <CustomBadge
+            preset={badgeColor}
+            icon={<TickSVG preset={badgeColor} />}
+            label={badgeTitle || ""}
+          />
+        )}
       </MatchContainer>
       <Divider />
       <SquadContainer>
         <SquadHeader>
-          <TitleContainer>
-            <SquadSVG />
-            <SquadTitle>Suggested Squad #2</SquadTitle>
-          </TitleContainer>
-          <ButtonContainer>
-            <CustomButton label="Meet Squad" preset="outlined" />
-            <CustomButton label="Hire Squad" />
-            <DropdownButton
-              label={<VerticalDotsSVG />}
-              preset="outlined"
-              menuItems={mockMenuItems}
+          <Heading>
+            <TitleContainer>
+              {icon && icon}
+              <SquadTitle>{squadTitle}</SquadTitle>
+            </TitleContainer>
+            <ButtonContainerComponent preset={buttonPreset} />
+          </Heading>
+          {squadDescription && (
+            <ShowMoreText
+              text={squadDescription}
+              showMoreLength={300}
+              fontSize={"14px"}
+              fontColor={"#4D5761"}
+              lineHeight={"20px"}
+              fontWeight={400}
             />
-          </ButtonContainer>
+          )}
         </SquadHeader>
 
-        <SquadTable />
+        <SquadTable type={type} data={data} />
       </SquadContainer>
     </Card>
   );
 };
 
 export default SquadCard;
+
+export enum ButtonContainerPresets {
+  DEFAULT,
+  EMPTY,
+}
+
+interface ButtonContainerProps {
+  preset: ButtonContainerPresets;
+}
+
+const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
+  preset,
+}) => {
+  const renderButtons = () => {
+    switch (preset) {
+      case ButtonContainerPresets.DEFAULT:
+        return (
+          <>
+            <CustomButton label="Meet Squad" preset="outlined" />
+            <CustomButton label="Hire Squad" preset="default" />
+            <DropdownButton
+              label={<VerticalDotsSVG />}
+              preset="outlined"
+              menuItems={mockMenuItems}
+            />
+          </>
+        );
+      case ButtonContainerPresets.EMPTY:
+        return null;
+      default:
+        return null;
+    }
+  };
+
+  return <ButtonContainer>{renderButtons()}</ButtonContainer>;
+};

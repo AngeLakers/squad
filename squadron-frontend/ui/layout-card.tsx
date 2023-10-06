@@ -15,6 +15,8 @@ const Card = styled.div`
   border-radius: 12px;
   gap: 24px;
   flex: 1;
+  background-color: #ffffff;
+  width: 100%;
 `;
 
 const CardHeader = styled.div`
