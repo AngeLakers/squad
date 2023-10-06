@@ -1,6 +1,6 @@
 'use client'
 import styled from "styled-components";
-import {CloseIcon} from "next/dist/client/components/react-dev-overlay/internal/icons/CloseIcon";
+
 
 import Image from 'next/image';
 import React from "react";
@@ -15,7 +15,7 @@ const NotificationBoxWrapper = styled.div`
   margin: 0 !important;
   border-radius: 0.75rem;
   background-color: #fff;
-  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
   border: 1px solid #e5e7eb;
   box-sizing: border-box;
 
