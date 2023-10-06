@@ -61,9 +61,10 @@ const viewData: Array<PersonData> = [
 ];
 
 const Container = styled.div`
-  margin-left: 10vw;
-  margin-right: 10vw;
-  margin-bottom: 100px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-bottom: 88px;
+    margin-top: 88px;
 `;
 
 const OutsideContainer = styled.div`
@@ -75,40 +76,34 @@ const Header = styled.div`
     margin-right: 8vw;
 `;
 
-
-const Text = styled.p`
-  margin: 32px 0;
-  font-size: 24px;
-`;
-
 const SuggestedSquads = styled.div`
-  margin-bottom: 48px;
+    margin-bottom: 48px;
 `;
 
 const SquadCardDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 `;
 
 const Title = styled.h2`
-  font-size: 30px;
-  font-weight: 600;
-  color: #111927;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  margin-bottom: 8px;
+    font-size: 30px;
+    font-weight: 600;
+    color: #111927;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 8px;
 `;
 
 const Description = styled.p`
-  font-size: 16px;
-  font-weight: 400;
-  color: #4d5761;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  margin-bottom: 48px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #4d5761;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 48px;
 `;
 
 export default function AllComponents() {
