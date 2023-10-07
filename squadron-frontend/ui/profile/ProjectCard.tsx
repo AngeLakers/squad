@@ -17,19 +17,16 @@ import {
     Grid,
     IconButton
 } from "@mui/material";
-import StarIcon from '@mui/icons-material/Star';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
 const StyledCard = styled(Card)`
   width: 63rem; /* 1008px / 16 = 63rem */
-  margin: 0.625rem; /* 10px / 16 = 0.625rem */
+  
   padding: 0.375rem; /* 5px / 16 = 0.3125rem */
   box-sizing: border-box;
-
+  
   border-radius: 0.75rem; /* 12px / 16 = 0.75rem */
   background-color: #fff;
-  border: 0.0625rem solid #e5e7eb; /* 1px / 16 = 0.0625rem */
   color: #384250;
   font-family: Inter;
   min-width: 63rem;
@@ -140,7 +137,7 @@ const SeeMoreButton = styled(Button)`
 `;
 
 const OpenRolesContainer = styled.div`
-  margin-top: 24px;
+  margin-top: 1.5rem; /* 24px / 16 = 1.5rem */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -178,7 +175,7 @@ const StyledChip = styled(Chip)`
   //mix-blend-mode: multiply;
   text-align: center;
   color: #0056b3 !important;
-\`  ;
+\`   ;
 
 `;
 

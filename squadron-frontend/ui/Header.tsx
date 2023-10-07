@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const  Head = styled.header`
 margin-bottom: 30px;
   font-size: 25px;
-  margin-left: 150px;
+
  font-weight: bold;
 
 `;
@@ -22,6 +22,13 @@ margin-left: 680px;
   padding: 10px 16px;
 
 `;
+
+const StyledDivider = styled(Divider)`
+  width: 1120px;
+
+`;
+
+
 const Buttonh2 =styled.button`
 margin-left: 10px;
   border-radius: 8px;
@@ -38,6 +45,7 @@ padding: 10px 16px;
 `;
 export function Header() {
     return (
+
         <>
 <Head>
   Hi, Taylor
@@ -60,7 +68,7 @@ export function Header() {
 
 
 </Head>
-<Divider sx={{ width:1130 , ml:19}}/>
+<StyledDivider/>
 </>
 
     )}
