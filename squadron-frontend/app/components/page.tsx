@@ -75,7 +75,20 @@ import CustomProjectHeader from "@/ui/custom-project-header";
 import RequireDontMatchPopup from "@/ui/require-dont-match";
 import ApplyCancelPopup from "@/ui/apply_cancel";
 import BuildApplySquad from "@/ui/build-apply-squad";
+const Display=styled.div`
+display: flex;
+margin-top: 50px;
+align-items: center;
+justify-content: center;
+flex-direction: row;
+`;
 
+const Displayy=styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: row;
+`;
 const bookData: Array<PersonData> = [
   {
     avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
@@ -935,17 +948,29 @@ export default function AllComponents() {
         createdBy="Bojia Zhang"
         description="the components in homescreen"
       >
-      <Topbar1></Topbar1>
+     <Displayy>
+    <Topbar1></Topbar1>
+    </Displayy>
+
+
+    <Displayy>
     <Header></Header>
+    </Displayy>
+
     <Application></Application>
+
+    < Displayy>
     <Wallet></Wallet>
+    </Displayy>
+
 
     <Display>
      <Community> </Community>
     </Display>
+
     <Display>
     <Community2>  </Community2>
-     </Display>
+    </Display>
 
       </ComponentWrapper>
 
