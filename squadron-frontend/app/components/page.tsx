@@ -75,6 +75,7 @@ import CustomProjectHeader from "@/ui/custom-project-header";
 import RequireDontMatchPopup from "@/ui/require-dont-match";
 import ApplyCancelPopup from "@/ui/apply_cancel";
 import BuildApplySquad from "@/ui/build-apply-squad";
+import AskQuestionPopup from "@/ui/ask-question-popup";
 
 const bookData: Array<PersonData> = [
   {
@@ -225,7 +226,7 @@ import SendOffer from "@/ui/send-offer-popup";
 
 import HorizontalTabs from "@/ui/horizontal-tabs";
 import {NotificationProps} from "@/ui/notification-message";
-import BookInterviewB from "@/ui/book-interview-b";
+//import BookInterviewB from "@/ui/book-interview-b";
 
 import { PersonData } from "@/ui/squad-table";
 
@@ -451,6 +452,7 @@ export default function AllComponents() {
   const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] =
     useState(false);
   const [isApplyCancelPopupOpen, setApplyCancelPopupOpen] = useState(false);
+  const [isAskQuestionPopupOpen, setAskQuestionPopupOpen] = useState(false);
 
   const icons = [
     <Image
@@ -1306,6 +1308,7 @@ export default function AllComponents() {
           Apply Cancel Popup
         </Button>
       </ComponentWrapper>
+      
 
       {isModalOpen && (
         <SquadCustom
@@ -1330,19 +1333,28 @@ export default function AllComponents() {
 
 
 
-            <ComponentWrapper
-                filename="liveproject-card.tsx"
-                createdBy="Ne Liu"
-                description="T5 - Talent receives invitation for a role with a squad- live project card display"
-            >
-            <HorizontalTabs/>
+    <ComponentWrapper
+        filename="liveproject-card.tsx"
+        createdBy="Ne Liu"
+        description="T5 - Talent receives invitation for a role with a squad- live project card display"
+    >
+      <HorizontalTabs/>
+    </ComponentWrapper>
 
-
-
-
-            </ComponentWrapper>
-
-            <StyledH1>T3</StyledH1>
+           
+    <StyledH1>T4</StyledH1>
+    <ComponentWrapper
+        filename="ask-question-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T4 - Ask Question Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setAskQuestionPopupOpen(true)}
+        >
+          Ask Question Popup
+        </Button>
+    </ComponentWrapper>     
 
 
             {isModalOpen && (
@@ -1511,6 +1523,9 @@ export default function AllComponents() {
       )}
       {isApplyCancelPopupOpen && (
         <ApplyCancelPopup onClose={() => setApplyCancelPopupOpen(false)} />
+      )}
+      {isAskQuestionPopupOpen && (
+        <AskQuestionPopup onClose={() => setAskQuestionPopupOpen(false)} />
       )}
     </div>
   );
