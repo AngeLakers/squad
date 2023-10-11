@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { RateSVG, ClockSVG, LocationSVG, CalenderSVG } from "./svgs";
+import { RateSVG, ClockSVG, LocationSVG, CalenderSVG, FlashSVG } from "./svgs";
 
-const Role = styled.div`
+const Role = styled.div<{ hideTitle?: boolean }>`
   display: flex;
   flex-direction: column;
-  padding: 16px 24px 16px 0px;
+  padding: ${(props) => (props.hideTitle ? "0px" : "16px 24px 16px 0px")};
   gap: 4px;
   flex: 1;
 `;
@@ -37,73 +37,95 @@ const InfoIcon = styled.div`
   height: 16px;
 `;
 
-const InfoContent = styled.div`
-  font-size: 14px;
+const InfoContent = styled.div<{ fontColor?: string }>`
+  font-size: 16px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
-  color: #4d5761;
+  color: ${(props) => props.fontColor || "#4d5761"};
 `;
 
 export interface RoleInfoProps {
-  title: string;
+  title?: string;
   rate?: string;
+  rateColor?: string;
   hoursPerWeek?: string;
+  hoursPerWeekColor?: string;
   location?: string;
+  locationColor?: string;
   availability?: string;
+  availabilityColor?: string;
+  experience?: string;
+  experienceColor?: string;
+  hideTitle?: boolean;
 }
 
 const RoleInfo: React.FC<RoleInfoProps> = ({
+  hideTitle = false,
   title,
   rate,
+  rateColor,
   hoursPerWeek,
+  hoursPerWeekColor,
   location,
+  locationColor,
   availability,
-}) => {
-  const hasAdditionalInfo = rate || hoursPerWeek || location || availability;
-
-  return (
-    <Role>
-      <RoleTitle>{title}</RoleTitle>
-      {hasAdditionalInfo && (
-        <InfoContainer>
-          {rate && (
-            <InfoRow>
-              <InfoIcon>
-                <RateSVG />
-              </InfoIcon>
-              <InfoContent>{rate}</InfoContent>
-            </InfoRow>
-          )}
-          {hoursPerWeek && (
-            <InfoRow>
-              <InfoIcon>
-                <ClockSVG />
-              </InfoIcon>
-              <InfoContent>{hoursPerWeek}</InfoContent>
-            </InfoRow>
-          )}
-          {location && (
-            <InfoRow>
-              <InfoIcon>
-                <LocationSVG />
-              </InfoIcon>
-              <InfoContent>{location}</InfoContent>
-            </InfoRow>
-          )}
-          {availability && (
-            <InfoRow>
-              <InfoIcon>
-                <CalenderSVG />
-              </InfoIcon>
-              <InfoContent>{availability}</InfoContent>
-            </InfoRow>
-          )}
-        </InfoContainer>
-      )}
-    </Role>
-  );
-};
+  availabilityColor,
+  experience,
+  experienceColor,
+}) => (
+  <Role hideTitle={hideTitle}>
+    {!hideTitle && <RoleTitle>{title}</RoleTitle>}
+    {(rate || hoursPerWeek || location || availability || experience) && (
+      <InfoContainer>
+        {rate && (
+          <InfoRow>
+            <InfoIcon>
+              <RateSVG />
+            </InfoIcon>
+            <InfoContent fontColor={rateColor}>{rate}</InfoContent>
+          </InfoRow>
+        )}
+        {hoursPerWeek && (
+          <InfoRow>
+            <InfoIcon>
+              <ClockSVG />
+            </InfoIcon>
+            <InfoContent fontColor={hoursPerWeekColor}>
+              {hoursPerWeek}
+            </InfoContent>
+          </InfoRow>
+        )}
+        {location && (
+          <InfoRow>
+            <InfoIcon>
+              <LocationSVG />
+            </InfoIcon>
+            <InfoContent fontColor={locationColor}>{location}</InfoContent>
+          </InfoRow>
+        )}
+        {availability && (
+          <InfoRow>
+            <InfoIcon>
+              <CalenderSVG />
+            </InfoIcon>
+            <InfoContent fontColor={availabilityColor}>
+              {availability}
+            </InfoContent>
+          </InfoRow>
+        )}
+        {experience && (
+          <InfoRow>
+            <InfoIcon>
+              <FlashSVG />
+            </InfoIcon>
+            <InfoContent fontColor={experienceColor}>{experience}</InfoContent>
+          </InfoRow>
+        )}
+      </InfoContainer>
+    )}
+  </Role>
+);
 
 export default RoleInfo;
