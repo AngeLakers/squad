@@ -4,6 +4,7 @@ export const boxShadow = '0 1px 1px 1px #f5f5f5';
 
 export const gray200 = '#E5E7EB'
 export const gray300 = '#d2d6db';
+export const gray400 = '#9DA4AE';
 export const gray500 = '#6C737F';
 export const gray600 = '#475467';
 export const gray700 = '#384250';
