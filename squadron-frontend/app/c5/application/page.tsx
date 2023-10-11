@@ -141,6 +141,7 @@ export default function AllComponents() {
               squadTitle="Suggested Squad #1"
               type="view"
               data={viewData}
+              button1Link="/c5/individual_squad"
             />
             <SquadCard
               badgeTitle="Good Match 80%"

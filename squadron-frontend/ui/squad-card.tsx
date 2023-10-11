@@ -84,6 +84,7 @@ interface SquadCardProps {
   type?: "book" | "view";
   data: Array<PersonData>;
   icon?: React.ReactNode;
+  button1Link?: string;
 }
 
 const SquadCard: React.FC<SquadCardProps> = ({
@@ -96,6 +97,7 @@ const SquadCard: React.FC<SquadCardProps> = ({
   icon = <SquadSVG />,
   type,
   data,
+  button1Link,
 }) => {
   return (
     <Card>
@@ -118,7 +120,7 @@ const SquadCard: React.FC<SquadCardProps> = ({
               {icon && icon}
               <SquadTitle>{squadTitle}</SquadTitle>
             </TitleContainer>
-            <ButtonContainerComponent preset={buttonPreset} />
+            <ButtonContainerComponent preset={buttonPreset} button1Link={button1Link} />
           </Heading>
           {squadDescription && (
             <ShowMoreText
@@ -147,17 +149,20 @@ export enum ButtonContainerPresets {
 
 interface ButtonContainerProps {
   preset: ButtonContainerPresets;
+  button1Link?: string,
 }
 
 const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
   preset,
+  button1Link,
 }) => {
   const renderButtons = () => {
     switch (preset) {
       case ButtonContainerPresets.DEFAULT:
         return (
           <>
-            <CustomButton label="Meet Squad" preset="outlined" />
+            <a href={button1Link || "#"}>
+            <CustomButton label="Meet Squad" preset="outlined" /></a>
             <CustomButton label="Hire Squad" preset="default" />
             <DropdownButton
               label={<VerticalDotsSVG />}
