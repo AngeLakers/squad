@@ -21,6 +21,7 @@ const viewData: Array<PersonData> = [
     hoursPerWeek: "20-25h /week",
     location: "United States or Australia",
     availability: "Immediate",
+    onClick: () => (window.location.href = "/c5/profile"),
   },
   {
     avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
@@ -126,7 +127,10 @@ export default function AllComponents() {
           title1="Stir"
           title2="MVP for Serverless E-commerce Return Portal"
           button={{
-            isVisible: false,
+            isVisible: true,
+            text: "Build your own squad",
+            backgroundColor: "#D0FC4A",
+            textColor: "#384250",
           }}
           shareIcon={{
             isVisible: false,
@@ -161,50 +165,51 @@ export default function AllComponents() {
               />
             </SquadCardDiv>
           </SuggestedSquads>
-
-          <SuggestedSquads>
-            <Title>Pre-Formed Squads</Title>
-            <Description>
-              Squads that have worked together previously.
-            </Description>
-            <SquadCardDiv>
-              <SquadCard
-                badgeTitles={["Good Match 80%"]}
-                badgeColor="green"
-                squadTitle="Suggested Squad #1"
-                type="view"
-                data={viewData}
-              />{" "}
-              <SquadCard
-                badgeTitles={["Good Match 80%"]}
-                badgeColor="green"
-                squadTitle="Suggested Squad #1"
-                type="view"
-                data={viewData}
-              />
-              {hireSquadPopupOpen && (
-                <EditProjPopup
-                  onClose={() => setHireSquadPopupOpen(false)}
-                  title="Hiring squad"
-                  description="Once your start hiring a squad, you won’t be able to see the rest of squads suggested or squads that applied to the project"
-                  cancelButtonText="Cancel"
-                  confirmButtonText="Accept"
-                  icon={
-                    <Image
-                      key="hiringImage"
-                      src={hiringImage}
-                      alt="Hiring Squad Icon"
-                      width="32"
-                      height="44.8"
-                    />
-                  }
-                  //showDivider={false}
-                />
-              )}
-            </SquadCardDiv>
-          </SuggestedSquads>
-          <BuildApplySquad />
-        </Container>
+          
+        <SuggestedSquads>
+          <Title>Pre-Formed Squads</Title>
+          <Description>
+            Squads that have worked together previously.
+          </Description>
+          <SquadCardDiv>
+            <SquadCard
+              badgeTitles={["Good Match 80%"]}
+              badgeColor="green"
+              squadTitle="Suggested Squad #1"
+              type="view"
+              data={viewData}
+            />{" "}
+            <SquadCard
+              badgeTitles={["Good Match 80%"]}
+              badgeColor="green"
+              squadTitle="Suggested Squad #1"
+              type="view"
+              data={viewData}
+            />
+        {hireSquadPopupOpen && (
+        <EditProjPopup
+          onClose={() => setHireSquadPopupOpen(false)}
+          title="Hiring squad"
+          description="Once your start hiring a squad, you won’t be able to see the rest of squads suggested or squads that applied to the project"
+          cancelButtonText="Cancel"
+          confirmButtonText="Accept"
+          button2Link="/c5/proj_hub_send_offer"
+          icon={
+            <Image
+              key="hiringImage"
+              src={hiringImage}
+              alt="Hiring Squad Icon"
+              width="32"
+              height="44.8"
+            />
+          }
+          //showDivider={false}
+        />
+      )}
+          </SquadCardDiv>
+        </SuggestedSquads>
+        <BuildApplySquad />
+      </Container>
       </OutsideContainer>
     </>
   );
