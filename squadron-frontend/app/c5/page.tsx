@@ -67,7 +67,7 @@ const viewData: Array<PersonData> = [
     hoursPerWeek: "20-25h /week",
     location: "United States or Australia",
     availability: "Immediate",
-    onClick: () => router.push("/signup"),
+    onClick: () => (window.location.href = "/signup"),
   },
   {
     avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
