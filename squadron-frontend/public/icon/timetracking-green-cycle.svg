@@ -1,0 +1,17 @@
+<svg width="111" height="113" viewBox="0 0 111 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 7046">
+<circle id="Ellipse 119" cx="55" cy="56" r="47.6075" stroke="url(#paint0_angular_7207_291)" stroke-width="14.7849" stroke-linecap="round"/>
+<path id="Ellipse 118" d="M7.58984 57.1829C7.58984 83.6391 28.9045 105.086 55.1974 105.086C81.4903 105.086 102.805 83.6391 102.805 57.1829C102.805 30.7267 80.1103 8.09631 53.8174 8.09631" stroke="url(#paint1_angular_7207_291)" stroke-width="14.7849" stroke-linecap="round"/>
+<path id="Ellipse 132" d="M58.6447 8.39247C58.6447 12.4752 55.2026 15.7849 50.9566 15.7849C42.677 17.2634 43.2684 12.4752 43.2684 8.39247C43.2684 4.30972 37.3544 1.8871 50.9566 1C55.2026 1 58.6447 4.30972 58.6447 8.39247Z" fill="#0D1101"/>
+</g>
+<defs>
+<radialGradient id="paint0_angular_7207_291" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(54.7393 56.2607) rotate(-99.8025) scale(50.5244)">
+<stop offset="0.0240443" stop-color="#A0D909"/>
+<stop offset="1" stop-color="#0B0F00"/>
+</radialGradient>
+<radialGradient id="paint1_angular_7207_291" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(54.9717 57.4099) rotate(-99.7432) scale(43.9972 43.7412)">
+<stop stop-color="#A0D909"/>
+<stop offset="1" stop-color="#0B0F00"/>
+</radialGradient>
+</defs>
+</svg>

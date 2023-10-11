@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import {Card, CardContent, Box, SvgIcon, IconButton, Typography, Avatar} from '@mui/material';
+import {Card, CardContent, Box, SvgIcon, IconButton, Typography, Avatar, Icon} from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -17,11 +17,11 @@ const StyledCard = styled(Card)`
   background-color: #fff;
   border: 0.0625rem solid #e5e7eb;
 
-  font-family: Inter;
 
-  margin-left: 13rem;
+
+
   position: relative;
-  
+
   box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
   box-sizing: border-box;
   overflow: hidden;
@@ -31,10 +31,12 @@ const StyledCard = styled(Card)`
   justify-content: flex-start;
   text-align: left;
   font-size: 30px;
+ margin-left: 2rem;
+  margin-top: 3rem;
 
 
-  
-  
+
+
 `;
 
 const Header = styled(Box)`
@@ -44,11 +46,14 @@ const Header = styled(Box)`
   align-items: center;
   background-color: black;
   justify-content: space-between;
+
+
+
 `;
 
 const UserDetail = styled(Box)`
   width: 100%;
-  height: 8.5rem;
+height: auto  ;
   margin: 1.5rem 0;
   padding: 1.5rem 2rem;
   background-color: black;
@@ -63,14 +68,13 @@ const StyledAvatar = styled(Avatar)`
 `;
 
 const TextBox = styled(Box)`
-  width: 12.625rem;
-  height: 4.625rem;
-  margin: 1.5rem;
+  width: auto;
   padding: 1.5rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   color: white;
+  gap: 1.5rem;
 `;
 
 const NameText = styled(Typography)`
@@ -78,27 +82,43 @@ const NameText = styled(Typography)`
   line-height: 2.375rem;
   font-weight: 500;
   color: #fff;
+  flex-shrink: 0;
 `;
 
 const StyledIconButton = styled(IconButton)`
   font-size: 1rem;
 `;
 
-const VerifiedIcon = styled(CheckCircleIcon)`
+const VerifiedIcon = styled(Icon)`
   color: green;
   margin-left: 0.5rem;
+  width: 1.5rem;
+
+  height: 1.5rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-image: url('/profile-icon/Frame-Tick.svg ');
+
 `;
 
 const AddressText = styled(Typography)`
   font-size: 1rem;
   line-height: 1.5rem;
   color: #fff;
+
+  position: relative;
+
+
+  text-align: left;
 `;
 
-const LocationIcon = styled(LocationOnIcon)`
+const LocationIcon = styled(Icon)`
+  width: 1.5rem;
+  height: 1.5rem;
   font-size: 1.5rem;
   color: white;
   margin-right: 0.5rem;
+  background-image: url('/profile-icon/Frame-location.svg');
 `;
 
 const UserGraphic = styled(Box)`
@@ -108,21 +128,27 @@ const UserGraphic = styled(Box)`
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
+  background-image: url('/Lines.svg');
+
+  background-repeat: no-repeat;
+  background-position: right center;
+
 `;
 
-const ShareButton = styled(Box)`
+const ShareButton = styled.button`
   width: 1.5rem;
   height: 1.5rem;
   position: absolute;
   top: 1.5rem;
   right: 2rem;
   color: green;
+
 `;
 
 const Detail = styled(Box)`
   padding: 1.5rem 2rem;
   width: 60.5rem;
-  height: 19.5rem;
+  height: auto;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -136,13 +162,11 @@ const SocialLink = styled(Box)`
   justify-content: space-between;
   display: flex;
   gap: 3rem;
+  border-right: 1px solid #000;
+  padding-right: 1rem !important;
 `;
 
-const DivisoryLane = styled(Box)`
-  width: 0.125rem;
-  height: 19.5rem;
-  background-color: purple;
-`;
+
 
 const NameAndIcon = styled(Box)`
   width: 7.5rem;
@@ -215,7 +239,7 @@ const RightContent = styled(Box)`
   margin-left: 1.5rem;
   margin-right: 1.5rem;
   width: 40.6875rem;
-  height: 19.5rem;
+  height: auto;
   gap: 1rem;
   display: flex;
   flex-direction: column;
@@ -281,7 +305,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
 
                 <UserGraphic>
                     <ShareButton>
-                        <ShareIcon fontSize="small"/>
+                        <img src="/profile-icon/share-green.svg" alt="Share"/>
                     </ShareButton>
                 </UserGraphic>
             </Header>
@@ -303,7 +327,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
                                 </StyledIconButton>
                                 <TitleText>{number_projects_completed}</TitleText>
                                 <EndText>projects completed <br/>
-                                    <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <a href="https://www.google.com" target="_blank" rel="noopener noreferrer"
+                                       style={{textDecoration: 'none', color: 'inherit'}}>
                                         <SeeProjects>See more projects</SeeProjects>
                                     </a>
                                 </EndText>
@@ -318,7 +343,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
                             </TitlePart>
                         </Title>
                     </SocialLink>
-                    <DivisoryLane/>
+
 
                     <RightContent>
                         <AboutTitle variant="body1">About</AboutTitle>

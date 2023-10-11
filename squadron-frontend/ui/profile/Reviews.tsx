@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const StyledCard = styled(Card)`
   padding: 1rem;
-  margin: 1.6875rem;  
   width: 21rem;  
   height: auto;
   position: relative;

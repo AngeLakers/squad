@@ -99,6 +99,7 @@ interface CustomSquadPerson {
   hoursPerWeek: string;
   location: string;
   availability: string;
+  onClick?: () => void;
 }
 
 const SquadPerson: React.FC<CustomSquadPerson> = ({
@@ -110,6 +111,7 @@ const SquadPerson: React.FC<CustomSquadPerson> = ({
   hoursPerWeek,
   location,
   availability,
+  onClick,
 }) => {
   return (
     <tr>
@@ -133,7 +135,11 @@ const SquadPerson: React.FC<CustomSquadPerson> = ({
       </td>
       <td>
         <ViewApplicationButton>
-          <CustomButton label="View Application" preset="outlined" />
+          <CustomButton
+            label="View Application"
+            preset="outlined"
+            onClick={onClick}
+          />
         </ViewApplicationButton>
       </td>
     </tr>

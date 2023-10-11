@@ -32,7 +32,9 @@ import Skill from "@/ui/titled-badge";
 import AboutMe from "@/ui/about-me-popup";
 import CustomButton, { PresetTypes } from "@/ui/custom-button";
 import CustomBadge from "@/ui/custom-badge";
+
 import { AlertSVG, SquadSVG, StarSVG, TickSVG } from "@/ui/svgs";
+
 import InfoBar from "@/ui/info-bar";
 import SquadCard, { ButtonContainerPresets } from "@/ui/squad-card";
 import TalentSkills, { BadgeData } from "@/ui/talent-skills";
@@ -50,6 +52,21 @@ import portraitAImage from "@/public/portraitA.png";
 import SendOfferPopup from "@/ui/send-offer-popup";
 import LaunchMissionPopup from "@/ui/launch-mission";
 import launchMissionImage from "@/public/launch-mission.png";
+
+import {Community} from "@/ui/Community";
+import {Community2} from "@/ui/Community2";
+import {Application} from "@/ui/Application";
+import {Topbar1} from "@/ui/Topbar1";
+import {Wallet} from "@/ui/Wallet";
+import {Header} from "@/ui/Header";
+import {Hometable} from "@/ui/Hometable";
+import {Hometable2} from "@/ui/Hometable2";
+
+
+
+
+// import { PresetTypes } from "@/ui/custom-button";
+
 import RequiredMissingPopup from "@/ui/required-missing-popup";
 import LocationMissingPopup from "@/ui/location-missing-popup";
 import Spain from "@/public/Spain.png";
@@ -58,6 +75,7 @@ import CustomProjectHeader from "@/ui/custom-project-header";
 import RequireDontMatchPopup from "@/ui/require-dont-match";
 import ApplyCancelPopup from "@/ui/apply_cancel";
 import BuildApplySquad from "@/ui/build-apply-squad";
+import AskQuestionPopup from "@/ui/ask-question-popup";
 
 const bookData: Array<PersonData> = [
   {
@@ -205,36 +223,42 @@ import StepHeading from "@/ui/step-heading";
 import Heading from "@/ui/heading";
 import RatioButtonsTable from "@/ui/ratio-buttons-table";
 import SendOffer from "@/ui/send-offer-popup";
+
+import HorizontalTabs from "@/ui/horizontal-tabs";
+import {NotificationProps} from "@/ui/notification-message";
+//import BookInterviewB from "@/ui/book-interview-b";
+
 import { PersonData } from "@/ui/squad-table";
 
+
 const mockSkillsData: BadgeData[] = [
-  { label: "Roadmapping", icon: <StarSVG />, preset: "outlined_green" },
-  { label: "Vendor Management & Selection", preset: "outlined_grey" },
-  {
-    label: "Vendor Management & Selection",
-    icon: <StarSVG preset="grey" />,
-    preset: "outlined_grey",
-  },
-  {
-    label: "Vendor Management & Selection",
-    icon: <StarSVG preset="grey" />,
-    preset: "outlined_grey",
-  },
-  {
-    label: "Vendor Management & Selection",
-    icon: <StarSVG preset="grey" />,
-    preset: "outlined_grey",
-  },
-  {
-    label: "Vendor Management & Selection",
-    icon: <StarSVG preset="grey" />,
-    preset: "outlined_grey",
-  },
-  {
-    label: "Vendor Management & Selection",
-    icon: <StarSVG preset="grey" />,
-    preset: "outlined_grey",
-  },
+    {label: "Roadmapping", icon: <StarSVG/>, preset: "outlined_green"},
+    {label: "Vendor Management & Selection", preset: "outlined_grey"},
+    {
+        label: "Vendor Management & Selection",
+        icon: <StarSVG preset="grey"/>,
+        preset: "outlined_grey",
+    },
+    {
+        label: "Vendor Management & Selection",
+        icon: <StarSVG preset="grey"/>,
+        preset: "outlined_grey",
+    },
+    {
+        label: "Vendor Management & Selection",
+        icon: <StarSVG preset="grey"/>,
+        preset: "outlined_grey",
+    },
+    {
+        label: "Vendor Management & Selection",
+        icon: <StarSVG preset="grey"/>,
+        preset: "outlined_grey",
+    },
+    {
+        label: "Vendor Management & Selection",
+        icon: <StarSVG preset="grey"/>,
+        preset: "outlined_grey",
+    },
 ];
 const mockMenuItems = [
   [
@@ -288,6 +312,72 @@ const mockDocumentData = [
   { title: "name_of_the_archive6.pdf", size: "123k" },
 ];
 
+
+const notificationsData: NotificationProps[] = [
+    {
+        iconPath: "/icon/notification-suitcase-failed.svg",
+        linkUrl: "www.google.com",
+        messageInfo: {
+            message: "Your application has been rejected",
+            websiteName: "Google",
+            organizationName: "Surveyswap",
+
+        },
+
+    },
+
+    {
+        iconPath: "/icon/notification-suitcase-succeed.svg",
+        linkUrl: "www.google.com",
+        messageInfo: {
+            message: "Your application has been successful",
+            websiteName: "Google",
+            organizationName: "Surveyswap",
+
+        },
+
+
+    },
+    {
+        iconPath: "/icon/notification-add-friend.svg",
+        linkUrl: "www.google.com",
+        messageInfo: {
+            message: "Message 1",
+            websiteName: "Spotify",
+            organizationName: "Tech team",
+
+        },
+
+    },
+    {
+        iconPath: "/icon/notification-question.svg",
+        linkUrl: "www.google.com",
+        messageInfo: {
+            message: "You have been invited to an interview",
+            websiteName: "Google",
+            organizationName: "Google",
+
+        },
+
+    },
+    {
+        iconPath: "/icon/notification-puzzle.svg",
+        linkUrl: "www.google.com",
+        messageInfo: {
+            message: "New match for you!",
+            websiteName: "",
+            organizationName: "",
+
+
+        }
+
+
+    },
+
+
+];
+
+
 const StyledH1 = styled.h1`
   font-size: 2em;
   font-weight: bold;
@@ -303,12 +393,18 @@ const ComponentContainer = styled.div`
 `;
 
 interface ComponentWrapperProps {
-  filename: string;
-  createdBy: string;
-  description: string;
-  children: ReactNode;
-  usage?: string;
+    filename: string;
+    createdBy: string;
+    description: string;
+    children: ReactNode;
+    usage?: string;
 }
+
+  const Display=styled.div`
+margin-left:150px;
+display: flex;
+margin-top: 50px;
+`;
 
 const ComponentWrapper: React.FC<ComponentWrapperProps> = ({
   filename,
@@ -356,6 +452,7 @@ export default function AllComponents() {
   const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] =
     useState(false);
   const [isApplyCancelPopupOpen, setApplyCancelPopupOpen] = useState(false);
+  const [isAskQuestionPopupOpen, setAskQuestionPopupOpen] = useState(false);
 
   const icons = [
     <Image
@@ -554,11 +651,13 @@ export default function AllComponents() {
         createdBy="Becky Xu"
         description="C4 - Squad Presets"
       >
+
         <CustomButton
           preset="default"
           label="Create project"
           onClick={() => setModalOpen(true)}
         />
+
       </ComponentWrapper>
       <ComponentWrapper
         filename="video-upload.tsx"
@@ -827,6 +926,43 @@ export default function AllComponents() {
           content={<TalentDocuments documents={mockDocumentData} />}
         />
       </ComponentWrapper>
+
+
+
+
+      <StyledH1>T3</StyledH1>
+
+        <ComponentWrapper
+        filename="Application.tsx"
+        createdBy="Bojia Zhang"
+        description="the components in homescreen"
+      >
+      <Topbar1></Topbar1>
+    <Header></Header>
+    <Application></Application>
+    <Wallet></Wallet>
+
+    <Display>
+     <Community> </Community>
+    </Display>
+    <Display>
+    <Community2>  </Community2>
+     </Display>
+
+      </ComponentWrapper>
+
+    <ComponentWrapper
+        filename="Hometable2.tsx"
+        createdBy="Bojia Zhang"
+        description="the component of t5">
+        <Hometable>
+        </Hometable>
+
+    <Hometable2>
+</Hometable2>
+
+</ComponentWrapper>
+
 
       <StyledH1>T5</StyledH1>
       <ComponentWrapper
@@ -1172,6 +1308,7 @@ export default function AllComponents() {
           Apply Cancel Popup
         </Button>
       </ComponentWrapper>
+      
 
       {isModalOpen && (
         <SquadCustom
@@ -1193,6 +1330,54 @@ export default function AllComponents() {
           icons={icons}
         />
       )}
+
+
+
+    <ComponentWrapper
+        filename="liveproject-card.tsx"
+        createdBy="Ne Liu"
+        description="T5 - Talent receives invitation for a role with a squad- live project card display"
+    >
+      <HorizontalTabs/>
+    </ComponentWrapper>
+
+           
+    <StyledH1>T4</StyledH1>
+    <ComponentWrapper
+        filename="ask-question-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T4 - Ask Question Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setAskQuestionPopupOpen(true)}
+        >
+          Ask Question Popup
+        </Button>
+    </ComponentWrapper>     
+
+
+            {isModalOpen && (
+                <SquadCustom
+                    closeModal={() => {
+                        setModalOpen(false);
+                    }}
+                    title={"Squad Presets"}
+                    description={
+                        "Select a preset to see recommended role appear, or build your custom squad from scratch. Don’t worry, you can always add or remove roles in the next step."
+                    }
+                    options={[
+                        "Custom",
+                        "Web Platform",
+                        "Mobile App",
+                        "Marketing Website",
+                        "Growth",
+                        "Data",
+                    ]}
+                    icons={icons}
+                    link={"/signup"}
+                />
+            )}
 
       {editprojPopupOpen && (
         <EditProjPopup
@@ -1338,6 +1523,9 @@ export default function AllComponents() {
       )}
       {isApplyCancelPopupOpen && (
         <ApplyCancelPopup onClose={() => setApplyCancelPopupOpen(false)} />
+      )}
+      {isAskQuestionPopupOpen && (
+        <AskQuestionPopup onClose={() => setAskQuestionPopupOpen(false)} />
       )}
     </div>
   );
