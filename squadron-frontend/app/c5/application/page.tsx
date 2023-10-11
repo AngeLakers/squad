@@ -173,14 +173,14 @@ export default function AllComponents() {
           </Description>
           <SquadCardDiv>
             <SquadCard
-              badgeTitle="Good Match 80%"
+              badgeTitles={["Good Match 80%"]}
               badgeColor="green"
               squadTitle="Suggested Squad #1"
               type="view"
               data={viewData}
             />{" "}
             <SquadCard
-              badgeTitle="Good Match 80%"
+              badgeTitles={["Good Match 80%"]}
               badgeColor="green"
               squadTitle="Suggested Squad #1"
               type="view"
