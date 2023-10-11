@@ -60,9 +60,19 @@ const presets = {
     textColor: "#027A48",
     borderColor: "none",
   },
+  yellow: {
+    backgroundColor: "#FFFAEB",
+    textColor: "#B54708",
+    borderColor: "none",
+  },
   red: {
     backgroundColor: "#FFF4ED",
     textColor: "#B93815",
+    borderColor: "none",
+  },
+  blue: {
+    backgroundColor: "#F0F9FF",
+    textColor: "#026AA2",
     borderColor: "none",
   },
   grey: {
@@ -89,7 +99,9 @@ const presets = {
 
 export type PresetTypes =
   | "green"
+  | "yellow"
   | "red"
+  | "blue"
   | "grey"
   | "outlined_grey"
   | "outlined_green"

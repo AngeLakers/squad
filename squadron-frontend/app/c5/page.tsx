@@ -2,13 +2,59 @@
 import * as React from "react";
 import InfoBar from "@/ui/info-bar";
 import SquadCard from "@/ui/squad-card";
-import { AlertSVG, SquadSVG } from "@/ui/svgs";
+import { AlertSVG, SquadSVG, StarSVG } from "@/ui/svgs";
 import RatioButtonsTable from "@/ui/ratio-buttons-table";
 import CardLayout from "@/ui/layout-card";
 import Heading from "@/ui/heading";
 import StepHeading from "@/ui/step-heading";
 import { PersonData } from "@/ui/squad-table";
 import router from "next/router";
+import { ButtonContainerPresets } from "@/ui/squad-card";
+import { BadgeData } from "@/ui/talent-skills";
+
+const mockSkillsData: Array<BadgeData[]> = [
+  [
+    { label: "Roadmapping", icon: <StarSVG />, preset: "outlined_green" },
+    { label: "Vendor Management & Selection", preset: "outlined_grey" },
+    {
+      label: "Vendor Management & Selection",
+      icon: <StarSVG preset="grey" />,
+      preset: "outlined_grey",
+    },
+    {
+      label: "Vendor Management & Selection",
+      icon: <StarSVG preset="grey" />,
+      preset: "outlined_grey",
+    },
+    {
+      label: "Vendor Management & Selection",
+      icon: <StarSVG preset="grey" />,
+      preset: "outlined_grey",
+    },
+    {
+      label: "Vendor Management & Selection",
+      icon: <StarSVG preset="grey" />,
+      preset: "outlined_grey",
+    },
+    {
+      label: "Vendor Management & Selection",
+      icon: <StarSVG preset="grey" />,
+      preset: "outlined_grey",
+    },
+  ],
+  [
+    {
+      label: "Photoshop",
+      icon: <img alt="photoshop logo" src="/photoshop.png" />,
+      preset: "outlined_grey",
+    },
+    {
+      label: "Figma",
+      icon: <img alt="figma logo" src="/figma.png" />,
+      preset: "outlined_grey",
+    },
+  ],
+];
 
 const stateData: Array<PersonData> = [
   {
@@ -176,9 +222,30 @@ export default function AllComponents() {
         icon={<AlertSVG />}
         link={""}
       ></InfoBar>
+      <SquadCard
+        badgeTitles={["Good Match 80%", "From Suggested squad #1"]}
+        badgeColor="green"
+        squadTitle="Patricia Montero"
+        squadSubTitle="UX Designer"
+        rate="$30 /h"
+        rateColor="#027A48"
+        hoursPerWeek="20-25h /week"
+        hoursPerWeekColor="#027A48"
+        location="Amsterdam (8 hours overlap)"
+        locationColor="#B42318"
+        availability="Inmediate"
+        availabilityColor="#027A48"
+        experience="5 years experience"
+        icon={
+          <img src="https://avatars.githubusercontent.com/u/12592949?v=1" />
+        }
+        buttonsPreset={ButtonContainerPresets.TALENT}
+        type="book"
+        data={mockSkillsData}
+      />
       <SquadCard type="state" data={stateData} />
       <SquadCard
-        badgeTitle="Good Match 80%"
+        badgeTitles={["Good Match 80%"]}
         badgeColor="green"
         squadTitle="Suggested Squad #1"
         squadDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. morLorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. morLorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. mor"
@@ -187,7 +254,7 @@ export default function AllComponents() {
         data={bookData}
       />
       <SquadCard
-        badgeTitle="Good Match 80%"
+        badgeTitles={["Good Match 80%"]}
         badgeColor="green"
         squadTitle="Suggested Squad #1"
         type="view"
