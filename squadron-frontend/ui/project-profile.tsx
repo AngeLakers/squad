@@ -9,6 +9,7 @@ import StarIcon from '@mui/icons-material/Star';
 import ShareIcon from '@mui/icons-material/Share';
 import CustomProjectHeader from './custom-project-header';
 import CustomButton from './custom-button';
+import AskQuestionPopup from './ask-question-popup';
 // import CustomProjectHeader from './custom-project-header-update';
  
 import {
@@ -408,126 +409,136 @@ const ProjectProfile: React.FC<ProjectProfileProps> = ({
     const handleClick = () => {
         setIsStarFilled(!isStarFilled);
     };
+
+    const [isAskQuestionPopupOpen, setAskQuestionPopupOpen] = useState(false);
     return (
-
-        <ProjectCardTalent>
-            {showHeader && (
-                <CustomProjectHeader
-                    backgroundImage="/images/testCustomHeaderBackgroud.png" 
-                    avatarImagePath="/icon/projectLogo.svg"
-                    avatarHeight={"89px"}
-                    avatarWidth={"89px"}
-                    title1="test title 1"
-                    title2="test title 2"
-                    title3="test title3"
-                    button={{
-                        isVisible: true,
-                        text: "Apply as squad",
-                        backgroundColor: "#A0D909",
-                        textColor: "#FFFFFF",
-                        onClick: () => console.log("Apply as squad"),
-                        href: "../t5_proj_apply/apply_as_squad",
-                    }}
-                    shareIcon={{
-                        isVisible: true,
-                        color: "#A0D909",
-                        onClick: () => { console.log("Share icon clicked!"); }
-                    }}
-                    starIcon={{
-                        isVisible: true,
-                        color: "#A0D909",
-                        onClick: () => { console.log("Star icon clicked!"); }
-                    }}
-                />)}
-            <ProjectCardDetails>
-                <ProjectCardBody>
-                    <CompanyDetail>
+        <>
+            <ProjectCardTalent>
+                {showHeader && (
+                    <CustomProjectHeader
+                        backgroundImage="/images/testCustomHeaderBackgroud.png" 
+                        avatarImagePath="/icon/projectLogo.svg"
+                        avatarHeight={"89px"}
+                        avatarWidth={"89px"}
+                        title1="test title 1"
+                        title2="test title 2"
+                        title3="test title3"
+                        button={{
+                            isVisible: true,
+                            text: "Apply as squad",
+                            backgroundColor: "#A0D909",
+                            textColor: "#FFFFFF",
+                            onClick: () => console.log("Apply as squad"),
+                            href: "../t5_proj_apply/apply_as_squad",
+                        }}
+                        shareIcon={{
+                            isVisible: true,
+                            color: "#A0D909",
+                            onClick: () => { console.log("Share icon clicked!"); }
+                        }}
+                        starIcon={{
+                            isVisible: true,
+                            color: "#A0D909",
+                            onClick: () => { console.log("Star icon clicked!"); }
+                        }}
+                    />)}
+                <ProjectCardDetails>
+                    <ProjectCardBody>
+                        <CompanyDetail>
+                            <CompanyProfile>
+                                <CompanyLogoName>
+                                    <ProjectCardImage>
+                                        <ImageWrapper>
+                                            <CompanyAndPeopleAvatar>
+                                                <img src={companyLogo} alt="Project" ></img>
+                                            </CompanyAndPeopleAvatar>
+                                        </ImageWrapper>
+                                    </ProjectCardImage>
+                                    <FrameWrapper>
+                                        <AvatarAndInfoContainer>
+                                            <Titles>{companyName}</Titles>
+                                            <WebLink>{companyWebLink}</WebLink>
+                                        </AvatarAndInfoContainer>
+                                    </FrameWrapper>
+                                </CompanyLogoName>
+                                <IndustryAndLocation>
+                                    <IconAndInfoContainer>
+                                        <img src="/icon/building.svg" alt="Building Icon" />
+                                        <Department>{companyIndustry}</Department>
+                                    </IconAndInfoContainer>
+                                    {/* TODO: Long place names will exceed the container instead of wrapping. */}
+                                    <IconAndInfoContainer>
+                                        <img src="/icon/locationPin.svg" alt="Pin Icon" />
+                                        <Department>{companyLocation}</Department>
+                                    </IconAndInfoContainer>
+                                </IndustryAndLocation>
+                                <P>{companyDescription}</P>
+                                {/* TODO: add company profile link */}
+                                <CompanyProfileLink>View company profile</CompanyProfileLink>
+                            </CompanyProfile>
+                        </CompanyDetail>
                         <CompanyProfile>
-                            <CompanyLogoName>
-                                <ProjectCardImage>
-                                    <ImageWrapper>
-                                        <CompanyAndPeopleAvatar>
-                                            <img src={companyLogo} alt="Project" ></img>
-                                        </CompanyAndPeopleAvatar>
-                                    </ImageWrapper>
-                                </ProjectCardImage>
-                                <FrameWrapper>
-                                    <AvatarAndInfoContainer>
-                                        <Titles>{companyName}</Titles>
-                                        <WebLink>{companyWebLink}</WebLink>
-                                    </AvatarAndInfoContainer>
-                                </FrameWrapper>
-                            </CompanyLogoName>
-                            <IndustryAndLocation>
-                                <IconAndInfoContainer>
-                                    <img src="/icon/building.svg" alt="Building Icon" />
-                                    <Department>{companyIndustry}</Department>
-                                </IconAndInfoContainer>
-                                {/* TODO: Long place names will exceed the container instead of wrapping. */}
-                                <IconAndInfoContainer>
-                                    <img src="/icon/locationPin.svg" alt="Pin Icon" />
-                                    <Department>{companyLocation}</Department>
-                                </IconAndInfoContainer>
-                            </IndustryAndLocation>
-                            <P>{companyDescription}</P>
-                            {/* TODO: add company profile link */}
-                            <CompanyProfileLink>View company profile</CompanyProfileLink>
+                            <TimelineStartDateContainer>
+                                <TimelineEstimateAndStart>Timeline estimate</TimelineEstimateAndStart>
+                                <Date>{timelineEstimate}</Date>
+                            </TimelineStartDateContainer>
+                            <StartDate>
+                                <TimelineEstimateAndStart>Start date</TimelineEstimateAndStart>
+                                <Date>{projectStartDate}</Date>
+                            </StartDate>
                         </CompanyProfile>
-                    </CompanyDetail>
-                    <CompanyProfile>
-                        <TimelineStartDateContainer>
-                            <TimelineEstimateAndStart>Timeline estimate</TimelineEstimateAndStart>
-                            <Date>{timelineEstimate}</Date>
-                        </TimelineStartDateContainer>
-                        <StartDate>
-                            <TimelineEstimateAndStart>Start date</TimelineEstimateAndStart>
-                            <Date>{projectStartDate}</Date>
-                        </StartDate>
-                    </CompanyProfile>
-                    <CompanyLogoName>
-                        <ProjectCardImage>
-                            <CompanyAndPeopleAvatar>
-                                <img src={projectLeaderAvatarLink} alt="Project Leader" ></img>
-                            </CompanyAndPeopleAvatar>
-                        </ProjectCardImage>
-                        <FrameWrapper>
-                            <AvatarAndInfoContainer>
-                                <P>{projectLeaderName}</P>
-                                <TimelineEstimateAndStart>{projectLeaderRole}</TimelineEstimateAndStart>
-                            </AvatarAndInfoContainer>
-                        </FrameWrapper>
-                    </CompanyLogoName>
-                    <CustomButton label="Ask a question" preset="default" />
-                    {/* <ContainedButton variant="contained">Ask a question</ContainedButton> */}
-                </ProjectCardBody>
-                <OulineDeliverableContainer>
-                    <DetailedContainer>
-                        <Titles>Project outline</Titles>
-                        <P>{projectOutline}<br /></P>
-                    </DetailedContainer>
-                    <DetailedContainer>
-                        <Titles>Key deliverables</Titles>
+                        <CompanyLogoName>
+                            <ProjectCardImage>
+                                <CompanyAndPeopleAvatar>
+                                    <img src={projectLeaderAvatarLink} alt="Project Leader" ></img>
+                                </CompanyAndPeopleAvatar>
+                            </ProjectCardImage>
+                            <FrameWrapper>
+                                <AvatarAndInfoContainer>
+                                    <P>{projectLeaderName}</P>
+                                    <TimelineEstimateAndStart>{projectLeaderRole}</TimelineEstimateAndStart>
+                                </AvatarAndInfoContainer>
+                            </FrameWrapper>
+                        </CompanyLogoName>
+                        <CustomButton 
+                            label="Ask a question" 
+                            preset="default" 
+                            onClick={() => setAskQuestionPopupOpen(true)}
+                        />
+                        {/* <ContainedButton variant="contained">Ask a question</ContainedButton> */}
+                    </ProjectCardBody>
+                    <OulineDeliverableContainer>
+                        <DetailedContainer>
+                            <Titles>Project outline</Titles>
+                            <P>{projectOutline}<br /></P>
+                        </DetailedContainer>
+                        <DetailedContainer>
+                            <Titles>Key deliverables</Titles>
 
-                        <DiscUl>
-                            {
-                                keyDeliverables?.map((deliverable, index) => (
-                                    <li key={index}>
-                                        <P>{deliverable}</P>
-                                    </li>
-                                ))
-                            }
-                        </DiscUl>
+                            <DiscUl>
+                                {
+                                    keyDeliverables?.map((deliverable, index) => (
+                                        <li key={index}>
+                                            <P>{deliverable}</P>
+                                        </li>
+                                    ))
+                                }
+                            </DiscUl>
 
-                    </DetailedContainer>
-                    <VideoContainer>
-                        <VideoPlayer>
-                            <YouTube videoId="faMx3IPpX4k" opts={opts} onReady={onPlayerReady} />
+                        </DetailedContainer>
+                        <VideoContainer>
+                            <VideoPlayer>
+                                <YouTube videoId="faMx3IPpX4k" opts={opts} onReady={onPlayerReady} />
 
-                        </VideoPlayer>
-                    </VideoContainer>
-                </OulineDeliverableContainer>
-            </ProjectCardDetails>
-        </ProjectCardTalent>
+                            </VideoPlayer>
+                        </VideoContainer>
+                    </OulineDeliverableContainer>
+                </ProjectCardDetails>
+            </ProjectCardTalent>
+            {isAskQuestionPopupOpen && (
+                <AskQuestionPopup onClose={() => setAskQuestionPopupOpen(false)} />
+            )}
+        </>
     );
 };
 export default ProjectProfile;
