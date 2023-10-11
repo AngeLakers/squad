@@ -1,11 +1,15 @@
 "use client";
 import * as React from "react";
+import { useState } from "react";
+import Image from "next/image";
 import SquadCard from "@/ui/squad-card";
 import { SimpleHeader } from "@/ui/simple-header";
 import styled from "styled-components";
 import BuildApplySquad from "@/ui/build-apply-squad";
 import CustomProjectHeader from "@/ui/custom-project-header";
 import { PersonData } from "@/ui/squad-table";
+import EditProjPopup from "@/ui/editproj-popup";
+import hiringImage from "@/public/hire.png";
 
 const viewData: Array<PersonData> = [
   {
@@ -107,6 +111,7 @@ const Description = styled.p`
 `;
 
 export default function AllComponents() {
+  const [hireSquadPopupOpen, setHireSquadPopupOpen] = useState(false);
   return (
     <>
     <OutsideContainer>
@@ -141,6 +146,8 @@ export default function AllComponents() {
               squadTitle="Suggested Squad #1"
               type="view"
               data={viewData}
+              button1Link="/c5/individual_squad_app"
+              onClick={() => setHireSquadPopupOpen(true)}
             />
             <SquadCard
               badgeTitle="Good Match 80%"
@@ -172,12 +179,34 @@ export default function AllComponents() {
               type="view"
               data={viewData}
             />
+        {hireSquadPopupOpen && (
+        <EditProjPopup
+          onClose={() => setHireSquadPopupOpen(false)}
+          title="Hiring squad"
+          description="Once your start hiring a squad, you won’t be able to see the rest of squads suggested or squads that applied to the project"
+          cancelButtonText="Cancel"
+          confirmButtonText="Accept"
+          icon={
+            <Image
+              key="hiringImage"
+              src={hiringImage}
+              alt="Hiring Squad Icon"
+              width="32"
+              height="44.8"
+            />
+          }
+          //showDivider={false}
+        />
+      )}
           </SquadCardDiv>
         </SuggestedSquads>
         <BuildApplySquad />
       </Container>
+      
       </OutsideContainer>
+      
     </>
+    
     
   );
 }

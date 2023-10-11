@@ -30,7 +30,6 @@ const Description = styled.p`
     font-weight: 400;
     margin-bottom: 24px;
 `;
-
 const Divider = styled.div`
     width: 100%;
     height: 1px;
@@ -70,15 +69,15 @@ const EditProjPopup: React.FC<EditProjProps> = ({
     icon
 }) => {
     return (
-        <PopupComponent onClose={onClose}  width="30%" minWidth="300px" maxHeightPercent={0.3} minHeight="150px" >
+        <PopupComponent onClose={onClose}  width="30%" minWidth="400px" maxHeightPercent={0.3} minHeight="150px" >
             <ContentContainer>
                 <Icon>{icon}</Icon>
                 <Title>{title}</Title>
                 <Description>{description}</Description>
                 {showDivider &&<Divider />}
                 <ButtonContainer>
-                    <CustomButton label={cancelButtonText} preset="default" borderColor="#D0D5DD" padding="10px 18px" margin="0 8px 0 0" backgroundColor="white" textColor="#344054" hoverColor="none" onClick={onClose}/>
-                    <a href={button2Link || "#"}><CustomButton label={confirmButtonText} preset="default" borderColor="#D0D5DD" padding="10px 18px" backgroundColor="#111927" textColor="white" hoverColor="none"/></a>
+                    <CustomButton label={cancelButtonText} preset="default" borderColor="#D0D5DD" width="170px" padding="10px 18px" margin="0 8px 0 0" backgroundColor="white" textColor="#344054" hoverColor="none" onClick={onClose}/>
+                    <a href={button2Link || "#"}><CustomButton label={confirmButtonText} preset="default" borderColor="#D0D5DD" width="170px" padding="10px 18px" backgroundColor="#111927" textColor="white" hoverColor="none"/></a>
                 </ButtonContainer>
             </ContentContainer>
         </PopupComponent>

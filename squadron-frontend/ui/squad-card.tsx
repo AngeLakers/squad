@@ -84,6 +84,8 @@ interface SquadCardProps {
   type?: "book" | "view" | "state";
   data: Array<PersonData>;
   icon?: React.ReactNode;
+  button1Link?: string;
+  onClick?: () => void;
   hideHeader?: boolean;
   hideTitle?: boolean;
 }
@@ -98,6 +100,8 @@ const SquadCard: React.FC<SquadCardProps> = ({
   icon = <SquadSVG />,
   type,
   data,
+  button1Link,
+  onClick,
   hideHeader = type === "state" ? true : false,
   hideTitle = type === "state" ? true : false,
 }) => {
@@ -156,18 +160,23 @@ export enum ButtonContainerPresets {
 
 interface ButtonContainerProps {
   preset: ButtonContainerPresets;
+  button1Link?: string,
+  onClick?: () => void,
 }
 
 const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
   preset,
+  button1Link,
+  onClick, 
 }) => {
   const renderButtons = () => {
     switch (preset) {
       case ButtonContainerPresets.DEFAULT:
         return (
           <>
-            <CustomButton label="Meet Squad" preset="outlined" />
-            <CustomButton label="Hire Squad" preset="default" />
+            <a href={button1Link || "#"}>
+            <CustomButton label="Meet Squad" preset="outlined" /></a>
+            <CustomButton label="Hire Squad" preset="default" onClick={onClick} />
             <DropdownButton
               label={<VerticalDotsSVG />}
               preset="outlined"
