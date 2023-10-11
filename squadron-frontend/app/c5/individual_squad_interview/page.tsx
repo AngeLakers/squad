@@ -121,13 +121,13 @@ const C5IndividualSquadInterview: React.FC = () => {
         &lt;  &nbsp;Back to squads
     </BackButton></a>
     <SquadCard
-          badgeTitle="Good Match 80%"
+          badgeTitles={["Good Match 80%"]}
           badgeColor="green"
           squadTitle="Suggested Squad #1"
           squadDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. morLorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. morLorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. mor"
           icon={<SquadSVG backgroundColor="#E5E7EB" />}
           type="book"
-          buttonPreset={ButtonContainerPresets.EMPTY}
+          buttonsPreset={ButtonContainerPresets.EMPTY}
           data={bookData}
         />
         {bookInterviewAPopupOpen && (

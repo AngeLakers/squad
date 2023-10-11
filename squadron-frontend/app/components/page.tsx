@@ -1340,7 +1340,6 @@ export default function AllComponents() {
             "Data",
           ]}
           icons={icons}
-          link={"/signup"}
         />
       )}
 
