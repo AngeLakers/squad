@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Image from 'next/image';
 import React from "react";
 import {useRouter} from "next/navigation";
+import {router} from "next/client";
 
 
 
@@ -12,6 +13,28 @@ import {useRouter} from "next/navigation";
 const NotificationBoxWrapper = styled.div`
 
   width: 24.5rem;
+  margin: 0 !important;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
+  border: 1px solid #e5e7eb;
+  box-sizing: border-box;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  font-size: 0.88rem;
+  color: #111927;
+
+
+`;
+
+const NotificationBoxWrapperPlus = styled.div`
+
+  width: 100%;
   margin: 0 !important;
   border-radius: 0.75rem;
   background-color: #fff;
@@ -125,6 +148,7 @@ const CloseButton = styled.button`
   cursor: pointer;
   z-index: 1;
   margin-left: auto;
+    display: flex;
 `;
 
 const SeeAllButton = styled.button`
@@ -143,6 +167,15 @@ const SeeAllButton = styled.button`
   
     
     `;
+const DateText = styled.span`
+    margin-right: 1.5rem;
+  position: relative;
+  font-size: 0.88rem;
+  line-height: 1.25rem;
+  color: #4d5761;
+  text-align: left;
+
+`;
 
 export interface NotificationProps {
     iconPath: string;
@@ -153,6 +186,7 @@ export interface NotificationProps {
         organizationName: string;
     };
     onClose?: () => void;
+    date?: string;
 }
 
 export interface NotificationBoxProps {
@@ -160,7 +194,7 @@ export interface NotificationBoxProps {
 }
 
 //
-const NotificationMessage: React.FC<NotificationProps & { onClose: () => void }> = ({ iconPath, messageInfo, onClose, linkUrl}) => {
+const NotificationMessage: React.FC<NotificationProps & { onClose: () => void }> = ({ iconPath, messageInfo, onClose, linkUrl,date}) => {
     const router = useRouter();
 
     const handleNavigation = () => {
@@ -188,10 +222,14 @@ const NotificationMessage: React.FC<NotificationProps & { onClose: () => void }>
                     )}
                 </MessageText>
             </ContentWrapper>
+
+
+
             <CloseButton onClick={(e) => {
                 e.stopPropagation();
                 onClose();
             }}>
+                {date && <DateText>{date}</DateText>}
                 <Image src="/icon/x-close-16px.svg" alt="Close Icon" width={16} height={16}/>
             </CloseButton>
         </Notification>
@@ -201,6 +239,12 @@ const NotificationMessage: React.FC<NotificationProps & { onClose: () => void }>
 
 const NotificationBox: React.FC<NotificationBoxProps> = ({ notifications }) => {
     const [currentNotifications, setCurrentNotifications] = React.useState(notifications);
+
+    const router = useRouter();
+    const handleSeeAllClick = () => {
+
+        router.push('/t8');
+    };
 
     const handleCloseNotification = (index: number) => {
         const newNotifications = [...currentNotifications];
@@ -216,10 +260,11 @@ const NotificationBox: React.FC<NotificationBoxProps> = ({ notifications }) => {
                     messageInfo={notification.messageInfo}
                     onClose={() => handleCloseNotification(index)}
                     linkUrl={notification.linkUrl || ""}
+                    date={notification.date}
                 />
             ))}
 
-            <SeeAllButton>
+            <SeeAllButton onClick={handleSeeAllClick}>
                 <span>See all notifications!</span>
             </SeeAllButton>
         </NotificationBoxWrapper>
@@ -227,3 +272,30 @@ const NotificationBox: React.FC<NotificationBoxProps> = ({ notifications }) => {
 };
 
 export default NotificationBox;
+
+export const NotificationBoxPlus: React.FC<NotificationBoxProps> = ({ notifications }) => {
+    const [currentNotifications, setCurrentNotifications] = React.useState(notifications);
+
+
+    const handleCloseNotification = (index: number) => {
+        const newNotifications = [...currentNotifications];
+        newNotifications.splice(index, 1);
+        setCurrentNotifications(newNotifications);
+    };
+    return (
+        <NotificationBoxWrapperPlus>
+            {currentNotifications.map((notification, index) => (
+                <NotificationMessage
+                    key={index}
+                    iconPath={notification.iconPath}
+                    messageInfo={notification.messageInfo}
+                    onClose={() => handleCloseNotification(index)}
+                    linkUrl={notification.linkUrl || ""}
+                    date={notification.date}
+                />
+            ))}
+
+
+        </NotificationBoxWrapperPlus>
+    );
+};
