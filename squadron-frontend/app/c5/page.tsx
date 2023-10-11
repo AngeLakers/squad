@@ -11,6 +11,7 @@ import { PersonData } from "@/ui/squad-table";
 import router from "next/router";
 import { ButtonContainerPresets } from "@/ui/squad-card";
 import { BadgeData } from "@/ui/talent-skills";
+import TalentCard from "@/ui/talent-card";
 
 const mockSkillsData: Array<BadgeData[]> = [
   [
@@ -213,6 +214,13 @@ const rolesData = [
 export default function AllComponents() {
   return (
     <>
+      <TalentCard
+        title={"UX Designer"}
+        icon={
+          <img src="https://avatars.githubusercontent.com/u/12592949?v=1" />
+        }
+        name={"Olivia Rhye"}
+      />
       <InfoBar
         title="We’ve colleted the best applicants for you"
         description="Review all squads and applicants and start hiring. "

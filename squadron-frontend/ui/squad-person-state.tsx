@@ -63,7 +63,7 @@ const SquadPersonState: React.FC<SquadPersonStateProps> = ({
       case "Accepted":
         return <CustomBadge label={"Accepted"} preset="green" size="large" />;
       case "Pending":
-        return <CustomBadge label={"Pending"} preset="grey" size="large" />;
+        return <CustomBadge label={"Pending"} preset="yellow" size="large" />;
       default:
         return null;
     }
