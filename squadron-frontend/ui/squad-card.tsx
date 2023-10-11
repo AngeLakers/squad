@@ -85,6 +85,7 @@ interface SquadCardProps {
   data: Array<PersonData>;
   icon?: React.ReactNode;
   button1Link?: string;
+  onClick?: () => void;
 }
 
 const SquadCard: React.FC<SquadCardProps> = ({
@@ -98,9 +99,10 @@ const SquadCard: React.FC<SquadCardProps> = ({
   type,
   data,
   button1Link,
+  onClick,
 }) => {
   return (
-    <Card>
+    <Card onClick={onClick}>
       <MatchContainer>
         {customBadges ? (
           customBadges
@@ -150,11 +152,13 @@ export enum ButtonContainerPresets {
 interface ButtonContainerProps {
   preset: ButtonContainerPresets;
   button1Link?: string,
+  onClick?: () => void,
 }
 
 const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
   preset,
   button1Link,
+  onClick, 
 }) => {
   const renderButtons = () => {
     switch (preset) {
@@ -163,7 +167,7 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
           <>
             <a href={button1Link || "#"}>
             <CustomButton label="Meet Squad" preset="outlined" /></a>
-            <CustomButton label="Hire Squad" preset="default" />
+            <CustomButton label="Hire Squad" preset="default" onClick={onClick} />
             <DropdownButton
               label={<VerticalDotsSVG />}
               preset="outlined"

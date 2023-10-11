@@ -20,7 +20,7 @@ const bookData: Array<PersonData> = [
     name: "Jane Doe",
     profileLink: "/profile/2",
     title: "Designer",
-    state: "viewing",
+    state: "interviewing",
   },
   {
     avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
@@ -86,7 +86,7 @@ const BackButton = styled.button`
 `;
 
 
-const C5ProjectHub: React.FC = () => {
+const C5IndividualSquadApp: React.FC = () => {
 
     return (
         <OutsideContainer>
@@ -129,4 +129,4 @@ const C5ProjectHub: React.FC = () => {
     );
 };
 
-export default C5ProjectHub;
+export default C5IndividualSquadApp;

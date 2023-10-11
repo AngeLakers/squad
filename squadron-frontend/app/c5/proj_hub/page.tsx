@@ -14,6 +14,7 @@ const Container = styled.div`
     margin-left: 10vw;
     margin-right: 10vw;
     margin-bottom: 100px;
+    min-width: 1200px;
 `;
 
 const SquadContainer = styled.div`
