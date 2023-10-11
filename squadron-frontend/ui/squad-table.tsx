@@ -99,6 +99,7 @@ interface CommonProps {
 
 interface BookProps extends CommonProps {
   state: "viewing" | "interviewing" | "interviewed";
+  onClick?: () => void;
 }
 
 interface ViewProps extends CommonProps {
@@ -106,6 +107,7 @@ interface ViewProps extends CommonProps {
   hoursPerWeek: string;
   location: string;
   availability: string;
+  onClick?: () => void;
 }
 
 interface StateProps extends CommonProps {
@@ -153,6 +155,7 @@ const SquadTable: React.FC<SquadTableProps> = ({ type = "view", data }) => {
                     profileLink={person.profileLink}
                     title={person.title}
                     state={(person as BookProps).state}
+                    onClick={(person as BookProps).onClick}
                   />
                 );
               })
@@ -182,6 +185,7 @@ const SquadTable: React.FC<SquadTableProps> = ({ type = "view", data }) => {
                     hoursPerWeek={(person as ViewProps).hoursPerWeek}
                     location={(person as ViewProps).location}
                     availability={(person as ViewProps).availability}
+                    onClick={(person as ViewProps).onClick}
                   />
                 );
               })}

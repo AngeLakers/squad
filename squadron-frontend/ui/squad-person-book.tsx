@@ -3,7 +3,6 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import CustomButton from "./custom-button";
-import { RateSVG, ClockSVG, LocationSVG, CalenderSVG } from "./svgs";
 import RoleInfo from "./role-info";
 
 const PersonName = styled.div`
@@ -67,6 +66,7 @@ interface SquadPersonBookProps {
   profileLink: string;
   title: string;
   state: "viewing" | "interviewing" | "interviewed";
+  onClick?: () => void;
 }
 
 const SquadPersonBook: React.FC<SquadPersonBookProps> = ({
@@ -75,6 +75,7 @@ const SquadPersonBook: React.FC<SquadPersonBookProps> = ({
   profileLink,
   title,
   state,
+  onClick,
 }) => {
   const isButtonDisabled = state === "interviewed";
   return (
@@ -100,7 +101,7 @@ const SquadPersonBook: React.FC<SquadPersonBookProps> = ({
       </td>
       <td>
         <ViewApplicationButton>
-          <CustomButton label="Book Call" preset="default" />
+          <CustomButton label="Book Call" preset="default" onClick={onClick} />
         </ViewApplicationButton>
       </td>
     </tr>

@@ -8,6 +8,7 @@ import CardLayout from "@/ui/layout-card";
 import Heading from "@/ui/heading";
 import StepHeading from "@/ui/step-heading";
 import { PersonData } from "@/ui/squad-table";
+import router from "next/router";
 
 const stateData: Array<PersonData> = [
   {
@@ -66,6 +67,7 @@ const viewData: Array<PersonData> = [
     hoursPerWeek: "20-25h /week",
     location: "United States or Australia",
     availability: "Immediate",
+    onClick: () => router.push("/signup"),
   },
   {
     avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
