@@ -8,6 +8,38 @@ import CardLayout from "@/ui/layout-card";
 import Heading from "@/ui/heading";
 import StepHeading from "@/ui/step-heading";
 import { PersonData } from "@/ui/squad-table";
+import router from "next/router";
+
+const stateData: Array<PersonData> = [
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Patricia Montero",
+    profileLink: "/profile/1",
+    title: "Front-End Engineer",
+    state: "Accepted",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Jane Doe",
+    profileLink: "/profile/2",
+    title: "Designer",
+    state: "Rejected",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "John Smith",
+    profileLink: "/profile/3",
+    title: "Back-End Developer",
+    state: "Pending",
+  },
+  {
+    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+    name: "Alice Johnson",
+    profileLink: "/profile/4",
+    title: "Product Manager",
+    state: "Accepted",
+  },
+];
 
 const bookData: Array<PersonData> = [
   {
@@ -35,6 +67,7 @@ const viewData: Array<PersonData> = [
     hoursPerWeek: "20-25h /week",
     location: "United States or Australia",
     availability: "Immediate",
+    onClick: () => (window.location.href = "/signup"),
   },
   {
     avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
@@ -143,6 +176,7 @@ export default function AllComponents() {
         icon={<AlertSVG />}
         link={""}
       ></InfoBar>
+      <SquadCard type="state" data={stateData} />
       <SquadCard
         badgeTitle="Good Match 80%"
         badgeColor="green"

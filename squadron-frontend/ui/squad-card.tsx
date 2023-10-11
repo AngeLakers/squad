@@ -77,13 +77,15 @@ const ButtonContainer = styled.div`
 interface SquadCardProps {
   badgeTitle?: string;
   badgeColor?: PresetTypes;
-  squadTitle: string;
+  squadTitle?: string;
   squadDescription?: string;
   customBadges?: React.ReactNode[];
   buttonPreset?: ButtonContainerPresets;
-  type?: "book" | "view";
+  type?: "book" | "view" | "state";
   data: Array<PersonData>;
   icon?: React.ReactNode;
+  hideHeader?: boolean;
+  hideTitle?: boolean;
 }
 
 const SquadCard: React.FC<SquadCardProps> = ({
@@ -96,42 +98,49 @@ const SquadCard: React.FC<SquadCardProps> = ({
   icon = <SquadSVG />,
   type,
   data,
+  hideHeader = type === "state" ? true : false,
+  hideTitle = type === "state" ? true : false,
 }) => {
   return (
     <Card>
-      <MatchContainer>
-        {customBadges ? (
-          customBadges
-        ) : (
-          <CustomBadge
-            preset={badgeColor}
-            icon={<TickSVG preset={badgeColor} />}
-            label={badgeTitle || ""}
-          />
-        )}
-      </MatchContainer>
-      <Divider />
+      {!hideHeader && (
+        <>
+          <MatchContainer>
+            {customBadges ? (
+              customBadges
+            ) : (
+              <CustomBadge
+                preset={badgeColor}
+                icon={<TickSVG preset={badgeColor} />}
+                label={badgeTitle || ""}
+              />
+            )}
+          </MatchContainer>
+          <Divider />
+        </>
+      )}
       <SquadContainer>
-        <SquadHeader>
-          <Heading>
-            <TitleContainer>
-              {icon && icon}
-              <SquadTitle>{squadTitle}</SquadTitle>
-            </TitleContainer>
-            <ButtonContainerComponent preset={buttonPreset} />
-          </Heading>
-          {squadDescription && (
-            <ShowMoreText
-              text={squadDescription}
-              showMoreLength={300}
-              fontSize={"14px"}
-              fontColor={"#4D5761"}
-              lineHeight={"20px"}
-              fontWeight={400}
-            />
-          )}
-        </SquadHeader>
-
+        {!hideTitle && (
+          <SquadHeader>
+            <Heading>
+              <TitleContainer>
+                {icon && icon}
+                <SquadTitle>{squadTitle}</SquadTitle>
+              </TitleContainer>
+              <ButtonContainerComponent preset={buttonPreset} />
+            </Heading>
+            {squadDescription && (
+              <ShowMoreText
+                text={squadDescription}
+                showMoreLength={300}
+                fontSize={"14px"}
+                fontColor={"#4D5761"}
+                lineHeight={"20px"}
+                fontWeight={400}
+              />
+            )}
+          </SquadHeader>
+        )}
         <SquadTable type={type} data={data} />
       </SquadContainer>
     </Card>
