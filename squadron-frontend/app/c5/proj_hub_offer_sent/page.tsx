@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { SimpleHeader } from "@/ui/simple-header";
 import Image from "next/image";
 import styled from "styled-components";
-import CustomButton from "@/ui/custom-button";
+import CustomButton, { PresetTypes }  from "@/ui/custom-button";
 import CollectingBar from '@/ui/collecting-bar';
 import SquadSurveySwap from '@/ui/squad-surveyswap';
 import InfoBar from '@/ui/info-bar';
@@ -76,7 +76,7 @@ const NavigationBarContainer = styled.div`
 `;
 
 
-const C5ProjHubSendOffer: React.FC = () => {
+const C5ProjHubOfferSent: React.FC = () => {
     const [activeTab, setActiveTab] = useState("Squad");
     const showProjectDetails = activeTab === "Project Details";
     const showSquad = activeTab === "Squad";
@@ -91,11 +91,13 @@ const C5ProjHubSendOffer: React.FC = () => {
             title: "UX Designer",
             name: "Patricia Montero",
             assignButtonProps: {
-              smallButtonText: "Send Offer",
+                smallButtonText: "Offer sent",
+                backgroundColor: "#B54708",
+                textColor: "#FFFFFF",
             },
             bottomButton: {
-              label: "Send Offer",
-              onClick: () => setOfferSendOpen(true),
+                label: "Message",
+                preset: "transparent" as PresetTypes,
             },
         },
         {
@@ -105,12 +107,14 @@ const C5ProjHubSendOffer: React.FC = () => {
           title: "UI Designer",
           name: "Patricia Montero",
           assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
+            smallButtonText: "Offer sent",
+            backgroundColor: "#B54708",
+            textColor: "#FFFFFF",
+        },
+        bottomButton: {
+            label: "Message",
+            preset: "transparent" as PresetTypes,
+        },
         },
         {
           image: (
@@ -119,12 +123,14 @@ const C5ProjHubSendOffer: React.FC = () => {
           title: "Product Designer",
           name: "Patricia Montero",
           assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
+            smallButtonText: "Offer sent",
+            backgroundColor: "#B54708",
+            textColor: "#FFFFFF",
+        },
+        bottomButton: {
+            label: "Message",
+            preset: "transparent" as PresetTypes,
+        },
         },
         {
           image: (
@@ -133,12 +139,14 @@ const C5ProjHubSendOffer: React.FC = () => {
           title: "Product Designer",
           name: "Patricia Montero",
           assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
+            smallButtonText: "Offer sent",
+            backgroundColor: "#B54708",
+            textColor: "#FFFFFF",
+        },
+        bottomButton: {
+            label: "Message",
+            preset: "transparent" as PresetTypes,
+        },
         },
         {
           image: (
@@ -147,12 +155,14 @@ const C5ProjHubSendOffer: React.FC = () => {
           title: "Product Designer",
           name: "Patricia Montero",
           assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
+            smallButtonText: "Offer sent",
+            backgroundColor: "#B54708",
+            textColor: "#FFFFFF",
+        },
+        bottomButton: {
+            label: "Message",
+            preset: "transparent" as PresetTypes,
+        },
         },
         {
           image: (
@@ -161,12 +171,14 @@ const C5ProjHubSendOffer: React.FC = () => {
           title: "Full-Stack Engineer",
           name: "Patricia Montero",
           assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
+            smallButtonText: "Offer sent",
+            backgroundColor: "#B54708",
+            textColor: "#FFFFFF",
+        },
+        bottomButton: {
+            label: "Message",
+            preset: "transparent" as PresetTypes,
+        },
         },
         {
           image: (
@@ -175,12 +187,14 @@ const C5ProjHubSendOffer: React.FC = () => {
           title: "DevOps Engineer",
           name: "Patricia Montero",
           assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
+            smallButtonText: "Offer sent",
+            backgroundColor: "#B54708",
+            textColor: "#FFFFFF",
+        },
+        bottomButton: {
+            label: "Message",
+            preset: "transparent" as PresetTypes,
+        },
         }
     ];
 
@@ -250,11 +264,11 @@ const C5ProjHubSendOffer: React.FC = () => {
             </SquadContainer>
         </>
         )}
-        {isOfferSend && <SendOffer onClose={() => setOfferSendOpen(false)} sendOfferLink='/c5/proj_hub_offer_sent'/>}
+        {isOfferSend && <SendOffer onClose={() => setOfferSendOpen(false)} />}
 
         </Container>
     </OutsideContainer>
     );
 };
 
-export default C5ProjHubSendOffer;
+export default C5ProjHubOfferSent;
