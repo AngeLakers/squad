@@ -131,7 +131,7 @@ const SquadCard: React.FC<SquadCardProps> = ({
                 {icon && icon}
                 <SquadTitle>{squadTitle}</SquadTitle>
               </TitleContainer>
-              <ButtonContainerComponent preset={buttonPreset} button1Link={button1Link} />
+              <ButtonContainerComponent preset={buttonPreset} button1Link={button1Link} onClick={onClick}/>
             </Heading>
             {squadDescription && (
               <ShowMoreText

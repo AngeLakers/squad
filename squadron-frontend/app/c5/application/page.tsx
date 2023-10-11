@@ -125,7 +125,10 @@ export default function AllComponents() {
           title1="Stir"
           title2="MVP for Serverless E-commerce Return Portal"
           button={{
-            isVisible: false,
+            isVisible: true,
+            text: "Build your own squad",
+            backgroundColor: "#D0FC4A",
+            textColor: "#384250",
           }}
           shareIcon={{
             isVisible: false,
