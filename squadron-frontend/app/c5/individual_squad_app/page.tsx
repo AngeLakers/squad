@@ -2,62 +2,15 @@
 import * as React from 'react';
 import { SimpleHeader } from "@/ui/simple-header";
 import styled from "styled-components";
+import Image from "next/image";
+import { useState } from "react";
 import CustomProjectHeader from '@/ui/custom-project-header';
 import SquadCard, { ButtonContainerPresets } from '@/ui/squad-card';
 import { SquadSVG} from "@/ui/svgs";
 import { PersonData } from "@/ui/squad-table";
-
-const bookData: Array<PersonData> = [
-{
-    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
-    name: "Patricia Montero",
-    profileLink: "/profile/1",
-    title: "Front-End Engineer",
-    state: "viewing",
-  },
-  {
-    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
-    name: "Jane Doe",
-    profileLink: "/profile/2",
-    title: "Designer",
-    state: "interviewing",
-  },
-  {
-    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
-    name: "Jane Doe",
-    profileLink: "/profile/2",
-    title: "Designer",
-    state: "viewing",
-  },
-  {
-    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
-    name: "Jane Doe",
-    profileLink: "/profile/2",
-    title: "Designer",
-    state: "viewing",
-  },
-  {
-    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
-    name: "Jane Doe",
-    profileLink: "/profile/2",
-    title: "Designer",
-    state: "viewing",
-  },
-  {
-    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
-    name: "Jane Doe",
-    profileLink: "/profile/2",
-    title: "Designer",
-    state: "viewing",
-  },
-  {
-    avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
-    name: "Jane Doe",
-    profileLink: "/profile/2",
-    title: "Designer",
-    state: "viewing",
-  }
-];
+import BookInterviewA from "@/ui/book-interview-a";
+import BookInterviewB from "@/ui/book-interview-b";
+import callImage from "@/public/call.png";
 
 const Container = styled.div`
     margin-left: 10vw;
@@ -87,11 +40,65 @@ const BackButton = styled.button`
 
 
 const C5IndividualSquadApp: React.FC = () => {
+  const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
+  const [bookInterviewBPopupOpen, setbookInterviewBPopupOpen] = useState(false);
+  const bookData: Array<PersonData> = [
+    {
+        avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+        name: "Patricia Montero",
+        profileLink: "/profile/1",
+        title: "Front-End Engineer",
+        state: "viewing",
+        onClick: () => setbookInterviewAPopupOpen(true),
+      },
+      {
+        avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+        name: "Jane Doe",
+        profileLink: "/profile/2",
+        title: "Designer",
+        state: "interviewing",
+        onClick: () => setbookInterviewBPopupOpen(true),
+      },
+      {
+        avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+        name: "Jane Doe",
+        profileLink: "/profile/2",
+        title: "Designer",
+        state: "viewing",
+      },
+      {
+        avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+        name: "Jane Doe",
+        profileLink: "/profile/2",
+        title: "Designer",
+        state: "viewing",
+      },
+      {
+        avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+        name: "Jane Doe",
+        profileLink: "/profile/2",
+        title: "Designer",
+        state: "viewing",
+      },
+      {
+        avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+        name: "Jane Doe",
+        profileLink: "/profile/2",
+        title: "Designer",
+        state: "viewing",
+      },
+      {
+        avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+        name: "Jane Doe",
+        profileLink: "/profile/2",
+        title: "Designer",
+        state: "viewing",
+      }
+    ];
 
     return (
         <OutsideContainer>
             <Header><SimpleHeader /></Header>
-    
         <CustomProjectHeader
           backgroundColor="#0B0F00"
           avatarImagePath="/google.png"
@@ -123,7 +130,26 @@ const C5IndividualSquadApp: React.FC = () => {
           buttonPreset={ButtonContainerPresets.EMPTY}
           data={bookData}
         />
-        
+        {bookInterviewAPopupOpen && (
+        <BookInterviewA onClose={() => setbookInterviewAPopupOpen(false)} />
+        )}
+        {bookInterviewBPopupOpen && (
+        <BookInterviewB
+          icon={
+            <Image
+              key="callImage"
+              src={callImage}
+              alt="call image"
+              width="44"
+              height="44"
+            />
+          }
+          name="Patricia"
+          cancelButtonText="Cancel"
+          confirmButtonText="Send interview request"
+          onClose={() => setbookInterviewBPopupOpen(false)}
+        />
+      )}
     </Container>
     </OutsideContainer>
     );
