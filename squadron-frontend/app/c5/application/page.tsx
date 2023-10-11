@@ -190,6 +190,7 @@ export default function AllComponents() {
           description="Once your start hiring a squad, you won’t be able to see the rest of squads suggested or squads that applied to the project"
           cancelButtonText="Cancel"
           confirmButtonText="Accept"
+          button2Link="/c5/proj_hub_send_offer"
           icon={
             <Image
               key="hiringImage"
