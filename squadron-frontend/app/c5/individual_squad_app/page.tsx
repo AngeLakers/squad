@@ -1,5 +1,5 @@
-'use client';
-import * as React from 'react';
+"use client";
+import * as React from "react";
 import { SimpleHeader } from "@/ui/simple-header";
 import styled from "styled-components";
 import Image from "next/image";
@@ -13,31 +13,30 @@ import BookInterviewB from "@/ui/book-interview-b";
 import callImage from "@/public/call.png";
 
 const Container = styled.div`
-    margin-left: 10vw;
-    margin-right: 10vw;
-    margin-bottom: 100px;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-bottom: 100px;
 `;
 
 const OutsideContainer = styled.div`
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 `;
 
 const Header = styled.div`
-    margin-left: 8vw;
-    margin-right: 8vw;
+  margin-left: 8vw;
+  margin-right: 8vw;
 `;
 
 const BackButton = styled.button`
-    height: 24px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    border: none;
-    background-color: transparent;
-    color: #1B18E4;
-    font-size: 16px;
-    font-weight: 600;
+  height: 24px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border: none;
+  background-color: transparent;
+  color: #1b18e4;
+  font-size: 16px;
+  font-weight: 600;
 `;
-
 
 const C5IndividualSquadApp: React.FC = () => {
   const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
@@ -116,12 +115,10 @@ const C5IndividualSquadApp: React.FC = () => {
             isVisible: false,
           }}
         />
-    <Container>
-    <BackButton onClick={() => {}}>
-        &lt;  &nbsp;Back to squads
-    </BackButton>
-    <SquadCard
-          badgeTitle="Good Match 80%"
+      <Container>
+        <BackButton onClick={() => {}}>&lt; &nbsp;Back to squads</BackButton>
+        <SquadCard
+          badgeTitles={["Good Match 80%"]}
           badgeColor="green"
           squadTitle="Suggested Squad #1"
           squadDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. morLorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. morLorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. mor"
@@ -130,6 +127,7 @@ const C5IndividualSquadApp: React.FC = () => {
           buttonPreset={ButtonContainerPresets.EMPTY}
           data={bookData}
         />
+
         {bookInterviewAPopupOpen && (
         <BookInterviewA onClose={() => setbookInterviewAPopupOpen(false)} />
         )}
@@ -151,8 +149,9 @@ const C5IndividualSquadApp: React.FC = () => {
         />
       )}
     </Container>
+
     </OutsideContainer>
-    );
+  );
 };
 
 export default C5IndividualSquadApp;
