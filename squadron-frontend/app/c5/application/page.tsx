@@ -2,7 +2,7 @@
 import * as React from "react";
 import { useState } from "react";
 import Image from "next/image";
-import SquadCard from "@/ui/squad-card";
+import SquadCard, { ButtonContainerPresets } from '@/ui/squad-card';
 import { SimpleHeader } from "@/ui/simple-header";
 import styled from "styled-components";
 import BuildApplySquad from "@/ui/build-apply-squad";
@@ -10,6 +10,7 @@ import CustomProjectHeader from "@/ui/custom-project-header";
 import { PersonData } from "@/ui/squad-table";
 import EditProjPopup from "@/ui/editproj-popup";
 import hiringImage from "@/public/hire.png";
+import hideImage from "@/public/hide.png";
 
 const viewData: Array<PersonData> = [
   {
@@ -113,6 +114,7 @@ const Description = styled.p`
 
 export default function AllComponents() {
   const [hireSquadPopupOpen, setHireSquadPopupOpen] = useState(false);
+  const [hideSquadPopupOpen, setHideSquadPopupOpen] = useState(false);
   return (
     <>
       <OutsideContainer>
@@ -154,7 +156,9 @@ export default function AllComponents() {
                 type="view"
                 data={viewData}
                 button1Link="/c5/individual_squad_app"
+                buttonsPreset = {ButtonContainerPresets.APP}
                 onClick={() => setHireSquadPopupOpen(true)}
+
               />
               <SquadCard
                 badgeTitles={["Good Match 80%"]}
@@ -162,6 +166,7 @@ export default function AllComponents() {
                 squadTitle="Suggested Squad #1"
                 type="view"
                 data={viewData}
+                buttonsPreset = {ButtonContainerPresets.APP}
               />
             </SquadCardDiv>
           </SuggestedSquads>
@@ -178,6 +183,7 @@ export default function AllComponents() {
               squadTitle="Suggested Squad #1"
               type="view"
               data={viewData}
+              buttonsPreset = {ButtonContainerPresets.APP}
             />{" "}
             <SquadCard
               badgeTitles={["Good Match 80%"]}
@@ -185,7 +191,11 @@ export default function AllComponents() {
               squadTitle="Suggested Squad #1"
               type="view"
               data={viewData}
+              buttonsPreset = {ButtonContainerPresets.APP}
             />
+          </SquadCardDiv>
+        </SuggestedSquads>
+        <BuildApplySquad />
         {hireSquadPopupOpen && (
         <EditProjPopup
           onClose={() => setHireSquadPopupOpen(false)}
@@ -206,9 +216,26 @@ export default function AllComponents() {
           //showDivider={false}
         />
       )}
-          </SquadCardDiv>
-        </SuggestedSquads>
-        <BuildApplySquad />
+      {hideSquadPopupOpen && (
+        <EditProjPopup
+          onClose={() => setHideSquadPopupOpen(false)}
+          title="Hide this squad"
+          description="Please, let as not why you don’t want to see this squad. This will help us to give you better options"
+          cancelButtonText="Cancel"
+          confirmButtonText="Hide"
+          showTextarea={true}
+          icon={
+            <Image
+              key="hideImage"
+              src={hideImage}
+              alt="Hide Icon"
+              width="44"
+              height="44"
+            />
+          }
+          //showDivider={false}
+        />
+      )}
       </Container>
       </OutsideContainer>
     </>

@@ -76,7 +76,7 @@ const NavigationBarContainer = styled.div`
 `;
 
 
-const C5ProjHubOfferSent: React.FC = () => {
+const C5ProjHubOfferSentA: React.FC = () => {
     const [activeTab, setActiveTab] = useState("Squad");
     const showProjectDetails = activeTab === "Project Details";
     const showSquad = activeTab === "Squad";
@@ -271,4 +271,4 @@ const C5ProjHubOfferSent: React.FC = () => {
     );
 };
 
-export default C5ProjHubOfferSent;
+export default C5ProjHubOfferSentA;

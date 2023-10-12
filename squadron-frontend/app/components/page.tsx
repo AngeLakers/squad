@@ -73,6 +73,7 @@ import RequireDontMatchPopup from "@/ui/require-dont-match";
 import ApplyCancelPopup from "@/ui/apply_cancel";
 import BuildApplySquad from "@/ui/build-apply-squad";
 import AskQuestionPopup from "@/ui/ask-question-popup";
+import hideImage from "@/public/hide.png";
 import TitleAndFilter from "@/ui/title-and-filter";
 
 const bookData: Array<PersonData> = [
@@ -415,6 +416,7 @@ export default function AllComponents() {
   const [isRoleAdd, setAddRoleOpen] = useState(false);
   const [editprojPopupOpen, setEditprojPopupOpen] = useState(false);
   const [launchMissionPopupOpen, setlaunchMissionPopupOpen] = useState(false);
+  const [hideSquadPopupOpen, setHideSquadPopupOpen] = useState(false);
   const [exitUncompletedPopupOpen, setexitUncompletedPopupOpen] =
     useState(false);
   const [bookInterviewAPopupOpen, setbookInterviewAPopupOpen] = useState(false);
@@ -766,6 +768,17 @@ export default function AllComponents() {
           preset="default"
           label="Launch Mission"
           onClick={() => setlaunchMissionPopupOpen(true)}
+        />
+      </ComponentWrapper>
+      <ComponentWrapper
+        filename="editproj-popup.tsx"
+        createdBy="Becky Xu"
+        description="C5 - Hide Squad Popup"
+      >
+        <CustomButton
+          preset="default"
+          label="Hide Squad"
+          onClick={() => setHideSquadPopupOpen(true)}
         />
       </ComponentWrapper>
       <ComponentWrapper
@@ -1387,6 +1400,26 @@ export default function AllComponents() {
               height="80"
             />
           }
+        />
+      )}
+      {hideSquadPopupOpen && (
+        <EditProjPopup
+          onClose={() => setHideSquadPopupOpen(false)}
+          title="Hide this squad"
+          description="Please, let as not why you don’t want to see this squad. This will help us to give you better options"
+          cancelButtonText="Cancel"
+          confirmButtonText="Hide"
+          showTextarea={true}
+          icon={
+            <Image
+              key="hideImage"
+              src={hideImage}
+              alt="Hide Icon"
+              width="44"
+              height="44"
+            />
+          }
+          //showDivider={false}
         />
       )}
 

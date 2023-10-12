@@ -24,6 +24,10 @@ const mockMenuItems = [
   [{ menu: "Logout " }],
 ];
 
+const appMenuItems = [
+  [{ menu: "Not interested" }, { menu: "Send feedback/reject " }],
+];
+
 const mockTalentMenuItems = [
   [
     { menu: "View profile" },
@@ -228,7 +232,7 @@ const SquadCard: React.FC<SquadCardProps> = ({
                   <SquadSubTitle>{squadSubTitle}</SquadSubTitle>
                 </TitleContainer>
               </HeadingContainer>
-              <ButtonContainerComponent preset={buttonsPreset} />
+              <ButtonContainerComponent preset={buttonsPreset} button1Link={button1Link} onClick={onClick}/>
             </Heading>
             {squadDescription && (
               <ShowMoreText
@@ -291,6 +295,7 @@ export enum ButtonContainerPresets {
   MESSAGE,
   REFER,
   EMPTY,
+  APP
 }
 
 interface ButtonContainerProps {
@@ -339,6 +344,26 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
             </svg>
           </>
         );
+
+        case ButtonContainerPresets.APP:
+          return (
+            <>
+              <a href={button1Link || "#"}>
+                <CustomButton label="Meet Squad" preset="outlined" />
+              </a>
+              <CustomButton
+                label="Hire Squad"
+                preset="default"
+                onClick={onClick}
+              />
+              <DropdownButton
+                label={<VerticalDotsSVG />}
+                preset="outlined"
+                menuItems={appMenuItems}
+              />
+    
+            </>
+          );
       case ButtonContainerPresets.TALENT:
         return (
           <>
