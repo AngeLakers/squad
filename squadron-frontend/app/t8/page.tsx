@@ -2,6 +2,7 @@
 import NotificationBox, {NotificationBoxPlus, NotificationProps} from "@/ui/notification-message";
 import styled from "styled-components";
 import {date} from "zod";
+import {useRouter} from "next/navigation";
 
 
 const notificationsData: NotificationProps[] = [
@@ -125,10 +126,12 @@ const Container = styled.div`
 
   flex-direction: column;
   align-items: center;
-  width: 100%;
+
   height: 100%;
-  padding-left: 25rem;
-  padding-right: 25rem;
+  //padding-left: 25rem;
+  width: 85vw;
+  padding-left: 7.5vw;
+    padding-right: 7.5vw;
   flex-shrink: 0;
 
 `;
@@ -162,9 +165,11 @@ margin-left: 2rem;
 `;
 
 export default function Home() {
+    const router = useRouter();
+
     return (
-        <div style={{ width: '100%' }}>
-            <NavigateButton onClick={() => {  } }>{'<'}</NavigateButton>
+        <div style={{ width: '100' }}>
+            <NavigateButton onClick={() => {router.back()  } }>{'<'}</NavigateButton>
         <Container>
 
             <Header>Notifications</Header>
