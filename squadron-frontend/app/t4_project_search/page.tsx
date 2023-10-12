@@ -9,10 +9,10 @@ import { TopNav } from '@/ui/top-nav';
 import TitleAndFilter from '@/ui/title-and-filter';
 import {PeopleSVG, ToolsSVG} from '@/ui/svgs';
 import RoleSkillDropdownFilter from '@/ui/filter-dropdown-role-and-skills';
-export const metadata: Metadata = {
-    title: 'Squadron',
-    description: 'Squadron frontend',
-};
+// export const metadata: Metadata = {
+//     title: 'Squadron',
+//     description: 'Squadron frontend',
+// };
 const Container = styled.div`
   display: flex;
   flex-direction: column;

@@ -198,6 +198,7 @@ const C5ProjHubOfferSentB: React.FC = () => {
         title: "Front-End Engineer",
         bottomButton: {
             label: "Find Talent",
+            onClick:() => (window.location.href = "/c5/find_talent"),
         },  
         }
     ];
