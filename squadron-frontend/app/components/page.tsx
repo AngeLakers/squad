@@ -74,6 +74,7 @@ import ApplyCancelPopup from "@/ui/apply_cancel";
 import BuildApplySquad from "@/ui/build-apply-squad";
 import AskQuestionPopup from "@/ui/ask-question-popup";
 import hideImage from "@/public/hide.png";
+import TitleAndFilter from "@/ui/title-and-filter";
 
 const bookData: Array<PersonData> = [
   {
@@ -227,6 +228,7 @@ import { NotificationProps } from "@/ui/notification-message";
 //import BookInterviewB from "@/ui/book-interview-b";
 
 import { PersonData } from "@/ui/squad-table";
+import RoleSkillDropdownFilter from "@/ui/filter-dropdown-role-and-skills";
 
 const mockSkillsData: BadgeData[] = [
   { label: "Roadmapping", icon: <StarSVG />, preset: "outlined_green" },
@@ -1333,7 +1335,15 @@ export default function AllComponents() {
         >
           Ask Question Popup
         </Button>
-      </ComponentWrapper>
+    </ComponentWrapper>
+    <ComponentWrapper
+        filename="title-and-filter.tsx"
+        createdBy="Chelsea Guo"
+        description="filter with title and input"
+      >
+        In 
+        http://localhost:3000/t4_project_search
+        </ComponentWrapper>
 
       {isModalOpen && (
         <SquadCustom

@@ -246,7 +246,9 @@ const SquadCard: React.FC<SquadCardProps> = ({
             )}
           </SquadHeader>
         )}
-        {buttonsPreset === ButtonContainerPresets.TALENT ? (
+        {buttonsPreset === ButtonContainerPresets.TALENT ||
+        buttonsPreset === ButtonContainerPresets.MESSAGE ||
+        buttonsPreset === ButtonContainerPresets.REFER ? (
           <>
             <Divider />
             <RoleInfo
@@ -290,6 +292,8 @@ export default SquadCard;
 export enum ButtonContainerPresets {
   DEFAULT,
   TALENT,
+  MESSAGE,
+  REFER,
   EMPTY,
   APP
 }
@@ -376,6 +380,23 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
               preset="outlined"
               menuItems={mockTalentMenuItems}
             />
+          </>
+        );
+      case ButtonContainerPresets.MESSAGE:
+        return (
+          <>
+            <CustomButton label="Message" preset="outlined" />
+            <DropdownButton
+              label={<VerticalDotsSVG />}
+              preset="outlined"
+              menuItems={mockTalentMenuItems}
+            />
+          </>
+        );
+      case ButtonContainerPresets.REFER:
+        return (
+          <>
+            <CustomButton label="Refer" preset="outlined" />
           </>
         );
       case ButtonContainerPresets.EMPTY:
