@@ -56,7 +56,9 @@ const StyledInput = styled.input<{
   ::-webkit-input-placeholder {
     color: ${gray500};
   }
-  // todo: change the black border-color to gray in focus-visible status
+  &:focus {
+    outline: 0;
+}
 `;
 
 // customize placeholder color

@@ -9,10 +9,11 @@ const PageContainer = styled.div`
   height: fit-content;
   background-color: white;
 `;
-// export const metadata: Metadata = {
-//   title: 'Squadron',
-//   description: 'Squadron frontend',
-// };
+/*
+export const metadata: Metadata = {
+  title: 'Squadron',
+  description: 'Squadron frontend',
+};*/
 export default function Layout({
   children,
 }: {

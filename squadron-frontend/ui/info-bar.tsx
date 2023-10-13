@@ -65,6 +65,7 @@ interface CustomCollectingBar {
   buttonLabel: string;
   icon?: React.ReactNode;
   link?: string;
+  onClick?: () => void;
 }
 
 const InfoBar: React.FC<CustomCollectingBar> = ({
@@ -76,6 +77,7 @@ const InfoBar: React.FC<CustomCollectingBar> = ({
   icon,
   buttonPreset = "default",
   link,
+  onClick,
 }) => {
   return (
     <BarContainer backgroundColor={backgroundColor} borderColor={borderColor}>
@@ -86,7 +88,7 @@ const InfoBar: React.FC<CustomCollectingBar> = ({
           <BarSubHeader>{description}</BarSubHeader>
         </TextContainer>
       </InfoContainer>
-      <a href={link || "#"}><CustomButton label={buttonLabel} preset={buttonPreset} /></a>
+      <a href={link || "#"}><CustomButton label={buttonLabel} preset={buttonPreset} onClick={onClick}/></a>
     </BarContainer>
   );
 };

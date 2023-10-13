@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ArrowUpSVG, ArrowDownSVG } from "./svgs";
 import SquadPerson from "./squad-person";
 import SquadPersonBook from "./squad-person-book";
+import SquadPersonState from "./squad-person-state";
 
 const TableHeader = styled.th`
   padding: 12px 24px;
@@ -71,6 +72,22 @@ const Table = styled.table<{ tableType: string }>`
       width: 15%;
     }
   `}
+
+   ${({ tableType }) =>
+    tableType === "state" &&
+    `
+    th:nth-child(1) {
+      width: 20%;
+    }
+    th:nth-child(2) {
+      padding-left: 0px;
+      width: 30%;
+    }
+    th:nth-child(3) {
+      padding-left: 0px;
+      width: 50%;
+    }
+  `}
 `;
 
 interface CommonProps {
@@ -82,6 +99,7 @@ interface CommonProps {
 
 interface BookProps extends CommonProps {
   state: "viewing" | "interviewing" | "interviewed";
+  onClick?: () => void;
 }
 
 interface ViewProps extends CommonProps {
@@ -89,12 +107,17 @@ interface ViewProps extends CommonProps {
   hoursPerWeek: string;
   location: string;
   availability: string;
+  onClick?: () => void;
 }
 
-export type PersonData = BookProps | ViewProps;
+interface StateProps extends CommonProps {
+  state: "Rejected" | "Accepted" | "Pending";
+}
+
+export type PersonData = BookProps | ViewProps | StateProps;
 
 interface SquadTableProps {
-  type?: "book" | "view";
+  type?: "book" | "view" | "state";
   data: Array<PersonData>;
 }
 
@@ -118,7 +141,7 @@ const SquadTable: React.FC<SquadTableProps> = ({ type = "view", data }) => {
                 <TableHeader>State</TableHeader>
               </>
             )}
-            <TableHeader></TableHeader>
+            {type != "state" && <TableHeader></TableHeader>}
           </tr>
         </thead>
         <tbody>
@@ -132,6 +155,20 @@ const SquadTable: React.FC<SquadTableProps> = ({ type = "view", data }) => {
                     profileLink={person.profileLink}
                     title={person.title}
                     state={(person as BookProps).state}
+                    onClick={(person as BookProps).onClick}
+                  />
+                );
+              })
+            : type === "state"
+            ? data.map((person, index) => {
+                return (
+                  <SquadPersonState
+                    key={index}
+                    avatarSrc={person.avatarSrc}
+                    name={person.name}
+                    profileLink={person.profileLink}
+                    title={person.title}
+                    state={(person as StateProps).state}
                   />
                 );
               })
@@ -148,6 +185,7 @@ const SquadTable: React.FC<SquadTableProps> = ({ type = "view", data }) => {
                     hoursPerWeek={(person as ViewProps).hoursPerWeek}
                     location={(person as ViewProps).location}
                     availability={(person as ViewProps).availability}
+                    onClick={(person as ViewProps).onClick}
                   />
                 );
               })}
@@ -156,7 +194,10 @@ const SquadTable: React.FC<SquadTableProps> = ({ type = "view", data }) => {
       <ShowMoreButton
         onClick={() => setShowAll(!showAll)}
         style={{
-          display: data.length > 3 && type !== "book" ? "flex" : "none",
+          display:
+            data.length > 3 && type !== "book" && type !== "state"
+              ? "flex"
+              : "none",
         }}
       >
         {showAll ? "See Less" : "See More"}

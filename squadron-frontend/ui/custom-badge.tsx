@@ -37,7 +37,7 @@ const Badge = styled.div<{
     }
     return originalPadding;
   }};
-  gap: ${(props) => sizeStyles[props.size].gap};
+  gap: ${(props) => (props.hasIcon ? sizeStyles[props.size].gap : "0px")};
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
@@ -59,36 +59,85 @@ const presets = {
     backgroundColor: "#ECFDF3",
     textColor: "#027A48",
     borderColor: "none",
+    icon: null,
+  },
+  yellow: {
+    backgroundColor: "#FFFAEB",
+    textColor: "#B54708",
+    borderColor: "none",
+    icon: null,
   },
   red: {
     backgroundColor: "#FFF4ED",
     textColor: "#B93815",
     borderColor: "none",
+    icon: null,
+  },
+  blue: {
+    backgroundColor: "#F0F9FF",
+    textColor: "#026AA2",
+    borderColor: "none",
+    icon: null,
+  },
+  grey: {
+    backgroundColor: "#F0F0F0",
+    textColor: "#808080",
+    borderColor: "none",
+    icon: null,
+  },
+  black: {
+    backgroundColor: "#111927",
+    textColor: "#ffffff",
+    borderColor: "none",
+    icon: null,
   },
   outlined_grey: {
     backgroundColor: "transparent",
     textColor: "#4D5761",
     borderColor: "#4D5761",
+    icon: null,
   },
   outlined_green: {
     backgroundColor: "transparent",
     textColor: "#027A48",
     borderColor: "#027A48",
+    icon: null,
   },
   outlined_light_green: {
     backgroundColor: "transparent",
     textColor: "#039855",
     borderColor: "#039855",
+    icon: null,
+  },
+  live: {
+    backgroundColor: "#ECFDF3",
+    textColor: "#027A48",
+    borderColor: "none",
+    icon: (
+      <svg
+        width="8"
+        height="8"
+        viewBox="0 0 8 8"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="4" cy="4" r="3" fill="#12B76A" />
+      </svg>
+    ),
   },
 };
 
 export type PresetTypes =
   | "green"
+  | "yellow"
   | "red"
+  | "blue"
+  | "grey"
   | "outlined_grey"
   | "outlined_green"
-  | "outlined_light_green";
-export interface CustomButtonProps {
+  | "outlined_light_green"
+  | "live";
+export interface CustomBadgeProps {
   label: string;
   icon?: React.ReactNode;
   preset?: PresetTypes;
@@ -98,7 +147,7 @@ export interface CustomButtonProps {
   size?: "small" | "large";
 }
 
-const CustomBadge: React.FC<CustomButtonProps> = ({
+const CustomBadge: React.FC<CustomBadgeProps> = ({
   label,
   icon = null,
   preset,
@@ -112,6 +161,8 @@ const CustomBadge: React.FC<CustomButtonProps> = ({
     : backgroundColor;
   const finalTextColor = preset ? presets[preset].textColor : textColor;
   const finalBorderColor = preset ? presets[preset].borderColor : borderColor;
+  const finalIcon =
+    icon || (preset && presets[preset] ? presets[preset].icon : null);
 
   return (
     <Badge
@@ -121,7 +172,7 @@ const CustomBadge: React.FC<CustomButtonProps> = ({
       size={size}
       hasIcon={Boolean(icon)}
     >
-      {icon && <BadgeIcon>{icon}</BadgeIcon>}
+      {finalIcon && <BadgeIcon>{finalIcon}</BadgeIcon>}
       {label}
     </Badge>
   );
