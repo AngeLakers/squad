@@ -14,10 +14,10 @@ import CustomButton from '@/ui/custom-button';
 import { gray900, xlargeFontSize, mediumFontWeight, xxlargeLineHeight } from '@/styles/reuseParams';
 import BuildApplySquad from '@/ui/build-apply-squad';
 
-export const metadata: Metadata = {
-  title: 'Squadron',
-  description: 'Squadron frontend',
-};
+// export const metadata: Metadata = {
+//   title: 'Squadron',
+//   description: 'Squadron frontend',
+// };
 const Container = styled.div`
   display: flex;
   flex-direction: column;

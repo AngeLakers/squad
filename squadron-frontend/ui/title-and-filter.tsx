@@ -179,7 +179,7 @@ const TitleAndFilter: React.FC<TitleAndFilterProps> = ({
                 </FiltersContainer>
             </SearchSectionContainer>
             <SortSectionContainer>
-                sorted by:
+                Sorted by: Best match
             </SortSectionContainer>
         </TitleAndFilterContainer>
     )

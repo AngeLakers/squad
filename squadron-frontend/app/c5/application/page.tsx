@@ -112,7 +112,7 @@ const Description = styled.p`
   margin-bottom: 48px;
 `;
 
-export default function AllComponents() {
+export default function C5Application() {
   const [hireSquadPopupOpen, setHireSquadPopupOpen] = useState(false);
   const [hideSquadPopupOpen, setHideSquadPopupOpen] = useState(false);
   return (
@@ -216,6 +216,8 @@ export default function AllComponents() {
           //showDivider={false}
         />
       )}
+
+      {/* waiting for not interested button to add link */}
       {hideSquadPopupOpen && (
         <EditProjPopup
           onClose={() => setHideSquadPopupOpen(false)}
