@@ -9,6 +9,7 @@ import styled from "styled-components";
 import TalentSkills, { BadgeData } from "@/ui/talent-skills";
 import { StarSVG } from "@/ui/svgs";
 import SquadNav from "@/ui/squad-navigation";
+import CustomProjectHeader from "@/ui/custom-project-header";
 
 const mockProfileData: ProfileDataType = {
   rate: "$90/h",
@@ -106,9 +107,16 @@ const mockDocumentData = [
 const Profile = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 32px;
   min-width: fit-content;
   margin: 50px 10%;
+
+  & > * + * {
+    margin-top: 32px;
+  }
+
+  & > :nth-child(1) + :nth-child(2) {
+    margin-top: 0;
+  }
 `;
 
 const TalentInfoWrapper = styled.div`
@@ -127,6 +135,35 @@ export default function AllComponents() {
       />
 
       <Profile>
+      <CustomProjectHeader
+          backgroundImage="/images/testCustomHeaderBackgroud.png"
+          avatarImagePath="/portraitA.png"
+          avatarHeight={"89px"}
+          avatarWidth={"89px"}
+          title1="Product Manager"
+          title2="Patricia Montero"
+          title3="Sydney, AU"
+          button={{
+            isVisible: true,
+            text: "Interview",
+            backgroundColor: "#D0FC4A",
+            textColor: "#384250",
+          }}
+          shareIcon={{
+            isVisible: true,
+            color: "#D0FC4A",
+            onClick: () => {
+              console.log("Share icon clicked!");
+            },
+          }}
+          starIcon={{
+            isVisible: true,
+            color: "#D0FC4A",
+            onClick: () => {
+              console.log("Star icon clicked!");
+            },
+          }}
+        />
         <TalentProfile data={mockProfileData} />
         <TalentInfo
           title={"Skills & Tools"}

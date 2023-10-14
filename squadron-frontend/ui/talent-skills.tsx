@@ -14,8 +14,12 @@ const SkillContainer = styled.div`
   gap: 16px;
 `;
 
-const SkillTitle = styled.div`
-  font-size: 18px;
+interface SkillTitleProps {
+  fontSize: string;
+}
+
+const SkillTitle = styled.div<SkillTitleProps>`
+  font-size: ${(props) => props.fontSize};
   font-weight: 500;
   line-height: 28px;
   letter-spacing: 0em;
@@ -44,16 +48,18 @@ export interface BadgeData {
 interface TalentSkillsProps {
   skillsData: BadgeData[];
   toolsData: BadgeData[];
+  fontSize?: string;
 }
 
 const TalentSkills: React.FC<TalentSkillsProps> = ({
+  fontSize = "18px",
   skillsData,
   toolsData,
 }) => {
   return (
     <Skills>
       <SkillContainer>
-        <SkillTitle>Skills</SkillTitle>
+        <SkillTitle fontSize={fontSize}>Skills</SkillTitle>
         <Skillbadges>
           {skillsData.map((badge, index) => (
             <CustomBadge
@@ -66,7 +72,7 @@ const TalentSkills: React.FC<TalentSkillsProps> = ({
         </Skillbadges>
       </SkillContainer>
       <SkillContainer>
-        <SkillTitle>Tools</SkillTitle>
+        <SkillTitle fontSize={fontSize}>Tools</SkillTitle>
         <Skillbadges>
           {toolsData.map((badge, index) => (
             <CustomBadge

@@ -69,21 +69,6 @@ const ButtonContainer = styled.div`
   width: 273px;
 `;
 
-const AddButton = styled.button`
-  cursor: pointer;
-  padding: 10px 16px;
-  border-radius: 8px;
-  background-color: white;
-  color: black;
-  border: 1px solid #d2d6db;
-  font-size: 14px;
-`;
-
-const ManageButton = styled.button`
-  cursor: pointer;
-  color: #d2d6db;
-`;
-
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
@@ -131,9 +116,17 @@ interface Role {
 
 interface SquadSurveySwapProps {
   roles: Role[];
+  manageButtonLabel?: string;
+  manageButtonTextColor?: string;
+  manageButtonPreset?: PresetTypes;
 }
 
-export default function SquadSurveySwap({ roles }: SquadSurveySwapProps) {
+export default function SquadSurveySwap({ 
+  roles, 
+  manageButtonLabel, 
+  manageButtonTextColor, 
+  manageButtonPreset,
+ }: SquadSurveySwapProps) {
   return (
     <Container>
       <TitleRow>
@@ -153,8 +146,8 @@ export default function SquadSurveySwap({ roles }: SquadSurveySwapProps) {
             <SurveySwapTitle>SurveySwap</SurveySwapTitle>
           </div>
           <ButtonContainer>
-            <AddButton>+ Add role</AddButton>
-            <ManageButton>Manage squad</ManageButton>
+            <CustomButton preset="outlined" label="+ Add role"/>
+            <CustomButton preset={manageButtonPreset || "text"} label={manageButtonLabel || "Manage squad"} textColor={manageButtonTextColor || "#d2d6db"}/>
           </ButtonContainer>
         </TextAndButtonContainer>
       </TitleRow>

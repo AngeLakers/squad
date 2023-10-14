@@ -2,8 +2,8 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import CustomButton from "./custom-button";
 import RoleInfo from "./role-info";
+import CustomBadge from "./custom-badge";
 
 const PersonName = styled.div`
   display: flex;
@@ -41,43 +41,33 @@ const ProfileLink = styled(Link)`
   color: #6c5fff;
 `;
 
-const ViewApplicationButton = styled.div`
-  float: right;
-  padding-right: 16px;
-`;
-
-const StateSelection = styled.select`
-  padding: 10px 14px 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #d2d6db;
-  background-color: #ffffff;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: #111927;
-  gap: 8px;
-`;
-
-interface SquadPersonBookProps {
+interface SquadPersonStateProps {
   avatarSrc: string;
   name: string;
   profileLink: string;
   title: string;
-  state: "viewing" | "interviewing" | "interviewed";
-  onClick?: () => void;
+  state: "Rejected" | "Accepted" | "Pending";
 }
 
-const SquadPersonBook: React.FC<SquadPersonBookProps> = ({
+const SquadPersonState: React.FC<SquadPersonStateProps> = ({
   avatarSrc,
   name,
   profileLink,
   title,
   state,
-  onClick,
 }) => {
-  const isButtonDisabled = state === "interviewed";
+  const renderBadge = () => {
+    switch (state) {
+      case "Rejected":
+        return <CustomBadge label={"Rejected"} preset="red" size="large" />;
+      case "Accepted":
+        return <CustomBadge label={"Accepted"} preset="green" size="large" />;
+      case "Pending":
+        return <CustomBadge label={"Pending"} preset="yellow" size="large" />;
+      default:
+        return null;
+    }
+  };
   return (
     <tr>
       <td>
@@ -92,20 +82,9 @@ const SquadPersonBook: React.FC<SquadPersonBookProps> = ({
       <td>
         <RoleInfo title={title} />
       </td>
-      <td>
-        <StateSelection defaultValue={state}>
-          <option value="viewing">Viewing application</option>
-          <option value="interviewing">Interviewing</option>
-          <option value="interviewed">Interviewed</option>
-        </StateSelection>
-      </td>
-      <td>
-        <ViewApplicationButton>
-          <CustomButton label="Book Call" preset="default" onClick={onClick} />
-        </ViewApplicationButton>
-      </td>
+      <td>{renderBadge()}</td>
     </tr>
   );
 };
 
-export default SquadPersonBook;
+export default SquadPersonState;

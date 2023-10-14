@@ -14,10 +14,17 @@ import CustomButton from '@/ui/custom-button';
 import { gray900, xlargeFontSize, mediumFontWeight, xxlargeLineHeight } from '@/styles/reuseParams';
 import BuildApplySquad from '@/ui/build-apply-squad';
 
-// export const metadata: Metadata = {
-//   title: 'Squadron',
-//   description: 'Squadron frontend',
-// };
+
+type NotificationPopupProps = {
+  isVisible: boolean;
+};
+
+/*
+export const metadata: Metadata = {
+  title: 'Squadron',
+  description: 'Squadron frontend',
+};*/
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,8 +41,9 @@ const MainContent = styled.div`
 `;
 const BackButtonContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  align-items: center;
+  gap: 450px; //need to be changed
   height: fit-content;
   width: fit-content;
   margin-top: 64px;
@@ -48,6 +56,29 @@ const RoleCardContainer = styled.div`
   width: 100%;
   gap: 32px;
 `
+
+const NotificationPopup = styled.div<NotificationPopupProps>`
+  display: ${props => props.isVisible ? 'flex' : 'none'}; 
+  position: relative;
+  background-color: #6941C6;
+  color: white;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  font-size: 14px;
+  gap: 12px;
+  align-items: center; 
+  justify-content: space-between; 
+`;
+
+const CloseButton = styled.span`
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  margin-left: 8px;
+`;
+
+
 const TitleContainer = styled.div`
   font-size: ${xlargeFontSize};
   font-weight: ${mediumFontWeight};
@@ -79,12 +110,20 @@ export default function Home() {
     setCompleteRequirementsPopupOpen(true);
   }
 
+  const [isNotificationVisible, setNotificationVisible] = useState(true);
+
+
   return (
     <>
       <SideNav />
       <Container>
         <BackButtonContainer>
           <CustomButton label={"Back to projects"} preset='text' />
+          <NotificationPopup isVisible={isNotificationVisible}>
+              Your question has been sent. You will receive a response in your email
+              <CloseButton onClick={() => setNotificationVisible(false)}>x</CloseButton>
+          </NotificationPopup>
+
         </BackButtonContainer>
         <MainContent>
           <ProjectProfile
@@ -105,6 +144,8 @@ export default function Home() {
             projectLeaderRole='Manager'
             projectOutline='This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline This is project outline '
             keyDeliverables={['deliverable 1', 'deliverable 2', 'deliverable 3', 'deliverable 4', 'deliverable 5', 'deliverable 6']}
+
+            
           />
           <RoleCardContainer>
             <TitleContainer>

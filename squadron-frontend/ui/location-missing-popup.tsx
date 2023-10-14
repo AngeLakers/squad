@@ -96,7 +96,7 @@ const LocationMissingPopup: React.FC<LocationMissingProps> = ({
         <Divider />
         <InputRow>
             <InputContainer>
-            <Image src={imgSrc} alt={imgText} width="49" height="48" />
+            <Image src={imgSrc} alt={imgText} width="48" height="48" />
                 <TextContainer>
                   <span>{imgText}</span>
                   <span style={{ fontSize: 'smaller', color: 'grey' }}>{imgDescription}</span>

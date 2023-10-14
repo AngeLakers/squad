@@ -96,6 +96,7 @@ interface SendOfferProps {
     hourlyRate?: string;
     project?: string;
     client?: string;
+    sendOfferLink?: string;
 }
 
 const SendOfferPopup: React.FC<SendOfferProps> = ({ 
@@ -106,7 +107,8 @@ const SendOfferPopup: React.FC<SendOfferProps> = ({
     commitment = "40h/week", 
     hourlyRate = "$85/h", 
     project = "Serverless Return Portal",
-    client = "Stir" 
+    client = "Stir" ,
+    sendOfferLink,
  }) => {
     const [isChecked, setIsChecked] = useState(false);
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -139,7 +141,9 @@ const SendOfferPopup: React.FC<SendOfferProps> = ({
         </CheckboxContainer>
         <Divider />
         <ButtonContainer>
-          <CustomButton label="Send Offer" preset="default" borderColor="#D0D5DD" padding="10px 16px" hoverColor="none" backgroundColor={isChecked ? 'black' : '#D2D6DB'} textColor= 'white'/>
+          <a href={sendOfferLink}>
+            <CustomButton label="Send Offer" preset="default" borderColor="#D0D5DD" padding="10px 16px" hoverColor="none" backgroundColor={isChecked ? 'black' : '#D2D6DB'} textColor= 'white' width="100%"/>
+            </a>
           <CustomButton label="Cancel" preset="default" padding="10px 16px" backgroundColor="white" textColor="#344054" hoverColor="none" borderColor="#D0D5DD" onClick={onClose}/>
         </ButtonContainer>
       </Container>

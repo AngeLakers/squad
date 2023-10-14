@@ -9,8 +9,8 @@ display: flex;
 
 const Paper4 = styled(Paper)`
   width: 540px;
-  height: 240px;
-  margin-left: 150px;
+  height: 260px;
+
   background-image: url("/images/05.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -19,7 +19,7 @@ const Paper4 = styled(Paper)`
 
 const Paper5 = styled(Paper)`
   width: 540px;
-  height: 240px;
+  height: 260px;
   margin-left: 50px;
   background-image: url("/images/06.png");
   background-size: cover;
@@ -31,8 +31,8 @@ export function Wallet() {
     return (
          <>
         <Wallet1>
-        <Paper4></Paper4>
-        <Paper5></Paper5>
+        <Paper4 >  </Paper4 >
+        <Paper5> </Paper5>
         </Wallet1>
         </>
     )}
