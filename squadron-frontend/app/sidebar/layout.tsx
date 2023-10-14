@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { SideNav } from "@/ui/side-nav";
 import { TopNav } from "@/ui/top-nav";
 import styled from "styled-components";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "Squadron",
@@ -27,7 +28,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <SideNav current="Projects" />
 
       <Main>
-        <TopNav />
+          <TopNav  />
         <div>{children}</div>
       </Main>
     </Nav>

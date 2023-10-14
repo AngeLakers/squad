@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import styled from 'styled-components';
 import Card from '@mui/material/Card';
@@ -5,6 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import {Icon, SvgIcon, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
+import {useRouter} from "next/navigation";
 
 
 const StyledCard = styled(Card)`
@@ -349,8 +352,17 @@ const BalanceBox: React.FC<BalanceBoxProps> = ({time, currentBalance, percentage
 
 
 const SatisfactionBox: React.FC<{ score: number }> = ({score}) => {
+
+
+    const router  =  useRouter();
+    const handleClick = () => {
+        router.push('/homescreen/pulse_survey');
+    };
+
+
     return (
-        <StyledBox>
+
+        <StyledBox onClick={handleClick}>
             {score !== 0 && <StyledIcon/>}
             <StyledScoreBackground score={score}>
 

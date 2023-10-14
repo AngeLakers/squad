@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Image from 'next/image';
 import React from "react";
 import {useRouter} from "next/navigation";
-import {router} from "next/client";
+
 
 
 

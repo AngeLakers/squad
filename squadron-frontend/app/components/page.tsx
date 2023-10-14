@@ -399,11 +399,6 @@ interface ComponentWrapperProps {
   usage?: string;
 }
 
-const Display = styled.div`
-  margin-left: 150px;
-  display: flex;
-  margin-top: 50px;
-`;
 
 const ComponentWrapper: React.FC<ComponentWrapperProps> = ({
   filename,

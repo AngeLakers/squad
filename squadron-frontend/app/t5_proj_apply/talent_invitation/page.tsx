@@ -24,7 +24,7 @@ export default function Home() {
        <div>
 
 
-           <Topbar1></Topbar1>
+
 
 
            <Container>
