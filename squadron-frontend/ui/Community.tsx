@@ -9,14 +9,22 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Paper,Stack,IconButton,Badge, Divider,AvatarGroup } from '@mui/material';
 import styled from 'styled-components';
 
+
 const Display=styled.div`
 display: flex;
 margin-top: 50px;
 `;
+const T1=styled.div`
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-direction: row;
+`;
+
 
 const Card1=styled(Card)`
 width: 400px;
-margin-left: 150
+
 `;
 
 
@@ -24,9 +32,7 @@ const Card2=styled(Card)`
 width:680px;
   margin-left: 50px;
 `;
-const AvatarGroup1=styled(AvatarGroup)`
-margin-right: 550px;
-`;
+
 export function Community() {
     return (
 
@@ -75,6 +81,9 @@ export function Community() {
 
 </Card1>
 
+
+
+
 <Card2>
 <CardContent>
 
@@ -86,12 +95,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu v
 </Typography>
 <Divider />
 
-<AvatarGroup1  max={3} >
-  <Avatar alt="Remy Sharp" src="/images/01.png" />
-  <Avatar alt="Travis Howard" src="/images/01.png" />
-  <Avatar alt="Cindy Baker" src="/images/01.png" />
-  <Avatar alt="Agnes Walker" src="/images/01.png" />
-</AvatarGroup1  >
+<T1>
+<AvatarGroup  max={3} >
+      <Avatar alt="Remy Sharp" src="/images/01.png" />
+      <Avatar alt="Travis Howard" src="/images/01.png" />
+      <Avatar alt="Cindy Baker" src="/images/01.png" />
+      <Avatar alt="Agnes Walker" src="/images/01.png" />
+    </AvatarGroup  >
+</T1>
 
 
 

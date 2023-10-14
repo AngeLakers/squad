@@ -5,16 +5,16 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Button, CardActions} from '@mui/material';
 import styled from 'styled-components';
+import { Divider } from '@mui/material';
 
 const Cardapplication = styled(Card)`
-margin-left: 150px;
 margin-bottom: 50px;
 width:1130px;
 height: 350px;
 
 `;
-const Title = styled.div`
-margin-top: 50px;
+const TitleA = styled.div`
+  margin-top: 50px;
   font-size: 20px;
   margin-left: 150px;
   margin-bottom: 30px;
@@ -31,14 +31,32 @@ const Cloud = styled.svg`
 position:absolute;
 `;
 
+
+const T = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: row;
+`;
+
+
 export function Application() {
     return (
 <>
-<Title>
-  My applications
-  </Title>
-<Cardapplication >
 
+
+<T>
+<Divider sx={{ width:1130}} />
+</T>
+
+
+<TitleA>
+  My applications
+  </TitleA>
+
+
+<T>
+<Cardapplication>
 <Bigcircle>
 
 <Cloud width="132" height="104" viewBox="-10 0 162 104" fill="none" xmlns="http://www.w3.org/2000/svg"  >
@@ -118,5 +136,6 @@ You haven’t applied any role yet. Start searching for projects
     </CardActions>
 </Bigcircle>
 </Cardapplication>
+</T>
 </>
     )}

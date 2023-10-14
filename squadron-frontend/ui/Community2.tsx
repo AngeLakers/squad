@@ -18,9 +18,11 @@ import { createTheme, alpha, getContrastRatio, ThemeProvider } from '@mui/materi
   display: flex;
   margin-top: 50px;
   `;
+  
 const Paper1=styled(Paper)`
 width: 270px;
 height: 150px;
+marginBottom: 0;
 background-image: url("/images/02.png");
 background-size: cover;
 background-repeat: no-repeat;
@@ -39,14 +41,13 @@ border: 1px solid #e0e0e0;
 const Paper3 = styled(Paper)`
 width: 200px;
 height: 150px;
-margin-top: 20px;
+margin-top: 20px,
 background-image: url("/images/04.png");
 background-size: cover;
 background-repeat: no-repeat;
 border: 1px solid #e0e0e0;
 `;
 
-// margin-left: 150px;
 
 const Card3 = styled(Card)`
 
@@ -124,8 +125,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing  <br />elit. Varius facilisis
 
   <Box4>
 
-<Paper3 variant="outlined" 
-/>
+<Paper3 variant="outlined"  />
 <Typography variant="h6" sx={{mt:2,ml:2}}>
 Why We Were Destined To <br />Power the Innovator Economy
 
