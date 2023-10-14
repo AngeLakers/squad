@@ -17,6 +17,7 @@ import ShowMoreText from "./text-showmore";
 import { StarBorder } from "@mui/icons-material";
 import TalentSkills, { BadgeData } from "./talent-skills";
 import RoleInfo from "./role-info";
+import ProjectRoles from "./project-roles";
 
 const mockMenuItems = [
   [{ menu: "View profile" }, { menu: "My Work " }],
@@ -25,7 +26,20 @@ const mockMenuItems = [
 ];
 
 const appMenuItems = [
-  [{ menu: "Not interested" }, { menu: "Send feedback/reject " }],
+  [
+    {
+      menu: (
+        <button
+          onClick={() => {
+            alert("Not interested");
+          }}
+        >
+          not interested
+        </button>
+      ),
+    },
+    { menu: "Send feedback/reject " },
+  ],
 ];
 
 const mockTalentMenuItems = [
@@ -53,11 +67,10 @@ const Divider = styled.div`
   background-color: #e5e7eb;
 `;
 
-const MatchContainer = styled.div`
+const BadgeContainer = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 16px 24px 16px 24px;
-  gap: 8px;
+  gap: 16px;
 `;
 
 const SquadContainer = styled.div`
@@ -142,6 +155,13 @@ const ShowMoreButton = styled.button`
   text-align: left;
 `;
 
+const HeaderContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px 24px 16px 24px;
+`;
+
 interface SquadCardProps {
   badgeTitles?: string[];
   badgeColor?: PresetTypes;
@@ -151,8 +171,8 @@ interface SquadCardProps {
   squadDescription?: string;
   customBadges?: React.ReactNode[];
   buttonsPreset?: ButtonContainerPresets;
-  type?: "book" | "view" | "state";
-  data: Array<PersonData> | Array<BadgeData[]>;
+  type?: "book" | "view" | "state" | "project";
+  data: Array<PersonData> | Array<BadgeData[]> | string[];
   icon?: React.ReactNode;
   button1Link?: string;
   onClick?: () => void;
@@ -202,22 +222,35 @@ const SquadCard: React.FC<SquadCardProps> = ({
     <Card>
       {!hideHeader && (
         <>
-          <MatchContainer>
-            {badgeTitles && badgeTitles.length > 0
-              ? badgeTitles.map((title, index) => (
-                  <CustomBadge
-                    key={index}
-                    preset={index === 0 ? badgeColor : "blue"}
-                    icon={
-                      badgeIcon && index === 0 ? (
-                        <TickSVG preset={badgeColor} />
-                      ) : null
-                    }
-                    label={title || ""}
-                  />
-                ))
-              : null}
-          </MatchContainer>
+          <HeaderContainer>
+            <BadgeContainer>
+              {badgeTitles && badgeTitles.length > 0
+                ? badgeTitles.map((title, index) => (
+                    <CustomBadge
+                      key={index}
+                      preset={
+                        type === "project"
+                          ? "grey"
+                          : index === 0
+                          ? badgeColor
+                          : "blue"
+                      }
+                      icon={
+                        type === "project" ? null : badgeIcon && index === 0 ? (
+                          <TickSVG preset={badgeColor} />
+                        ) : null
+                      }
+                      label={title || ""}
+                    />
+                  ))
+                : null}
+            </BadgeContainer>
+            {type === "project" ? (
+              <ButtonContainerComponent
+                preset={ButtonContainerPresets.PROJECT}
+              />
+            ) : null}
+          </HeaderContainer>
           <Divider />
         </>
       )}
@@ -228,11 +261,26 @@ const SquadCard: React.FC<SquadCardProps> = ({
               <HeadingContainer>
                 <SuqadIcon> {icon && icon}</SuqadIcon>
                 <TitleContainer>
-                  <SquadTitle>{squadTitle}</SquadTitle>
-                  <SquadSubTitle>{squadSubTitle}</SquadSubTitle>
+                  {type === "project" ? (
+                    <>
+                      <SquadSubTitle>{squadSubTitle}</SquadSubTitle>
+                      <SquadTitle>{squadTitle}</SquadTitle>
+                    </>
+                  ) : (
+                    <>
+                      <SquadTitle>{squadTitle}</SquadTitle>
+                      <SquadSubTitle>{squadSubTitle}</SquadSubTitle>
+                    </>
+                  )}
                 </TitleContainer>
               </HeadingContainer>
-              <ButtonContainerComponent preset={buttonsPreset} button1Link={button1Link} onClick={onClick}/>
+              {type !== "project" ? (
+                <ButtonContainerComponent
+                  preset={buttonsPreset}
+                  button1Link={button1Link}
+                  onClick={onClick}
+                />
+              ) : null}
             </Heading>
             {squadDescription && (
               <ShowMoreText
@@ -246,9 +294,11 @@ const SquadCard: React.FC<SquadCardProps> = ({
             )}
           </SquadHeader>
         )}
-        {buttonsPreset === ButtonContainerPresets.TALENT ||
-        buttonsPreset === ButtonContainerPresets.MESSAGE ||
-        buttonsPreset === ButtonContainerPresets.REFER ? (
+        {type === "project" ? (
+          <ProjectRoles RolesData={data as string[]} />
+        ) : buttonsPreset === ButtonContainerPresets.TALENT ||
+          buttonsPreset === ButtonContainerPresets.MESSAGE ||
+          buttonsPreset === ButtonContainerPresets.REFER ? (
           <>
             <Divider />
             <RoleInfo
@@ -295,7 +345,8 @@ export enum ButtonContainerPresets {
   MESSAGE,
   REFER,
   EMPTY,
-  APP
+  APP,
+  PROJECT,
 }
 
 interface ButtonContainerProps {
@@ -345,25 +396,24 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
           </>
         );
 
-        case ButtonContainerPresets.APP:
-          return (
-            <>
-              <a href={button1Link || "#"}>
-                <CustomButton label="Meet Squad" preset="outlined" />
-              </a>
-              <CustomButton
-                label="Hire Squad"
-                preset="default"
-                onClick={onClick}
-              />
-              <DropdownButton
-                label={<VerticalDotsSVG />}
-                preset="outlined"
-                menuItems={appMenuItems}
-              />
-    
-            </>
-          );
+      case ButtonContainerPresets.APP:
+        return (
+          <>
+            <a href={button1Link || "#"}>
+              <CustomButton label="Meet Squad" preset="outlined" />
+            </a>
+            <CustomButton
+              label="Hire Squad"
+              preset="default"
+              onClick={onClick}
+            />
+            <DropdownButton
+              label={<VerticalDotsSVG />}
+              preset="outlined"
+              menuItems={appMenuItems}
+            />
+          </>
+        );
       case ButtonContainerPresets.TALENT:
         return (
           <>
@@ -397,6 +447,12 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
         return (
           <>
             <CustomButton label="Refer" preset="outlined" />
+          </>
+        );
+      case ButtonContainerPresets.PROJECT:
+        return (
+          <>
+            <CustomButton label="View" preset="outlined" />
           </>
         );
       case ButtonContainerPresets.EMPTY:

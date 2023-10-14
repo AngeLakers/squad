@@ -214,6 +214,22 @@ const rolesData = [
 export default function AllComponents() {
   return (
     <>
+      <SquadCard
+        badgeTitles={["E-commerce", "MVP"]}
+        squadTitle="MVP for Serverless E-commerce Return Portal"
+        squadSubTitle="Stir"
+        squadDescription="We are helping e-commerce to be more profitable and sustainable by processing, analysing and reselling returns and overstock through our software and logistics platform. We need a passionate team to build the beta version of our SaaS Customer Returns. We are helping e-commerce to be more profitable and sustainable by processing, analysing and reselling returns and overstock through our software and logistics platform. We need a passionate team to build the beta version of our SaaS Customer Returns..."
+        icon={
+          <img src="https://avatars.githubusercontent.com/u/12592949?v=1" />
+        }
+        type="project"
+        data={[
+          "Product Manager",
+          "Front End Developer",
+          "Back End Developer",
+          "UX Designer",
+        ]}
+      />
       <TalentCard
         title={"UX Designer"}
         icon={
