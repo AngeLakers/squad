@@ -166,6 +166,7 @@ export type PresetTypes =
   | "yellow"
   | "red"
   | "blue"
+  | "black"
   | "grey"
   | "outlined_grey"
   | "outlined_green"

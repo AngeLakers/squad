@@ -242,7 +242,7 @@ const C5ProjHubSendOffer: React.FC = () => {
                 > Offers rejected </NavBarButton>
             </NavigationBarContainer>
             <SquadContainer>
-                <SquadSurveySwap roles={rolesData} manageButtonLabel='Admin Squad' manageButtonPreset='outlined' manageButtonTextColor='#384250'/>
+                <SquadSurveySwap roles={rolesData} manageButtonLabel='Admin Squad' manageButtonPreset='outlined' manageButtonTextColor='#384250'onClick={() => {window.location.href = '/c5/manage_squad_send_offer'}}/>
             </SquadContainer>
         </>
         )}

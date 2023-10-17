@@ -121,6 +121,8 @@ interface SquadSurveySwapProps {
   manageButtonTextColor?: string;
   manageButtonPreset?: PresetTypes;
   showButtonContainer?: boolean;
+  onClick?: () => void;
+  onClick2?: () => void;
 }
 
 export default function SquadSurveySwap({ 
@@ -129,6 +131,8 @@ export default function SquadSurveySwap({
   manageButtonTextColor, 
   manageButtonPreset,
   showButtonContainer = true,
+  onClick,
+  onClick2,
  }: SquadSurveySwapProps) {
   const isFewerThanSix = roles.length < 6;
 
@@ -152,8 +156,8 @@ export default function SquadSurveySwap({
           </div>
           {showButtonContainer && (
             <ButtonContainer>
-              <CustomButton preset="outlined" label="+ Add role"/>
-              <CustomButton preset={manageButtonPreset || "text"} label={manageButtonLabel || "Manage squad"} textColor={manageButtonTextColor || "#d2d6db"}/>
+              <CustomButton preset="outlined" label="+ Add role" onClick={onClick}/>
+              <CustomButton preset={manageButtonPreset || "text"} label={manageButtonLabel || "Manage squad"} textColor={manageButtonTextColor || "#d2d6db"} onClick={onClick2}/>
             </ButtonContainer>
           )}
         </TextAndButtonContainer>

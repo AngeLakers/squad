@@ -18,6 +18,9 @@ import { StarBorder } from "@mui/icons-material";
 import TalentSkills, { BadgeData } from "./talent-skills";
 import RoleInfo from "./role-info";
 import ProjectRoles from "./project-roles";
+import EditProjPopup from "@/ui/editproj-popup";
+import Image from "next/image";
+import hideImage from "@/public/hide.png";
 
 const mockMenuItems = [
   [{ menu: "View profile" }, { menu: "My Work " }],
@@ -25,22 +28,6 @@ const mockMenuItems = [
   [{ menu: "Logout " }],
 ];
 
-const appMenuItems = [
-  [
-    {
-      menu: (
-        <button
-          onClick={() => {
-            alert("Not interested");
-          }}
-        >
-          not interested
-        </button>
-      ),
-    },
-    { menu: "Send feedback/reject " },
-  ],
-];
 
 const mockTalentMenuItems = [
   [
@@ -360,6 +347,22 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
   button1Link,
   onClick,
 }) => {
+  const [hideSquadPopupOpen, setHideSquadPopupOpen] = useState(false);
+
+  const appMenuItems = [
+    [
+      {
+        menu: (
+          <button
+            onClick={() => setHideSquadPopupOpen(true)}
+          >
+            not interested
+          </button>
+        ),
+      },
+      { menu: "Send feedback/reject " },
+    ],
+  ];
   const renderButtons = () => {
     switch (preset) {
       case ButtonContainerPresets.DEFAULT:
@@ -462,5 +465,24 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
     }
   };
 
-  return <ButtonContainer>{renderButtons()}</ButtonContainer>;
+  return <ButtonContainer>{renderButtons()}{hideSquadPopupOpen && (
+    <EditProjPopup
+      onClose={() => setHideSquadPopupOpen(false)}
+      title="Hide this squad"
+      description="Please, let as not why you don’t want to see this squad. This will help us to give you better options"
+      cancelButtonText="Cancel"
+      confirmButtonText="Hide"
+      showTextarea={true}
+      icon={
+        <Image
+          key="hideImage"
+          src={hideImage}
+          alt="Hide Icon"
+          width="44"
+          height="44"
+        />
+      }
+    />
+  )}
+  </ButtonContainer>;
 };

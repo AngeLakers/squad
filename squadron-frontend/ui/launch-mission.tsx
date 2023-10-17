@@ -47,22 +47,22 @@ const Icon = styled.div`
 
 interface LaunchMissionProps {
     onClose: () => void;
+    onClick?: () => void;
     title: string;
     description: string;
     confirmButtonText: string;
     showDivider?: boolean;
     icon?: ReactNode;
-    button2Link?: string; 
 }
 
 const LaunchMissionPopup: React.FC<LaunchMissionProps> = ({ 
     onClose,
+    onClick,
     title,
     description,
     confirmButtonText,
-    button2Link,
     showDivider = true,
-    icon
+    icon,
 }) => {
     return (
         <PopupComponent onClose={onClose}  width="30%" minWidth="300px" maxHeightPercent={0.3} minHeight="150px" >
@@ -72,7 +72,7 @@ const LaunchMissionPopup: React.FC<LaunchMissionProps> = ({
                 <Description>{description}</Description>
                 {showDivider &&<Divider />}
                 <ButtonContainer>
-                    <a href={button2Link || "#"}><CustomButton label={confirmButtonText} width="100%" preset="default" borderColor="#D0D5DD" padding="10px 18px" backgroundColor="#111927" textColor="white" hoverColor="none"/></a>
+                    <CustomButton label={confirmButtonText} width="100%" preset="default" borderColor="#D0D5DD" padding="10px 18px" backgroundColor="#111927" textColor="white" hoverColor="none" onClick={onClick}/>
                 </ButtonContainer>
             </ContentContainer>
         </PopupComponent>

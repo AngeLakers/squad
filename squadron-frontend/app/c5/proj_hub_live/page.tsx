@@ -233,7 +233,7 @@ const C5ProjHubLive: React.FC = () => {
             </NavigationBarContainer>
             <SquadContainer>
                 {selectedTab === 'My squad' && (
-                    <SquadSurveySwap roles={rolesData} manageButtonLabel='Admin Squad' manageButtonPreset='outlined' manageButtonTextColor='#384250' showButtonContainer={false}/>
+                    <SquadSurveySwap roles={rolesData} manageButtonLabel='Admin Squad' manageButtonPreset='outlined' manageButtonTextColor='#384250' onClick2={() => {window.location.href = '/c5/manage_squad_live'}}/>
                 )}
                 {selectedTab === 'Offers rejected' && (
                      <SquadCard type="state" data={stateData} />
