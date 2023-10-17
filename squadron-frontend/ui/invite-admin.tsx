@@ -69,7 +69,7 @@ interface InviteAdminProps {
 
 const InviteAdmin: React.FC<InviteAdminProps> = ({ onClose }) => {
   return (
-    <PopupComponent onClose={onClose} width="35%" minWidth="500px" minHeight="max-contents">
+    <PopupComponent onClose={onClose} width="35%" minWidth="500px" minHeight="max-contents" maxHeightPercent={0.3} >
       <Container>
         <Title>Invite admin(s)</Title>
         <Description>description</Description>

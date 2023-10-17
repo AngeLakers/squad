@@ -64,7 +64,7 @@ const VideoUpload: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const [selectedOption, setSelectedOption] = useState<string>('Upload video');
 
     return (
-        <PopupComponent onClose={onClose} minWidth='500px'>
+        <PopupComponent onClose={onClose} minWidth='500px' maxHeightPercent={0.4}>
                 <Sidebar>
                     {['Upload video', 'Record video', 'Video URL'].map(option => (
                         <OptionButton 

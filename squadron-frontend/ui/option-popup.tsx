@@ -114,7 +114,7 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
     return (
-      <PopupComponent onClose={closeModal} minWidth="612px">
+      <PopupComponent onClose={closeModal} minWidth="612px" maxHeightPercent={0.4}>
       <ModalContent>
         <div>
           {" "}

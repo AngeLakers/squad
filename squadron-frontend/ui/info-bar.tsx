@@ -55,7 +55,9 @@ const InfoIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 8px;
 `;
+
 interface CustomCollectingBar {
   backgroundColor?: string;
   buttonPreset?: "default" | "outlined";
