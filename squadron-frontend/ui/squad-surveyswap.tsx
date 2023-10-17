@@ -46,10 +46,11 @@ const AvatarContainer = styled.div`
   margin: 32px 24px 16px 24px;
 `;
 
-const AvatarGrid = styled.div`
+const AvatarGrid = styled.div<{ isFewerThanSix: boolean }>`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: ${(props) => (props.isFewerThanSix ? 'repeat(auto-fit, minmax(120px, 1fr))' : 'repeat(6, 1fr)')};
   grid-auto-rows: minmax(120px, auto);
+  justify-content: ${(props) => (props.isFewerThanSix ? 'space-between' : 'normal')};
 `;
 
 const RoleTitle = styled.div`
@@ -119,6 +120,7 @@ interface SquadSurveySwapProps {
   manageButtonLabel?: string;
   manageButtonTextColor?: string;
   manageButtonPreset?: PresetTypes;
+  showButtonContainer?: boolean;
 }
 
 export default function SquadSurveySwap({ 
@@ -126,7 +128,10 @@ export default function SquadSurveySwap({
   manageButtonLabel, 
   manageButtonTextColor, 
   manageButtonPreset,
+  showButtonContainer = true,
  }: SquadSurveySwapProps) {
+  const isFewerThanSix = roles.length < 6;
+
   return (
     <Container>
       <TitleRow>
@@ -145,14 +150,16 @@ export default function SquadSurveySwap({
             <br />
             <SurveySwapTitle>SurveySwap</SurveySwapTitle>
           </div>
-          <ButtonContainer>
-            <CustomButton preset="outlined" label="+ Add role"/>
-            <CustomButton preset={manageButtonPreset || "text"} label={manageButtonLabel || "Manage squad"} textColor={manageButtonTextColor || "#d2d6db"}/>
-          </ButtonContainer>
+          {showButtonContainer && (
+            <ButtonContainer>
+              <CustomButton preset="outlined" label="+ Add role"/>
+              <CustomButton preset={manageButtonPreset || "text"} label={manageButtonLabel || "Manage squad"} textColor={manageButtonTextColor || "#d2d6db"}/>
+            </ButtonContainer>
+          )}
         </TextAndButtonContainer>
       </TitleRow>
 
-      <AvatarGrid>
+      <AvatarGrid isFewerThanSix={isFewerThanSix}>
         {roles.map((role, i) => (
           <AvatarContainer key={i}>
             {role.image ? (
