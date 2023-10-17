@@ -1,10 +1,13 @@
 "use client"
 import * as React from 'react';
+import { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import CustomButton from '@/ui/custom-button'; 
 import HomeImageSrc from "@/public/t1-homescreen.png";
 import { ComplexHeader } from '@/ui/complex-header';
+import SquadCustom from "@/ui/option-popup";
+import TalentClientImage from "@/public/talent-client.png";
 
 const Container = styled.div`
   display: flex;
@@ -46,6 +49,23 @@ const Description = styled.p`
 `;
 
 export default function C1() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const icons2 = [
+    <Image
+      key="talentclientImage"
+      src={TalentClientImage}
+      alt="Talent Client Icon"
+      width="64"
+      height="64"
+    />,
+    <Image
+      key="talentclientImage"
+      src={TalentClientImage}
+      alt="Talent Client Icon"
+      width="64"
+      height="64"
+    />
+  ]
   return (  
     <>
     <ComplexHeader />
@@ -53,12 +73,33 @@ export default function C1() {
       <LeftSection>
         <Title>Lorem ipsum dolor sit amet.</Title>
         <Description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Venenatis ultrices facilisis libero.</Description>
-        <CustomButton label="Find your Squad" preset="default" />
+        <CustomButton label="Find your Squad" preset="default" onClick={() => setModalOpen(true)}/>
       </LeftSection>
       <RightSection>
         <Image key="T1HomeImage" src={HomeImageSrc} alt="Home" width="592" height="592"/>
       </RightSection>
     </Container>
+    {isModalOpen && (
+        <SquadCustom
+          closeModal={() => {
+            setModalOpen(false);
+          }}
+          title={"Lorem ipsum dolor sit?"}
+          description={
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+          }
+          options={[
+            "I'm a Talent",
+            "I'm a Client",
+          ]}
+          icons={icons2}
+          fontSize="24px"
+          fontWeight="600"
+          width="auto"
+          useBlueTheme={true}
+          showLoginPrompt={true}
+        />
+      )}
     </>
   );
 }
