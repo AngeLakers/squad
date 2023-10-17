@@ -424,7 +424,7 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
             />
             <CustomButton label="View application" preset="outlined" />
             <CustomButton label="Interview" preset="outlined" />
-            <CustomButton label="Make offer" preset="black" />
+            <CustomButton label="Make offer" preset="black" onClick={onClick}/>
             <DropdownButton
               label={<VerticalDotsSVG />}
               preset="outlined"

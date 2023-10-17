@@ -8,6 +8,8 @@ import SquadSurveySwap from '@/ui/squad-surveyswap';
 import CustomProjectHeader from '@/ui/custom-project-header';
 import portraitAImage from "@/public/portraitA.png";
 import SendOffer from "@/ui/send-offer-popup";
+import SquadCard from "@/ui/squad-card";
+import { PersonData } from "@/ui/squad-table";
 
 const Container = styled.div`
     margin-left: 10vw;
@@ -72,7 +74,7 @@ const NavigationBarContainer = styled.div`
 `;
 
 
-const C5ProjHubSendOffer: React.FC = () => {
+const C5ProjHubLive: React.FC = () => {
     const [activeTab, setActiveTab] = useState("Squad");
     const showProjectDetails = activeTab === "Project Details";
     const showSquad = activeTab === "Squad";
@@ -87,11 +89,15 @@ const C5ProjHubSendOffer: React.FC = () => {
             title: "UX Designer",
             name: "Patricia Montero",
             assignButtonProps: {
-              smallButtonText: "Send Offer",
+                smallButtonText: "Live",
+                backgroundColor: "#039855",
+                textColor: "#FFFFFF",
             },
             bottomButton: {
-              label: "Send Offer",
-              onClick: () => setOfferSendOpen(true),
+                label: "Message",
+                backgroundColor: "#FFFFFF",
+                textColor: "black",
+                borderColor: "#E5E7EB",
             },
         },
         {
@@ -101,12 +107,16 @@ const C5ProjHubSendOffer: React.FC = () => {
           title: "UI Designer",
           name: "Patricia Montero",
           assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
+            smallButtonText: "Live",
+            backgroundColor: "#039855",
+            textColor: "#FFFFFF",
+        },
+        bottomButton: {
+            label: "Message",
+            backgroundColor: "#FFFFFF",
+            textColor: "black",
+            borderColor: "#E5E7EB",
+        },
         },
         {
           image: (
@@ -115,12 +125,16 @@ const C5ProjHubSendOffer: React.FC = () => {
           title: "Product Designer",
           name: "Patricia Montero",
           assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
+            smallButtonText: "Live",
+            backgroundColor: "#039855",
+            textColor: "#FFFFFF",
+        },
           bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
+            label: "Message",
+            backgroundColor: "#FFFFFF",
+            textColor: "black",
+            borderColor: "#E5E7EB",
+        },
         },
         {
           image: (
@@ -129,78 +143,54 @@ const C5ProjHubSendOffer: React.FC = () => {
           title: "Product Designer",
           name: "Patricia Montero",
           assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
+            smallButtonText: "Live",
+            backgroundColor: "#039855",
+            textColor: "#FFFFFF",
         },
-        {
-          image: (
-            <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
-          ),
-          title: "Product Designer",
-          name: "Patricia Montero",
-          assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
           bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
+            label: "Message",
+            backgroundColor: "#FFFFFF",
+            textColor: "black",
+            borderColor: "#E5E7EB",
         },
-        {
-          image: (
-            <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
-          ),
-          title: "Full-Stack Engineer",
-          name: "Patricia Montero",
-          assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
         },
-        {
-          image: (
-            <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
-          ),
-          title: "DevOps Engineer",
-          name: "Patricia Montero",
-          assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
-        }
     ];
+
+    const stateData: Array<PersonData> = [
+        {
+          avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+          name: "Patricia Montero",
+          profileLink: "/profile/1",
+          title: "Front-End Engineer",
+          state: "Rejected",
+        },
+        {
+          avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+          name: "Jane Doe",
+          profileLink: "/profile/2",
+          title: "Designer",
+          state: "Rejected",
+        },
+      ];
 
     return (
         <OutsideContainer>
             <Header><SimpleHeader /></Header>
     
-        <CustomProjectHeader
-          backgroundColor="#0B0F00"
-          avatarImagePath="/google.png"
-          avatarHeight={"89px"}
-          avatarWidth={"89px"}
-          title1="Google"
-          title2="SurveySwap"
-          button={{
-            isVisible: false,
-          }}
-          shareIcon={{
-            isVisible: false,
-          }}
-          starIcon={{
-            isVisible: false,
-          }}
-        />
+            <CustomProjectHeader
+                backgroundColor="black"
+                avatarImagePath="/icon/projectLogo.svg"
+                avatarHeight={"89px"}
+                avatarWidth={"89px"}
+                title1="Stir"
+                title2="MVP for Serverless E-commerce Return Portal"
+                shareIcon={{
+                    isVisible: false,
+                }}
+                starIcon={{
+                    isVisible: false,
+                }}
+            />
         <Container>
         <ButtonContainer>
             <TabButton
@@ -242,15 +232,20 @@ const C5ProjHubSendOffer: React.FC = () => {
                 > Offers rejected </NavBarButton>
             </NavigationBarContainer>
             <SquadContainer>
-                <SquadSurveySwap roles={rolesData} manageButtonLabel='Admin Squad' manageButtonPreset='outlined' manageButtonTextColor='#384250'/>
+                {selectedTab === 'My squad' && (
+                    <SquadSurveySwap roles={rolesData} manageButtonLabel='Admin Squad' manageButtonPreset='outlined' manageButtonTextColor='#384250' showButtonContainer={false}/>
+                )}
+                {selectedTab === 'Offers rejected' && (
+                     <SquadCard type="state" data={stateData} />
+                )}
             </SquadContainer>
         </>
         )}
-        {isOfferSend && <SendOffer onClose={() => setOfferSendOpen(false)} sendOfferLink='/c5/proj_hub_offer_sent_a'/>}
+        {isOfferSend && <SendOffer onClose={() => setOfferSendOpen(false)} />}
 
         </Container>
     </OutsideContainer>
     );
 };
 
-export default C5ProjHubSendOffer;
+export default C5ProjHubLive;

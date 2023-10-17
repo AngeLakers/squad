@@ -5,13 +5,13 @@ import Image from "next/image";
 import SquadCard, { ButtonContainerPresets } from '@/ui/squad-card';
 import { SimpleHeader } from "@/ui/simple-header";
 import styled from "styled-components";
-import { TopNav } from '@/ui/top-nav';
 import {PeopleSVG, ToolsSVG} from '@/ui/svgs';
 import RoleSkillDropdownFilter from '@/ui/filter-dropdown-role-and-skills';
-import { AlertSVG, SquadSVG, StarSVG } from "@/ui/svgs";
+import {StarSVG } from "@/ui/svgs";
 import TitleAndFilter from '@/ui/title-and-filter';
 import { BadgeData } from "@/ui/talent-skills";
 import { gray900, xlargeFontSize, mediumFontWeight, xxlargeLineHeight, gray300, mediumFontSize, xxlargeFontSize, xxxlargeLineHeight } from '@/styles/reuseParams';
+import SendOffer from "@/ui/send-offer-popup";
 
 const Container = styled.div`
   margin-left: 10vw;
@@ -145,8 +145,7 @@ const mockSkillsData: Array<BadgeData[]> = [
   ];
 
 export default function FindTalent() {
-
-
+  const [isOfferSend, setOfferSendOpen] = useState(false);
 
   return (
     <>
@@ -156,67 +155,70 @@ export default function FindTalent() {
         </Header>
         <SearchBar>
         <TitleAndFilter 
-                    filterTitle="Talent for UX Designer"
-                    titleFontSize={xxlargeFontSize}
-                    titleFontWeight={mediumFontWeight}
-                    titleLineHeight={xxxlargeLineHeight}
-                    borderColor={gray300}
-                    inputHeight='44px'
-                    inputWidth='100%'
-                    inputTextColor={gray900}
-                    inputTextSize={mediumFontSize}
-                    inputTextWeight={mediumFontWeight}
-                    placeholder='Search by name'
-                    filters={filters}
-                />
+          filterTitle="Talent for UX Designer"
+          titleFontSize={xxlargeFontSize}
+          titleFontWeight={mediumFontWeight}
+          titleLineHeight={xxxlargeLineHeight}
+          borderColor={gray300}
+          inputHeight='44px'
+          inputWidth='100%'
+          inputTextColor={gray900}
+          inputTextSize={mediumFontSize}
+          inputTextWeight={mediumFontWeight}
+          placeholder='Search by name'
+          filters={filters}
+        />
 
         </SearchBar>
         <Container>
         
         <SquadCard
-        badgeTitles={["Good Match 80%", "From Suggested squad #1"]}
-        badgeColor="green"
-        squadTitle="Patricia Montero"
-        squadSubTitle="UX Designer"
-        rate="$30 /h"
-        rateColor="#027A48"
-        hoursPerWeek="20-25h /week"
-        hoursPerWeekColor="#027A48"
-        location="Amsterdam (8 hours overlap)"
-        locationColor="#B42318"
-        availability="Inmediate"
-        availabilityColor="#027A48"
-        experience="5 years experience"
-        icon={
-          <img src="https://avatars.githubusercontent.com/u/12592949?v=1" />
-        }
-        buttonsPreset={ButtonContainerPresets.TALENT}
-        type="book"
-        data={mockSkillsData}
-      />
-      <SquadCard
-        badgeTitles={["80% Good Match"]}
-        badgeColor="red"
-        squadTitle="Patricia Montero"
-        squadSubTitle="UX Designer"
-        rate="$30 /h"
-        rateColor="#027A48"
-        hoursPerWeek="20-25h /week"
-        hoursPerWeekColor="#027A48"
-        location="Amsterdam (8 hours overlap)"
-        locationColor="#B42318"
-        availability="Inmediate"
-        availabilityColor="#027A48"
-        experience="5 years experience"
-        icon={
-          <img src="https://avatars.githubusercontent.com/u/12592949?v=1" />
-        }
-        buttonsPreset={ButtonContainerPresets.TALENT}
-        type="book"
-        data={mockSkillsData}
-      />
+          badgeTitles={["Good Match 80%", "From Suggested squad #1"]}
+          badgeColor="green"
+          squadTitle="Patricia Montero"
+          squadSubTitle="UX Designer"
+          rate="$30 /h"
+          rateColor="#027A48"
+          hoursPerWeek="20-25h /week"
+          hoursPerWeekColor="#027A48"
+          location="Amsterdam (8 hours overlap)"
+          locationColor="#B42318"
+          availability="Inmediate"
+          availabilityColor="#027A48"
+          experience="5 years experience"
+          onClick ={() => setOfferSendOpen(true)}
+          icon={
+            <img src="https://avatars.githubusercontent.com/u/12592949?v=1" />
+          }
+          buttonsPreset={ButtonContainerPresets.TALENT}
+          type="book"
+          data={mockSkillsData}
+        />
+        <SquadCard
+          badgeTitles={["80% Good Match"]}
+          badgeColor="red"
+          squadTitle="Patricia Montero"
+          squadSubTitle="UX Designer"
+          rate="$30 /h"
+          rateColor="#027A48"
+          hoursPerWeek="20-25h /week"
+          hoursPerWeekColor="#027A48"
+          location="Amsterdam (8 hours overlap)"
+          locationColor="#B42318"
+          availability="Inmediate"
+          availabilityColor="#027A48"
+          experience="5 years experience"
+          onClick ={() => setOfferSendOpen(true)}
+          icon={
+            <img src="https://avatars.githubusercontent.com/u/12592949?v=1" />
+          }
+          buttonsPreset={ButtonContainerPresets.TALENT}
+          type="book"
+          data={mockSkillsData}
+        />
 
       </Container>
+      {isOfferSend && <SendOffer onClose={() => setOfferSendOpen(false)} sendOfferLink='/c5/proj_hub_offer_sent_a'/>}
       </OutsideContainer>
     </>
   );
