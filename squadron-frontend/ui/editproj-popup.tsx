@@ -75,7 +75,7 @@ const EditProjPopup: React.FC<EditProjProps> = ({
     icon
 }) => {
     return (
-        <PopupComponent onClose={onClose}  width="30%" minWidth="400px" maxHeightPercent={0.3} minHeight="150px" >
+        <PopupComponent onClose={onClose}  width="30%" minWidth="400px" maxHeightPercent={0.2} minHeight="150px" >
             <ContentContainer>
                 <Icon>{icon}</Icon>
                 <Title>{title}</Title>

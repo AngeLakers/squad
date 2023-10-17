@@ -297,6 +297,7 @@ const C5ProjHubOfferAccepted: React.FC = () => {
           title="Mission Launched"
           description="Your project hub and lifecycle management tools are now available. We recommend booking a kick off call with your Squad."
           confirmButtonText="Let's go!"
+          onClick={() => window.location.href='proj_hub_live'}
           icon={
             <Image
               key="launchMissionImage"
