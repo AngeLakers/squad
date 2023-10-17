@@ -23,9 +23,10 @@ const CustomButtonStyled = styled.button<CustomButtonStyledProps>`
   ${(props) => props.margin && `margin: ${props.margin};`}
   ${(props) =>
     props.hoverColor && `&:hover {background-color:${props.hoverColor};}`}
-  cursor: ${props => (props.isClickable !== false ? "pointer" : "not-allowed")};
-   opacity: ${props => (props.isClickable !== false ? 1 : 0.5)};
-  
+  cursor: ${(props) =>
+    props.isClickable !== false ? "pointer" : "not-allowed"};
+  opacity: ${(props) => (props.isClickable !== false ? 1 : 0.5)};
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -120,6 +121,7 @@ export interface CustomButtonProps {
   height?: string;
   alignSelf?: string;
   isClickable?: boolean;
+  [key: string]: any;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -128,17 +130,13 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   onClick,
   isClickable = true,
   ...overriddenStyles
-  
 }) => {
   //console.log("Preset:", preset);
   const defaultStyles = preset ? presets[preset] : null;
   const styles = { ...defaultStyles, ...overriddenStyles, isClickable };
   //console.log("styles:", styles);
   return (
-    <CustomButtonStyled
-      {...styles}
-      onClick={isClickable ? onClick : undefined}
-      >
+    <CustomButtonStyled {...styles} onClick={isClickable ? onClick : undefined}>
       {label}
     </CustomButtonStyled>
   );
