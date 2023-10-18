@@ -69,7 +69,6 @@ const StyledCardTitle = styled.span`
   white-space: nowrap;
   height: 1.88rem;
 `;
-
 const StyledCardMemberCount = styled.span`
   position: relative;
   font-size: 1rem;
@@ -219,7 +218,7 @@ const StyledBox = styled(Box)<StyledBoxProps>`
 type StyledIconProps = {
     score: number;
 };
-const StyledIcon = styled(Icon)<StyledIconProps>`
+export const StyledIcon = styled(Icon)<StyledIconProps>`
   background-image: url(${props => {
     if (props.score >= 4.0 && props.score <= 5.0) return '/images/image_smile.png';
     if (props.score >= 3.0 && props.score < 4.0) return '/images/image_nofeeling.png';
@@ -234,7 +233,7 @@ const StyledIcon = styled(Icon)<StyledIconProps>`
 interface ScoreBackgroundProps {
     score: number;
 }
-const StyledScoreBackground = styled.div<ScoreBackgroundProps>`
+export const StyledScoreBackground = styled.div<ScoreBackgroundProps>`
   
   position: relative;
   border-radius: 1rem;
@@ -249,16 +248,15 @@ const StyledScoreBackground = styled.div<ScoreBackgroundProps>`
   padding: 0 1rem;
 
   margin-top: 0.75rem;
-  align-items: flex-start;
-  justify-content: flex-start;
-
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   text-align: center;
   font-size: 1.5rem;
 
 `;
 
-const ScoreTypography = styled(Typography)`
+export const ScoreTypography = styled(Typography)`
   margin:0;
   position: relative;
   line-height: 2rem;
@@ -386,7 +384,7 @@ export const SatisfactionBox: React.FC<{ isInteractive?: boolean, score: number 
             {score !== 0 && <StyledIcon score={score} />}
             <StyledScoreBackground score={score}>
 
-                <ScoreTypography variant="h6">{score === 0 ? '--' : score} </ScoreTypography>
+                <ScoreTypography variant="h6">{score === 0 ? '--' : score.toFixed(1)} </ScoreTypography>
             </StyledScoreBackground>
         </StyledBox>
     );
