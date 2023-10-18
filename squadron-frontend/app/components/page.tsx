@@ -77,15 +77,18 @@ import AskQuestionPopup from "@/ui/ask-question-popup";
 import hideImage from "@/public/hide.png";
 import TitleAndFilter from "@/ui/title-and-filter";
 import TalentClientImage from "@/public/talent-client.png";
+import ReferSquadmatePopup from "@/ui/refer-squadmate";
+import InvitationSentPopup from "@/ui/invitation-sent-popup";
 
 
+/*
 const Display=styled.div`
 display: flex;
 margin-top: 50px;
 align-items: center;
 justify-content: center;
 flex-direction: row;
-`;
+`;*/
 
 const Displayy=styled.div`
 display: flex;
@@ -448,6 +451,8 @@ export default function AllComponents() {
     useState(false);
   const [isApplyCancelPopupOpen, setApplyCancelPopupOpen] = useState(false);
   const [isAskQuestionPopupOpen, setAskQuestionPopupOpen] = useState(false);
+  const [isReferSquadmatePopupOpen, setReferSquadmatePopupOpen] = useState(false);
+  const [isInvitationSentPopupOpen, setInvitationSentPopupOpen] = useState(false);
 
   const icons = [
     <Image
@@ -1422,6 +1427,30 @@ export default function AllComponents() {
         In 
         http://localhost:3000/t4_project_search
         </ComponentWrapper>
+    <ComponentWrapper
+        filename="refer-squadmate-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T4 - Refer Squadmate Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setReferSquadmatePopupOpen(true)}
+        >
+          Refer a Squadmate Popup
+        </Button>
+    </ComponentWrapper>
+    <ComponentWrapper
+        filename="project-card.tsx"
+        createdBy="Chelsea Guo"
+        description="T4 - Project Card"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setInvitationSentPopupOpen(true)}
+        >
+          Invitation Sent
+        </Button>
+    </ComponentWrapper>  
 
       {isModalOpen && (
         <SquadCustom
@@ -1611,6 +1640,16 @@ export default function AllComponents() {
       )}
       {isAskQuestionPopupOpen && (
         <AskQuestionPopup onClose={() => setAskQuestionPopupOpen(false)} />
+      )}
+      {isReferSquadmatePopupOpen && (
+        <ReferSquadmatePopup
+          onClose={() => setReferSquadmatePopupOpen(false)}
+        />
+      )}
+      {isInvitationSentPopupOpen && (
+        <InvitationSentPopup
+          onClose={() => setInvitationSentPopupOpen(false)}
+        />
       )}
     </div>
   );
