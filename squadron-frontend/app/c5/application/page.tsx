@@ -11,6 +11,7 @@ import { PersonData } from "@/ui/squad-table";
 import EditProjPopup from "@/ui/editproj-popup";
 import hiringImage from "@/public/hire.png";
 import hideImage from "@/public/hide.png";
+import buildSquadImage from "@/public/build-squad.png";
 
 const viewData: Array<PersonData> = [
   {
@@ -115,6 +116,7 @@ const Description = styled.p`
 export default function C5Application() {
   const [hireSquadPopupOpen, setHireSquadPopupOpen] = useState(false);
   const [hideSquadPopupOpen, setHideSquadPopupOpen] = useState(false);
+  const [buildSquadPopupOpen, setBuildSquadPopupOpen] = useState(false);
   return (
     <>
       <OutsideContainer>
@@ -133,6 +135,7 @@ export default function C5Application() {
             text: "Build your own squad",
             backgroundColor: "#D0FC4A",
             textColor: "#384250",
+            onClick: () => setBuildSquadPopupOpen(true)
           }}
           shareIcon={{
             isVisible: false,
@@ -195,7 +198,8 @@ export default function C5Application() {
             />
           </SquadCardDiv>
         </SuggestedSquads>
-        <BuildApplySquad />
+        <BuildApplySquad onClick={()=>{setBuildSquadPopupOpen(true)}}/>
+        
         {hireSquadPopupOpen && (
         <EditProjPopup
           onClose={() => setHireSquadPopupOpen(false)}
@@ -213,31 +217,48 @@ export default function C5Application() {
               height="44.8"
             />
           }
-          //showDivider={false}
         />
       )}
 
-      {/* waiting for not interested button to add link */}
-      {hideSquadPopupOpen && (
-        <EditProjPopup
-          onClose={() => setHideSquadPopupOpen(false)}
-          title="Hide this squad"
-          description="Please, let as not why you don’t want to see this squad. This will help us to give you better options"
-          cancelButtonText="Cancel"
-          confirmButtonText="Hide"
-          showTextarea={true}
-          icon={
-            <Image
-              key="hideImage"
-              src={hideImage}
-              alt="Hide Icon"
-              width="44"
-              height="44"
-            />
-          }
-          //showDivider={false}
-        />
-      )}
+        {hideSquadPopupOpen && (
+          <EditProjPopup
+            onClose={() => setHideSquadPopupOpen(false)}
+            title="Hide this squad"
+            description="Please, let as not why you don’t want to see this squad. This will help us to give you better options"
+            cancelButtonText="Cancel"
+            confirmButtonText="Hide"
+            showTextarea={true}
+            icon={
+              <Image
+                key="hideImage"
+                src={hideImage}
+                alt="Hide Icon"
+                width="44"
+                height="44"
+              />
+            }
+            
+          />
+        )}
+        {buildSquadPopupOpen && (
+          <EditProjPopup
+            onClose={() => setBuildSquadPopupOpen(false)}
+            title="Build Your Own Squad"
+            description="Once your start hiring individual applicants, you won’t be able to see squad suggestions."
+            cancelButtonText="Cancel"
+            confirmButtonText="Confirm"
+            button2Link="/c5/proj_hub_find_talent"
+            icon={
+              <Image
+                key="buildSquadImage"
+                src={buildSquadImage}
+                alt="build Squad Icon"
+                width="64"
+                height="64"
+              />
+            }
+          />
+        )}
       </Container>
       </OutsideContainer>
     </>

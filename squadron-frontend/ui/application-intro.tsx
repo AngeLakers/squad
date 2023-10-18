@@ -4,14 +4,20 @@ import YouTube, { YouTubeProps } from "react-youtube";
 import styled from "styled-components";
 
 const Introduction = styled.div`
-  align-self: stretch;
-  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  flex: 1;
   background-color: #0b0f00;
-  overflow: hidden;
+  color: #ffffff;
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 64px;
+  margin: 70px auto;
 `;
 
 const VideoPlayer = styled.div`
@@ -25,52 +31,47 @@ const Description = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 8px;
   font-size: 1.25rem;
 `;
 
 const Title = styled.h3`
-  align-self: stretch;
-  line-height: 2rem;
+  font-size: 20px;
   font-weight: 600;
-  margin: 0rem;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: center;
 `;
 
 const Content = styled.div`
-  align-self: stretch;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 16px;
   font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: center;
 `;
 
 const Logo = styled.div`
-  font-size: 1.5rem;
-  align-items: center;
   display: flex;
-  margin-right: 22rem;
-  margin-bottom: 2rem;
+  flex-direction: row;
+  font-family: Helvetica;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+  align-items: center;
+  gap: 10px;
 `;
 
 const LogoImage = styled.img`
-  width: 2rem;
-  height: 2rem;
-  margin-right: 0.5rem;
+  width: 32px;
+  height: 32px;
 `;
 
-const IntroContainer = styled.div`
-  align-self: stretch;
-  display: flex;
-  gap: 3rem;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-`;
-
-export function ApplicationIntro() {
+export default function ApplicationIntro() {
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
-    // access to player in all event handlers via event.target
     event.target.pauseVideo();
   };
 
@@ -84,7 +85,7 @@ export function ApplicationIntro() {
 
   return (
     <Introduction>
-      <IntroContainer>
+      <ContentContainer>
         <Logo>
           <LogoImage alt="" src="/logo.png" />
           squadron
@@ -100,7 +101,7 @@ export function ApplicationIntro() {
             adipiscing elit. A non scelerisque in augue.
           </Content>
         </Description>
-      </IntroContainer>
+      </ContentContainer>
     </Introduction>
   );
 }

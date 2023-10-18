@@ -45,7 +45,7 @@ interface ExitUncompletedPopupProps {
 
 const ExitUncompletedPopup: React.FC<ExitUncompletedPopupProps> = ({ onClose, onConfirm }) => {
     return (
-        <PopupComponent onClose={onClose}  width="30%" maxHeightPercent={0.3} minWidth="300px" minHeight="150px" >
+        <PopupComponent onClose={onClose}  width="30%" maxHeightPercent={0.2} minWidth="300px" minHeight="150px" >
             <ContentContainer>
                 <Icon><svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="4" y="4" width="48" height="48" rx="24" fill="#FEF0C7"/>

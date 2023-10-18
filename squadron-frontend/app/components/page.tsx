@@ -76,6 +76,9 @@ import BuildApplySquad from "@/ui/build-apply-squad";
 import AskQuestionPopup from "@/ui/ask-question-popup";
 import hideImage from "@/public/hide.png";
 import TitleAndFilter from "@/ui/title-and-filter";
+import TalentClientImage from "@/public/talent-client.png";
+import ReferSquadmatePopup from "@/ui/refer-squadmate";
+import InvitationSentPopup from "@/ui/invitation-sent-popup";
 
 
 
@@ -399,6 +402,11 @@ interface ComponentWrapperProps {
   usage?: string;
 }
 
+const Display = styled.div`
+  margin-left: 150px;
+  display: flex;
+  margin-top: 50px;
+`;
 
 const ComponentWrapper: React.FC<ComponentWrapperProps> = ({
   filename,
@@ -422,6 +430,7 @@ const ComponentWrapper: React.FC<ComponentWrapperProps> = ({
 
 export default function AllComponents() {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isModal2Open, setModal2Open] = useState(false);
   const [videoUploadOpen, setVideoUploadOpen] = useState<boolean>(false);
   const [isAdminInvite, setAdminInviteOpen] = useState(false);
   const [isOfferSend, setOfferSendOpen] = useState(false);
@@ -448,6 +457,8 @@ export default function AllComponents() {
     useState(false);
   const [isApplyCancelPopupOpen, setApplyCancelPopupOpen] = useState(false);
   const [isAskQuestionPopupOpen, setAskQuestionPopupOpen] = useState(false);
+  const [isReferSquadmatePopupOpen, setReferSquadmatePopupOpen] = useState(false);
+  const [isInvitationSentPopupOpen, setInvitationSentPopupOpen] = useState(false);
 
   const icons = [
     <Image
@@ -493,6 +504,23 @@ export default function AllComponents() {
       height="32"
     />,
   ];
+
+  const icons2 = [
+    <Image
+      key="talentclientImage"
+      src={TalentClientImage}
+      alt="Talent Client Icon"
+      width="64"
+      height="64"
+    />,
+    <Image
+      key="talentclientImage"
+      src={TalentClientImage}
+      alt="Talent Client Icon"
+      width="64"
+      height="64"
+    />
+  ]
 
   const rolesData = [
     {
@@ -931,6 +959,19 @@ export default function AllComponents() {
         />
       </ComponentWrapper>
 
+      <StyledH1>T1</StyledH1>
+      <ComponentWrapper
+        filename="option-popup.tsx"
+        createdBy="Becky Xu"
+        description="T1 - Squad Popup"
+      >
+        <CustomButton
+          preset="default"
+          label="Find your Squad"
+          onClick={() => setModal2Open(true)}
+        />
+      </ComponentWrapper>
+
       <StyledH1>T3</StyledH1>
 
       <ComponentWrapper
@@ -1341,6 +1382,28 @@ export default function AllComponents() {
         />
       )}
 
+    {isModal2Open && (
+        <SquadCustom
+          closeModal={() => {
+            setModal2Open(false);
+          }}
+          title={"Lorem ipsum dolor sit?"}
+          description={
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+          }
+          options={[
+            "I'm a Talent",
+            "I'm a Client",
+          ]}
+          icons={icons2}
+          fontSize="24px"
+          fontWeight="600"
+          width="auto"
+          useBlueTheme={true}
+          showLoginPrompt={true}
+        />
+      )}
+
       <ComponentWrapper
         filename="liveproject-card.tsx"
         createdBy="Ne Liu"
@@ -1370,6 +1433,30 @@ export default function AllComponents() {
         In 
         http://localhost:3000/t4_project_search
         </ComponentWrapper>
+    <ComponentWrapper
+        filename="refer-squadmate-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T4 - Refer Squadmate Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setReferSquadmatePopupOpen(true)}
+        >
+          Refer a Squadmate Popup
+        </Button>
+    </ComponentWrapper>
+    <ComponentWrapper
+        filename="project-card.tsx"
+        createdBy="Chelsea Guo"
+        description="T4 - Project Card"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setInvitationSentPopupOpen(true)}
+        >
+          Invitation Sent
+        </Button>
+    </ComponentWrapper>
 
       {isModalOpen && (
         <SquadCustom
@@ -1559,6 +1646,16 @@ export default function AllComponents() {
       )}
       {isAskQuestionPopupOpen && (
         <AskQuestionPopup onClose={() => setAskQuestionPopupOpen(false)} />
+      )}
+      {isReferSquadmatePopupOpen && (
+        <ReferSquadmatePopup
+          onClose={() => setReferSquadmatePopupOpen(false)}
+        />
+      )}
+      {isInvitationSentPopupOpen && (
+        <InvitationSentPopup
+          onClose={() => setInvitationSentPopupOpen(false)}
+        />
       )}
     </div>
   );
