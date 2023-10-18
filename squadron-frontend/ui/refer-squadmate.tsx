@@ -38,7 +38,7 @@ const PopupHeader = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 24px;
+    padding: 24px 24px 16px 24px;
     gap: 8px; 
     
 `;
