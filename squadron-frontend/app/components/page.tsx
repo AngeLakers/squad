@@ -79,6 +79,8 @@ import TitleAndFilter from "@/ui/title-and-filter";
 import TalentClientImage from "@/public/talent-client.png";
 import ReferSquadmatePopup from "@/ui/refer-squadmate";
 import InvitationSentPopup from "@/ui/invitation-sent-popup";
+import HideProjectPopup from "@/ui/hide-project-popup";
+import ShareProjectPopup from "@/ui/share-about-you-popup";
 
 
 
@@ -453,7 +455,8 @@ export default function AllComponents() {
   const [isAskQuestionPopupOpen, setAskQuestionPopupOpen] = useState(false);
   const [isReferSquadmatePopupOpen, setReferSquadmatePopupOpen] = useState(false);
   const [isInvitationSentPopupOpen, setInvitationSentPopupOpen] = useState(false);
-
+  const [isHideProjectPopupOpen, setHideProjectPopupOpen] = useState(false);
+  const [isShareProjectPopupOpen, setShareProjectPopupOpen] = useState(false);
   const icons = [
     <Image
       key="customizeImage"
@@ -988,7 +991,7 @@ export default function AllComponents() {
     <Wallet></Wallet>
     </Displayy>
 
-
+{/*
     <Display>
      <Community> </Community>
     </Display>
@@ -996,7 +999,7 @@ export default function AllComponents() {
     <Display>
     <Community2>  </Community2>
     </Display>
-
+/*/}
 
       </ComponentWrapper>
 
@@ -1440,9 +1443,9 @@ export default function AllComponents() {
         </Button>
     </ComponentWrapper>
     <ComponentWrapper
-        filename="project-card.tsx"
-        createdBy="Chelsea Guo"
-        description="T4 - Project Card"
+        filename="invitaion-sent-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="Invitation Sent Popup"
       >
         <Button
           variant="outlined"
@@ -1451,6 +1454,31 @@ export default function AllComponents() {
           Invitation Sent
         </Button>
     </ComponentWrapper>  
+    <ComponentWrapper
+        filename="hide-project-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T4 - Hide Project Popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setHideProjectPopupOpen(true)}
+        >
+          Hide Project
+        </Button>
+    </ComponentWrapper> 
+    <ComponentWrapper
+        filename="Share-project-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T4 - Share the Project"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setShareProjectPopupOpen(true)}
+        >
+          Share project
+        </Button>
+    </ComponentWrapper>
+    
 
       {isModalOpen && (
         <SquadCustom
@@ -1650,6 +1678,12 @@ export default function AllComponents() {
         <InvitationSentPopup
           onClose={() => setInvitationSentPopupOpen(false)}
         />
+      )}
+      {isHideProjectPopupOpen && (
+        <HideProjectPopup onClose={() => setHideProjectPopupOpen(false)} />
+      )}
+      {isShareProjectPopupOpen && (
+        <ShareProjectPopup onClose={() => setShareProjectPopupOpen(false)} />
       )}
     </div>
   );
