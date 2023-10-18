@@ -81,14 +81,14 @@ import ReferSquadmatePopup from "@/ui/refer-squadmate";
 import InvitationSentPopup from "@/ui/invitation-sent-popup";
 
 
-/*
+
 const Display=styled.div`
 display: flex;
 margin-top: 50px;
 align-items: center;
 justify-content: center;
 flex-direction: row;
-`;*/
+`;
 
 const Displayy=styled.div`
 display: flex;
