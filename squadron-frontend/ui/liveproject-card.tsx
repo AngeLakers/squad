@@ -127,8 +127,9 @@ const StyledBalanceBox = styled(Box)`
   height: 100%;
   flex: 1;
   width: 100%;
-
 `;
+
+
 
 
 const BalanceInfo = styled.div`
@@ -192,48 +193,62 @@ const Percentage = styled.div`
 
 `;
 
-const StyledBox = styled(Box)`
+
+interface StyledBoxProps {
+    isInteractive?: boolean;
+}
+
+const StyledBox = styled(Box)<StyledBoxProps>`
   width: 25%;
-  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+  box-shadow: ${(props) => (props.isInteractive ? '0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06)' : 'none')};
   position: relative;
   border-radius: 0.5rem;
   background-color: #fff;
-  border: 1px solid #e5e7eb;
+  border: ${(props) => (props.isInteractive ? '1px solid #e5e7eb' : 'none')};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
   text-align: center;
   font-size: 1.5rem;
-
-
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
 `;
 
-const StyledIcon = styled(Icon)`
-  background-image: url('/images/image_smile.png');
+type StyledIconProps = {
+    score: number;
+};
+const StyledIcon = styled(Icon)<StyledIconProps>`
+  background-image: url(${props => {
+    if (props.score >= 4.0 && props.score <= 5.0) return '/images/image_smile.png';
+    if (props.score >= 3.0 && props.score < 4.0) return '/images/image_nofeeling.png';
+    if (props.score > 0 && props.score < 3.0) return '/images/image_sad.png';
+    return '/images/image_smile.png';  // some default image
+}});
   background-size: cover;
   width: 2.5rem;
   height: 2.5rem;
 `;
+
 interface ScoreBackgroundProps {
     score: number;
 }
-
 const StyledScoreBackground = styled.div<ScoreBackgroundProps>`
   
   position: relative;
   border-radius: 1rem;
-  background-color: ${({ score }) => (score === 0 ? '#f3f4f6' : '#039855')};
+  background-color: ${({ score }) => {
+    if (score >= 4.0 && score <= 5.0) return '#039855';
+    if (score >= 3.0 && score < 4.0) return '#F79009';
+    if (score > 0 && score < 3.0) return '#D92D20';
+    return '#f3f4f6'; // default color if score is 0 or out of expected range
+}};
   display: flex;
   flex-direction: column;
   padding: 0 1rem;
 
   margin-top: 0.75rem;
-
-
   align-items: flex-start;
   justify-content: flex-start;
 
@@ -351,19 +366,24 @@ const BalanceBox: React.FC<BalanceBoxProps> = ({time, currentBalance, percentage
 };
 
 
-const SatisfactionBox: React.FC<{ score: number }> = ({score}) => {
+export const SatisfactionBox: React.FC<{ isInteractive?: boolean, score: number }> = ({ isInteractive = true, score, children }) => {
 
 
     const router  =  useRouter();
+
+
     const handleClick = () => {
-        router.push('/homescreen/pulse_survey');
-    };
+        if (isInteractive) {
+            router.push('/homescreen/pulse_survey');
+            console.log('Box clicked');
+        }
+    }
 
 
     return (
 
-        <StyledBox onClick={handleClick}>
-            {score !== 0 && <StyledIcon/>}
+        <StyledBox  isInteractive  onClick={handleClick}>
+            {score !== 0 && <StyledIcon score={score} />}
             <StyledScoreBackground score={score}>
 
                 <ScoreTypography variant="h6">{score === 0 ? '--' : score} </ScoreTypography>

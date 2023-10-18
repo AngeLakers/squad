@@ -21,7 +21,7 @@ const Container = styled.div`
 `;
 export default function Home() {
     return (
-       <div>
+
 
 
 
@@ -97,6 +97,6 @@ export default function Home() {
               <div style={{height: '2rem'}}></div>
               </Container>
 
-         </div>
+
     )
 }

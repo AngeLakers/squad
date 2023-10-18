@@ -99,68 +99,129 @@ const TabPanel = (props) => {
     );
 };
 
-const HorizontalTabs = () => {
-    const [value, setValue] = useState(1);
+// const HorizontalTabs = (tabData) => {
+//     const [value, setValue] = useState(1);
+//
+//     const handleChange = (event, newValue) => {
+//         setValue(newValue);
+//     };
+//
+//     return (
+//         <StyledBox>
+//             <StyledTabs
+//                 value={value}
+//                 onChange={handleChange}
+//                 indicatorColor="primary"
+//                 textColor="primary"
+//                 variant="fullWidth"
+//             >
+//
+//                 {/*<StyledTab*/}
+//                 {/*    label={*/}
+//                 {/*        <StyledBadge badgeContent={6} color="secondary">*/}
+//                 {/*           Saved Jobs*/}
+//                 {/*        </StyledBadge>*/}
+//                 {/*    }*/}
+//                 {/*/>*/}
+//                 {/*<StyledTab label="Invite" />*/}
+//                 {/*<StyledTab*/}
+//                 {/*    label={*/}
+//                 {/*        <StyledBadge badgeContent={6} color="secondary">*/}
+//                 {/*            Application*/}
+//                 {/*        </StyledBadge>*/}
+//                 {/*    }*/}
+//                 {/*/>*/}
+//                 {/*<StyledTab*/}
+//                 {/*    label={*/}
+//                 {/*        <StyledBadge badgeContent={4} color="secondary">*/}
+//                 {/*            Offers*/}
+//                 {/*        </StyledBadge>*/}
+//                 {/*    }*/}
+//                 {/*/>*/}
+//                 {/*<StyledTab label="Projects" />*/}
+//                 {/*<StyledTab label="Documents" />*/}
+//
+//                 {tabData.map((tab, index) => (
+//                     <StyledTab
+//                         key={index}
+//                         label={tab.badgeContent ? (
+//                             <StyledBadge badgeContent={tab.badgeContent} color="secondary">
+//                                 {tab.label}
+//                             </StyledBadge>
+//                         ) : tab.label}
+//                     />
+//                 ))}
+//             </StyledTabs>
+//             {/*<TabPanel value={value} index={0}>*/}
+//             {/*    Content of Saved Jobs*/}
+//             {/*</TabPanel>*/}
+//             {/*<TabPanel value={value} index={1}>*/}
+//             {/*   <Hometable2/>*/}
+//             {/*</TabPanel>*/}
+//             {/*<TabPanel value={value} index={2}>*/}
+//             {/*    Content of Application*/}
+//             {/*</TabPanel>*/}
+//             {/*<TabPanel value={value} index={3}>*/}
+//             {/*    Content of Offers*/}
+//             {/*</TabPanel>*/}
+//             {/*<TabPanel value={value} index={4}>*/}
+//             {/*    Content of Projects*/}
+//             {/*</TabPanel>*/}
+//             {/*<TabPanel value={value} index={5}>*/}
+//             {/*    Content of Documents*/}
+//             {/*</TabPanel>*/}
+//             {tabData.map((tab, index) => (
+//                 <TabPanel key={index} value={value} index={index}>
+//                     {tab.content}
+//                 </TabPanel>
+//             ))}
+//         </StyledBox>
+//     );
+// };
+const HorizontalTabs = ({ tabData = [], fontColor = 'primary'}) => {
+    const [value, setValue] = useState(1  );
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const renderedTabs = [];
+    const renderedTabPanels = [];
+
+    for (const [index, tab] of tabData.entries()) {
+        renderedTabs.push(
+            <StyledTab
+                key={index}
+                label={tab.badgeContent ? (
+                    <StyledBadge badgeContent={tab.badgeContent} color="secondary">
+                        {tab.label}
+                    </StyledBadge>
+                ) : tab.label}
+            />
+        );
+
+        renderedTabPanels.push(
+            <TabPanel key={index} value={value} index={index}>
+                {tab.content}
+            </TabPanel>
+        );
+    }
 
     return (
         <StyledBox>
             <StyledTabs
                 value={value}
                 onChange={handleChange}
-                indicatorColor="primary"
-                textColor="primary"
+                indicatorColor= "primary"
+                textColor= {fontColor}
                 variant="fullWidth"
             >
-
-                <StyledTab
-                    label={
-                        <StyledBadge badgeContent={6} color="secondary">
-                           Saved Jobs
-                        </StyledBadge>
-                    }
-                />
-                <StyledTab label="Invite" />
-                <StyledTab
-                    label={
-                        <StyledBadge badgeContent={6} color="secondary">
-                            Application
-                        </StyledBadge>
-                    }
-                />
-                <StyledTab
-                    label={
-                        <StyledBadge badgeContent={4} color="secondary">
-                            Offers
-                        </StyledBadge>
-                    }
-                />
-                <StyledTab label="Projects" />
-                <StyledTab label="Documents" />
+                {renderedTabs}
             </StyledTabs>
-            <TabPanel value={value} index={0}>
-                Content of Saved Jobs
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-               <Hometable2/>
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                Content of Application
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                Content of Offers
-            </TabPanel>
-            <TabPanel value={value} index={4}>
-                Content of Projects
-            </TabPanel>
-            <TabPanel value={value} index={5}>
-                Content of Documents
-            </TabPanel>
+            {renderedTabPanels}
         </StyledBox>
     );
-};
+}
+
 
 export default HorizontalTabs;
