@@ -474,6 +474,7 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
       case ButtonContainerPresets.PROJECT:
         return (
           <>
+          {/* Todo: missing hidden button */}
             <ShareIcon style={{color:"black"}} onClick={onClick} />
             
                 <div onClick={handleStarClick}>
