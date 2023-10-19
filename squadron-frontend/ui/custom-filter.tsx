@@ -40,9 +40,6 @@ const DropdownContainer = styled.div<DropdownProps>`
   width: ${props => props.width};
   height: ${props => props.height};
   background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   margin-top: 8px;
   z-index: 10;
 `;

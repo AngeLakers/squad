@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import CustomButton from "./custom-button";
 import DropdownButton from "./dropdown-button";
+import StarIcon from '@mui/icons-material/Star';
+import ShareIcon from '@mui/icons-material/Share';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 import {
   SquadSVG,
   VerticalDotsSVG,
@@ -335,17 +338,27 @@ export enum ButtonContainerPresets {
   APP,
   PROJECT,
 }
+interface IconProps {
+  isVisible: boolean;
+  color?: string;
+  onClick?: () => void; // Optional click handler
+}
 
 interface ButtonContainerProps {
   preset: ButtonContainerPresets;
   button1Link?: string;
   onClick?: () => void;
+  shareIcon?: IconProps;
+  starIcon?: IconProps;
+
 }
 
 const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
   preset,
   button1Link,
   onClick,
+  shareIcon,
+  starIcon,
 }) => {
   const [hideSquadPopupOpen, setHideSquadPopupOpen] = useState(false);
 
@@ -363,6 +376,12 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
       { menu: "Send feedback/reject " },
     ],
   ];
+  const [isStarFilled, setIsStarFilled] = useState(false);
+
+  const handleStarClick = () => {
+      setIsStarFilled(!isStarFilled);
+      starIcon?.onClick?.();
+  };
   const renderButtons = () => {
     switch (preset) {
       case ButtonContainerPresets.DEFAULT:
@@ -455,6 +474,15 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
       case ButtonContainerPresets.PROJECT:
         return (
           <>
+            <ShareIcon style={{color:"black"}} onClick={onClick} />
+            
+                <div onClick={handleStarClick}>
+                    {isStarFilled ? 
+                        <StarIcon style={{ color: "#384250" }} /> : 
+                        <StarBorderIcon style={{ color: "#384250" }} />
+                    }
+                </div>
+            
             <CustomButton label="View" preset="outlined" />
           </>
         );
