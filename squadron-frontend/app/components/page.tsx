@@ -944,10 +944,6 @@ export default function AllComponents() {
         description="the components in homescreen"
       >
         <Layout>
-     <Displayy>
-    <Topbar1></Topbar1>
-    </Displayy>
-
 
     <Displayy>
     <Header></Header>
