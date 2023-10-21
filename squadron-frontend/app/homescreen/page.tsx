@@ -29,10 +29,6 @@ export default function Home() {
   return (
     <>
       <Layout>
-   <Displayy>
-    <Topbar1></Topbar1>
-    </Displayy>
-
 
     < Displayy>
     <Header></Header>
