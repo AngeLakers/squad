@@ -4,10 +4,13 @@ import CustomProjectHeader from "@/ui/custom-project-header";
 import HorizontalTabs from "@/ui/horizontal-tabs";
 import {Hometable2} from "@/ui/Hometable2";
 import styled from "styled-components";
-import {SatisfactionBox} from "@/ui/liveproject-card";
+import {SatisfactionBox, ScoreTypography, StyledScoreBackground} from "@/ui/liveproject-card";
 import {FeedbackCard, IndividualFeedbackCard} from "@/ui/feedvack_card.";
 import CustomButton from "@/ui/custom-button";
 import {Construction} from "@mui/icons-material";
+import {useState} from "react";
+import AboutMe from "@/ui/about-me-popup";
+import {Mysquad, SquadPulseSubmittedPopup} from "@/ui/my-squad-popup";
 
 const Container = styled.div`
   display: flex;
@@ -129,17 +132,33 @@ const SeeallButton = styled.button`
 
 
 const HeadWrapper: React.FC<HeadWrapperProps> = ({status = true, title, description}) => {
+    const [MysquadPopupOpen, setMysquadPopupOpen] = useState(false);
+    const [isMySquadSubmittedPopupOpen, setMySquadSubmittedPopupOpen] = useState(false);
+    const closeFirstPopupAndOpenSecond = () => {
+        setMysquadPopupOpen(false);
+        setMySquadSubmittedPopupOpen(true);
+    };
     return (
         <HeadContainer>
             <TextWrapper>
                 <HeadText>{title}</HeadText>
                 {description && <DescriptionText>{description}</DescriptionText>}
             </TextWrapper>
-            {status && <CustomButton label="Rate" preset="default"/>}
+            {status && <CustomButton label="Rate" preset="default" onClick={() => setMysquadPopupOpen(true)}/>}
+            {MysquadPopupOpen && (
+                <Mysquad onClose={() => closeFirstPopupAndOpenSecond()} />
+            )}
+
+            {isMySquadSubmittedPopupOpen && (
+                <SquadPulseSubmittedPopup
+                    onClose={() => setMySquadSubmittedPopupOpen(false)}
+                />
+            )}
         </HeadContainer>
     );
 };
 const HeadWrapper2: React.FC<HeadWrapperProps> = ({title, description}) => {
+
     return (
         <HeadContainer>
 
@@ -147,13 +166,27 @@ const HeadWrapper2: React.FC<HeadWrapperProps> = ({title, description}) => {
                 <HeadText2>{title}</HeadText2>
                 {description && <DescriptionText>{description}</DescriptionText>}
             </TextWrapper>
-            <SeeallButton> see all</SeeallButton>
+            <SeeallButton > see all</SeeallButton>
+
         </HeadContainer>
+
+
     );
 };
 
 
 const Project = () => {
+
+    const question = "How satisfied are you with our service?";
+    const options = [
+        { score: 1.0 },
+        { score: 2.0 },
+        { score: 3.0 },
+        { score: 4.0 },
+        { score: 5.0 }
+    ];
+
+    const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
     return (
         <ProjectsWrapper>
             <FeedbackWrapper>
@@ -219,6 +252,7 @@ const Project = () => {
                 </CardWrapper>
 
             </FeedbackWrapper>
+
 
 
         </ProjectsWrapper>
