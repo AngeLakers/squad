@@ -61,7 +61,7 @@ import { Wallet } from "@/ui/Wallet";
 import { Header } from "@/ui/Header";
 import { Hometable } from "@/ui/Hometable";
 import { Hometable2 } from "@/ui/Hometable2";
-
+import Layout from "@/app/homescreen/layout";
 // import { PresetTypes } from "@/ui/custom-button";
 
 import RequiredMissingPopup from "@/ui/required-missing-popup";
@@ -943,6 +943,7 @@ export default function AllComponents() {
         createdBy="Bojia Zhang"
         description="the components in homescreen"
       >
+        <Layout>
      <Displayy>
     <Topbar1></Topbar1>
     </Displayy>
@@ -966,7 +967,7 @@ export default function AllComponents() {
     <Display>
     <Community2>  </Community2>
     </Display>
-
+    </Layout>
 
       </ComponentWrapper>
 
