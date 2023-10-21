@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import CustomFilter from '@/ui/custom-filter';
 import CustomButton from "./custom-button";
 
-type TnputType = 'text';
+type InputType = 'text';
 const TitleAndFilterContainer = styled.div`
     width: 100%;
     min-height: 232px;
@@ -11,9 +11,7 @@ const TitleAndFilterContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 40px;
-    padding: 0 32px 0 32px;
     position: relative;
-    top: 72px;
 `
 const SearchSectionContainer = styled.div`
     width: 100%;
@@ -62,7 +60,7 @@ const FiltersContainer = styled.div`
 `
 
 interface TitleAndFilterProps {
-    type?: TnputType;
+    type?: InputType;
     filterTitle?: string;
     titleFontSize?: string;
     titleFontWeight?: string;

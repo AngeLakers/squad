@@ -11,6 +11,7 @@ interface BuildApplySquadProps {
     description?: string;
     buttonLabel?: string;
     backgroundImage?: string;
+    onClick?: () => void;
 }
 
 type ContainerProps = {
@@ -60,6 +61,7 @@ const BuildApplySquad: React.FC<BuildApplySquadProps> = ({
     description = "View all applicants and put together a custom Squad from scratch.",
     buttonLabel = "Start Building",
     backgroundImage = blackBackgroundImage,
+    onClick,
     width,
 }) => {
   return (
@@ -67,7 +69,7 @@ const BuildApplySquad: React.FC<BuildApplySquadProps> = ({
         <LeftSide>
             <h1>{title}</h1>
             <p>{description}</p>
-            <CustomButton label={buttonLabel} preset="default" backgroundColor="#D0FC4A" textColor="#384250"/>
+            <CustomButton label={buttonLabel} preset="default" backgroundColor="#D0FC4A" textColor="#384250" onClick={onClick}/>
         </LeftSide>
         <RightSide>
             <Image

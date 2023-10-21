@@ -15,6 +15,8 @@ const DropdownContainer = styled.div`
     width: 100%;
     border-radius: 8px;
     z-index: 1;
+    border: 1px solid #E5E7EB;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 `
 const DropdownBodyContainer = styled.div`
     display: flex;

@@ -4,10 +4,16 @@ import { useState } from 'react';
 import { SimpleHeader } from "@/ui/simple-header";
 import Image from "next/image";
 import styled from "styled-components";
+import CustomButton, { PresetTypes }  from "@/ui/custom-button";
+import CollectingBar from '@/ui/collecting-bar';
 import SquadSurveySwap from '@/ui/squad-surveyswap';
+import InfoBar from '@/ui/info-bar';
+import { AlertSVG} from "@/ui/svgs";
 import CustomProjectHeader from '@/ui/custom-project-header';
 import portraitAImage from "@/public/portraitA.png";
 import SendOffer from "@/ui/send-offer-popup";
+import SquadCard from "@/ui/squad-card";
+import { PersonData } from "@/ui/squad-table";
 
 const Container = styled.div`
     margin-left: 10vw;
@@ -72,7 +78,7 @@ const NavigationBarContainer = styled.div`
 `;
 
 
-const C5ProjHubSendOffer: React.FC = () => {
+const C5ProjHubFindTalent: React.FC = () => {
     const [activeTab, setActiveTab] = useState("Squad");
     const showProjectDetails = activeTab === "Project Details";
     const showSquad = activeTab === "Squad";
@@ -81,126 +87,70 @@ const C5ProjHubSendOffer: React.FC = () => {
 
     const rolesData = [
         {
-            image: (
-              <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
-            ),
-            title: "UX Designer",
-            name: "Patricia Montero",
-            assignButtonProps: {
-              smallButtonText: "Send Offer",
-            },
+        title: "Front-End Engineer",
+        bottomButton: {
+            label: "Find Talent",
+            onClick:() => (window.location.href = "/c5/find_talent"),
+        },  
+        },
+        {
+            title: "Front-End Engineer",
             bottomButton: {
-              label: "Send Offer",
-              onClick: () => setOfferSendOpen(true),
-            },
+                label: "Find Talent",
+                onClick:() => (window.location.href = "/c5/find_talent"),
+            },  
         },
         {
-          image: (
-            <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
-          ),
-          title: "UI Designer",
-          name: "Patricia Montero",
-          assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
+            title: "Front-End Engineer",
+            bottomButton: {
+                label: "Find Talent",
+                onClick:() => (window.location.href = "/c5/find_talent"),
+            },  
         },
         {
-          image: (
-            <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
-          ),
-          title: "Product Designer",
-          name: "Patricia Montero",
-          assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
-        },
-        {
-          image: (
-            <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
-          ),
-          title: "Product Designer",
-          name: "Patricia Montero",
-          assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
-        },
-        {
-          image: (
-            <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
-          ),
-          title: "Product Designer",
-          name: "Patricia Montero",
-          assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
-        },
-        {
-          image: (
-            <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
-          ),
-          title: "Full-Stack Engineer",
-          name: "Patricia Montero",
-          assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
-        },
-        {
-          image: (
-            <Image key="portraitAImage" src={portraitAImage} alt="portraitA Icon" />
-          ),
-          title: "DevOps Engineer",
-          name: "Patricia Montero",
-          assignButtonProps: {
-            smallButtonText: "Send Offer",
-          },
-          bottomButton: {
-            label: "Send Offer",
-            onClick: () => setOfferSendOpen(true),
-          },
+            title: "Front-End Engineer",
+            bottomButton: {
+                label: "Find Talent",
+                onClick:() => (window.location.href = "/c5/find_talent"),
+            },  
         }
     ];
+
+    const stateData: Array<PersonData> = [
+        {
+          avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+          name: "Patricia Montero",
+          profileLink: "/profile/1",
+          title: "Front-End Engineer",
+          state: "Rejected",
+        },
+        {
+          avatarSrc: "https://avatars.githubusercontent.com/u/12592949?v=1",
+          name: "Jane Doe",
+          profileLink: "/profile/2",
+          title: "Designer",
+          state: "Rejected",
+        },
+      ];
 
     return (
         <OutsideContainer>
             <Header><SimpleHeader /></Header>
     
-        <CustomProjectHeader
-          backgroundColor="#0B0F00"
-          avatarImagePath="/google.png"
-          avatarHeight={"89px"}
-          avatarWidth={"89px"}
-          title1="Google"
-          title2="SurveySwap"
-          button={{
-            isVisible: false,
-          }}
-          shareIcon={{
-            isVisible: false,
-          }}
-          starIcon={{
-            isVisible: false,
-          }}
-        />
+            <CustomProjectHeader
+                backgroundColor="black"
+                avatarImagePath="/icon/projectLogo.svg"
+                avatarHeight={"89px"}
+                avatarWidth={"89px"}
+                title1="Stir"
+                title2="MVP for Serverless E-commerce Return Portal"
+                shareIcon={{
+                    isVisible: false,
+                }}
+                starIcon={{
+                    isVisible: false,
+                }}
+            />
         <Container>
         <ButtonContainer>
             <TabButton
@@ -242,15 +192,20 @@ const C5ProjHubSendOffer: React.FC = () => {
                 > Offers rejected </NavBarButton>
             </NavigationBarContainer>
             <SquadContainer>
-                <SquadSurveySwap roles={rolesData} manageButtonLabel='Admin Squad' manageButtonPreset='outlined' manageButtonTextColor='#384250'onClick={() => {window.location.href = '/c5/manage_squad_send_offer'}}/>
+                {selectedTab === 'My squad' && (
+                    <SquadSurveySwap roles={rolesData} manageButtonLabel='Admin Squad' manageButtonPreset='outlined' manageButtonTextColor='#384250' showButtonContainer={false}/>
+                )}
+                {selectedTab === 'Offers rejected' && (
+                     <SquadCard type="state" data={stateData} />
+                )}
             </SquadContainer>
         </>
         )}
-        {isOfferSend && <SendOffer onClose={() => setOfferSendOpen(false)} sendOfferLink='/c5/proj_hub_offer_sent_a'/>}
+        {isOfferSend && <SendOffer onClose={() => setOfferSendOpen(false)} />}
 
         </Container>
     </OutsideContainer>
     );
 };
 
-export default C5ProjHubSendOffer;
+export default C5ProjHubFindTalent;

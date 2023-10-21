@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import CustomButton from './custom-button';
 import { Badge } from '@/ui/badge';
 import CustomBadge from './custom-badge';
+import { useState } from 'react';
+import ReferSquadmatePopup from './refer-squadmate';
 import {
     basewhite,
     borderColor,
@@ -215,8 +217,9 @@ const RoleCard: React.FC<RoleDetailProps> = ({
     showDivider = true,
     onClick
 }) => {
-
+    const [isReferSquadmatePopupOpen, setReferSquadmatePopupOpen] = useState(false); 
     return (
+        <>
         <RoleCardTalent>
             <RoleCardTalentStatusBar>
                 {status?.map((status, index) => (
@@ -235,7 +238,10 @@ const RoleCard: React.FC<RoleDetailProps> = ({
                             </RoleTitle>
                         </TitleAndLogoContainer>
                         <ButtonContainer>
-                            <CustomButton label={"Refer"} preset='outlined' />
+                            <CustomButton 
+                                label={"Refer"} preset='outlined' 
+                                onClick={() => setReferSquadmatePopupOpen(true)}
+                            />
                             <CustomButton label={"Apply"} preset='default' onClick={onClick} />
                         </ButtonContainer>
                     </RoleLogoTitle>
@@ -310,6 +316,12 @@ const RoleCard: React.FC<RoleDetailProps> = ({
                 </RequiredRecommendedSkillTool>
             </RoleCardTalentBody>
         </RoleCardTalent>
+        {isReferSquadmatePopupOpen && (
+        <ReferSquadmatePopup
+          onClose={() => setReferSquadmatePopupOpen(false)}
+        />
+      )}
+    </>
     )
 };
 
