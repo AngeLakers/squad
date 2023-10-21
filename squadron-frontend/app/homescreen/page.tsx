@@ -7,6 +7,7 @@ import {Wallet} from "@/ui/Wallet"
 import {Community} from"@/ui/Community"
 import {Community2} from"@/ui/Community2"
 import {Header} from "@/ui/Header"
+import Layout from "@/app/homescreen/layout"
 import styled from "styled-components"
 const Display=styled.div`
 display: flex;
@@ -27,6 +28,7 @@ flex-direction: row;
 export default function Home() {
   return (
     <>
+      <Layout>
    <Displayy>
     <Topbar1></Topbar1>
     </Displayy>
@@ -50,6 +52,7 @@ export default function Home() {
     <Display>
     <Community2>  </Community2>
     </Display>
+    </Layout>
 
 </>
 
