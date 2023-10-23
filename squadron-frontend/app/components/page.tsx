@@ -84,13 +84,7 @@ import ShareProjectPopup from "@/ui/share-about-you-popup";
 
 
 
-const Display=styled.div`
-display: flex;
-margin-top: 50px;
-align-items: center;
-justify-content: center;
-flex-direction: row;
-`;
+
 
 const Displayy=styled.div`
 display: flex;
@@ -403,6 +397,12 @@ interface ComponentWrapperProps {
   children: ReactNode;
   usage?: string;
 }
+
+const Display = styled.div`
+  margin-left: 150px;
+  display: flex;
+  margin-top: 50px;
+`;
 
 const ComponentWrapper: React.FC<ComponentWrapperProps> = ({
   filename,
@@ -1452,6 +1452,7 @@ export default function AllComponents() {
         >
           Invitation Sent
         </Button>
+
     </ComponentWrapper>  
     <ComponentWrapper
         filename="hide-project-popup.tsx"
@@ -1478,6 +1479,7 @@ export default function AllComponents() {
         </Button>
     </ComponentWrapper>
     
+
 
       {isModalOpen && (
         <SquadCustom

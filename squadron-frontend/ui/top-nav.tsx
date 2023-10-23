@@ -1,3 +1,4 @@
+
 import React from "react";
 import styled from "styled-components";
 import {
@@ -12,8 +13,10 @@ import {
   SettingSVG,
 } from "./svgs";
 import Link from "next/link";
-import CustomButton from "./custom-button";
+
 import DropdownButton from "./dropdown-button";
+import {Popover} from "@mui/material";
+import NotificationBox from "@/ui/notification-message";
 
 const Nav = styled.nav`
   display: flex;
@@ -60,7 +63,10 @@ const AvatarImage = styled.img`
   min-width: 40px;
 `;
 
-export const TopNav: React.FC = () => {
+export const TopNav: React.FC<{ onChatButtonClick: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void }> = ({ onChatButtonClick }) => {
+  const handleChatClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    onChatButtonClick(event);
+  };
   return (
     <Nav>
       <SearchContainer>
@@ -68,7 +74,7 @@ export const TopNav: React.FC = () => {
         <SearchBar placeholder="Search jobs" />
       </SearchContainer>
       <MenuContainer>
-        <Link href={"#"}>
+        <Link href={"#"} onClick={handleChatClick} id="chatLink">
           <MenuChatSVG />
         </Link>
         <Link href={"#"}>

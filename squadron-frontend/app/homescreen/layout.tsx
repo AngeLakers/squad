@@ -1,4 +1,6 @@
+
 "use client";
+
 
 import type { Metadata } from "next";
 import { SideNav } from "@/ui/side-nav";
@@ -19,6 +21,7 @@ const Main = styled.div`
 
 export  default function Layout({ children }: { children: React.ReactNode }) {
   return (
+
     <Nav>
       <SideNav current="Projects" />
 
@@ -28,4 +31,5 @@ export  default function Layout({ children }: { children: React.ReactNode }) {
       </Main>
     </Nav>
   );
+
 }

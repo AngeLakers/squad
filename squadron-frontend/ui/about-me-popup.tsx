@@ -138,6 +138,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ onClose }) => {
         </PopupFooter>
       </Container>
     </PopupComponent>
+
   );
 };
 

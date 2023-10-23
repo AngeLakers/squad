@@ -40,13 +40,24 @@ const Header = styled.header`
  
 `;
 
+
+const tabsContent = [
+    { label: 'Saved Jobs', badgeContent: 6, content: 'Content of Saved Jobs' },
+    { label: 'Invite', content: <Hometable2/> },
+    { label: 'Application', badgeContent: 6, content:  'Content of Application' },
+    { label: 'Offers', badgeContent: 4, content: 'Content of Offers' },
+    { label: 'Projects', content: 'Content of Projects' },
+    { label: 'Documents', content: 'Content of Documents' }
+];
+
 export default function Home() {
     return (
         <div>
             <Header>
                 My Profile
             </Header>
-            <HorizontalTabs/>
+
+            <HorizontalTabs tabData={tabsContent} />
 
         </div>
     )

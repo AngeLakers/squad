@@ -21,10 +21,10 @@ const Container = styled.div`
 `;
 export default function Home() {
     return (
-       <div>
 
 
-           <Topbar1></Topbar1>
+
+
 
 
            <Container>
@@ -97,6 +97,6 @@ export default function Home() {
               <div style={{height: '2rem'}}></div>
               </Container>
 
-         </div>
+
     )
 }

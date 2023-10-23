@@ -1,39 +1,8 @@
-'use client';
-
-import "@/styles/globals.css";
-import type {Metadata} from "next";
-import {SideNav} from "@/ui/side-nav";
-
-import {MainNav} from "@/ui/main-nav";
-import {Divider, Popover} from "@mui/material";
+"use client";
+import NotificationBox, {NotificationBoxPlus, NotificationProps} from "@/ui/notification-message";
 import styled from "styled-components";
-import React, {useState} from "react";
-import NotificationBox, {NotificationProps} from "@/ui/notification-message";
-import {TopNav} from "@/ui/top-nav";
-
-
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(16, 24, 40, 0.06);
-  height: 100vh;
-  align-content: flex-start;
-
-`;
-
-const Main = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-`;
-
-
-const Nav = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-`;
-
+import {date} from "zod";
+import {useRouter} from "next/navigation";
 
 
 const notificationsData: NotificationProps[] = [
@@ -97,7 +66,7 @@ const notificationsData: NotificationProps[] = [
     {
         iconPath: "/icon/notification-question.svg",
         linkUrl: "www.google.com",
-
+        date: "12 October 22",
         messageInfo: {
             message: "You have been invited to an interview",
             websiteName: "Google",
@@ -111,7 +80,7 @@ const notificationsData: NotificationProps[] = [
     {
         iconPath: "/icon/notification-question.svg",
         linkUrl: "www.google.com",
-
+        date: "12 October 22",
         messageInfo: {
             message: "You have been invited to an interview 2",
             websiteName: "Google",
@@ -124,7 +93,7 @@ const notificationsData: NotificationProps[] = [
     {
         iconPath: "/icon/notification-question.svg",
         linkUrl: "www.google.com",
-
+        date: "12 October 22",
         messageInfo: {
             message: "You have been invited to an interview 3",
             websiteName: "Google",
@@ -138,7 +107,7 @@ const notificationsData: NotificationProps[] = [
     {
         iconPath: "/icon/notification-question.svg",
         linkUrl: "www.google.com",
-
+        date: "12 October 22",
         messageInfo: {
             message: "You have been invited to an interview 4",
             websiteName: "Google",
@@ -151,66 +120,62 @@ const notificationsData: NotificationProps[] = [
 
 
 ];
-export default function Layout({
-                                   children,
-                               }: {
-    children: React.ReactNode
-}) {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
 
-    const handleChatButtonClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+const Container = styled.div`
+  display: flex;
 
-    const handleClosePopover = () => {
-        setAnchorEl(null);
-    };
+  flex-direction: column;
+  align-items: center;
+
+  height: 100%;
+  //padding-left: 25rem;
+  width: 85vw;
+  padding-left: 7.5vw;
+    padding-right: 7.5vw;
+  flex-shrink: 0;
+
+`;
+
+const Header = styled.div`
+  position: relative;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 600;
+  color: #111927;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 2.5rem;
+  
+  
+  
+          `;
+
+const NavigateButton = styled.button` 
+  margin-top: 2.5rem;
+margin-left: 2rem;
+  margin-bottom: 4.5rem;
+ width: 1.25rem;
+  position: relative;
+    border: none;
+  height: 1.25rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  font-weight: 600;
+  color: #1B18E4;
+`;
+
+export default function Home() {
+    const router = useRouter();
 
     return (
+        <div style={{ width: '100' }}>
+            <NavigateButton onClick={() => {router.back()  } }>{'<'}</NavigateButton>
+        <Container>
 
+            <Header>Notifications</Header>
+            <NotificationBoxPlus notifications={notificationsData}/>
+        </Container>
+        </div>
+    )
 
-
-            <Main>
-
-                <TopNav onChatButtonClick={handleChatButtonClick} />
-
-                {open && (
-                    <Popover
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClosePopover}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'center',
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'center',
-                        }}
-                    >
-
-                        <NotificationBox notifications={notificationsData} />
-                    </Popover>
-                )}
-
-
-
-
-                <PageContainer>
-
-                    {children}
-                </PageContainer>
-            </Main>
-
-
-
-
-
-
-
-
-)
-    ;
 }
-
