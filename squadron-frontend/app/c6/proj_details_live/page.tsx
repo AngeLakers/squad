@@ -18,6 +18,8 @@ import SquadCard from "@/ui/squad-card";
 import { PersonData } from "@/ui/squad-table";
 import Invoices, { InvoiceData } from '@/ui/invoices'; 
 import Contracts, { ContractData } from '@/ui/contracts';
+import {FeedbackCard, IndividualFeedbackCard} from "@/ui/feedvack_card.";
+import { HeadWrapper, HeadWrapper2 } from '@/app/homescreen/pulse_survey/page';
 
 const Container = styled.div`
     margin-left: 8vw;
@@ -98,6 +100,48 @@ const TabButton = styled.button<{ active: boolean }>`
     color: ${({ active }) => (active ? "#413999" : "#667085")};
     background-color: transparent;
     cursor: pointer;
+`;
+
+const ProjectsWrapper = styled.div`
+  position: relative;
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 2.5rem 7rem 4.5rem;
+  box-sizing: border-box;
+  gap: 4.5rem;
+  text-align: left;
+  font-size: 1.5rem;
+  color: #111927;
+`;
+
+const FeedbackWrapper = styled.div`
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  text-align: left;
+  font-size: 1.5rem;
+  color: #111927;
+`;
+
+const CardWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  text-align: left;
+  font-size: 1rem;
+  color: #4d5761;
 `;
 
 const invoiceData: InvoiceData[] = [
@@ -566,6 +610,76 @@ const C6ProjectDetailsLive: React.FC = () => {
         <Contracts data={contractsDataA} />
         <SubTitle2>Contracts</SubTitle2>
         <Contracts data={contractsDataB} />
+        </>
+        )}
+
+        {showTeamPulse && (
+        <>
+        <ProjectsWrapper>
+        <FeedbackWrapper>
+                <HeadWrapper title={"Team's feedback"}
+                             description={"Average team score based on individual feedback from your team members"}/>
+
+
+                <CardWrapper>
+                    <FeedbackCard text={"7 May - 14 May, 2022"} score={5.0}/>
+                </CardWrapper>
+
+                {/*<FeedbackCard text={"7 May - 14 May, 2022"} score={4.8}   />*/}
+                {/*<FeedbackCard text={"7 May - 14 May, 2022"} score={3.8}   />*/}
+                {/*        <FeedbackCard text={"7 May - 14 May, 2022"} score={1.8}   />*/}
+            </FeedbackWrapper>
+            <FeedbackWrapper>
+                <HeadWrapper2 title={"Previous feedback"}
+                              description={"Feedback from previous weeks"}/>
+
+                <CardWrapper> <FeedbackCard text={"7 May - 14 May, 2022"} score={5.0}/>
+                    <FeedbackCard
+                        text={"7 May - 14 May, 2022"} score={3.8}/>
+                    <FeedbackCard text={"7 May - 14 May, 2022"} score={4.8}
+                    />
+                    <FeedbackCard text={"7 May - 14 May, 2022"} score={2.3}
+                    />
+                </CardWrapper>
+
+            </FeedbackWrapper>
+
+            <FeedbackWrapper>
+                <HeadWrapper title={"Team's feedback"}
+                             description={"Average team score based on individual feedback from your team members"} status={false}/>
+                <CardWrapper>
+                    <IndividualFeedbackCard
+                        avatarSrc={"https://images.unsplash.com/photo-1561948955-570b270e7c36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwyMDEzMTN8MHwxfGFsbHwxfHx8fHx8fHwxNjE5OTM1NTI4&ixlib=rb-1.2.1&q=80&w=400"}
+                        name="Patricia Montero"
+                        date="7 May - 14 May, 2022"
+                        score={5.0}
+                        role="Product Manager"
+                    />
+                    <IndividualFeedbackCard
+                        avatarSrc={"https://images.unsplash.com/photo-1561948955-570b270e7c36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwyMDEzMTN8MHwxfGFsbHwxfHx8fHx8fHwxNjE5OTM1NTI4&ixlib=rb-1.2.1&q=80&w=400"}
+                        name="Alisa Heston"
+                        date="7 May - 14 May, 2022"
+                        score={4.7}
+                        role="Front-end Developer"
+                    />
+                    <IndividualFeedbackCard
+                        avatarSrc={"https://images.unsplash.com/photo-1561948955-570b270e7c36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwyMDEzMTN8MHwxfGFsbHwxfHx8fHx8fHwxNjE5OTM1NTI4&ixlib=rb-1.2.1&q=80&w=400"}
+                    name="Lyle Kauffman"
+                    date="7 May - 14 May, 2022"
+                    score={3.8}
+                    role="Back-end Developer"
+                />
+                    <IndividualFeedbackCard
+                        avatarSrc={"https://images.unsplash.com/photo-1561948955-570b270e7c36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwyMDEzMTN8MHwxfGFsbHwxfHx8fHx8fHwxNjE5OTM1NTI4&ixlib=rb-1.2.1&q=80&w=400"}
+                        name="Rosalee Melvin"
+                        date="7 May - 14 May, 2022"
+                        score={3.1}
+                        role="UX Designer"
+                    />
+                </CardWrapper>
+
+            </FeedbackWrapper>
+            </ProjectsWrapper>
         </>
         )}
 
