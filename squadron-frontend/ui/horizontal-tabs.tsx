@@ -178,7 +178,21 @@ const TabPanel = (props) => {
 //         </StyledBox>
 //     );
 // };
-const HorizontalTabs = ({ tabData = [], fontColor = 'primary'}) => {
+
+
+
+type TabDataType = {
+    label: string;
+    content: JSX.Element | string;
+    badgeContent?: string;
+};
+
+type HorizontalTabsProps = {
+    tabData?: TabDataType[];
+    fontColor?: 'primary' | 'secondary' | 'inherit';
+};
+
+const HorizontalTabs: React.FC<HorizontalTabsProps> = ({ tabData = [], fontColor = 'primary' }) => {
     const [value, setValue] = useState(1  );
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {

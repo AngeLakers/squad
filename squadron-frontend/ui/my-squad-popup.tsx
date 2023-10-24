@@ -174,6 +174,7 @@ const ContentContainer = styled.div`
 
 interface AboutMeProps {
     onClose: () => void;
+    onSubmit: () => void ;
 }
 
 export const Mysquad: React.FC<AboutMeProps> = ({onClose}) => {
