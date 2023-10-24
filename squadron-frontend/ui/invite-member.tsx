@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PopupComponent from "./popup";
 import styled from "styled-components";
 import CustomButton from "./custom-button";
@@ -96,17 +96,28 @@ const CustomTextField = styled.input`
 `;
 
 interface InviteAdminProps {
-  onClose: () => void;
+    onClose: () => void;
+    onSendInvites: (members: string[]) => void;
 }
 
-const InviteMember: React.FC<InviteAdminProps> = ({ onClose }) => {
-  return (
+const InviteMember: React.FC<InviteAdminProps> = ({ onClose, onSendInvites }) => {
+    const [numFields, setNumFields] = useState(1); 
+    const addField = () => {
+        setNumFields(prev => prev + 1);
+    };
+    const handleSubmit = () => {
+        const members = ["Antonio Hidalgo Garcia", "Antonio Hidalgo Garcia", "Antonio Hidalgo Garcia", "Antonio Hidalgo Garcia"];
+        onSendInvites(members);
+    };
+
+    return (
     <PopupComponent onClose={onClose} width="35%" minWidth="500px" minHeight="max-contents" maxHeightPercent={0.3} >
       <Container>
         <Title>Invite a member</Title>
         <Description>description</Description>
         <Divider />
-        <InputRow>
+        {Array.from({ length: numFields }).map((_, idx) => (
+          <InputRow key={idx}>
             <InputContainer>
                 <Label htmlFor="name-1">Full Name</Label>
                 <CustomTextField id="name-1"/>
@@ -116,11 +127,12 @@ const InviteMember: React.FC<InviteAdminProps> = ({ onClose }) => {
                 <CustomTextField id="email-1"/>
             </InputContainer>
         </InputRow>
-        <AddButton><StyledAddSVG />Add another</AddButton>
+        ))}
+        <AddButton onClick={addField}><StyledAddSVG />Add another</AddButton>
         <Divider />
         <ButtonContainer>
             <CustomButton label="Cancel" preset="default" borderColor="#D0D5DD" padding="10px 35px 10px 35px" backgroundColor="white" textColor="#344054" hoverColor="none" onClick={onClose}/>
-            <CustomButton label="Send invites" preset="default" padding="10px 25px 10px 25px" hoverColor="none" />
+            <CustomButton label="Send invites" preset="default" padding="10px 25px 10px 25px" hoverColor="none" onClick={handleSubmit} />
         </ButtonContainer>
       </Container>
     </PopupComponent>
