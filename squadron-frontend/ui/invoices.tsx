@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import CustomButton from "./custom-button";
 import CustomBadge from "./custom-badge";
+import { ArrowDownSVGC6, DownloadSVG } from '@/ui/svgs';
 
 const Container = styled.div`
   border-radius: 12px;
@@ -41,6 +42,13 @@ const ActionCell = styled(Cell)`
   flex: 2; 
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px; 
+  align-items: center;
+`;
+
 export interface InvoiceData {
   dateIssued: string;
   no: string;
@@ -56,6 +64,13 @@ interface InvoicesProps {
 
 const Invoices: React.FC<InvoicesProps> = ({ data }) => {
   return (
+    <>
+      <ButtonContainer>
+          <CustomButton label={<div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>This week
+          <ArrowDownSVGC6 /></div>} preset="outlined"/>
+          <CustomButton label={<div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>All invoices
+          <ArrowDownSVGC6 /></div>} preset="outlined"/>
+      </ButtonContainer>
     <Container>
       <TitleRow>
         <Cell>Date issued</Cell>
@@ -84,11 +99,12 @@ const Invoices: React.FC<InvoicesProps> = ({ data }) => {
                 <CustomButton label="Pay invoice" preset="default" />
                 )}
             <CustomButton label="View" preset="outlined"/>
-            <CustomButton label="Download" preset="outlined"/>
+            <CustomButton label={<DownloadSVG />} preset="outlined"/>
           </ActionCell>
         </Row>
       ))}
     </Container>
+    </>
   );
 };
 
