@@ -1106,6 +1106,16 @@ export const LinkedIn2SVG = () => {
   );
 };
 
+
+export const AddSVG = () => {
+  return (  
+    <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10.5003 4.16669V15.8334M4.66699 10H16.3337" stroke="#1B18E4" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  );
+};
+
+
 export const CoinsSVG = () => {
   return (
     <svg

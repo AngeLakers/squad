@@ -3,6 +3,8 @@ import * as React from "react";
 import styled from "styled-components";
 import StepHeading from "./step-heading";
 import CustomButton from "./custom-button";
+import InviteMember from "./invite-member";
+import { useState } from "react";
 
 const QuestionareContainer = styled.div`
   display: flex;
@@ -84,6 +86,7 @@ const RectangleBottom = styled.div`
 `;
 
 export default function Questionare4() {
+    const [isMemberInvite, setMemberInviteOpen] = useState(false);
     return (
       <QuestionareContainer>
         <StepHeading
@@ -98,7 +101,7 @@ export default function Questionare4() {
                 <QuestionTitle>Do you have a squad ready to go ?</QuestionTitle>
                 <Description>Invite colleagues to collaborate on this project.</Description>
               </TitleAndDescription>
-              <CustomButton label="Invite members" preset="default"  height="40px"/>
+              <CustomButton label="Invite members" preset="default"  height="40px" onClick={() => setMemberInviteOpen(true)}/>
             </QuestionTitleContainer>
             <Rectangle>
               <RectangleTop>
@@ -109,6 +112,10 @@ export default function Questionare4() {
             </Rectangle>
           </Question>
         </QuestionContainer>
+        {isMemberInvite && (
+        <InviteMember onClose={() => setMemberInviteOpen(false)} />
+      )}
       </QuestionareContainer>
+      
     );
   }
