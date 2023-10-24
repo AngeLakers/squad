@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import PopupComponent from "./popup";
 import styled from "styled-components";
-import { AddSVG } from "./svgs";
 import CustomButton from "./custom-button";
+import { AddSVG } from "./svgs";
 
 const Container = styled.div`
     display: flex;
@@ -19,20 +19,20 @@ const Title = styled.h1`
 `;
 
 const Description = styled.p`
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     color: #475467;
     font-size: 14px;
 `;
 
 const Divider = styled.hr`
     width: 100%; 
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 `;
 
 const InputContainer = styled.div`
     display: flex;
     flex-direction: column;
-    flex: 1; 
+    width: calc(50% - 8px);
 
     &:first-child {
         margin-right: 16px;
@@ -48,7 +48,7 @@ const InputRow = styled.div`
 const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 24px 0;
+    padding: 0 0 24px 0;
     width: 100%;
 `;
 
@@ -56,6 +56,7 @@ const AddButton = styled.button`
     display: inline-flex;   
     align-items: center;
     margin-top:10px;
+    margin-bottom: 25px;
     cursor: pointer;
     color: #1B18E4;
     font-size: 14px;
@@ -70,12 +71,12 @@ const StyledAddSVG = styled(AddSVG)`
 
 const Label = styled.label`
     display: block;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
     color: #384250;
     font-size: 14px;
 `;
 
-const TextField = styled.input`
+const CustomTextField = styled.input`
     width: 100%;
     height: 44px;
     padding: 0 12px;
@@ -95,45 +96,47 @@ const TextField = styled.input`
 `;
 
 interface InviteAdminProps {
-  onClose: () => void;
+    onClose: () => void;
+    onSendInvites: (members: string[]) => void;
 }
 
-const InviteAdmin: React.FC<InviteAdminProps> = ({ onClose }) => {
-  return (
+const InviteMember: React.FC<InviteAdminProps> = ({ onClose, onSendInvites }) => {
+    const [numFields, setNumFields] = useState(1); 
+    const addField = () => {
+        setNumFields(prev => prev + 1);
+    };
+    const handleSubmit = () => {
+        const members = ["Antonio Hidalgo Garcia", "Antonio Hidalgo Garcia", "Antonio Hidalgo Garcia", "Antonio Hidalgo Garcia"];
+        onSendInvites(members);
+    };
+
+    return (
     <PopupComponent onClose={onClose} width="35%" minWidth="500px" minHeight="max-contents" maxHeightPercent={0.3} >
       <Container>
-        <Title>Invite admin(s)</Title>
+        <Title>Invite a member</Title>
         <Description>description</Description>
         <Divider />
-        <InputRow>
-        <InputContainer>
-            <Label htmlFor="name-1">Name</Label>
-            <TextField id="name-1" />
-        </InputContainer>
-        <InputContainer>
-            <Label htmlFor="email-1">Email address</Label>
-            <TextField id="email-1" />
-        </InputContainer>
+        {Array.from({ length: numFields }).map((_, idx) => (
+          <InputRow key={idx}>
+            <InputContainer>
+                <Label htmlFor="name-1">Full Name</Label>
+                <CustomTextField id="name-1"/>
+            </InputContainer>
+            <InputContainer>
+                <Label htmlFor="email-1">Email</Label>
+                <CustomTextField id="email-1"/>
+            </InputContainer>
         </InputRow>
-        <InputRow>
-        <InputContainer>
-            <Label htmlFor="name-2">Name</Label>
-            <TextField id="name-2"  />
-        </InputContainer>
-        <InputContainer>
-            <Label htmlFor="email-2">Email address</Label>
-            <TextField id="email-2" />
-        </InputContainer>
-        </InputRow>
-        <AddButton><StyledAddSVG />Add another</AddButton>
+        ))}
+        <AddButton onClick={addField}><StyledAddSVG />Add another</AddButton>
+        <Divider />
         <ButtonContainer>
             <CustomButton label="Cancel" preset="default" borderColor="#D0D5DD" padding="10px 35px 10px 35px" backgroundColor="white" textColor="#344054" hoverColor="none" onClick={onClose}/>
-            <CustomButton label="Send invites" preset="default" padding="10px 25px 10px 25px" backgroundColor="#111927" textColor="white" hoverColor="none" />
+            <CustomButton label="Send invites" preset="default" padding="10px 25px 10px 25px" hoverColor="none" onClick={handleSubmit} />
         </ButtonContainer>
       </Container>
     </PopupComponent>
   );
 };
 
-export default InviteAdmin;
-
+export default InviteMember;
