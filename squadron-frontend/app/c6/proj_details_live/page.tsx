@@ -17,7 +17,7 @@ import portraitAImage from "@/public/portraitA.png";
 import SquadCard from "@/ui/squad-card";
 import { PersonData } from "@/ui/squad-table";
 import Invoices, { InvoiceData } from '@/ui/invoices'; 
-
+import Contracts, { ContractData } from '@/ui/contracts';
 
 const Container = styled.div`
     margin-left: 8vw;
@@ -60,6 +60,17 @@ const SquadContainer = styled.div`
 const Text = styled.p`
     margin: 32px 0; 
     font-size: 24px;
+`;
+
+const SubTitle = styled.p`
+    font-size: 18px;
+    font-weight: 500;
+    color: #111927;
+    margin-bottom: 40px;
+`;
+
+const SubTitle2 = styled(SubTitle)`
+    margin-top: 40px;
 `;
 
 const ButtonContainer = styled.div`
@@ -148,6 +159,73 @@ const invoiceData: InvoiceData[] = [
       },
   ];
 
+  const contractsDataA: ContractData[] = [
+    {
+        createdOn: '31/11/2022',
+        signatory: 'Squadron',
+        status: 'Signed',
+        paidOn: '25 Dec, 2023 at 11:12 AM',
+    },
+  ];
+
+  const contractsDataB: ContractData[] = [
+    {
+        createdOn: '31/11/2022',
+        signatory: 'Olivia Rhye',
+        signatoryImage: <Image src={portraitAImage} alt="Signatory Portrait" width={32} height={32} />,
+        status: 'Signed',
+        paidOn: '25 Dec, 2023 at 11:12 AM',
+    },
+    {
+        createdOn: '31/11/2022',
+        signatory: 'Olivia Rhye',
+        signatoryImage: <Image src={portraitAImage} alt="Signatory Portrait" width={32} height={32} />,
+        status: 'Signed',
+        paidOn: '25 Dec, 2023 at 11:12 AM',
+    },
+    {
+        createdOn: '31/11/2022',
+        signatory: 'Olivia Rhye',
+        signatoryImage: <Image src={portraitAImage} alt="Signatory Portrait" width={32} height={32} />,
+        status: 'Signed',
+        paidOn: '25 Dec, 2023 at 11:12 AM',
+    },
+    {
+        createdOn: '31/11/2022',
+        signatory: 'Olivia Rhye',
+        signatoryImage: <Image src={portraitAImage} alt="Signatory Portrait" width={32} height={32} />,
+        status: 'Signed',
+        paidOn: '25 Dec, 2023 at 11:12 AM',
+    },
+    {
+        createdOn: '31/11/2022',
+        signatory: 'Olivia Rhye',
+        signatoryImage: <Image src={portraitAImage} alt="Signatory Portrait" width={32} height={32} />,
+        status: 'Signed',
+        paidOn: '25 Dec, 2023 at 11:12 AM',
+    },
+    {
+        createdOn: '31/11/2022',
+        signatory: 'Olivia Rhye',
+        signatoryImage: <Image src={portraitAImage} alt="Signatory Portrait" width={32} height={32} />,
+        status: 'Signed',
+        paidOn: '25 Dec, 2023 at 11:12 AM',
+    },
+    {
+        createdOn: '31/11/2022',
+        signatory: 'Olivia Rhye',
+        signatoryImage: <Image src={portraitAImage} alt="Signatory Portrait" width={32} height={32} />,
+        status: 'Signed',
+        paidOn: '25 Dec, 2023 at 11:12 AM',
+    },
+    {
+        createdOn: '31/11/2022',
+        signatory: 'Olivia Rhye',
+        signatoryImage: <Image src={portraitAImage} alt="Signatory Portrait" width={32} height={32} />,
+        status: 'Signed',
+        paidOn: '25 Dec, 2023 at 11:12 AM',
+    },
+  ];
 const rolesData = [
     {
         image: (
@@ -479,6 +557,15 @@ const C6ProjectDetailsLive: React.FC = () => {
         {showInvoices && (
         <>
         <Invoices data={invoiceData} />
+        </>
+        )}
+
+        {showContracts && (
+        <>
+        <SubTitle>Service agreement</SubTitle>
+        <Contracts data={contractsDataA} />
+        <SubTitle2>Contracts</SubTitle2>
+        <Contracts data={contractsDataB} />
         </>
         )}
 
