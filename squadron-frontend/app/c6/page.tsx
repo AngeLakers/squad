@@ -5,9 +5,29 @@ import Image from "next/image";
 import LaunchMissionPopup from "@/ui/launch-mission";
 import launchMissionImage from "@/public/launch-mission.png";
 import CustomButton from '@/ui/custom-button';
+import Invoices, { InvoiceData } from '@/ui/invoices'; 
 
 export default function CreateProjectComponent() {
     const [launchMissionPopupOpen, setlaunchMissionPopupOpen] = useState(false);
+
+    const invoiceData: InvoiceData[] = [
+      {
+        dateIssued: '31/11/2022',
+        no: '#01',
+        amountDue: '$4535',
+        amountPaid: '$4535',
+        status: 'paid',
+        paidOn: '01/12/2022',
+      },
+      {
+        dateIssued: '31/11/2022',
+        no: '#02',
+        amountDue: '$4535',
+        amountPaid: '$4535',
+        status: 'past due',
+        paidOn: '01/12/2022',
+      },
+    ];
 
 
   return (
@@ -32,6 +52,8 @@ export default function CreateProjectComponent() {
         }
       />
     )}
+    <div><Invoices data={invoiceData} /></div>
+
     </div>
   );
 }
