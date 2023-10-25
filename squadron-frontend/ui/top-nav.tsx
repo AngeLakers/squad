@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styled from "styled-components";
 import {
   FlashSVG,
@@ -15,7 +15,7 @@ import {
 import Link from "next/link";
 
 import DropdownButton from "./dropdown-button";
-import {Popover} from "@mui/material";
+import {Button, Popover} from "@mui/material";
 import NotificationBox from "@/ui/notification-message";
 
 const Nav = styled.nav`
@@ -63,10 +63,34 @@ const AvatarImage = styled.img`
   min-width: 40px;
 `;
 
-export const TopNav: React.FC<{ onChatButtonClick: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void }> = ({ onChatButtonClick }) => {
-  const handleChatClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    onChatButtonClick(event);
+
+
+
+type TopNavProps = {
+  NotificationComponent: React.ReactNode;
+};
+
+
+
+export const TopNav: React.FC<TopNavProps> = ({ NotificationComponent }) => {
+  const [showNotification, setShowNotification] = useState(false);
+  const [position, setPosition] = useState<{left: number, top: number} | null>(null);
+  const menuChatRef = useRef<HTMLAnchorElement | null>(null);
+
+  useEffect(() => {
+    if (menuChatRef.current) {
+      const rect = menuChatRef.current.getBoundingClientRect();
+      setPosition({
+        left: rect.left,
+        top: rect.bottom,
+      });
+    }
+  }, [menuChatRef]);
+  const handleNotificationToggle = () => {
+    setShowNotification(!showNotification);
   };
+
+
   return (
     <Nav>
       <SearchContainer>
@@ -74,9 +98,26 @@ export const TopNav: React.FC<{ onChatButtonClick: (event: React.MouseEvent<HTML
         <SearchBar placeholder="Search jobs" />
       </SearchContainer>
       <MenuContainer>
-        <Link href={"#"} onClick={handleChatClick} id="chatLink">
+        <Link
+            href={"#"}
+            onClick={() => setShowNotification(!showNotification)}
+            ref={menuChatRef}
+            id="chatLink">
           <MenuChatSVG />
         </Link>
+        {showNotification && position && (
+            <div
+                style={{
+                  position: 'absolute',
+                  left: `calc(${position.left}px - 22rem)`,
+                  top: `${position.top}px`
+                }}>
+              {NotificationComponent}
+            </div>
+        )}
+
+
+
         <Link href={"#"}>
           <MenuStarSVG />
         </Link>
@@ -90,6 +131,7 @@ export const TopNav: React.FC<{ onChatButtonClick: (event: React.MouseEvent<HTML
           menuItems={mockMenuItems}
         />
       </MenuContainer>
+
     </Nav>
   );
 };

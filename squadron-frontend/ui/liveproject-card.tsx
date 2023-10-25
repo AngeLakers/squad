@@ -372,7 +372,7 @@ export const SatisfactionBox: React.FC<{ isInteractive?: boolean, score: number 
 
     const handleClick = () => {
         if (isInteractive) {
-            router.push('/homescreen/pulse_survey');
+            router.push('/c3_pulse_survey');
             console.log('Box clicked');
         }
     }

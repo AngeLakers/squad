@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import {SideNav} from "@/ui/side-nav";
 import {TopNav} from "@/ui/top-nav";
+import React from "react";
 
 const PageContainer = styled.div`
   display: flex;

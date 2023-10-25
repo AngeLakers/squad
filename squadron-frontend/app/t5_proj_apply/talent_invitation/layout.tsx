@@ -1,13 +1,10 @@
-'use client';
 
+"use client"
 import "@/styles/globals.css";
-import type {Metadata} from "next";
-import {SideNav} from "@/ui/side-nav";
 
-import {MainNav} from "@/ui/main-nav";
-import {Divider, Popover} from "@mui/material";
+
 import styled from "styled-components";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import NotificationBox, {NotificationProps} from "@/ui/notification-message";
 import {TopNav} from "@/ui/top-nav";
 
@@ -28,11 +25,7 @@ const Main = styled.div`
 `;
 
 
-const Nav = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-`;
+
 
 
 
@@ -151,57 +144,35 @@ const notificationsData: NotificationProps[] = [
 
 
 ];
+
+
+
+
 export default function Layout({
                                    children,
                                }: {
     children: React.ReactNode
 }) {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
 
-    const handleChatButtonClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
 
-    const handleClosePopover = () => {
-        setAnchorEl(null);
-    };
+
 
     return (
 
 
 
-            <Main>
+        <Main>
 
-                <TopNav onChatButtonClick={handleChatButtonClick} />
 
-                {open && (
-                    <Popover
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClosePopover}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'center',
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'center',
-                        }}
-                    >
-
-                        <NotificationBox notifications={notificationsData} />
-                    </Popover>
-                )}
+            <TopNav NotificationComponent={<NotificationBox notifications={notificationsData} />} />
 
 
 
 
-                <PageContainer>
+            <PageContainer>{children}</PageContainer>
 
-                    {children}
-                </PageContainer>
-            </Main>
+
+        </Main>
 
 
 
