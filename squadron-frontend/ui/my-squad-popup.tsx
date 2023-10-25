@@ -127,10 +127,11 @@ const PopupFooter = styled.div`
 `;
 
 const Title = styled.div`
-  padding: 1.5rem 1.5rem 0rem;
+  padding:  1.5rem 0px 0px 0px;
   font-weight: 600;
   font-size: 18px;
   line-height: ${largeLineHeight};
+  text-align: left;
 `;
 
 const Description = styled.div`
@@ -173,6 +174,7 @@ const ContentContainer = styled.div`
 
 interface AboutMeProps {
     onClose: () => void;
+    onSubmit: () => void ;
 }
 
 export const Mysquad: React.FC<AboutMeProps> = ({onClose}) => {

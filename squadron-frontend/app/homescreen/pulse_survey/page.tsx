@@ -131,7 +131,7 @@ const SeeallButton = styled.button`
 `;
 
 
-const HeadWrapper: React.FC<HeadWrapperProps> = ({status = true, title, description}) => {
+export const HeadWrapper: React.FC<HeadWrapperProps> = ({status = true, title, description}) => {
     const [MysquadPopupOpen, setMysquadPopupOpen] = useState(false);
     const [isMySquadSubmittedPopupOpen, setMySquadSubmittedPopupOpen] = useState(false);
     const closeFirstPopupAndOpenSecond = () => {
@@ -157,7 +157,7 @@ const HeadWrapper: React.FC<HeadWrapperProps> = ({status = true, title, descript
         </HeadContainer>
     );
 };
-const HeadWrapper2: React.FC<HeadWrapperProps> = ({title, description}) => {
+export const HeadWrapper2: React.FC<HeadWrapperProps> = ({title, description}) => {
 
     return (
         <HeadContainer>

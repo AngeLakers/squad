@@ -10,10 +10,9 @@ interface StepHeadingProps {
 const StepHeadingContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 16px 15% 24px 15%;
+  padding: 16px 12% 24px 12%;
   gap: 16px;
-  border-bottom: 1px solid ##e5e7eb;
-  flex: 1;
+  border-bottom: 1px solid #e5e7eb;
   width: 100%;
   background-color: white;
 `;
