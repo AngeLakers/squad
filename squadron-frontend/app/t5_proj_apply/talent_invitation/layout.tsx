@@ -7,11 +7,11 @@ import styled from "styled-components";
 import React, {useRef, useState} from "react";
 import NotificationBox, {NotificationProps} from "@/ui/notification-message";
 import {TopNav} from "@/ui/top-nav";
+import {SimpleHeader} from "@/ui/simple-header";
 
 
 const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+
   background-color: rgba(16, 24, 40, 0.06);
   height: 100vh;
   align-content: flex-start;

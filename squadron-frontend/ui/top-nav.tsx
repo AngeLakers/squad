@@ -67,12 +67,12 @@ const AvatarImage = styled.img`
 
 
 type TopNavProps = {
-  NotificationComponent: React.ReactNode;
+  NotificationComponent?: React.ReactNode;
 };
 
 
 
-export const TopNav: React.FC<TopNavProps> = ({ NotificationComponent }) => {
+export const TopNav: React.FC<TopNavProps> = ({ NotificationComponent = null,  }) => {
   const [showNotification, setShowNotification] = useState(false);
   const [position, setPosition] = useState<{left: number, top: number} | null>(null);
   const menuChatRef = useRef<HTMLAnchorElement | null>(null);
