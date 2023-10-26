@@ -61,14 +61,9 @@ const Item = styled.div`
         background-color: #F9FAFB;
     }
 `
-
-const ClickIconContainer = styled.div`
-    width: 20px;
-    height: 20px;
-`
 interface LocationFilterProps {
     listName?: string;
-    items?: string[];
+    items?: { continent: string, countries: string[] }[];
     showDivider?: boolean;
     inputHeight?: string;
     inputWidth?: string;
@@ -94,17 +89,18 @@ const LocationFilter: React.FC<LocationFilterProps> = ({
     return (
         <DropdownContainer>
             <DropdownBodyContainer>
-                <CustomDropdownList
-                    listName={listName}
-                    color={gray700}
-                    fontSize={regularFontSize}
-                    fontWeight={mediumFontWeight}
-                    lineHeight={regularLineHeight}
-                    onToggle={handleToggle}
-                    isChecked={isChecked}
-                    items={items}
-                />
-
+                {items.map(({ continent, countries }) =>
+                    <CustomDropdownList
+                        listName={continent}
+                        color={gray700}
+                        fontSize={regularFontSize}
+                        fontWeight={mediumFontWeight}
+                        lineHeight={regularLineHeight}
+                        onToggle={handleToggle}
+                        isChecked={isChecked}
+                        items={countries}
+                    />
+                )}
             </DropdownBodyContainer>
             <DropdownFooterContainer>
                 {showDivider && <Divider />}

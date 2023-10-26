@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {ArrowDownSVG} from '@/ui/svgs';
+import { ArrowDownSVG } from '@/ui/svgs';
 
 const SlotContent = styled.div`
     width: 20px;
@@ -8,40 +8,39 @@ const SlotContent = styled.div`
 `
 
 const FilterWrapper = styled.div`
-  position: relative;
-  border-radius: 8px;
+    position: relative;
+    border-radius: 8px;
 `;
 
 const FilterButton = styled.button`
-  background-color: white;
-  display: flex;
-  align-items: center;
-  border: 1px solid #D2D6DB;
-  padding: 10px 14px 10px 14px;
-  cursor: pointer;
-  gap: 8px;
-  border-radius: 4px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    border: 1px solid #D2D6DB;
+    padding: 10px 14px 10px 14px;
+    cursor: pointer;
+    gap: 8px;
+    border-radius: 4px;
 
-  &:hover {
-    background-color: #ebebeb;
-    border: 1px solid #384250;
-
-  }
+    &:hover {
+        background-color: #ebebeb;
+        border: 1px solid #384250;
+    }
 `;
 interface DropdownProps {
-  width: string;
-  height: string;
+    width: string;
+    height: string;
 }
 
 const DropdownContainer = styled.div<DropdownProps>`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: ${props => props.width};
-  height: ${props => props.height};
-  background-color: white;
-  margin-top: 8px;
-  z-index: 10;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: ${props => props.width};
+    height: ${props => props.height};
+    background-color: white;
+    margin-top: 8px;
+    z-index: 10;
 `;
 
 interface FilterProps {
@@ -50,26 +49,29 @@ interface FilterProps {
     containerHeight?: string;
     children?: React.ReactNode;
     slot?: React.ReactNode;
+    isActive?: boolean;
+    onToggle?: () => void;
 }
-const CustomFilter: React.FC<FilterProps> = ({ 
-    filterName, 
-    children, 
+const CustomFilter: React.FC<FilterProps> = ({
+    filterName,
+    children,
     slot,
     containerWidth = '400px',
-    containerHeight = '400px'
+    containerHeight = '400px',
+    isActive = false,
+    onToggle
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+    return (
+        <FilterWrapper>
+            <FilterButton onClick={onToggle}>
+                {slot && <SlotContent>{slot}</SlotContent>}
+                {filterName}
+                <ArrowDownSVG />
+            </FilterButton>
+            {isActive && <DropdownContainer width={containerWidth} height={containerHeight}>{children}</DropdownContainer>}
 
-  return (
-    <FilterWrapper>
-      <FilterButton onClick={() => setIsOpen(!isOpen)}>
-        {slot && <SlotContent>{slot}</SlotContent>}
-        {filterName}
-        <ArrowDownSVG/>
-      </FilterButton>
-      {isOpen && <DropdownContainer width={containerWidth} height={containerHeight}>{children}</DropdownContainer>}
-    </FilterWrapper>
-  );
+        </FilterWrapper>
+    );
 }
 
 export default CustomFilter;
