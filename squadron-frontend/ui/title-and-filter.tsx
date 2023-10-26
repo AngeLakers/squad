@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components';
 import CustomFilter from '@/ui/custom-filter';
 import CustomButton from "./custom-button";
@@ -80,7 +80,8 @@ interface TitleAndFilterProps {
     containerHeight?: string;
     children?: React.ReactNode;
     slot?: React.ReactNode;
-
+    activeFilter?: string | null;
+    onFilterClick?: (filterName: string) => void;
     filters: {
         filterName: string;
         slot: React.ReactNode;
@@ -134,8 +135,13 @@ const TitleAndFilter: React.FC<TitleAndFilterProps> = ({
     containerWidth,
     containerHeight,
     children,
-    filters
+    filters,
 }) => {
+    const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+    const handleFilterToggle = (filterName: string) => {
+        setActiveFilter(prev => (prev === filterName ? null : filterName));
+    };
     return (
         <TitleAndFilterContainer>
             <SearchSectionContainer>
@@ -170,6 +176,8 @@ const TitleAndFilter: React.FC<TitleAndFilterProps> = ({
                         slot={filter.slot}
                         containerHeight={filter.containerHeight}
                         containerWidth={filter.containerWidth}
+                        isActive={activeFilter === filter.filterName}
+                        onToggle={() => handleFilterToggle(filter.filterName)}
                     >
                         {filter.children}
                     </CustomFilter>
