@@ -4,6 +4,11 @@ import styled from "styled-components";
 import CustomButton from "./custom-button";
 import portraitAImage from "@/public/portraitA.png";
 import Image from "next/image";
+import {LinkedIn2SVG} from './svgs';
+import {TwitterSVG} from './svgs';
+import {Email2SVG} from './svgs';
+
+
 
 import {
     basewhite,
@@ -135,23 +140,33 @@ const DetailDiv = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 10px 16px;
+    padding: 10px 10px;
     border-radius: 8px;
     border: 1px solid #d2d6db;
+    gap: 8px;
 `;
 
 interface ShareProjectProps {
     onClose: () => void;
-    
+    shareLink: string;
 }
 
-const ShareProjectPopup: React.FC<ShareProjectProps> = ({ onClose}) => {
+const ShareProjectPopup: React.FC<ShareProjectProps> = ({ onClose, shareLink}) => {
     
-    const [isChecked, setIsChecked] = useState(false);
-    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(e.target.checked);
-  }
-  
+    const handleCopy = () => {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareLink);
+        } else {
+            // Fallback for older browsers
+            const textarea = document.createElement('textarea');
+            textarea.value = shareLink;
+            textarea.style.position = 'fixed';  //prevent from scrolling to bottom
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+    };
 {/* todo: 1. copy function
     2. share link is dynamic
     3. share button with pics
@@ -176,19 +191,29 @@ const ShareProjectPopup: React.FC<ShareProjectProps> = ({ onClose}) => {
                 <InputContainer>
                     <InputLabel>Share Link</InputLabel>
                     <CustomInput
-                        placeholder="join.untitledui.com/project"
-                        type="email"
+                        value={shareLink}
+                        readOnly 
+                        type="text"
                     />
                 </InputContainer>
-                <CopyContainer>
-                    <Image src={`/icon/copy.svg`} alt="Copy" width={24} height={24} />
+                <CopyContainer >
+                    <Image onClick={handleCopy} src={`/icon/copy.svg`} alt="Copy" width={24} height={24} />
                     
                 </CopyContainer>
             </LinkContainer>
             <ButtonContainer>
-                <DetailDiv>LinkedIn</DetailDiv>
-                <DetailDiv>Twitter</DetailDiv>
-                <DetailDiv>Email</DetailDiv>     
+                <DetailDiv>
+                    <LinkedIn2SVG />
+                    LinkedIn
+                </DetailDiv>
+                <DetailDiv>
+                    <TwitterSVG />
+                    Twitter
+                </DetailDiv>
+                <DetailDiv>
+                    <Email2SVG />
+                    Email
+                </DetailDiv>     
             </ButtonContainer>
 
         </PopupBody>
