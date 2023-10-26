@@ -544,7 +544,11 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
      
     />
   )}
-  {showSharePopup && <ShareProjectPopup onClose={() => setShowSharePopup(false)} />}
+  {showSharePopup && 
+    <ShareProjectPopup onClose={() => setShowSharePopup(false)} 
+    shareLink="join.untitledui.com/my-unique-project"
+    />
+  }
   {showHidePopup && <HideProjectPopup onClose={() => setShowHidePopup(false)} />}
   
 

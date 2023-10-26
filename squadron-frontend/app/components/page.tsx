@@ -1482,6 +1482,7 @@ export default function AllComponents() {
         <Button
           variant="outlined"
           onClick={() => setShareProjectPopupOpen(true)}
+          
         >
           Share project
         </Button>
@@ -1743,7 +1744,8 @@ export default function AllComponents() {
         <HideProjectPopup onClose={() => setHideProjectPopupOpen(false)} />
       )}
       {isShareProjectPopupOpen && (
-        <ShareProjectPopup onClose={() => setShareProjectPopupOpen(false)} />
+        <ShareProjectPopup onClose={() => setShareProjectPopupOpen(false)} 
+        shareLink="join.untitledui.com/my-unique-project"/>
       )}
       {isLanguagePopupOpen && (
         <LanguagePopup onClose={() => setLanguagePopupOpen(false)} />
