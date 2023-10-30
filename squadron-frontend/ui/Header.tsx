@@ -8,7 +8,7 @@ margin-bottom: 30px;
   font-size: 25px;
 
  font-weight: bold;
- padding-left: 150px;
+  width:1100px;
    display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,7 +22,7 @@ min-width: 200px;
 `;
 const T3 =styled.div`
 display: flex;
-padding-right: 150px;
+
 min-width: 300px;
 `;
 const Buttonh =styled.button`
