@@ -9,7 +9,7 @@ import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 import dayjs from "dayjs";
 import { Edit } from '@mui/icons-material';
 
-const QuestionareContainer = styled.div`
+const QuestionnaireContainer = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -92,7 +92,7 @@ const Time = styled.div`
   margin-top: 8px;
 `;
 
-export default function Questionare5C() {
+export default function Questionnaire5C() {
     const [selectedDateTime, setSelectedDateTime] = useState<Date | null>(null);
     const [isConfirmed, setIsConfirmed] = useState(false);
     const handleConfirm = () => {
@@ -103,7 +103,7 @@ export default function Questionare5C() {
     };
 
     return (
-        <QuestionareContainer>
+        <QuestionnaireContainer>
             <StepHeading
                 step={"Step 05/07"}
                 heading={"Book a call"}
@@ -149,6 +149,6 @@ export default function Questionare5C() {
                     )}
                 </Question>
             </QuestionContainer>
-        </QuestionareContainer>
+        </QuestionnaireContainer>
     );
 }

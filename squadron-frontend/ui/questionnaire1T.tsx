@@ -6,7 +6,7 @@ import CountrySelector from "./selector";
 import { SelectMenuOption } from "@/lib/types";
 import { COUNTRIES } from "@/lib/countries";
 
-const QuestionareContainer = styled.div`
+const QuestionnaireContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -93,7 +93,7 @@ const HiddenRadio = styled.input.attrs({ type: "radio" })`
   opacity: 0;
 `;
 
-export default function Questionare1T() {
+export default function Questionnaire1T() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [country, setCountry] = React.useState<SelectMenuOption["value"]>("AU");
 
@@ -105,7 +105,7 @@ export default function Questionare1T() {
   };
 
   return (
-    <QuestionareContainer>
+    <QuestionnaireContainer>
       <StepHeading
         step={"Step 01/05"}
         heading={"Location and type of work"}
@@ -164,6 +164,6 @@ export default function Questionare1T() {
           </AnserInput>
         </Question>
       </QuestionContainer>
-    </QuestionareContainer>
+    </QuestionnaireContainer>
   );
 }

@@ -11,7 +11,7 @@ import StrategyImage from '@/public/strategy.png';
 import ContentImage from '@/public/content.png';
 import { useState } from 'react';
 
-const QuestionareContainer = styled.div`
+const QuestionnaireContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -115,7 +115,7 @@ const NotSureYetOption = styled.div`
   cursor: pointer;
 `;
 
-export default function Questionare3T() {
+export default function Questionnaire3T() {
   const [selectedBox, setSelectedBox] = useState("");
 
   const handleBoxClick = (boxName: string) => {
@@ -131,7 +131,7 @@ export default function Questionare3T() {
     { name: "Content", image: ContentImage }
   ];
   return (
-    <QuestionareContainer>
+    <QuestionnaireContainer>
       <StepHeading step={"Step 03/07"} heading={"What are you looking for"} progress={43} />
       <QuestionContainer>
         <Question>
@@ -152,7 +152,7 @@ export default function Questionare3T() {
           </NotSureYetOption>
         </Question>
       </QuestionContainer>
-    </QuestionareContainer>
+    </QuestionnaireContainer>
   );
 }
   

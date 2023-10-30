@@ -6,7 +6,7 @@ import CustomButton from "./custom-button";
 import InviteMember from "./invite-member";
 import { useState } from "react";
 
-const QuestionareContainer = styled.div`
+const QuestionnaireContainer = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -99,7 +99,7 @@ const RectangleBottom = styled.div`
     border-radius: 0 0 12px 12px;
 `;
 
-export default function Questionare4() {
+export default function Questionnaire4() {
     const [isMemberInvite, setMemberInviteOpen] = useState(false);
     const [invitedMembers, setInvitedMembers] = useState<string[]>([]);
     const handleSendInvites = (members: string[]) => {
@@ -107,7 +107,7 @@ export default function Questionare4() {
         setMemberInviteOpen(false);
     };
     return (
-      <QuestionareContainer>
+      <QuestionnaireContainer>
         <StepHeading
           step={"Step 04/05"}
           heading={"Your role and experience"}
@@ -139,7 +139,7 @@ export default function Questionare4() {
         {isMemberInvite && (
         <InviteMember onClose={() => setMemberInviteOpen(false)} onSendInvites={handleSendInvites} />
       )}
-      </QuestionareContainer>
+      </QuestionnaireContainer>
       
     );
   }

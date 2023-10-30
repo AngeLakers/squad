@@ -3,7 +3,7 @@ import * as React from "react";
 import styled from "styled-components";
 import StepHeading from "./step-heading";
 
-const QuestionareContainer = styled.div`
+const QuestionnaireContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -86,7 +86,7 @@ const NotSureYetOption = styled.div`
   margin-top: 40px;
 `;
 
-export default function Questionare6C() {
+export default function Questionnaire6C() {
   const [selectedBox, setSelectedBox] = React.useState("");
 
   const handleBoxClick = (boxName: string) => {
@@ -94,7 +94,7 @@ export default function Questionare6C() {
   };
 
   return (
-    <QuestionareContainer>
+    <QuestionnaireContainer>
       <StepHeading
         step={"Step 06/07"}
         heading={"Your needs"}
@@ -113,7 +113,7 @@ export default function Questionare6C() {
           </NotSureYetOption>
         </Question>
       </QuestionContainer>
-    </QuestionareContainer>
+    </QuestionnaireContainer>
   );
 }
 

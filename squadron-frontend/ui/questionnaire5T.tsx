@@ -5,7 +5,7 @@ import StepHeading from "./step-heading";
 import { useState } from "react";
 import { HTMLAttributes } from "react";
 
-const QuestionareContainer = styled.div`
+const QuestionnaireContainer = styled.div`
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -20,9 +20,6 @@ const QuestionContainer = styled.div`
 const Question = styled.div`
     display: flex;
     flex-direction: column;
-    &:not(:first-child) {
-        margin-top: 64px;
-    }
 `;
 
 const QuestionTitle = styled.div`
@@ -79,42 +76,37 @@ const OtherInput = styled.input`
     margin-top: 8px;
 `;
 
-export default function Questionare7C() {
-    const [selectedOption1, setSelectedOption1] = useState("");
-    const [selectedOption2, setSelectedOption2] = useState("");
+export default function Questionnaire5T() {
+    const [selectedOption, setSelectedOption] = useState("");
+    const handleOptionChange = (option: string) => {
+        setSelectedOption(option);
+    }
 
     return (
-      <QuestionareContainer>
+      <QuestionnaireContainer>
         <StepHeading
-          step={"Step 07/07"}
+          step={"Step 05/05"}
           heading={"About us"}
           progress={100}
         />
         <QuestionContainer>
           <Question>
             <QuestionTitle>How did you hear about us?</QuestionTitle>
-            {["1", "2 ‘ 4", "5+"].map((option) => (
-                <OptionContainer key={option} onClick={() => setSelectedOption1(option)}>
-                    <Checkbox checked={selectedOption1 === option}>
-                        {selectedOption1 === option && <InnerCircle />}
+            {["Referral", "Search engine", "Social media", "Job post", "Other"].map((option) => (
+                <OptionContainer key={option} onClick={() => handleOptionChange(option)}>
+                    <Checkbox checked={selectedOption === option}>
+                        {selectedOption === option && <InnerCircle />}
                     </Checkbox>
                     {option}
                 </OptionContainer>
             ))}
-          </Question>
-          <Question>
-            <QuestionTitle>How long do you need the talent?</QuestionTitle>
-            {["Less than 1 month", "1 - 6 months", "6 - 12 months", "12+ months"].map((option) => (
-                <OptionContainer key={option} onClick={() => setSelectedOption2(option)}>
-                    <Checkbox checked={selectedOption2 === option}>
-                        {selectedOption2 === option && <InnerCircle />}
-                    </Checkbox>
-                    {option}
-                </OptionContainer>
-            ))}
+            {selectedOption === "Other" && <OtherInput placeholder="Type here" />}
           </Question>
         </QuestionContainer>
-      </QuestionareContainer>
+      </QuestionnaireContainer>
+      
     );
 }
+
+
 
