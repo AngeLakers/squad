@@ -8,10 +8,10 @@ import CardLayout from "@/ui/layout-card";
 import Heading from "@/ui/heading";
 import StepHeading from "@/ui/step-heading";
 import { PersonData } from "@/ui/squad-table";
-import router from "next/router";
 import { ButtonContainerPresets } from "@/ui/squad-card";
 import { BadgeData } from "@/ui/talent-skills";
 import TalentCard from "@/ui/talent-card";
+import ProtectedProvider from "../ProtectedProvider";
 
 const mockSkillsData: Array<BadgeData[]> = [
   [
@@ -213,7 +213,7 @@ const rolesData = [
 
 export default function AllComponents() {
   return (
-    <>
+    <ProtectedProvider>
       <SquadCard
         badgeTitles={["E-commerce", "MVP"]}
         squadTitle="MVP for Serverless E-commerce Return Portal"
@@ -300,6 +300,6 @@ export default function AllComponents() {
         }
         content={<RatioButtonsTable roles={rolesData}></RatioButtonsTable>}
       />
-    </>
+    </ProtectedProvider>
   );
 }

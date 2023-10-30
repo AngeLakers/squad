@@ -3,7 +3,7 @@ import * as React from "react";
 import styled from "styled-components";
 import StepHeading from "./step-heading";
 
-const QuestionareContainer = styled.div`
+const QuestionnaireContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -58,10 +58,10 @@ const HalfInput = styled(Input)`
   flex: 1;
 `;
 
-export default function Questionare1C() {
+export default function Questionnaire1C() {
 
   return (
-    <QuestionareContainer>
+    <QuestionnaireContainer>
       <StepHeading
         step={"Step 01/07"}
         heading={"Your details"}
@@ -90,6 +90,6 @@ export default function Questionare1C() {
           </div>
         </Question>
       </QuestionContainer>
-    </QuestionareContainer>
+    </QuestionnaireContainer>
   );
 }

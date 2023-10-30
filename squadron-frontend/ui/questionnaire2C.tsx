@@ -3,7 +3,7 @@ import * as React from "react";
 import styled from "styled-components";
 import StepHeading from "./step-heading";
 
-const QuestionareContainer = styled.div`
+const QuestionnaireContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -63,22 +63,39 @@ const Select = styled.select`
 }
 `;
 
-export default function Questionare4C() {
+export default function Questionnaire2C() {
 
   return (
-    <QuestionareContainer>
+    <QuestionnaireContainer>
       <StepHeading
-        step={"Step 04/07"}
+        step={"Step 02/07"}
         heading={"Your company details"}
-        progress={57}
+        progress={29}
       />
       <QuestionContainer>
         <Question>
-          <QuestionTitle>Do you have referral code?</QuestionTitle>
-          <Input placeholder="Enter a referral code here"/>
-
+          <QuestionTitle>Please enter your company details</QuestionTitle>
+          <div>
+          <Label>Company name</Label>
+          <Input />
+          </div>
+          <div>
+          <Label>Company website</Label>
+          <Input />
+          </div>
+          <div>
+          <Label>Number of employees</Label>
+          <Select defaultValue="">
+              <option value="" disabled>Select number of employees</option>
+              <option value="1-20">1-20</option>
+              <option value="21-50">21-50</option>
+              <option value="51-100">51-100</option>
+              <option value="100-200">100-200</option>
+              <option value="500+">500+</option>
+          </Select>
+          </div>
         </Question>
       </QuestionContainer>
-    </QuestionareContainer>
+    </QuestionnaireContainer>
   );
 }
