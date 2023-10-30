@@ -93,7 +93,7 @@ const HiddenRadio = styled.input.attrs({ type: "radio" })`
   opacity: 0;
 `;
 
-export default function Questionare1() {
+export default function Questionare1T() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [country, setCountry] = React.useState<SelectMenuOption["value"]>("AU");
 
