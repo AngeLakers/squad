@@ -76,7 +76,7 @@ const OtherInput = styled.input`
     margin-top: 8px;
 `;
 
-export default function Questionare5() {
+export default function Questionare5T() {
     const [selectedOption, setSelectedOption] = useState("");
     const handleOptionChange = (option: string) => {
         setSelectedOption(option);
@@ -87,7 +87,7 @@ export default function Questionare5() {
         <StepHeading
           step={"Step 05/05"}
           heading={"About us"}
-          progress={20}
+          progress={100}
         />
         <QuestionContainer>
           <Question>
