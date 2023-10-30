@@ -111,7 +111,7 @@ export default function Questionare4() {
         <StepHeading
           step={"Step 04/05"}
           heading={"Your role and experience"}
-          progress={20}
+          progress={80}
         />
         <QuestionContainer>
           <Question>
