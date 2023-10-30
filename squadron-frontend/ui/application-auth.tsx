@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import CustomButton from "./custom-button";
 import { GoogleSVG, LinkedIn2SVG } from "./svgs";
+import { useAuth } from "@/app/authContext";
 
 const SignUpForm = styled.form`
   display: flex;
@@ -158,13 +159,15 @@ interface AuthenticationFormProps {
 export default function AuthenticationForm({
   Login = false,
 }: AuthenticationFormProps) {
+  const { loginUser, register } = useAuth();
+
   const [loading, setLoading] = React.useState(false);
   const [isLogin, setIsLogin] = React.useState(Login);
 
   const [formData, setFormData] = React.useState({
     firstName: "",
     lastName: "",
-    emailAddress: "",
+    email: "",
     password: "",
   });
   const [message, setMessage] = React.useState("");
@@ -181,7 +184,7 @@ export default function AuthenticationForm({
     return (
       formData.firstName.trim() !== "" &&
       formData.lastName.trim() !== "" &&
-      formData.emailAddress.trim() !== "" &&
+      formData.email.trim() !== "" &&
       formData.password.trim() !== ""
     );
   }
@@ -204,8 +207,14 @@ export default function AuthenticationForm({
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+
+    const { email, password, firstName, lastName } = formData;
+    setLoading(true);
     if (isLogin) {
-      handleLogin();
+      alert("Logging in...");
+      alert([email, password]);
+      await loginUser({ email, password });
+      alert("Log in successfully!");
       return;
     }
     if (!areFieldsFilled(formData)) {
@@ -213,70 +222,22 @@ export default function AuthenticationForm({
       return;
     }
 
-    if (!isValidEmail(formData.emailAddress)) {
+    if (!isValidEmail(email)) {
       alert("Invalid email address.");
       return;
     }
 
-    if (!isValidPassword(formData.password)) {
+    if (!isValidPassword(password)) {
       alert("Password must be at least 8 characters.");
       return;
     }
-    setLoading(true);
-    try {
-      const response = await axios.post(
-        "http://squadron-dev.ap-southeast-2.elasticbeanstalk.com/api/User/Register",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.data.success) {
-        alert("Successfully registered!");
-      } else {
-        alert("Registration failed.");
-      }
-    } catch (err) {
-      const error = err as AxiosErrorType;
-      if (error.response && error.response.data) {
-        alert(JSON.stringify(error.response.data));
-      } else {
-        alert("An error occurred during registration.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleLogin = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.post(
-        `http://squadron-dev.ap-southeast-2.elasticbeanstalk.com/api/User/Login?username=${formData.emailAddress}&password=${formData.password}`,
-        {},
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.data.success) {
-        alert("Successfully logged in!");
-      } else {
-        alert("Login failed.");
-      }
-    } catch (err) {
-      const error = err as AxiosErrorType;
-      if (error.response && error.response.data) {
-        alert(JSON.stringify(error.response.data));
-      } else {
-        alert("An error occurred during login.");
-      }
-    } finally {
-      setLoading(false);
-    }
+    await register({
+      email,
+      password,
+      firstName,
+      lastName,
+    });
+    alert("Sign up successfully!");
   };
 
   return (
@@ -323,9 +284,9 @@ export default function AuthenticationForm({
           <FormInput>
             <FormInputLabel>Email*</FormInputLabel>
             <FormInputField
-              name="emailAddress"
+              name="email"
               placeholder="Enter your email"
-              value={formData.emailAddress}
+              value={formData.email}
               onChange={handleInputChange}
             />
           </FormInput>
