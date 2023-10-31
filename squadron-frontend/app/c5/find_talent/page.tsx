@@ -5,13 +5,16 @@ import Image from "next/image";
 import SquadCard, { ButtonContainerPresets } from '@/ui/squad-card';
 import { SimpleHeader } from "@/ui/simple-header";
 import styled from "styled-components";
-import {PeopleSVG, ToolsSVG} from '@/ui/svgs';
+import {CalenderSVG, ClockSVG, CoinsSVG, FlashSVG, LocationSVG, PeopleSVG, ToolsSVG} from '@/ui/svgs';
 import RoleSkillDropdownFilter from '@/ui/filter-dropdown-role-and-skills';
 import {StarSVG } from "@/ui/svgs";
 import TitleAndFilter from '@/ui/title-and-filter';
 import { BadgeData } from "@/ui/talent-skills";
 import { gray900, xlargeFontSize, mediumFontWeight, xxlargeLineHeight, gray300, mediumFontSize, xxlargeFontSize, xxxlargeLineHeight } from '@/styles/reuseParams';
 import SendOffer from "@/ui/send-offer-popup";
+import RateDropdownFilter from "@/ui/filter-dropdown-rate";
+import CommitmentDropdownFilter from "@/ui/filter-dropdown-commitment";
+import LocationFilter from "@/ui/filter-dropdown-locaion";
 
 const Container = styled.div`
   margin-left: 10vw;
@@ -36,66 +39,68 @@ const Header = styled.div`
   margin-left: 8vw;
   margin-right: 8vw;
 `;
-const categories = ['Tech', 'Design', 'Marketing'];
-    const items = {
-        'Tech': ['JavaScript', 'Python', 'React', 'Node.js'],
-        'Design': ['Photoshop', 'Illustrator', 'Sketch', 'Figma'],
-        'Marketing': ['SEO', 'SEM', 'PPC', 'Content Marketing']
-    };
+const continentsData = {
+  Aisa: ['China', 'India', 'Japan', 'Korea', 'Thailand', 'Vietnam'],
+  Europe: ['Germany', 'France', 'Italy', 'Spain', 'UK'],
+  Africa: ['Egypt', 'Kenya', 'Nigeria', 'South Africa'],
+  Americas: ['Canada', 'Mexico', 'USA'],
+  Oceania: ['Australia', 'New Zealand'],
+}
 
-    const SkillsCategories = ['JavaScript', 'Python', 'React', 'Node.js', 'Photoshop', 'Illustrator', 'Sketch', 'Figma', 'SEO', 'SEM', 'PPC', 'Content Marketing'];
-    const SkillsIems = {
-        'JavaScript': ['JavaScript'],
-        'Python': ['Python'],
-        'React': ['React'],
-        'Node.js': ['Node.js'],
-        'Photoshop': ['Photoshop'],
-        'Illustrator': ['Illustrator'],
-        'Sketch': ['Sketch'],
-        'Figma': ['Figma'],
-        'SEO': ['SEO'],
-        'SEM': ['SEM'],
-        'PPC': ['PPC'],
-        'Content Marketing': ['Content Marketing']
-    }
     const handleItemSelect = (item: string) => {
         console.log(`Selected item: ${item}`);
     };
 
 const filters = [
     {
-        filterName: 'Role',
-        slot: <PeopleSVG />,
-        containerWidth: '496px',
+      filterName:'Favourite',
+      slot: <StarSVG  preset="grey"/>,
+      containerWidth: '0px',
+      containerHeight: '0px',
+      children: (
+        <></>
+      )
+    },{
+        filterName: 'Rate',
+        slot: <CoinsSVG />,
+        containerWidth: '328px',
         containerHeight: 'fit-content',
         children: (
-            <RoleSkillDropdownFilter
-                categories={categories}
-                items={items}
-                onItemSelect={handleItemSelect}
-                inputHeight='44px'
-                inputWidth='100%'
-                inputTextSize={mediumFontSize}
-                inputTextWeight={mediumFontWeight}
+            <RateDropdownFilter />
+        )
+    },{
+        filterName: 'Commitment',
+        slot: <ClockSVG />,
+        containerWidth: '296px',
+        containerHeight: 'fit-content',
+        children: (
+            <CommitmentDropdownFilter></CommitmentDropdownFilter>
+        )
+    }, {
+        filterName: 'Location',
+        slot: <LocationSVG />,
+        containerWidth: '389px',
+        containerHeight: 'fit-content',
+        children: (
+            <LocationFilter
+                items={Object.entries(continentsData).map(([continent, countries]) => ({ continent, countries }))}
             />
         )
-    },
-    // 
-    {
-        filterName: 'Skills',
-        slot: <ToolsSVG />,
-        containerWidth: '496px',
-        containerHeight: 'fit-content',
+    }, {
+        filterName: 'Availability',
+        slot: <CalenderSVG />,
+        containerWidth: '0px',
+        containerHeight: '0px',
         children: (
-            <RoleSkillDropdownFilter
-                categories={SkillsCategories}
-                items={SkillsIems}
-                onItemSelect={handleItemSelect}
-                inputHeight='44px'
-                inputWidth='100%'
-                inputTextSize={mediumFontSize}
-                inputTextWeight={mediumFontWeight}
-            />
+            <></>
+        )    
+    }, {
+        filterName: 'Experience',
+        slot: <FlashSVG />,
+        containerWidth: '0px',
+        containerHeight: '0px',
+        children: (
+            <></>
         )
     }
 ];

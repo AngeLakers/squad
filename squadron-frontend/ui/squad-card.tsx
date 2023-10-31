@@ -13,6 +13,7 @@ import {
   StarOutlinedSVG,
   ArrowUpSVG,
   ArrowDownSVG,
+  EyeOffSVG,
 } from "./svgs";
 import CustomBadge, { PresetTypes } from "./custom-badge";
 import SquadTable, { PersonData } from "./squad-table";
@@ -24,6 +25,8 @@ import ProjectRoles from "./project-roles";
 import EditProjPopup from "@/ui/editproj-popup";
 import Image from "next/image";
 import hideImage from "@/public/hide.png";
+import ShareProjectPopup from "./share-about-you-popup";
+import HideProjectPopup from "./hide-project-popup";
 
 const mockMenuItems = [
   [{ menu: "View profile" }, { menu: "My Work " }],
@@ -152,6 +155,7 @@ const HeaderContainer = styled.div`
   padding: 16px 24px 16px 24px;
 `;
 
+
 interface SquadCardProps {
   badgeTitles?: string[];
   badgeColor?: PresetTypes;
@@ -178,9 +182,11 @@ interface SquadCardProps {
   availabilityColor?: string;
   experience?: string;
   experienceColor?: string;
+  
 }
 
 const SquadCard: React.FC<SquadCardProps> = ({
+  
   badgeTitles,
   badgeColor,
   badgeIcon = true,
@@ -208,6 +214,8 @@ const SquadCard: React.FC<SquadCardProps> = ({
   experienceColor,
 }) => {
   const [showTalentSkills, setShowTalentSkills] = useState(false);
+  
+
   return (
     <Card>
       {!hideHeader && (
@@ -323,6 +331,7 @@ const SquadCard: React.FC<SquadCardProps> = ({
           <SquadTable type={type} data={data as Array<PersonData>} />
         )}
       </SquadContainer>
+      
     </Card>
   );
 };
@@ -350,7 +359,7 @@ interface ButtonContainerProps {
   onClick?: () => void;
   shareIcon?: IconProps;
   starIcon?: IconProps;
-
+  
 }
 
 const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
@@ -359,6 +368,7 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
   onClick,
   shareIcon,
   starIcon,
+  
 }) => {
   const [hideSquadPopupOpen, setHideSquadPopupOpen] = useState(false);
 
@@ -382,6 +392,22 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
       setIsStarFilled(!isStarFilled);
       starIcon?.onClick?.();
   };
+
+  const [showSharePopup, setShowSharePopup] = useState(false);
+
+  const handleShareClick = () => {
+    setShowSharePopup(true);
+    shareIcon?.onClick?.();
+  };  
+  
+  const [showHidePopup, setShowHidePopup] = useState(false);
+
+  
+  const handleHideClick = () => {
+    
+    setShowHidePopup(true);
+  };
+
   const renderButtons = () => {
     switch (preset) {
       case ButtonContainerPresets.DEFAULT:
@@ -474,15 +500,19 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
       case ButtonContainerPresets.PROJECT:
         return (
           <>
-          {/* Todo: missing hidden button */}
-            <ShareIcon style={{color:"black"}} onClick={onClick} />
+            <ShareIcon style={{color:"black"}} onClick={handleShareClick} />
             
-                <div onClick={handleStarClick}>
-                    {isStarFilled ? 
-                        <StarIcon style={{ color: "#384250" }} /> : 
-                        <StarBorderIcon style={{ color: "#384250" }} />
-                    }
-                </div>
+            <div onClick={handleStarClick}>
+                {isStarFilled ? 
+                    <StarIcon style={{ color: "#384250" }} /> : 
+                    <StarBorderIcon style={{ color: "#384250" }} />
+                }
+            </div>
+            <CustomButton 
+                label={<EyeOffSVG />} 
+                preset="outlined"
+                onClick={handleHideClick}
+            />
             
             <CustomButton label="View" preset="outlined" />
           </>
@@ -511,7 +541,16 @@ const ButtonContainerComponent: React.FC<ButtonContainerProps> = ({
           height="44"
         />
       }
+     
     />
   )}
+  {showSharePopup && 
+    <ShareProjectPopup onClose={() => setShowSharePopup(false)} 
+    shareLink="join.untitledui.com/my-unique-project"
+    />
+  }
+  {showHidePopup && <HideProjectPopup onClose={() => setShowHidePopup(false)} />}
+  
+
   </ButtonContainer>;
 };

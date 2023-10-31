@@ -4,6 +4,8 @@ import styled from "styled-components";
 import axios from "axios";
 import CustomButton from "./custom-button";
 import { GoogleSVG, LinkedIn2SVG } from "./svgs";
+import { useAuth } from "@/app/authContext";
+import { usePathname, useRouter } from "next/navigation";
 
 const SignUpForm = styled.form`
   display: flex;
@@ -158,13 +160,15 @@ interface AuthenticationFormProps {
 export default function AuthenticationForm({
   Login = false,
 }: AuthenticationFormProps) {
+  const { loginUser, register } = useAuth();
+  const router = useRouter();
   const [loading, setLoading] = React.useState(false);
   const [isLogin, setIsLogin] = React.useState(Login);
 
   const [formData, setFormData] = React.useState({
     firstName: "",
     lastName: "",
-    emailAddress: "",
+    email: "",
     password: "",
   });
   const [message, setMessage] = React.useState("");
@@ -181,7 +185,7 @@ export default function AuthenticationForm({
     return (
       formData.firstName.trim() !== "" &&
       formData.lastName.trim() !== "" &&
-      formData.emailAddress.trim() !== "" &&
+      formData.email.trim() !== "" &&
       formData.password.trim() !== ""
     );
   }
@@ -202,78 +206,53 @@ export default function AuthenticationForm({
     };
   }
 
+  const pathname = usePathname();
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (isLogin) {
-      handleLogin();
-      return;
-    }
-    if (!areFieldsFilled(formData)) {
-      alert("All fields are required.");
-      return;
-    }
 
-    if (!isValidEmail(formData.emailAddress)) {
-      alert("Invalid email address.");
-      return;
-    }
-
-    if (!isValidPassword(formData.password)) {
-      alert("Password must be at least 8 characters.");
-      return;
-    }
+    const { email, password, firstName, lastName } = formData;
     setLoading(true);
-    try {
-      const response = await axios.post(
-        "http://squadron-dev.ap-southeast-2.elasticbeanstalk.com/api/User/Register",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.data.success) {
-        alert("Successfully registered!");
-      } else {
-        alert("Registration failed.");
-      }
-    } catch (err) {
-      const error = err as AxiosErrorType;
-      if (error.response && error.response.data) {
-        alert(JSON.stringify(error.response.data));
-      } else {
-        alert("An error occurred during registration.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  const handleLogin = async () => {
-    setLoading(true);
     try {
-      const response = await axios.post(
-        `http://squadron-dev.ap-southeast-2.elasticbeanstalk.com/api/User/Login?username=${formData.emailAddress}&password=${formData.password}`,
-        {},
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.data.success) {
-        alert("Successfully logged in!");
-      } else {
-        alert("Login failed.");
+      if (isLogin) {
+        await loginUser({ email, password });
+        router.push("/homescreen");
+        return;
       }
-    } catch (err) {
-      const error = err as AxiosErrorType;
-      if (error.response && error.response.data) {
-        alert(JSON.stringify(error.response.data));
-      } else {
-        alert("An error occurred during login.");
+
+      if (!areFieldsFilled(formData)) {
+        alert("All fields are required.");
+        return;
       }
+
+      if (!isValidEmail(email)) {
+        alert("Invalid email address.");
+        return;
+      }
+
+      if (!isValidPassword(password)) {
+        alert("Password must be at least 8 characters.");
+        return;
+      }
+
+      await register({
+        email,
+        password,
+        firstName,
+        lastName,
+      });
+      alert("Sign up successfully!");
+      if (pathname == "/login") {
+        window.location.reload();
+      } else {
+        router.push("/login");
+      }
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.message ||
+        (isLogin ? "login failed." : "signup failed.");
+      alert(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -323,9 +302,9 @@ export default function AuthenticationForm({
           <FormInput>
             <FormInputLabel>Email*</FormInputLabel>
             <FormInputField
-              name="emailAddress"
+              name="email"
               placeholder="Enter your email"
-              value={formData.emailAddress}
+              value={formData.email}
               onChange={handleInputChange}
             />
           </FormInput>

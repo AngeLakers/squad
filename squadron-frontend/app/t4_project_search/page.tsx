@@ -1,6 +1,6 @@
 'use client'
 import '@/styles/globals.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import type { Metadata } from 'next';
 import { SideNav } from '@/ui/side-nav';
@@ -13,6 +13,7 @@ import RateDropdownFilter from '@/ui/filter-dropdown-rate';
 import LocationFilter from '@/ui/filter-dropdown-locaion';
 import SquadCard from "@/ui/squad-card";
 import CommitmentDropdownFilter from '@/ui/filter-dropdown-commitment';
+import axios from 'axios';
 // export const metadata: Metadata = {
 //     title: 'Squadron',
 //     description: 'Squadron frontend',
@@ -35,6 +36,13 @@ const ProjectsAndFilterContainer = styled.div`
 `
 
 export default function Home() {
+    const continentsData = {
+        Aisa: ['China', 'India', 'Japan', 'Korea', 'Thailand', 'Vietnam'],
+        Europe: ['Germany', 'France', 'Italy', 'Spain', 'UK'],
+        Africa: ['Egypt', 'Kenya', 'Nigeria', 'South Africa'],
+        Americas: ['Canada', 'Mexico', 'USA'],
+        Oceania: ['Australia', 'New Zealand'],
+    }
     const categories = ['Tech', 'Design', 'Marketing'];
     const items = {
         'Tech': ['JavaScript', 'Python', 'React', 'Node.js'],
@@ -60,6 +68,7 @@ export default function Home() {
     const handleItemSelect = (item: string) => {
         console.log(`Selected item: ${item}`);
     };
+
     const filters = [
         {
             filterName: 'Role',
@@ -107,15 +116,11 @@ export default function Home() {
             slot: <LocationSVG />,
             containerWidth: '389px',
             containerHeight: 'fit-content',
-
             children: (
-                <LocationFilter 
-                    listName='Oceanla'
-                    items={['Australia', 'New Zealand']}
-
+                <LocationFilter
+                    items={Object.entries(continentsData).map(([continent, countries]) => ({ continent, countries }))}
                 />
             )
-
         }, {
             filterName: 'Commitment',
             slot: <ClockSVG />,
@@ -127,11 +132,17 @@ export default function Home() {
         }
     ];
 
+    const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+    const handleFilterClick = (filterName: string) => {
+        setActiveFilter(prev => (prev === filterName ? null : filterName));
+    };
+
     return (
         <>
             <SideNav />
             <Container>
-                <TopNav />
+                {/* <TopNav /> */}
                 <ProjectsAndFilterContainer>
                     <TitleAndFilter
 
@@ -148,6 +159,8 @@ export default function Home() {
                         placeholder='Search by name'
 
                         filters={filters}
+                        activeFilter={activeFilter}
+                        onFilterClick={handleFilterClick}
                     />
                     <SquadCard
                         badgeTitles={['E-commerce', 'MVP']}
@@ -164,7 +177,7 @@ export default function Home() {
                         ]}
                     />
                     <SquadCard
-                        badgeTitles={['Creator Economy','Feature Development']}
+                        badgeTitles={['Creator Economy', 'Feature Development']}
                         squadTitle='New Product Development for Creator Revenue Share Platform'
                         squadSubTitle='Company'
                         squadDescription='First up, we are tweaking the financial infrastructure we have built. We have a product called "Splits" - what agencies use to share revenue. We ll be building new features on top of that and need additional engineers and a designer to help us build'
@@ -177,8 +190,8 @@ export default function Home() {
                             "UX Designer",
                         ]}
                     />
-                    <SquadCard 
-                        badgeTitles={['Food & Beverage','D2C', 'Mobile App', 'Label', 'Label']}
+                    <SquadCard
+                        badgeTitles={['Food & Beverage', 'D2C', 'Mobile App', 'Label', 'Label']}
                         squadTitle={'Mobile App for Specialty Beverage Enthusiasts '}
                         squadSubTitle={'untappd'}
                         squadDescription='For all the wine snobs and craft beer connoisseurs like us, we’re building Untappd - a mobile app that lets people share and discover their favourite blends, brands and venues with their friends, while earning badges and rewards for exploring beverages of different styles and countries. ...'

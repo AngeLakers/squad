@@ -81,6 +81,10 @@ import ReferSquadmatePopup from "@/ui/refer-squadmate";
 import InvitationSentPopup from "@/ui/invitation-sent-popup";
 import HideProjectPopup from "@/ui/hide-project-popup";
 import ShareProjectPopup from "@/ui/share-about-you-popup";
+import LanguagePopup from "@/ui/language-popup";
+import SocialMediaPopup from "@/ui/socialmedia-popup";
+import ProfileToolPopup from "@/ui/profile-tool-popup";
+import DeleteExperiencePopup from "@/ui/delete-experience-popup";
 
 
 
@@ -457,6 +461,10 @@ export default function AllComponents() {
   const [isInvitationSentPopupOpen, setInvitationSentPopupOpen] = useState(false);
   const [isHideProjectPopupOpen, setHideProjectPopupOpen] = useState(false);
   const [isShareProjectPopupOpen, setShareProjectPopupOpen] = useState(false);
+  const [isLanguagePopupOpen, setLanguagePopupOpen] = useState(false);
+  const [isSocialMediaPopupOpen, setSocialMediaPopupOpen] = useState(false);
+  const [isProfileToolPopupOpen, setProfileToolPopupOpen] = useState(false);
+  const [isDeleteExperiencePopupOpen, setDeleteExperiencePopupOpen] = useState(false);
   const icons = [
     <Image
       key="customizeImage"
@@ -1474,10 +1482,62 @@ export default function AllComponents() {
         <Button
           variant="outlined"
           onClick={() => setShareProjectPopupOpen(true)}
+          
         >
           Share project
         </Button>
     </ComponentWrapper>
+
+    <StyledH1>T2</StyledH1>
+      <ComponentWrapper
+        filename="lanuage-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T2 - Language imformation"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setLanguagePopupOpen(true)}
+        >
+          Fill language and level Popup
+        </Button>
+    </ComponentWrapper>
+    <ComponentWrapper
+        filename="socialmedia-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T2 - social media imformation"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setSocialMediaPopupOpen(true)}
+        >
+          Social Media Popup
+        </Button>
+    </ComponentWrapper>
+    <ComponentWrapper
+        filename="profile-tool-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T2 - edit profile tool"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setProfileToolPopupOpen(true)}
+        >
+          Profile Tool Popup
+        </Button>
+    </ComponentWrapper>
+    <ComponentWrapper
+        filename="delete-experience-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T2 - delete experience tool"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setDeleteExperiencePopupOpen(true)}
+        >
+          Delete Experience Popup
+        </Button>
+    </ComponentWrapper>
+
     
 
 
@@ -1684,7 +1744,22 @@ export default function AllComponents() {
         <HideProjectPopup onClose={() => setHideProjectPopupOpen(false)} />
       )}
       {isShareProjectPopupOpen && (
-        <ShareProjectPopup onClose={() => setShareProjectPopupOpen(false)} />
+        <ShareProjectPopup onClose={() => setShareProjectPopupOpen(false)} 
+        shareLink="join.untitledui.com/my-unique-project"/>
+      )}
+      {isLanguagePopupOpen && (
+        <LanguagePopup onClose={() => setLanguagePopupOpen(false)} />
+      )}
+      {isSocialMediaPopupOpen && (
+        <SocialMediaPopup onClose={() => setSocialMediaPopupOpen(false)} />
+      )}
+      {isProfileToolPopupOpen && (
+        <ProfileToolPopup onClose={() => setProfileToolPopupOpen(false)} />
+      )}
+      {isDeleteExperiencePopupOpen && (
+        <DeleteExperiencePopup
+          onClose={() => setDeleteExperiencePopupOpen(false)}
+        />
       )}
     </div>
   );
