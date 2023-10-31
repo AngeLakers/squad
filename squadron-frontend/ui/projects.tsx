@@ -4,7 +4,7 @@ import styled from "styled-components";
 import CustomButton from "./custom-button";
 import { useState } from "react";
 import AddExperiencePopup from "@/ui/complete-profile-addexperience-popup";
-import { AddExperienceSVG, AddBSVG, AddCSVG, MinusSVG } from "@/ui/svgs";
+import { AddProjectsSVG, AddBSVG, AddCSVG, MinusSVG } from "@/ui/svgs";
 
 const Container = styled.div`
   border: 1px solid #E5E7EB;
@@ -50,7 +50,7 @@ const RightAlignedButton = styled(CustomButton)`
   float: right;
 `;
 
-const ExperienceContainer = styled.div`
+const ProjectsContainer = styled.div`
   height: 172px;
   background-color: #F9FAFB;
   display: flex; 
@@ -73,18 +73,18 @@ const ExperienceText = styled.span`
   color: #6C737F; 
 `;
 
-const Experience: React.FC = () => {
+const Projects: React.FC = () => {
   const [expanded, setExpanded] = React.useState(false);
   const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] =
   useState(false);
 
   return (
     <Container>
-      <Title>Experience</Title>
+      <Title>Projects</Title>
       <ToggleButton onClick={() => setExpanded(!expanded)}>
         {expanded ? <MinusSVG /> : <AddBSVG />}
       </ToggleButton>
-      <Description>Add your experience here</Description>
+      <Description>Add your projects here</Description>
 
       {expanded && (
         <>
@@ -95,19 +95,19 @@ const Experience: React.FC = () => {
             label={
         <>
       <AddCSVG />
-      <span style={{ marginLeft: '8px' }}>Add experience</span>
+      <span style={{ marginLeft: '8px' }}>Add project</span>
         </>
         }
       />
           <DividerB/>
-          <ExperienceContainer>
+          <ProjectsContainer>
             <SVGContainer>
-              <AddExperienceSVG />
+              <AddProjectsSVG />
             </SVGContainer>
             <div>
-              <AddText onClick={() => setCompleteExperiencePopupOpen(true)}>Add</AddText> <ExperienceText>your first experience</ExperienceText>
+              <AddText onClick={() => setCompleteExperiencePopupOpen(true)}>Add</AddText> <ExperienceText>your first project</ExperienceText>
             </div>
-          </ExperienceContainer>
+          </ProjectsContainer>
         </>
       )}
 
@@ -120,5 +120,4 @@ const Experience: React.FC = () => {
   );
 };
 
-export default Experience;
-
+export default Projects;
