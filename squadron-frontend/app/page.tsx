@@ -67,6 +67,14 @@ export default function C1() {
       height="64"
     />,
   ];
+  const determineLink = (selectedOption: string) => {
+    if (selectedOption === "I'm a Talent") {
+        return "/questionnaire/1c";
+    } else if (selectedOption === "I'm a Client") {
+        return "/signup";
+    }
+    return "#";
+  };  
   return (
     <AuthProvider>
       <ComplexHeader />
@@ -109,6 +117,7 @@ export default function C1() {
           width="auto"
           useBlueTheme={true}
           showLoginPrompt={true}
+          link={determineLink}
         />
       )}
     </AuthProvider>

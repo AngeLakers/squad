@@ -1,8 +1,12 @@
 import Link from "next/link";
 import * as React from "react";
+import { useState } from "react";
+import Image from "next/image";
 import styled from "styled-components";
 import CustomButton from "./custom-button";
 import { useAuth } from "@/app/authContext";
+import SquadCustom from "@/ui/option-popup";
+import TalentClientImage from "@/public/talent-client.png";
 
 const Nav = styled.nav`
   display: flex;
@@ -43,6 +47,31 @@ const ButtonContainer = styled.div`
 
 export function ComplexHeader() {
   const { user, signOut } = useAuth();
+  const [isModalOpen, setModalOpen] = useState(false);
+  const icons2 = [
+    <Image
+      key="talentclientImage"
+      src={TalentClientImage}
+      alt="Talent Client Icon"
+      width="64"
+      height="64"
+    />,
+    <Image
+      key="talentclientImage"
+      src={TalentClientImage}
+      alt="Talent Client Icon"
+      width="64"
+      height="64"
+    />,
+  ];
+  const determineLink = (selectedOption: string) => {
+    if (selectedOption === "I'm a Talent") {
+        return "/questionnaire/1c";
+    } else if (selectedOption === "I'm a Client") {
+        return "/signup";
+    }
+    return "#";
+  };
   return (
     <Nav>
       <NavRow>
@@ -74,10 +103,29 @@ export function ComplexHeader() {
             <Link href="/login">
               <CustomButton label="Log in" preset="text" textColor="#4D5761" />
             </Link>
-            <CustomButton label="Sign up" preset="black" />
+            <CustomButton label="Sign up" preset="black" onClick={() => setModalOpen(true)}/>
           </>
         )}
       </ButtonContainer>
+      {isModalOpen && (
+        <SquadCustom
+          closeModal={() => {
+            setModalOpen(false);
+          }}
+          title={"Lorem ipsum dolor sit?"}
+          description={
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+          }
+          options={["I'm a Talent", "I'm a Client"]}
+          icons={icons2}
+          fontSize="24px"
+          fontWeight="600"
+          width="auto"
+          useBlueTheme={true}
+          showLoginPrompt={true}
+          link={determineLink}
+        />
+      )}
     </Nav>
   );
 }

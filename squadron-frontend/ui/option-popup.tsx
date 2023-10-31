@@ -187,9 +187,9 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
         {showLoginPrompt ? ( 
           <LoginPromptContainer>
             <LoginText>Already have an account?</LoginText>
+            <Link href="/login">
             <LoginLink 
-              onClick={(e) => {
-                e.preventDefault(); 
+              onClick={() => {
                 if(onLoginClick) {
                   onLoginClick(); 
                 }
@@ -197,6 +197,7 @@ const SquadCustom: React.FC<SquadCustomProps> = ({
             >
               Log in
             </LoginLink>
+            </Link>
           </LoginPromptContainer>
           ) : (
             <HelperDiv />
