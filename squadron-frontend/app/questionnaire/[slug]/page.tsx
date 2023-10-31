@@ -11,6 +11,8 @@ import Questionnaire3C from "@/ui/questionnaire3C";
 import Questionnaire4C from "@/ui/questionnaire4C";
 import Questionnaire6C from "@/ui/questionnaire6C";
 import Questionnaire7C from "@/ui/questionnaire7C";
+import Questionnaire2T from "@/ui/questionnaire2T";
+import Questionnaire3T from "@/ui/questionnaire3T";
 
 type ComponentMap = {
   [key: string]: JSX.Element | null;
@@ -23,7 +25,9 @@ export default function Home() {
     "/questionnaire/1c": <Questionnaire1C />,
     "/questionnaire/1t": <Questionnaire1T />,
     "/questionnaire/2c": <Questionnaire2C />,
+    "/questionnaire/2t": <Questionnaire2T />,
     "/questionnaire/3c": <Questionnaire3C />,
+    "/questionnaire/3t": <Questionnaire3T />,
     "/questionnaire/4c": <Questionnaire4C />,
     "/questionnaire/4t": <Questionnaire4 />,
     "/questionnaire/5t": <Questionnaire5T />,
