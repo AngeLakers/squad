@@ -5,6 +5,7 @@ import axios from "axios";
 import CustomButton from "./custom-button";
 import { GoogleSVG, LinkedIn2SVG } from "./svgs";
 import { useAuth } from "@/app/authContext";
+import { usePathname, useRouter } from "next/navigation";
 
 const SignUpForm = styled.form`
   display: flex;
@@ -160,7 +161,7 @@ export default function AuthenticationForm({
   Login = false,
 }: AuthenticationFormProps) {
   const { loginUser, register } = useAuth();
-
+  const router = useRouter();
   const [loading, setLoading] = React.useState(false);
   const [isLogin, setIsLogin] = React.useState(Login);
 
@@ -205,39 +206,56 @@ export default function AuthenticationForm({
     };
   }
 
+  const pathname = usePathname();
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     const { email, password, firstName, lastName } = formData;
     setLoading(true);
-    if (isLogin) {
-      alert("Logging in...");
-      alert([email, password]);
-      await loginUser({ email, password });
-      alert("Log in successfully!");
-      return;
-    }
-    if (!areFieldsFilled(formData)) {
-      alert("All fields are required.");
-      return;
-    }
 
-    if (!isValidEmail(email)) {
-      alert("Invalid email address.");
-      return;
-    }
+    try {
+      if (isLogin) {
+        await loginUser({ email, password });
+        router.push("/homescreen");
+        return;
+      }
 
-    if (!isValidPassword(password)) {
-      alert("Password must be at least 8 characters.");
-      return;
+      if (!areFieldsFilled(formData)) {
+        alert("All fields are required.");
+        return;
+      }
+
+      if (!isValidEmail(email)) {
+        alert("Invalid email address.");
+        return;
+      }
+
+      if (!isValidPassword(password)) {
+        alert("Password must be at least 8 characters.");
+        return;
+      }
+
+      await register({
+        email,
+        password,
+        firstName,
+        lastName,
+      });
+      alert("Sign up successfully!");
+      if (pathname == "/login") {
+        window.location.reload();
+      } else {
+        router.push("/login");
+      }
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.message ||
+        (isLogin ? "login failed." : "signup failed.");
+      alert(errorMessage);
+    } finally {
+      setLoading(false);
     }
-    await register({
-      email,
-      password,
-      firstName,
-      lastName,
-    });
-    alert("Sign up successfully!");
   };
 
   return (

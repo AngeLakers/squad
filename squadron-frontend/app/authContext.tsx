@@ -42,7 +42,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<{ token: string } | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Initialize user state from localStorage on component mount
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const initialUser = storedUser ? JSON.parse(storedUser) : null;
@@ -63,13 +62,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     email: string;
     password: string;
   }) => {
-    const res = await loginAPI({ email, password });
-    localStorage.setItem("user", JSON.stringify(res));
-    setUser({
-      token: res.token,
-    });
-    console.log(res);
-    axios.defaults.headers.common["Authorization"] = `Bearer ${res.token}`;
+    try {
+      const res = await loginAPI({ email, password });
+      localStorage.setItem("user", JSON.stringify(res));
+      setUser({
+        token: res.token,
+      });
+      axios.defaults.headers.common["Authorization"] = `Bearer ${res.token}`;
+    } catch (error) {
+      throw new Error(error.message || "Error during login.");
+    }
   };
 
   const signOut = () => {
@@ -88,13 +90,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     firstName: string;
     lastName: string;
   }) => {
-    const res = await registerAPI({
-      email,
-      password,
-      firstName,
-      lastName,
-    });
-    console.log(res);
+    try {
+      const res = await registerAPI({
+        email,
+        password,
+        firstName,
+        lastName,
+      });
+    } catch (error) {
+      throw new Error(error.message || "Error during registration.");
+    }
   };
 
   return (

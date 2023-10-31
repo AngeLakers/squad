@@ -27,10 +27,18 @@ interface RegisterData extends LoginData {
 }
 
 export const loginAPI = async ({ email, password }: LoginData) => {
-  const response = await request.post(
-    `/User/Login?username=${email}&password=${password}`
-  );
-  return response.data;
+  try {
+    const response = await request.post(
+      `/User/Login?username=${email}&password=${password}`
+    );
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 400) {
+      throw new Error("Invalid credentials or bad request.");
+    }
+    // Handle other error scenarios or rethrow the original error
+    throw error;
+  }
 };
 
 export const registerAPI = async ({
@@ -39,11 +47,19 @@ export const registerAPI = async ({
   firstName,
   lastName,
 }: RegisterData) => {
-  const response = await request.post("/register", {
-    emailAddress: email,
-    password,
-    firstName,
-    lastName,
-  });
-  return response.data;
+  try {
+    const response = await request.post("/User/Register", {
+      emailAddress: email,
+      password,
+      firstName,
+      lastName,
+    });
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 400) {
+      throw new Error("Invalid registration data or bad request.");
+    }
+    // Handle other error scenarios or rethrow the original error
+    throw error;
+  }
 };

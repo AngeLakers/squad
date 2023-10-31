@@ -2,9 +2,8 @@
 import * as React from "react";
 import styled from "styled-components";
 import StepHeading from "./step-heading";
-import CountrySelector from "./selector";
 import { SelectMenuOption } from "@/lib/types";
-import { COUNTRIES } from "@/lib/countries";
+import SelectBox from "./select-box";
 
 const QuestionnaireContainer = styled.div`
   display: flex;
@@ -53,6 +52,7 @@ const AnswerTitle = styled.div`
 
 const RadioGroup = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
@@ -93,7 +93,28 @@ const HiddenRadio = styled.input.attrs({ type: "radio" })`
   opacity: 0;
 `;
 
-export default function Questionnaire1T() {
+const RadioContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
+const Label = styled.label`
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  color: #384250;
+`;
+
+const Input = styled.input`
+  border: 1px solid #d2d6db;
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 100%;
+  margin-top: 6px;
+`;
+
+export default function Questionnaire3T() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [country, setCountry] = React.useState<SelectMenuOption["value"]>("AU");
 
@@ -104,64 +125,62 @@ export default function Questionnaire1T() {
     setSelectedOption(option);
   };
 
+  const categories = [
+    {
+      name: "Engineering",
+      options: ["JavaScript", "Python", "JAVA", "C++"],
+    },
+    {
+      name: "Design",
+      options: ["Photoshop", "Illustrator", "Figma", "Sketch"],
+    },
+    {
+      name: "Product",
+      options: ["Product Roadmap", "User Research", "Product Strategy"],
+    },
+    {
+      name: "Other",
+      options: [
+        "Project Management",
+        "SEO",
+        "Content Writing",
+        "Data Analysis",
+      ],
+    },
+  ];
+
   return (
     <QuestionnaireContainer>
       <StepHeading
-        step={"Step 01/05"}
-        heading={"Location and type of work"}
-        progress={20}
+        step={"Step 03/05"}
+        heading={"Your role and experience"}
+        progress={60}
       />
       <QuestionContainer>
         <Question>
-          <QuestionTitle>Where are you located?</QuestionTitle>
+          <QuestionTitle>What are some of your top skills?</QuestionTitle>
           <AnserInput>
-            <AnswerTitle>Country</AnswerTitle>{" "}
-            <CountrySelector
-              id={"country-selector"}
-              open={isOpen}
-              onToggle={() => setIsOpen(!isOpen)}
-              onChange={setCountry}
-              selectedValue={
-                COUNTRIES.find((option) => option.value === country)!
-              }
-            />
+            <SelectBox categories={categories} />
           </AnserInput>
         </Question>
         <Question>
-          <QuestionTitle>What type of work are you looking for?</QuestionTitle>
-          <AnserInput>
-            <RadioGroup>
-              <RadioButton selected={selectedOption === "Full-time"}>
-                <HiddenRadio
-                  name="workType"
-                  value="Full-time"
-                  onChange={() => handleOptionClick("Full-time")}
-                />
-                <img src="/clockfull.png" alt="Full-time" />
-                Full-time
-              </RadioButton>
-
-              <RadioButton selected={selectedOption === "Part-time"}>
-                <HiddenRadio
-                  name="workType"
-                  value="Part-time"
-                  onChange={() => handleOptionClick("Part-time")}
-                />
-                <img src="/clockhalf.png" alt="Part-time" />
-                Part-time
-              </RadioButton>
-
-              <RadioButton selected={selectedOption === "Side hustle"}>
-                <HiddenRadio
-                  name="workType"
-                  value="Side hustle"
-                  onChange={() => handleOptionClick("Side hustle")}
-                />
-                <img src="/clockempty.png" alt="Side hustle" />
-                Side hustle
-              </RadioButton>
-            </RadioGroup>
-          </AnserInput>
+          <QuestionTitle>Where can we see some of your work?</QuestionTitle>
+          <div>
+            <Label>LinkedIn</Label>
+            <Input />
+          </div>
+          <div>
+            <Label>GitHub (optional)</Label>
+            <Input />
+          </div>
+          <div>
+            <Label>Dribbble (optional)</Label>
+            <Input />
+          </div>
+          <div>
+            <Label>Personal website (optional)</Label>
+            <Input />
+          </div>
         </Question>
       </QuestionContainer>
     </QuestionnaireContainer>
