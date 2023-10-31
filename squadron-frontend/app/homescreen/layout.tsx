@@ -1,12 +1,10 @@
-
 "use client";
-
 
 import type { Metadata } from "next";
 import { SideNav } from "@/ui/side-nav";
 import { TopNav } from "@/ui/top-nav";
 import styled from "styled-components";
-
+import ProtectedProvider from "../ProtectedProvider";
 
 const Nav = styled.div`
   display: flex;
@@ -19,17 +17,17 @@ const Main = styled.div`
   flex: 1;
 `;
 
-export  default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
+    <ProtectedProvider>
+      <Nav>
+        <SideNav current="Projects" />
 
-    <Nav>
-      <SideNav current="Projects" />
-
-      <Main>
-        <TopNav />
-        <div>{children}</div>
-      </Main>
-    </Nav>
+        <Main>
+          <TopNav />
+          <div>{children}</div>
+        </Main>
+      </Nav>
+    </ProtectedProvider>
   );
-
 }
