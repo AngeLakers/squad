@@ -1,5 +1,6 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
+import CountdownTimer from './countdown-timer';
 
 const OuterContainer = styled.div`
     display: flex;
@@ -39,7 +40,7 @@ const Title = styled.p`
     line-height: 38px;
     text-align: center;
     color: #111927;
-    margin: 0;  // Remove default margin
+    margin: 0;  
 `;
 
 const Subtitle = styled.p`
@@ -49,7 +50,7 @@ const Subtitle = styled.p`
     line-height: 24px;
     text-align: center;
     color: #4D5761;
-    margin: 0;  // Remove default margin
+    margin: 0;  
 `;
 
 const Frame7105 = styled.div`
@@ -102,7 +103,7 @@ const FeaturedIcon = styled.div<FeaturedIconProps>`
     background-color: ${({ bgColor }) => bgColor || '#D0FC4A'};
     width: 56px;
     height: 56px;
-    
+    padding: 8px;
     border-radius: 28px;
     img {
         width: 100%;
@@ -149,6 +150,34 @@ const CopyButton = styled.button`
     flex-basis: 96px;
 `;
 
+//add a new div used in c1
+type AnotherDivProps = {
+    show: boolean;
+};
+
+const AnotherDiv = styled.div<AnotherDivProps>`
+    display: ${({ show }) => (show ? 'flex' : 'none')};
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-top: 24px;
+    
+`;
+const ResendContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+`;
+
+const ResendButton = styled.button`
+    font-size: 16px;
+    color: #4B48EC;
+    text-align: center;
+`;
+
+
+
 type Props = {
     featuredIconBgColor?: string;
     iconName?: string;
@@ -161,6 +190,7 @@ type Props = {
     showButton1?: boolean;
     showButton2?: boolean;
     showNewDiv?: boolean;
+    showAnotherDiv?: boolean;
     button1Link?: string; 
     button2Link?: string; 
 };
@@ -179,11 +209,22 @@ const ApplicationSent: React.FC<Props> = ({
     showButton1 = true,
     showButton2 = true,
     showNewDiv = false,
+    showAnotherDiv = false,
 }) => {
     const handleCopy = () => {
       navigator.clipboard.writeText('www.squadronexamplelink.com');
     };
-  
+
+    const [timerFinished, setTimerFinished] = useState(false);
+
+    const [key, setKey] = useState(0); // 使用key强制组件重新渲染
+
+    const handleReset = () => {
+        setKey(prevKey => prevKey + 1);
+        setTimerFinished(false);
+    };
+
+      
     return (
     <OuterContainer>
         <Container>
@@ -203,6 +244,17 @@ const ApplicationSent: React.FC<Props> = ({
                     <CopyButton onClick={handleCopy}>Copy</CopyButton>
                 </ShareLinkContainer>
             </NewDiv>
+            <AnotherDiv show={showAnotherDiv}>
+                <ResendContainer>
+                    <Subtitle>If you have not recieved email in 60s, please </Subtitle>
+                    <ResendButton onClick={handleReset} disabled={!timerFinished}>Click here</ResendButton>
+                </ResendContainer>
+                <CountdownTimer
+                    initialSeconds={60}
+                    onTimeEnd={() => setTimerFinished(true)}
+                    key={key}  
+                />
+            </AnotherDiv>
             <Frame7105>
             {showButton1 && <a href={button1Link || "#"}><Button1 style={button1Style}>{button1Text}</Button1></a>}
             {showButton2 && <a href={button2Link || "#"}><Button2 style={button2Style}>{button2Text}</Button2></a>}
