@@ -5,7 +5,7 @@ import axios from "axios";
 import CustomButton from "./custom-button";
 import { GoogleSVG, LinkedIn2SVG } from "./svgs";
 import { useAuth } from "@/app/authContext";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const SignUpForm = styled.form`
   display: flex;
@@ -206,8 +206,6 @@ export default function AuthenticationForm({
     };
   }
 
-  const pathname = usePathname();
-
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
@@ -243,11 +241,7 @@ export default function AuthenticationForm({
         lastName,
       });
       alert("Sign up successfully!");
-      if (pathname == "/login") {
-        window.location.reload();
-      } else {
-        router.push("/login");
-      }
+      router.push("/t1/email_verification");
     } catch (error) {
       const errorMessage =
         error?.response?.data?.message ||

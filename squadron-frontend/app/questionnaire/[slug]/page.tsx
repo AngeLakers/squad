@@ -20,7 +20,6 @@ type ComponentMap = {
 
 export default function Home() {
   const pathname = usePathname();
-  console.log(pathname);
   const componentMap: ComponentMap = {
     "/questionnaire/1c": <Questionnaire1C />,
     "/questionnaire/1t": <Questionnaire1T />,

@@ -69,12 +69,12 @@ export default function C1() {
   ];
   const determineLink = (selectedOption: string) => {
     if (selectedOption === "I'm a Talent") {
-        return "/questionnaire/1c";
+      return "/questionnaire/1c";
     } else if (selectedOption === "I'm a Client") {
-        return "/signup";
+      return "/questionnaire/1t";
     }
     return "#";
-  };  
+  };
   return (
     <AuthProvider>
       <ComplexHeader />

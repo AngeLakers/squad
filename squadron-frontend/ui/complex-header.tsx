@@ -66,9 +66,9 @@ export function ComplexHeader() {
   ];
   const determineLink = (selectedOption: string) => {
     if (selectedOption === "I'm a Talent") {
-        return "/questionnaire/1c";
+      return "/questionnaire/1c";
     } else if (selectedOption === "I'm a Client") {
-        return "/signup";
+      return "/questionnaire/1t";
     }
     return "#";
   };
@@ -103,7 +103,13 @@ export function ComplexHeader() {
             <Link href="/login">
               <CustomButton label="Log in" preset="text" textColor="#4D5761" />
             </Link>
-            <CustomButton label="Sign up" preset="black" onClick={() => setModalOpen(true)}/>
+            <Link href="/signup">
+              <CustomButton
+                label="Sign up"
+                preset="black"
+                // onClick={() => setModalOpen(true)}
+              />
+            </Link>
           </>
         )}
       </ButtonContainer>

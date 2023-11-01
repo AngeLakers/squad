@@ -62,14 +62,21 @@ export default function Layout({
     const number = parseInt(currentId.slice(0, -1), 10);
 
     if (isNaN(number)) return null;
-
     let nextId = "";
     if (base === "c") {
-      nextId = `${number + 1}c`;
+      if (number >= 7) {
+        return `/t1/thank_you`;
+      } else {
+        nextId = `${number + 1}c`;
+      }
     } else if (base === "t") {
-      nextId = `${number + 1}t`;
+      console.log("number", number);
+      if (number >= 5) {
+        return `/t1/account_created`;
+      } else {
+        nextId = `${number + 1}t`;
+      }
     }
-
     return `/questionnaire/${nextId}`;
   };
 
