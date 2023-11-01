@@ -85,7 +85,7 @@ import LanguagePopup from "@/ui/language-popup";
 import SocialMediaPopup from "@/ui/socialmedia-popup";
 import ProfileToolPopup from "@/ui/profile-tool-popup";
 import DeleteExperiencePopup from "@/ui/delete-experience-popup";
-
+import AddProjectPopup from "@/ui/add-project-popup";
 
 
 
@@ -465,6 +465,7 @@ export default function AllComponents() {
   const [isSocialMediaPopupOpen, setSocialMediaPopupOpen] = useState(false);
   const [isProfileToolPopupOpen, setProfileToolPopupOpen] = useState(false);
   const [isDeleteExperiencePopupOpen, setDeleteExperiencePopupOpen] = useState(false);
+  const [isAddProjectPopupOpen, setAddProjectPopupOpen] = useState(false);
   const icons = [
     <Image
       key="customizeImage"
@@ -1537,6 +1538,18 @@ export default function AllComponents() {
           Delete Experience Popup
         </Button>
     </ComponentWrapper>
+    <ComponentWrapper
+        filename="add-project-popup.tsx"
+        createdBy="Wenzhuo Li"
+        description="T2 - add project popup"
+      >
+        <Button
+          variant="outlined"
+          onClick={() => setAddProjectPopupOpen(true)}
+        >
+          Add a project 
+        </Button>
+    </ComponentWrapper>
 
     
 
@@ -1759,6 +1772,11 @@ export default function AllComponents() {
       {isDeleteExperiencePopupOpen && (
         <DeleteExperiencePopup
           onClose={() => setDeleteExperiencePopupOpen(false)}
+        />
+      )}
+      {isAddProjectPopupOpen && (
+        <AddProjectPopup 
+          onClose={() => setAddProjectPopupOpen(false)} 
         />
       )}
     </div>

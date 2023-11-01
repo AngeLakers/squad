@@ -59,6 +59,7 @@ const StyledInput = styled.input<{
   &:focus {
     outline: 0;
 }
+padding: 0 10px;
 `;
 
 // customize placeholder color

@@ -21,8 +21,8 @@ export default function ThankYou() {
         <MainContent>
          
         <ApplicationSent
-            featuredIconBgColor='#AAA9F6'
-            iconName='love'
+            featuredIconBgColor='#F9FAFB'
+            iconName='love_white'
             titleText="Thank you for joining us"
             subtitleText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Orci massa mauris justo, urna et feugiat sagittis et. Aliquet amet suspendisse tellus ultrices hac id imperdiet. Pellentesque sit sit suspendisse at. Mauris duis pharetra dictum aenean ac sed amet."
             showButton1={false}

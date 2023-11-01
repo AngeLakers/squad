@@ -1,11 +1,13 @@
 'use client';
 import React, { useState } from 'react';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
-import styled from 'styled-components';
+import styled, { CSSProperties } from 'styled-components';
 
 interface CustomTextareaProps {
   label?: string;
+  labelStyle?: CSSProperties;
   showHintText?: boolean;
+  hintTextStyle?: CSSProperties;
   borderStyle?: string;
   width?: string;
   height?: string;
@@ -21,6 +23,10 @@ const StyledLabel = styled.label`
 
 const StyledTextarea = styled(TextareaAutosize)<CustomTextareaProps>`
     border: ${(props) => props.borderStyle || '1px solid #D2D6DB'};
+    &:focus {
+      border: ${(props) => props.borderStyle || '1px solid #D2D6DB'}; // Keeps the border color same on focus
+      outline: none; // Optionally remove the default outline as well
+    }
     width: ${(props) => props.width || '100%'}; 
     height: ${(props) => props.height || 'auto'} ;
     padding: 12px 14px;
@@ -49,7 +55,9 @@ const HintText = styled.p`
 
 const CustomTextarea: React.FC<CustomTextareaProps> = ({ 
     label,
+    labelStyle,
     showHintText = true,
+    hintTextStyle,
     borderStyle, 
     width, 
     height, 
@@ -60,7 +68,7 @@ const CustomTextarea: React.FC<CustomTextareaProps> = ({
   
     return (
       <TextareaContainer width={width}>
-        {label && <StyledLabel>{label}</StyledLabel>}
+        {label && <StyledLabel style={labelStyle}>{label}</StyledLabel>}
         <StyledTextarea
           width={width}
           height={height}
@@ -70,7 +78,7 @@ const CustomTextarea: React.FC<CustomTextareaProps> = ({
           minRows={3}
         />
         {showHintText && (
-          <HintText>
+          <HintText style={hintTextStyle}>
             <span className="text-wrapper-6">{maxCharCount - text.length} characters left</span>
           </HintText>
         )}
