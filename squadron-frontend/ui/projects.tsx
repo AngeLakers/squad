@@ -3,7 +3,7 @@ import * as React from "react";
 import styled from "styled-components";
 import CustomButton from "./custom-button";
 import { useState } from "react";
-import AddExperiencePopup from "@/ui/complete-profile-addexperience-popup";
+import AddProjectPopup from "@/ui/add-project-popup";
 import { AddProjectsSVG, AddBSVG, AddCSVG, MinusSVG } from "@/ui/svgs";
 
 const Container = styled.div`
@@ -112,7 +112,7 @@ const Projects: React.FC = () => {
       )}
 
       {isCompleteExperiencePopupOpen && (
-        <AddExperiencePopup
+        <AddProjectPopup
           onClose={() => setCompleteExperiencePopupOpen(false)}
         />
       )}  
