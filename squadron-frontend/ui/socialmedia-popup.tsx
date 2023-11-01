@@ -112,9 +112,9 @@ const CustomInput = styled.input`
     font-size: 14px;
     outline: none;
     width: 100%;
-    transition: border 0.3s ease; // for a smooth hover effect
+    transition: border 0.3s ease; 
     &:hover {
-        border: 1px solid #9daab6; // change to the desired hover color
+        border: 1px solid #9daab6; 
     }
 `;
 
