@@ -100,7 +100,7 @@ const RoleRateHourLocationDate = styled.div`
     padding: 2% 0;
     
 `
-const RequiredRecommendedSkillTool = styled.div`
+export const RequiredRecommendedSkillTool = styled.div`
     padding: 2% 0;
     align-items: flex-start;
     display: inline-flex;
@@ -137,7 +137,7 @@ const TextInRateHourLocationDate = styled.div`
     white-space: nowrap;
     width: fit-content;
 `
-const SkillTitle = styled.div`
+export const SkillTitle = styled.div`
     color: ${gray900};
     font-family: ${fontFamily};
     font-size: ${regularFontSize};
@@ -159,7 +159,7 @@ const ButtonContainer = styled.div`
     margin-left:auto;
     margin-right: 2%;
 `
-const BadgeContainer = styled.div`
+export const BadgeContainer = styled.div`
     align-items: flex-start;
     align-self: stretch;
     display: flex;

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {useState} from "react";
 import {Avatar, Box, Card, CardContent, Icon, IconButton, Typography} from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -8,6 +8,11 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import styled from "styled-components";
 import CustomButton from "@/ui/custom-button";
 import {EditButton, ProfileDataType, ProfileList} from "@/ui/talent-profile-card";
+import CustomBadge from "@/ui/custom-badge";
+import {BadgeContainer, RequiredRecommendedSkillTool, SkillTitle} from "@/ui/role-detail";
+import AboutMe from "@/ui/about-me-popup";
+import ProfileToolPopup from "@/ui/profile-tool-popup";
+import CompleteSkillsPopup from "@/ui/complete-profile-skills-popup";
 
 const StyledCard = styled(Card)`
   width: 63rem;
@@ -56,10 +61,10 @@ const UserDetail = styled(Box)`
   gap: 1.5rem;
   flex: 1;
   position: relative;
-  
+
   background-color: black;
   height: 11.5rem;
-  
+
   //overflow: hidden;
   flex-shrink: 0;
 
@@ -101,7 +106,7 @@ const TextBox = styled(Box)`
 `;
 
 const NameText = styled(Typography)`
- 
+
   flex-shrink: 0;
   position: relative;
   font-size: 1.88rem;
@@ -131,8 +136,8 @@ const VerifiedIcon = styled(Icon)`
   height: 1.5rem;
   overflow: hidden;
   flex-shrink: 0;
-  
-  
+
+
   background-image: url('/profile-icon/Frame-Tick.svg ');
 
 `;
@@ -143,7 +148,7 @@ const AddressText = styled(Typography)`
   color: #fff;
 
   position: relative;
- 
+
 
   text-align: left;
   padding-top: 0.5rem !important;
@@ -157,12 +162,12 @@ const LocationIcon = styled(Icon)`
   margin-right: 0.5rem;
   background-image: url('/profile-icon/Frame-location.svg')
 
- 
+
 `;
 
 const UserGraphic = styled(Box)`
   width: 100%;
-height: 11.5rem;
+  height: 11.5rem;
   background-color: black;
   position: relative;
   background-size: cover;
@@ -179,15 +184,14 @@ const ButtonArea = styled(Box)`
   position: absolute;
   top: 1.5rem;
   right: 2rem;
-  
 
 
   display: flex;
   flex-direction: row;
-  align-items: center; 
-  gap: 1rem; 
-    
-` ;
+  align-items: center;
+  gap: 1rem;
+
+`;
 
 
 const ShareButton = styled.button`
@@ -209,7 +213,7 @@ const Detail = styled(Box)`
   position: relative;
 
   flex-direction: row;
- 
+
 
   box-sizing: border-box;
   gap: 4rem;
@@ -217,11 +221,11 @@ const Detail = styled(Box)`
   font-size: 1.13rem;
   color: #111927;
   font-family: Inter;
+
   & > :first-child {
     margin-left: 2rem;
   }
 `;
-
 
 
 const VerticalDivider = styled.div`
@@ -236,7 +240,7 @@ const VerticalDivider = styled.div`
 const RightContent = styled(Box)`
   margin-left: 1.5rem;
   margin-right: 1.5rem;
-  width:100%;
+  width: 100%;
   height: auto;
   gap: 1rem;
   display: flex;
@@ -249,25 +253,46 @@ const RightContent = styled(Box)`
 `;
 
 const AboutTitle = styled(Typography)`
-  font-size: 1.125rem;
+
   line-height: 1.75rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #111927;
-  width: 37.25rem;
+  width: 35rem;
+  flex: 1;
+  position: relative;
+  font-size: 1.13rem;
+  font-family: Inter;
+
+  text-align: left;
+  display: inline-block;
 `;
 
 const AboutText = styled(Typography)`
-  width: 100%;
+  width: 35rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: #4d5761;
-  display: inline-block;
+  display: block;
+  white-space: normal;
 `;
 
 const HorizontalDiv = styled.div`
   display: flex;
-  align-items: center; 
+  align-items: center;
   gap: 0.5rem;
+`;
+const AboutDiv = styled.div`
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+  text-align: left;
+  font-size: 1.13rem;
+  color: #111927;
+  font-family: Inter;
 `;
 
 interface ProfileCardProps {
@@ -280,13 +305,16 @@ interface ProfileCardProps {
     jobTitle: string;
     edited_status?: boolean;
     data: ProfileDataType;
+    skills: string[],
+    tools: string[],
 
 }
-const SvgWithText= () => {
-    return(
+
+const SvgWithText = () => {
+    return (
         <HorizontalDiv>
-        <img src="/profile-icon/edit.svg" alt="My SVG Icon" />
-        <p>Edit cover</p>
+            <img src="/profile-icon/edit.svg" alt="My SVG Icon"/>
+            <p>Edit cover</p>
         </HorizontalDiv>
     )
 }
@@ -296,13 +324,35 @@ const Edited_ProfileCard: React.FC<ProfileCardProps> = ({
                                                             name,
                                                             address,
                                                             aboutText,
-                                                            jobTitle, edited_status= false,
-                                                            data
+                                                            jobTitle, edited_status = false,
+                                                            data,
+                                                            skills,
+                                                            tools,
 
                                                         }) => {
-    function handleButtonClick(experience: string) {
-        
-    }
+
+    const [aboutMePopupOpen, setAboutMePopupOpen] = useState(false);
+    const [isProfileToolPopupOpen, setProfileToolPopupOpen] = useState(false);
+    const [isCompleteSkillsPopupOpen, setCompleteSkillsPopupOpen] =
+        useState(false);
+    const handleButtonClick = (key: string) => {
+        // add pop up on it
+        console.log(`Clicked on ${key}`);
+
+        switch (key) {
+            case 'About':
+                setAboutMePopupOpen(true);
+                break;
+            case 'Tools':
+                setProfileToolPopupOpen(true);
+                break;
+            case 'Skills':
+                setCompleteSkillsPopupOpen(true)    ;
+                break;
+            default:
+                break;
+        }
+    };
 
     return (
         <StyledCard>
@@ -323,38 +373,86 @@ const Edited_ProfileCard: React.FC<ProfileCardProps> = ({
                             <AddressText variant="body2">{address}</AddressText>
                         </Box>
                     </TextBox>
-
-
                 </UserDetail>
-
                 <UserGraphic>
                     <ButtonArea>
-                    <ShareButton>
-                        <img src="/profile-icon/share-green.svg" alt="Share"/>
-                    </ShareButton>
-                        {edited_status && <CustomButton label={<SvgWithText/>} preset="default" backgroundColor="#D0FC4A" textColor="#384250" />}
-
+                        <ShareButton>
+                            <img src="/profile-icon/share-green.svg" alt="Share"/>
+                        </ShareButton>
+                        {edited_status &&
+                            <CustomButton label={<SvgWithText/>} preset="default" backgroundColor="#D0FC4A"
+                                          textColor="#384250"/>}
                     </ButtonArea>
-
                 </UserGraphic>
             </Header>
             <CardContent>
                 <Detail>
                     <ProfileList data={data} status={edited_status}/>
-                    <VerticalDivider />
+                    <VerticalDivider/>
 
                     <RightContent>
-                        <AboutTitle variant="body1">About  {edited_status && (
-                            <EditButton onClick={() => handleButtonClick('experience')}>
-                                <img src="/profile-icon/edit-01.svg" alt="Icon Description"/>
-                                <span>Edit</span>
-                            </EditButton>
-                        )} </AboutTitle>
+                        <AboutDiv> <AboutTitle variant="body1">About </AboutTitle>
+                            {edited_status && (
+                                <EditButton onClick={() => handleButtonClick('About')}>
+                                    <img src="/profile-icon/edit-01.svg" alt="Icon Description"/>
+                                    <span>Edit</span>
+                                </EditButton>
+                            )}</AboutDiv>
+
                         <AboutText variant="body2"> {aboutText}
                         </AboutText>
+
+                        <AboutDiv> <AboutTitle variant="body1">Skills </AboutTitle>
+                            {edited_status && (
+                                <EditButton onClick={() => handleButtonClick('Skills')}>
+                                    <img src="/profile-icon/edit-01.svg" alt="Icon Description"/>
+                                    <span>Edit</span>
+                                </EditButton>
+                            )}
+                        </AboutDiv>
+                        <BadgeContainer>
+                            {
+                                skills?.map((skill, index) => (
+                                    <CustomBadge label={skill} preset={"outlined_grey"}/>
+                                ))
+                            }
+                        </BadgeContainer>
+
+                        <AboutDiv> <AboutTitle variant="body1">Tools </AboutTitle>
+                            {edited_status && (
+                                <EditButton onClick={() => handleButtonClick('Tools')}>
+                                    <img src="/profile-icon/edit-01.svg" alt="Icon Description"/>
+                                    <span>Edit</span>
+                                </EditButton>
+                            )}
+                        </AboutDiv>
+
+                        <BadgeContainer>
+                            {
+                                tools?.map((tool, index) => (
+                                    <CustomBadge
+                                        label={tool}
+                                        preset={"outlined_grey"}
+                                        icon={<img alt="tool logo" src="/icon/toolLogoSample.svg"/>}/>
+                                ))
+                            }
+                        </BadgeContainer>
+
                     </RightContent>
                 </Detail>
             </CardContent>
+            {aboutMePopupOpen && (
+                <AboutMe onClose={() => setAboutMePopupOpen(false)}/>
+            )}
+            {isProfileToolPopupOpen && (
+                <ProfileToolPopup onClose={() => setProfileToolPopupOpen(false)}/>
+            )}
+
+            {isCompleteSkillsPopupOpen && (
+                <CompleteSkillsPopup
+                    onClose={() => setCompleteSkillsPopupOpen(false)}
+                />
+            )}
         </StyledCard>
     );
 };

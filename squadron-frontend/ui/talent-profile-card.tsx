@@ -12,6 +12,8 @@ import {
   TwitterSVG,
 } from "./svgs";
 import Link from "next/link";
+import LanguagePopup from "@/ui/language-popup";
+import SocialMediaPopup from "@/ui/socialmedia-popup";
 
 export interface Languages {
   [key: string]: string;
@@ -197,6 +199,8 @@ export const EditButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
+  font-family: Inter;
+  font-weight: 500;
 
   img {
     margin-right: 10px;
@@ -213,18 +217,31 @@ interface ProfileListProps {
 }
 
 export const ProfileList: React.FC<ProfileListProps> = ({data,status  =  false}) => {
-
+    const [isSocialMediaPopupOpen, setSocialMediaPopupOpen] = useState(false);
+    const [isLanguagePopupOpen, setLanguagePopupOpen] = useState(false);
     const handleButtonClick = (key: string) => {
         // add pop up on it
         console.log(`Clicked on ${key}`);
+
+        switch (key) {
+            case 'Social link':
+                setSocialMediaPopupOpen(true);
+                break;
+            case 'Language':
+                setLanguagePopupOpen(true);
+                break;
+            default:
+                break;
+        }
     };
 
     return (
+
         <List>
             <ProfileListItem>
                 <ProfileListItemTitle>Experience
                     {status && (
-                        <EditButton onClick={() => handleButtonClick('experience')}>
+                        <EditButton onClick={() => handleButtonClick('Experience')}>
                             <img src="/profile-icon/edit-01.svg" alt="Icon Description"/>
                             <span>Edit</span>
                         </EditButton>
@@ -238,7 +255,7 @@ export const ProfileList: React.FC<ProfileListProps> = ({data,status  =  false})
                 <ProfileListItemTitle>Languages
 
                     {status && (
-                        <EditButton onClick={() => handleButtonClick('language')}>
+                        <EditButton onClick={() => handleButtonClick('Language')}>
                             <img src="/profile-icon/edit-01.svg" alt="Icon Description"/>
                             <span>Edit</span>
                         </EditButton>
@@ -256,7 +273,7 @@ export const ProfileList: React.FC<ProfileListProps> = ({data,status  =  false})
             <ProfileListItem>
                 <ProfileListItemTitle>Social Links
                     {status && (
-                        <EditButton onClick={() => handleButtonClick('social link')}>
+                        <EditButton onClick={() => handleButtonClick('Social link')}>
                             <img src="/profile-icon/edit-01.svg" alt="Icon Description"/>
                             <span>Edit</span>
                         </EditButton>
@@ -273,7 +290,14 @@ export const ProfileList: React.FC<ProfileListProps> = ({data,status  =  false})
                     </Link>
                 </SocialMediaContainer>
             </ProfileListItem>
+            {isLanguagePopupOpen && (
+                <LanguagePopup onClose={() => setLanguagePopupOpen(false)} />
+            )}
+            {isSocialMediaPopupOpen && (
+                <SocialMediaPopup onClose={() => setSocialMediaPopupOpen(false)} />
+            )}
         </List>
+
     );
 };
 

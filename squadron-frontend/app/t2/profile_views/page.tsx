@@ -5,6 +5,9 @@ import SmallProjectCard from "@/ui/profile/SmallProjectCard";
 import CardWrapper from "@/ui/profile/card-wrapper";
 import Edited_ProfileCard from "@/ui/profile/edited_profile_card";
 import {ProfileDataType} from "@/ui/talent-profile-card";
+import Experience_Card, {ExperienceContainer} from "@/ui/profile/Experience_Card";
+import ExperienceCard from "@/ui/profile/Experience_Card";
+import styled from "styled-components";
 
 
 const mockProfileData: ProfileDataType = {
@@ -25,12 +28,73 @@ const mockProfileData: ProfileDataType = {
         twitter: "https://twitter.com/your-profile",
     },
 };
+
+const PageContainer = styled.div`
+ gap: 3rem;
+  display: flex;
+  flex-direction: column;
+
+
+`;
 export default function Home() {
     return (
-          <div>
-              <Edited_ProfileCard jobTitle={"Motion Engineer"} name={"james"} address={"James"} number_projects_completed={1} number_Hired={2} aboutText={"gg"} avatarUrl={""} data={mockProfileData}
-              edited_status={true}></Edited_ProfileCard>
-              <CardWrapper title={"Worked in"} width={"100vh"} flexDirection={"row"} scrollable={25.5}>
+          <PageContainer>
+              <Edited_ProfileCard jobTitle={"Motion Engineer"} name={"james"} address={"James"} number_projects_completed={1} number_Hired={2} aboutText={"gg2sssssssssssssssssssssss sssss22222222222222sssssssssssss ssssssssssssssssssssssssssssss ssssssssssss sssssssssssssss11111111111111 1111111111111111 1111111111 1111111 1111111111"} avatarUrl={""} data={mockProfileData}
+              edited_status={true}   skills={["skill 1", "skill 2"]}
+                                  tools={["tool 1", "tool 2", "tool 3"]}></Edited_ProfileCard>
+
+              <ExperienceContainer>
+                  <ExperienceCard
+                      jobTitle="Software Engineer"
+                      direction="Frontend"
+                      avatarUrl="/google.svg"
+                      companyName="Tech Co."
+                      timePeriod="June 2020 - Present"
+                      description="Working on creating innovative solutions using React and TypeScript 11111 and 322222222."
+                  />
+
+                  <ExperienceCard
+                      jobTitle="Software Engineer"
+                      direction="Frontend"
+                      avatarUrl="/google.svg"
+                      companyName="Tech Co."
+                      timePeriod="June 2020 - Present"
+                      description="Working on creating innovative solutions using React and TypeScript 11111 and 322222222."
+                  />
+                  <ExperienceCard
+                      jobTitle="Software Engineer"
+                      direction="Frontend"
+                      avatarUrl="/google.svg"
+                      companyName="Tech Co."
+                      timePeriod="June 2020 - Present"
+                      description="Working on creating innovative solutions using React and TypeScript 11111 and 322222222."
+                  />
+                  <ExperienceCard
+                      jobTitle="Software Engineer"
+                      direction="Frontend"
+                      avatarUrl="/google.svg"
+                      companyName="Tech Co."
+                      timePeriod="June 2020 - Present"
+                      description="Working on creating innovative solutions using React and TypeScript 11111 and 322222222."
+                  />
+                  <ExperienceCard
+                      jobTitle="Software Engineer"
+                      direction="Frontend"
+                      avatarUrl="/google.svg"
+                      companyName="Tech Co."
+                      timePeriod="June 2020 - Present"
+                      description="Working on creating innovative solutions using React and TypeScript 11111 and 322222222."
+                  />
+                  <ExperienceCard
+                      jobTitle="Software Engineer"
+                      direction="Frontend"
+                      avatarUrl="/google.svg"
+                      companyName="Tech Co."
+                      timePeriod="June 2020 - Present"
+                      description="Working on creating innovative solutions using React and TypeScript 11111 and 322222222."
+                  />
+              </ExperienceContainer>
+              <CardWrapper title={"Worked in"} width={"63rem"} flexDirection={"row"} scrollable={25.5}>
                   <SmallProjectCard
                       title="My Project"
                       year="2023"
@@ -112,9 +176,11 @@ export default function Home() {
               />
 
 
+
               </CardWrapper>
 
-              </div>
+
+          </PageContainer>
 
     )
 

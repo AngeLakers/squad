@@ -15,7 +15,8 @@ const PageContainer = styled.div`
     background-color: rgba(16, 24, 40, 0.06);
   align-items: center;
    width: 100vw;
-  height: 100%
+  height: 100%;
+
 
 `;
 
@@ -50,15 +51,17 @@ const Header = styled.header`
 
 `;
 
+
+
 export default function Layout({
                                    children,
                                }: {
     children: React.ReactNode
 }) {
     return (
+    <Nav>
 
-
-
+        <SideNav current="Projects" />
 
 
 
@@ -68,6 +71,8 @@ export default function Layout({
                 </Header>
                 {children}
             </PageContainer>
+
+        </Nav>
 
 
 
