@@ -174,18 +174,19 @@ const ContentContainer = styled.div`
 
 interface AboutMeProps {
     onClose: () => void;
-    onSubmit: () => void ;
+    onUpdate: () => void ;
 }
 
-export const Mysquad: React.FC<AboutMeProps> = ({onClose}) => {
+export const Mysquad: React.FC<AboutMeProps> = ({onClose,onUpdate}) => {
     const [textAreaContent, setTextAreaContent] = useState("");
 
 
-    //todo: get the current about me content from the backend
-    const handleSubmitClick = () => {
+    const handleUpdateClick = () => {
         console.log(textAreaContent);
-        onClose();
+        onUpdate(); // <-- Call the onUpdate callback first
+        onClose();  // <-- Then call the onClose callback
     };
+
     const question = "How would you rate your squad these past 2 weeks?";
     const options = [
         {score: 1.0},
@@ -239,7 +240,7 @@ export const Mysquad: React.FC<AboutMeProps> = ({onClose}) => {
                             textColor="#FFFFFF"
                             borderColor="#4B48EC"
                             width="50%"
-                            onClick={() => handleSubmitClick()}
+                            onClick={() => handleUpdateClick()}
                         />
                     </ButtonContainer>
                 </PopupFooter>

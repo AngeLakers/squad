@@ -12,6 +12,8 @@ import {
   TwitterSVG,
 } from "./svgs";
 import Link from "next/link";
+import LanguagePopup from "@/ui/language-popup";
+import SocialMediaPopup from "@/ui/socialmedia-popup";
 
 export interface Languages {
   [key: string]: string;
@@ -181,6 +183,24 @@ const SocialMediaContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 24px;
+`;
+
+ export const EditButton = styled.button`
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: Inter;
+  font-weight: 500;
+
+  img {
+    margin-right: 10px;
+  }
+
+  span {
+    color: #1B18E4; // Assuming this is the color for Primary/700. Adjust as needed.
+  }
 `;
 
 interface ProfileListProps {

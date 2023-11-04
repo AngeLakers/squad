@@ -88,7 +88,7 @@ const CardsContainer = styled.div`
   overflow-x: hidden;
   gap: 2rem;
   width: 100%;
-  white-space: nowrap;
+  //white-space: nowrap;
   scroll-behavior: smooth;
 padding-bottom:1rem;
     flex-shrink: 0;

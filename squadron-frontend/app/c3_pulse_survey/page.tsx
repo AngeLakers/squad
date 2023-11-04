@@ -146,7 +146,10 @@ export const HeadWrapper: React.FC<HeadWrapperProps> = ({status = true, title, d
             </TextWrapper>
             {status && <CustomButton label="Rate" preset="default" onClick={() => setMysquadPopupOpen(true)}/>}
             {MysquadPopupOpen && (
-                <Mysquad onClose={() => closeFirstPopupAndOpenSecond()} />
+                <Mysquad
+                    onClose={() => setMysquadPopupOpen(false)}
+                    onUpdate={closeFirstPopupAndOpenSecond} // <-- Pass the closeFirstPopupAndOpenSecond function as onUpdate
+                />
             )}
 
             {isMySquadSubmittedPopupOpen && (

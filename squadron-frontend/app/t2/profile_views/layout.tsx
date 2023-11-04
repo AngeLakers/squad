@@ -1,8 +1,12 @@
 "use client"
+
 import styled from "styled-components";
 import {SideNav} from "@/ui/side-nav";
-import {TopNav} from "@/ui/top-nav";
 import React from "react";
+import {TopNav} from "@/ui/top-nav";
+import {Metadata} from "next";
+
+
 
 const PageContainer = styled.div`
   display: flex;
@@ -11,7 +15,8 @@ const PageContainer = styled.div`
     background-color: rgba(16, 24, 40, 0.06);
   align-items: center;
    width: 100vw;
-  height: 100%
+  height: 100%;
+
 
 `;
 
@@ -46,27 +51,32 @@ const Header = styled.header`
 
 `;
 
+
+
 export default function Layout({
                                    children,
                                }: {
     children: React.ReactNode
 }) {
     return (
+    <Nav>
 
-        <Nav>
-            <SideNav current="Projects" />
-
-
-
-                <PageContainer>
-                    <Header>
-                        <h1>My profile</h1>
-                    </Header>
-                    {children}</PageContainer>
+        <SideNav current="Projects" />
 
 
+
+            <PageContainer>
+                <Header>
+                    <h1>My profile</h1>
+                </Header>
+                {children}
+            </PageContainer>
 
         </Nav>
+
+
+
+
 
 
 

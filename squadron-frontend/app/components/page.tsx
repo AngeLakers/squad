@@ -1521,7 +1521,7 @@ export default function AllComponents() {
       >
         <Button
           variant="outlined"
-          onClick={() => setProfileToolPopupOpen(true)}
+            onClick={() => setProfileToolPopupOpen(true)}
         >
           Profile Tool Popup
         </Button>
