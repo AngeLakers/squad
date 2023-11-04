@@ -147,14 +147,6 @@ const ProfileListItemTitle = styled.div`
   letter-spacing: 0em;
   text-align: left;
   color: #111927;
-flex-shrink: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  white-space: nowrap;
-
-
 `;
 
 const ProfileListItemContentContainer = styled.div`
@@ -193,7 +185,7 @@ const SocialMediaContainer = styled.div`
   gap: 24px;
 `;
 
-export const EditButton = styled.button`
+ export const EditButton = styled.button`
   display: flex;
   align-items: center;
   background: transparent;
@@ -212,93 +204,45 @@ export const EditButton = styled.button`
 `;
 
 interface ProfileListProps {
-    data: ProfileDataType;
-    status?: boolean;
+  data: ProfileDataType;
 }
 
-export const ProfileList: React.FC<ProfileListProps> = ({data,status  =  false}) => {
-    const [isSocialMediaPopupOpen, setSocialMediaPopupOpen] = useState(false);
-    const [isLanguagePopupOpen, setLanguagePopupOpen] = useState(false);
-    const handleButtonClick = (key: string) => {
-        // add pop up on it
-        console.log(`Clicked on ${key}`);
-
-        switch (key) {
-            case 'Social link':
-                setSocialMediaPopupOpen(true);
-                break;
-            case 'Language':
-                setLanguagePopupOpen(true);
-                break;
-            default:
-                break;
-        }
-    };
-
-    return (
-
-        <List>
-            <ProfileListItem>
-                <ProfileListItemTitle>Experience
-                    {status && (
-                        <EditButton onClick={() => handleButtonClick('Experience')}>
-                            <img src="/profile-icon/edit-01.svg" alt="Icon Description"/>
-                            <span>Edit</span>
-                        </EditButton>
-                    )}</ProfileListItemTitle>
-
-                <ProfileListItemContentValue>
-                    {data.experience}
-                </ProfileListItemContentValue>
-            </ProfileListItem>
-            <ProfileListItem>
-                <ProfileListItemTitle>Languages
-
-                    {status && (
-                        <EditButton onClick={() => handleButtonClick('Language')}>
-                            <img src="/profile-icon/edit-01.svg" alt="Icon Description"/>
-                            <span>Edit</span>
-                        </EditButton>
-                    )}</ProfileListItemTitle>
-                <ProfileListItemContentContainer>
-                    {Object.entries(data.languages).map(([key, value]) => (
-                        <ProfileListItemContent key={key}>
-                            <ProfileListItemContentTitle>{key}:</ProfileListItemContentTitle>
-                            <ProfileListItemContentValue>{value}</ProfileListItemContentValue>
-
-                        </ProfileListItemContent>
-                    ))}
-                </ProfileListItemContentContainer>
-            </ProfileListItem>
-            <ProfileListItem>
-                <ProfileListItemTitle>Social Links
-                    {status && (
-                        <EditButton onClick={() => handleButtonClick('Social link')}>
-                            <img src="/profile-icon/edit-01.svg" alt="Icon Description"/>
-                            <span>Edit</span>
-                        </EditButton>
-                    )}</ProfileListItemTitle>
-                <SocialMediaContainer>
-                    <Link href={data.socialLinks.linkedin}>
-                        <LinkedInSVG/>
-                    </Link>
-                    <Link href={data.socialLinks.email}>
-                        <EmailSVG/>
-                    </Link>
-                    <Link href={data.socialLinks.twitter}>
-                        <TwitterSVG/>
-                    </Link>
-                </SocialMediaContainer>
-            </ProfileListItem>
-            {isLanguagePopupOpen && (
-                <LanguagePopup onClose={() => setLanguagePopupOpen(false)} />
-            )}
-            {isSocialMediaPopupOpen && (
-                <SocialMediaPopup onClose={() => setSocialMediaPopupOpen(false)} />
-            )}
-        </List>
-
-    );
+const ProfileList: React.FC<ProfileListProps> = ({ data }) => {
+  return (
+    <List>
+      <ProfileListItem>
+        <ProfileListItemTitle>Experience</ProfileListItemTitle>
+        <ProfileListItemContentValue>
+          {data.experience}
+        </ProfileListItemContentValue>
+      </ProfileListItem>
+      <ProfileListItem>
+        <ProfileListItemTitle>Languages</ProfileListItemTitle>
+        <ProfileListItemContentContainer>
+          {Object.entries(data.languages).map(([key, value]) => (
+            <ProfileListItemContent key={key}>
+              <ProfileListItemContentTitle>{key}:</ProfileListItemContentTitle>
+              <ProfileListItemContentValue>{value}</ProfileListItemContentValue>
+            </ProfileListItemContent>
+          ))}
+        </ProfileListItemContentContainer>
+      </ProfileListItem>
+      <ProfileListItem>
+        <ProfileListItemTitle>Social Links</ProfileListItemTitle>
+        <SocialMediaContainer>
+          <Link href={data.socialLinks.linkedin}>
+            <LinkedInSVG />
+          </Link>
+          <Link href={data.socialLinks.email}>
+            <EmailSVG />
+          </Link>
+          <Link href={data.socialLinks.twitter}>
+            <TwitterSVG />
+          </Link>
+        </SocialMediaContainer>
+      </ProfileListItem>
+    </List>
+  );
 };
 
 const Table = styled.div`
@@ -317,52 +261,52 @@ const ProfileTableColumn = styled.div`
 `;
 
 const useWindowSize = () => {
-    const [windowSize, setWindowSize] = useState<number | null>(null);
+  const [windowSize, setWindowSize] = useState<number | null>(null);
 
-    useEffect(() => {
-        setWindowSize(window.innerWidth);
+  useEffect(() => {
+    setWindowSize(window.innerWidth);
 
-        const handleResize = () => {
-            setWindowSize(window.innerWidth);
-        };
+    const handleResize = () => {
+      setWindowSize(window.innerWidth);
+    };
 
-        window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize);
 
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
-    return windowSize;
+  return windowSize;
 };
 
 interface ProfileTableProps {
-    data: ProfileData[];
+  data: ProfileData[];
 }
 
-const ProfileTable: React.FC<ProfileTableProps> = ({data}) => {
-    const windowWidth = useWindowSize();
+const ProfileTable: React.FC<ProfileTableProps> = ({ data }) => {
+  const windowWidth = useWindowSize();
 
-    const renderCards = (cards: ProfileData[]) => (
-        <ProfileTableColumn>
-            {cards.map((card) => (
-                <ProfileCard key={card.id} {...card} />
-            ))}
-        </ProfileTableColumn>
-    );
+  const renderCards = (cards: ProfileData[]) => (
+    <ProfileTableColumn>
+      {cards.map((card) => (
+        <ProfileCard key={card.id} {...card} />
+      ))}
+    </ProfileTableColumn>
+  );
 
-    return (
-        <Table>
-            {windowWidth !== null && windowWidth > 1460 ? (
-                <>
-                    {renderCards(data.slice(0, 3))}
-                    {renderCards(data.slice(3))}
-                </>
-            ) : (
-                renderCards(data)
-            )}
-        </Table>
-    );
+  return (
+    <Table>
+      {windowWidth !== null && windowWidth > 1460 ? (
+        <>
+          {renderCards(data.slice(0, 3))}
+          {renderCards(data.slice(3))}
+        </>
+      ) : (
+        renderCards(data)
+      )}
+    </Table>
+  );
 };
 
 const Card = styled.div`
@@ -407,20 +351,20 @@ const CardContent = styled.div`
 `;
 
 interface ProfileCardProps {
-    Svg: ReactElement;
-    title: string;
-    content: string;
+  Svg: ReactElement;
+  title: string;
+  content: string;
 }
 
-const ProfileCard: React.FC<ProfileData> = ({id, content}) => {
-    const {Svg, title} = getSvgAndTitleById(id);
-    return (
-        <Card>
-            <CardLabel>
-                <CardLogo>{Svg}</CardLogo>
-                <CardTitle>{title}</CardTitle>
-            </CardLabel>
-            <CardContent>{content}</CardContent>
-        </Card>
-    );
+const ProfileCard: React.FC<ProfileData> = ({ id, content }) => {
+  const { Svg, title } = getSvgAndTitleById(id);
+  return (
+    <Card>
+      <CardLabel>
+        <CardLogo>{Svg}</CardLogo>
+        <CardTitle>{title}</CardTitle>
+      </CardLabel>
+      <CardContent>{content}</CardContent>
+    </Card>
+  );
 };

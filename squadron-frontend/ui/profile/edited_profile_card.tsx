@@ -2,17 +2,16 @@
 
 import React, {useState} from "react";
 import {Avatar, Box, Card, CardContent, Icon, IconButton, Typography} from "@mui/material";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import styled from "styled-components";
 import CustomButton from "@/ui/custom-button";
-import {EditButton, ProfileDataType, ProfileList} from "@/ui/talent-profile-card";
 import CustomBadge from "@/ui/custom-badge";
 import {BadgeContainer, RequiredRecommendedSkillTool, SkillTitle} from "@/ui/role-detail";
 import AboutMe from "@/ui/about-me-popup";
 import ProfileToolPopup from "@/ui/profile-tool-popup";
 import CompleteSkillsPopup from "@/ui/complete-profile-skills-popup";
+import {EditButton, ProfileDataType} from "@/ui/talent-profile-card";
+import { ProfileList1} from "@/ui/profile/ProfileList";
+
 
 const StyledCard = styled(Card)`
   width: 63rem;
@@ -310,6 +309,7 @@ interface ProfileCardProps {
 
 }
 
+
 const SvgWithText = () => {
     return (
         <HorizontalDiv>
@@ -387,7 +387,7 @@ const Edited_ProfileCard: React.FC<ProfileCardProps> = ({
             </Header>
             <CardContent>
                 <Detail>
-                    <ProfileList data={data} status={edited_status}/>
+                    <ProfileList1 data={data} status={edited_status}/>
                     <VerticalDivider/>
 
                     <RightContent>
