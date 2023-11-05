@@ -15,6 +15,7 @@ const Paper4 = styled(Paper)`
   background-size: cover;
   background-repeat: no-repeat;
   border: 1px solid #e0e0e0;
+  border-radius: 12px;
 `;
 
 const Paper5 = styled(Paper)`
@@ -25,6 +26,7 @@ const Paper5 = styled(Paper)`
   background-size: cover;
   background-repeat: no-repeat;
   border: 1px solid #e0e0e0;
+  border-radius: 12px;
 `;
 
 export function Wallet() {
