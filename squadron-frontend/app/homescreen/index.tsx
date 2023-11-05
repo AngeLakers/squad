@@ -14,7 +14,7 @@ import styled from "styled-components"
 import Layout from "./layout"
 import CardWrapper from "@/ui/card-wrapper";
 import LiveProjectCard from "@/ui/Livep";
-import SquadCard from "@/ui/squad-card";
+import SquadCard from "@/ui/squad-card2";
 const Display=styled.div`
 display: flex;
 margin-top: 50px;
