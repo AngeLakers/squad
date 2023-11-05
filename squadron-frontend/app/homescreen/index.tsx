@@ -5,7 +5,7 @@ import { Topbar1 } from "@/ui/Topbar1"
 import {Wallet} from "@/ui/Wallet"
 import {Community} from"@/ui/Community"
 import {Community2} from"@/ui/Community2"
-import {Header} from "@/ui/Header"
+import {Header2} from "@/ui/Header2"
 import {Ste} from "@/ui/Ste"
 import {Ste2} from "@/ui/Ste2"
 import {Perk2} from "@/ui/Perk2"
@@ -73,7 +73,7 @@ export default function Home() {
 
 
     < Displayy>
-    <Header></Header>
+    <Header2></Header2>
     </Displayy>
 
     {/* <Application></Application> */}
