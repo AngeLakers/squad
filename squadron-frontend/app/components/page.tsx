@@ -1728,6 +1728,7 @@ export default function AllComponents() {
 
       {isCompleteExperiencePopupOpen && (
         <AddExperiencePopup
+          title="Add experience"
           onClose={() => setCompleteExperiencePopupOpen(false)}
         />
       )}
@@ -1776,6 +1777,7 @@ export default function AllComponents() {
       )}
       {isAddProjectPopupOpen && (
         <AddProjectPopup 
+          title="Add a project"
           onClose={() => setAddProjectPopupOpen(false)} 
         />
       )}

@@ -128,12 +128,14 @@ interface AddProjectPopupProps {
     onClose: () => void;
     showDivider?: boolean;
     icon?: ReactNode;
+    title: string;
 }
 
 const AddProjectPopup: React.FC<AddProjectPopupProps> = ({
     onClose,
     showDivider = true,
-    icon
+    icon,
+    title
 }) => {
     const [workHere, setWorkHere] = useState(false);
     
@@ -143,7 +145,7 @@ const AddProjectPopup: React.FC<AddProjectPopupProps> = ({
         >
             <ContentContainer>
                 <PopupHeader>
-                    <Title>Add a project</Title>
+                    <Title>{title}</Title>
                     <TitleDiscrption>Add details. Step 01/02</TitleDiscrption>
                 </PopupHeader>
                 {showDivider && <Divider />}
