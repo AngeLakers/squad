@@ -113,6 +113,7 @@ const Experience: React.FC = () => {
 
       {isCompleteExperiencePopupOpen && (
         <AddExperiencePopup
+          title="Add experience"
           onClose={() => setCompleteExperiencePopupOpen(false)}
         />
       )}  
