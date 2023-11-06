@@ -6,6 +6,7 @@ import { ReactNode } from 'react';
 import CustomButton from "./custom-button";
 import CustomInput from "./custom-input";
 import { SearchSVG } from "./svgs";
+import CustomTextarea from "./customtextarea";
 import {
     basewhite,
     gray200,
@@ -330,23 +331,16 @@ const AddExperiencePopup: React.FC<AddExperiencePopupProps> = ({
 
                         {showDivider && <Divider />}
                         <InputWithTitleContainer>
-                        {/* todo:
-                            1. Input box cannot automatically expand. */}
-                            <CustomInput
-                                title="Description*"
-                                type="text"
-                                titleFontSize={regularFontSize}
-                                titleFontWeight={mediumFontWeight}
-                                titleColor={gray700}
-                                borderColor={gray300}
-                                borderRadius="8px"
-                                inputHeight="40px"
-                                inputWidth="100%"
-                                borderWidth="1px"
-                                inputTextColor={gray500}
-                                inputTextSize={mediumFontSize}
-                                inputTextWeight={regularFontWeight}
-                                placeholder="Describe your experience"
+                                <CustomTextarea
+                                label="Description*"
+                                showHintText={false}
+                                borderStyle="1px solid #D2D6DB"
+                                labelStyle={{ 
+                                    color: '#384250',
+                                    fontSize: "14px",
+                                    fontWeight: "500",
+                                     }}
+
                             />
                         </InputWithTitleContainer>
                     </BodyContentContainer>
