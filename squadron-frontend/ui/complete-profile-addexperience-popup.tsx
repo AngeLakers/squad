@@ -125,12 +125,14 @@ interface AddExperiencePopupProps {
     onClose: () => void;
     showDivider?: boolean;
     icon?: ReactNode;
+    title: string;
 }
 
 const AddExperiencePopup: React.FC<AddExperiencePopupProps> = ({
     onClose,
     showDivider = true,
-    icon
+    icon,
+    title 
 }) => {
     const [workHere, setWorkHere] = useState(false);
     
@@ -140,7 +142,7 @@ const AddExperiencePopup: React.FC<AddExperiencePopupProps> = ({
         >
             <ContentContainer>
                 <PopupHeader>
-                    <Title>Add experience</Title>
+                    <Title>{title}</Title>
                     <TitleDiscrption>Share where you’ve worked on your profile.</TitleDiscrption>
                 </PopupHeader>
                 {showDivider && <Divider />}
