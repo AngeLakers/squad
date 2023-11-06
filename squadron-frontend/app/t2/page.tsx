@@ -42,6 +42,7 @@ const ProfileNavContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     gap: 30px;
+    background-color: white;
 `
 const ProfileNavAvatarContainer = styled.div`
     width: 100%;

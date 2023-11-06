@@ -6,7 +6,9 @@ import styled from "styled-components";
 import { ReactNode } from 'react';
 import RightArrowIconButton from "./right-arrow-button";
 import CompleteSkillsPopup from "./complete-profile-skills-popup";
-import AddExperiencePopup from "./complete-profile-addexperience-popup"
+import AddExperiencePopup from "./complete-profile-addexperience-popup";
+import AddProjectPopup from "@/ui/add-project-popup";
+import SocialMediaPopup from "@/ui/socialmedia-popup";
 import {
     basewhite,
     borderColor,
@@ -147,6 +149,14 @@ const CompleteProfilePopup: React.FC<CompleteProfilePopupProps> = ({
     const openExperiencePopup = () => {
         setAddExperiencePopupOpen(true);
     };
+    const [isAddProjectPopupOpen, setAddProjectPopupOpen] = useState(false);
+    const openProjectPopup = () => {
+        setAddProjectPopupOpen(true);
+    };
+    const [isSocialMediaPopupOpen, setSocialMediaPopupOpen] = useState(false);
+    const openSocialMediaPopup = () => {
+        setSocialMediaPopupOpen(true);
+    };
     return (
         <>
             <PopupComponent onClose={onClose}
@@ -203,7 +213,7 @@ const CompleteProfilePopup: React.FC<CompleteProfilePopupProps> = ({
                                 <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
                             </ItemContainer>
                             <ArrowIconButtonContainer>
-                                <RightArrowIconButton onClick={openNewPopup} />
+                                <RightArrowIconButton onClick={openProjectPopup} />
                             </ArrowIconButtonContainer>
                         </ProfileItem>
                         {showDivider && <Divider />}
@@ -223,7 +233,7 @@ const CompleteProfilePopup: React.FC<CompleteProfilePopupProps> = ({
                                 <ItemShortDescrip>Intro about this (+10%)</ItemShortDescrip>
                             </ItemContainer>
                             <ArrowIconButtonContainer>
-                                <RightArrowIconButton onClick={openNewPopup} />
+                                <RightArrowIconButton onClick={openSocialMediaPopup} />
                             </ArrowIconButtonContainer>
                         </ProfileItem>
                     </PopupBody>
@@ -231,7 +241,9 @@ const CompleteProfilePopup: React.FC<CompleteProfilePopupProps> = ({
             </PopupComponent>
             {aboutMePopupOpen && (<AboutMe onClose={() => setAboutMePopupOpen(false)} />)};
             {isCompleteSkillsPopupOpen && <CompleteSkillsPopup onClose={() => setCompleteSkillsPopupOpen(false)}/>}
-            {isAddExperiencePopupOpen && <AddExperiencePopup onClose={() => setAddExperiencePopupOpen(false)}/>}
+            {isAddExperiencePopupOpen && <AddExperiencePopup title="Add experience" onClose={() => setAddExperiencePopupOpen(false)}/>}
+            {isAddProjectPopupOpen && <AddProjectPopup title="Add project" onClose={() => setAddProjectPopupOpen(false)}/>}
+            {isSocialMediaPopupOpen && <SocialMediaPopup onClose={() => setSocialMediaPopupOpen(false)}/>}
         </>
     );
 };

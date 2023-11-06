@@ -113,6 +113,7 @@ const Projects: React.FC = () => {
 
       {isCompleteExperiencePopupOpen && (
         <AddProjectPopup
+          title="Add project"
           onClose={() => setCompleteExperiencePopupOpen(false)}
         />
       )}  

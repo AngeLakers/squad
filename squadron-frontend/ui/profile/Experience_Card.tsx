@@ -333,7 +333,8 @@ export const ExperienceContainer: React.FC<ExperienceContainerProps> = ({ childr
             </CardSection>
             {isCompleteExperiencePopupOpen && (
                 <AddExperiencePopup
-                    onClose={() => setCompleteExperiencePopupOpen(false)}
+                  title='Add Experience'
+                  onClose={() => setCompleteExperiencePopupOpen(false)}
                 />
             )}
         </Container>
