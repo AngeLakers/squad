@@ -10,8 +10,7 @@ const CardContainer = styled.div`
   border-radius: 0.6875rem; // 11px
   background-color: #fff;
   box-shadow: 0px 0.0625rem 0.1875rem rgba(16, 24, 40, 0.1), 0px 0.0625rem 0.125rem rgba(16, 24, 40, 0.06);
-  width: 23.5rem; // 375px
-
+  width: ${(props) => props.width || '23.5rem'};
   overflow: hidden;
   flex-shrink: 0;
   text-align: left;
@@ -31,7 +30,8 @@ const Header = styled.header`
   font-size: 1.25rem;
   color: #fff;
   background-image: url("/images/Ellipse.svg");
-
+  background-repeat: no-repeat;
+  background-position: right top;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -71,6 +71,7 @@ type SmallProjectCardProps = {
 
     description: string;
     avatars: { alt: string; src: string }[];
+    width?: string;
 
 };
 
@@ -160,7 +161,7 @@ const LargeCard = styled.div`
 const SmallProjectCard: React.FC<SmallProjectCardProps> = ({
                                                                title
                                                                , year, description,
-                                                               avatars
+                                                               avatars,width
                                                            }) => {
 
     const [showModal, setShowModal] = useState(false);
@@ -174,7 +175,7 @@ const SmallProjectCard: React.FC<SmallProjectCardProps> = ({
     };
 
     return (
-        <CardContainer>
+        <CardContainer width={width}>
 
             <Header>
                 <Title>{title}</Title>
