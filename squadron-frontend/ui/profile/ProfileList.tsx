@@ -17,14 +17,14 @@ const List = styled.div`
   }
 `;
 
-const ProfileListItem = styled.div`
+export const ProfileListItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
   justify-content: center;
 `;
 
-const ProfileListItemTitle = styled.div`
+export const ProfileListItemTitle = styled.div`
   font-size: 18px;
   font-weight: 500;
   line-height: 28px;
@@ -62,7 +62,7 @@ const ProfileListItemContentTitle = styled.div`
   color: #344054;
 `;
 
-const ProfileListItemContentValue = styled.div`
+export const ProfileListItemContentValue = styled.div`
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -71,7 +71,7 @@ const ProfileListItemContentValue = styled.div`
   color: #475467;
 `;
 
-const SocialMediaContainer = styled.div`
+export const SocialMediaContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 24px;

@@ -7,11 +7,6 @@ import styled from "styled-components";
 import React from "react";
 
 // @ts-ignore
-export const metadata: Metadata = {
-  title: "Squadron",
-  description: "Squadron frontend",
-};
-
 const Nav = styled.div`
   display: flex;
   flex-direction: row;
