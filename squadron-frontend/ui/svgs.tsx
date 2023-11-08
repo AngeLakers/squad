@@ -1282,6 +1282,15 @@ export const AddCSVG = () => {
   );
 };
 
+export const AddDSVG = () => {
+  return (  
+<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.99984 1.16669V12.8334M1.1665 7.00002H12.8332" stroke="#D2D6DB" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+  );
+};
+
+
 export const MinusSVG = () => {
   return (  
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
