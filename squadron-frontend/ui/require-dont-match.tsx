@@ -9,25 +9,18 @@ import LocationMissingPopup from "./location-missing-popup";
 import Spain from "../public/Spain.png";
 
 import {
-    basewhite,
-    borderColor,
-    boxShadow,
     gray600,
-    gray900,
-    primary600,
+    gray200,
+    gray300,
+    gray700,
     regularFontSize,
     mediumFontSize,
     titleFontSize,
-    xxlargeFontSize,
     regularFontWeight,
     mediumFontWeight,
     regularLineHeight,
     mediumLineHeight,
     largeLineHeight,
-    xxxlargeLineHeight,
-    fontFamily,
-    regularLetterSpacing,
-    warning600,
     titleFontWeight
 } from "@/styles/reuseParams";
 
@@ -222,22 +215,21 @@ const RequireDontMatchPopup: React.FC<RequireDontMatchProps> = ({
                         <ButtonContainer>
                             <CustomButton
                                 label="Cancel"
-                                backgroundColor="#FFFFFF"
+                                preset="outlined"
+                                hoverColor={gray200}
+                                textColor={gray700}
+                                borderColor={gray300}
                                 width="170px"
                                 height="44px"
-                                textColor="#384250"
-                                borderColor="#D2D6DB" 
-                                padding="10px 18px 10px 18px"
+                                //padding="10px 18px 10px 18px"
                                 onClick={onClose}
                             />
                             <a href="/t5_proj_apply/application_apply">
                                 <CustomButton
                                     label="Apply"
-                                    backgroundColor="#4B48EC"
+                                    preset="default"
                                     width="170px"
                                     height="44px"
-                                    textColor="#FFFFFF"
-                                    borderColor="#4B48EC"
                                     padding="10px 18px 10px 18px"
                                     onClick={onClose}
                                 />

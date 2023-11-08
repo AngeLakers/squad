@@ -252,17 +252,16 @@ const AskQuestionPopup: React.FC<AskQuestionProps> = ({
                 <ButtonContainer>
                     <CustomButton
                         label="Cancel"
-                        backgroundColor="#FFFFFF"
-                        textColor="#384250"
-                        borderColor="#D2D6DB" 
+                        preset="outlined"
+                        hoverColor={gray200}
+                        textColor={gray700}
+                        borderColor={gray300}
                         onClick={onClose}
                     />
                     
                     <CustomButton
                         label="Send question"
-                        backgroundColor="#4B48EC"
-                        textColor="#FFFFFF"
-                        borderColor="#4B48EC"
+                        preset="default"
                         onClick={onClose}
                     />  
                          
