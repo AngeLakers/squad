@@ -257,15 +257,15 @@ const AskQuestionPopup: React.FC<AskQuestionProps> = ({
                         borderColor="#D2D6DB" 
                         onClick={onClose}
                     />
-                    <a href="/t4/projectview">
+                    
                     <CustomButton
                         label="Send question"
                         backgroundColor="#4B48EC"
                         textColor="#FFFFFF"
                         borderColor="#4B48EC"
-                        
+                        onClick={onClose}
                     />  
-                    </a>       
+                         
                 </ButtonContainer> 
                 <HintText>
                     <Description>
