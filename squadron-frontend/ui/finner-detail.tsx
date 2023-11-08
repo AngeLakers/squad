@@ -1,13 +1,11 @@
 "use client";
 import * as React from "react";
 import styled from "styled-components";
-import CustomButton from "./custom-button";
 import { useState } from "react";
-import AddExperiencePopup from "@/ui/complete-profile-addexperience-popup";
 import CustomInput from "./custom-input";
 import CustomTextarea from "./customtextarea";
-import { AddExperienceSVG, AddBSVG, AddCSVG, MinusSVG } from "@/ui/svgs";
-import { color } from "framer-motion";
+import { AddBSVG, MinusSVG } from "@/ui/svgs";
+import CalendarPopup from "./calendar-popup";
 
 const Container = styled.div`
   border: 1px solid #E5E7EB;
@@ -102,39 +100,12 @@ const DividerA = styled.div`
   margin-bottom: 30px;
 `;
 
-const RightAlignedButton = styled(CustomButton)`
-  float: right;
-`;
-
-const ExperienceContainer = styled.div`
-  height: 172px;
-  background-color: #F9FAFB;
-  display: flex; 
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-`;
-
-const SVGContainer = styled.div`
-  margin-bottom: 16px;
-`;
-
-const AddText = styled.span`
-  color: #4B48EC; 
-  cursor: pointer;
-`;
-
-const ExperienceText = styled.span`
-  color: #6C737F; 
-`;
-
 const FinnerDetail: React.FC = () => {
   const [expanded, setExpanded] = React.useState(false);
-  const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] =
+  const [isCalendarPopupOpen, setCalendarPopupOpen] =
   useState(false);
   const togglePopup = () => {
-    setCompleteExperiencePopupOpen(!isCompleteExperiencePopupOpen);
+    setCalendarPopupOpen(!isCalendarPopupOpen);
   };
   return (
     <Container>
@@ -288,10 +259,10 @@ const FinnerDetail: React.FC = () => {
         </>
       )}
 
-      {isCompleteExperiencePopupOpen && (
-        <AddExperiencePopup
-          title="Add experience"
-          onClose={() => setCompleteExperiencePopupOpen(false)}
+      {isCalendarPopupOpen && (
+        <CalendarPopup
+        
+          onClose={() => setCalendarPopupOpen(false)}
         />
       )}  
     </Container>
