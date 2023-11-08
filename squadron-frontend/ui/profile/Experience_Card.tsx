@@ -241,7 +241,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 }
 
 const Container = styled.div`
-  width:63rem;
+  width: ${(props) => props.width || 'auto'}; /
   position: relative;
   border-radius: 12px;
   background-color: #fff;
@@ -320,14 +320,15 @@ const CardSection = styled.div`
 
 interface ExperienceContainerProps {
 children: ReactElement<ExperienceCardProps>[] | ReactElement<ExperienceCardProps>;
+width?: string;
 };
 
-export const ExperienceContainer: React.FC<ExperienceContainerProps> = ({ children }) => {
+export const ExperienceContainer: React.FC<ExperienceContainerProps> = ({ children,width }) => {
 
     const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] =
         useState(false);
     return (
-        <Container>
+        <Container width={width}>
             <Header>
                 <Title>Experience</Title>
 

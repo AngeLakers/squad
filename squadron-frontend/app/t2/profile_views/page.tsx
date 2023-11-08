@@ -40,11 +40,11 @@ const PageContainer = styled.div`
 export default function Home() {
     return (
           <PageContainer>
-              <Edited_ProfileCard jobTitle={"Motion Engineer"}  number_projects_completed={1} number_Hired={2} aboutText={"gg2sssssssssssssssssssssss sssss22222222222222sssssssssssss ssssssssssssssssssssssssssssss ssssssssssss sssssssssssssss11111111111111 1111111111111111 1111111111 1111111 1111111111"} avatarUrl={""} data={mockProfileData}
+              <Edited_ProfileCard jobTitle={"Motion Engineer"} name={"james"} address={"James"} number_projects_completed={1} number_Hired={2} aboutText={"gg2sssssssssssssssssssssss sssss22222222222222sssssssssssss ssssssssssssssssssssssssssssss ssssssssssss sssssssssssssss11111111111111 1111111111111111 1111111111 1111111 1111111111"} avatarUrl={""} data={mockProfileData}
               edited_status={true}   skills={["skill 1", "skill 2"]}
                                   tools={["tool 1", "tool 2", "tool 3"]}></Edited_ProfileCard>
 
-              <ExperienceContainer>
+              <ExperienceContainer width={"63rem"}>
                   <ExperienceCard
                       jobTitle="Software Engineer"
                       direction="Frontend"
