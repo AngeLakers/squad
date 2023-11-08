@@ -8,6 +8,7 @@ import {
   ResourcesSVG,
   PerksSVG,
 } from "./svgs";
+import ShortHeading from "./short-heading";
 
 const Aside = styled.aside`
   display: flex;
@@ -79,9 +80,10 @@ const Logo = styled.img`
 
 type SideNavProps = {
   current?: string;
+  showHeading?: boolean;
 };
 
-export function SideNav({ current }: SideNavProps) {
+export function SideNav({ current, showHeading = false }: SideNavProps) {
   return (
     <Aside>
       <LogoContainer>
@@ -92,6 +94,9 @@ export function SideNav({ current }: SideNavProps) {
           />
         </Link>
       </LogoContainer>
+
+      {showHeading && <ShortHeading completionPercentage={70} />}
+
       <Nav>
         {[
           { href: "#", Icon: HomeSVG, label: "Home" },

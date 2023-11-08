@@ -61,7 +61,7 @@ export default function Layout({
     return (
     <Nav>
 
-        <SideNav current="Projects" />
+        <SideNav current="Projects" showHeading={true}/>
 
 
 
