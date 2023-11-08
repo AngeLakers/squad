@@ -201,6 +201,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                                                        }) => {
 
     const [isDeleteExperiencePopupOpen, setDeleteExperiencePopupOpen] = useState(false);
+    const [isEditExperiencePopupOpen, setEditExperiencePopupOpen] = useState(false);
 
     return (
       <StyledCard>
@@ -219,9 +220,15 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
           </ContentSection>
 
           <ButtonSection>
-              <EditButton>Edit</EditButton>
+              <EditButton onClick={() => setEditExperiencePopupOpen(true)}>Edit</EditButton>
               <DeleteButton  onClick={() => setDeleteExperiencePopupOpen(true)}> <img src="/profile-icon/x-close.svg" alt="Delete" /></DeleteButton>
           </ButtonSection>
+          {isEditExperiencePopupOpen && (
+              <AddExperiencePopup
+                  title='Edit Experience'
+                  onClose={() => setEditExperiencePopupOpen(false)}
+              />
+          )}
           {isDeleteExperiencePopupOpen && (
               <DeleteExperiencePopup
                   onClose={() => setDeleteExperiencePopupOpen(false)}
