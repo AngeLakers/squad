@@ -8,6 +8,7 @@ import {ProfileDataType} from "@/ui/talent-profile-card";
 import Experience_Card, {ExperienceContainer} from "@/ui/profile/Experience_Card";
 import ExperienceCard from "@/ui/profile/Experience_Card";
 import styled from "styled-components";
+import {Page_profile_card} from "@/ui/profile/Page_profile_card";
 
 
 const mockProfileData: ProfileDataType = {
@@ -43,7 +44,7 @@ export default function Home() {
               edited_status={true}   skills={["skill 1", "skill 2"]}
                                   tools={["tool 1", "tool 2", "tool 3"]}></Edited_ProfileCard>
 
-              <ExperienceContainer>
+              <ExperienceContainer width={"63rem"}>
                   <ExperienceCard
                       jobTitle="Software Engineer"
                       direction="Frontend"

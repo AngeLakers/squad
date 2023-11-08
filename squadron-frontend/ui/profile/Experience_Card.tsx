@@ -201,6 +201,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
                                                        }) => {
 
     const [isDeleteExperiencePopupOpen, setDeleteExperiencePopupOpen] = useState(false);
+    const [isEditExperiencePopupOpen, setEditExperiencePopupOpen] = useState(false);
 
     return (
       <StyledCard>
@@ -219,9 +220,15 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
           </ContentSection>
 
           <ButtonSection>
-              <EditButton>Edit</EditButton>
+              <EditButton onClick={() => setEditExperiencePopupOpen(true)}>Edit</EditButton>
               <DeleteButton  onClick={() => setDeleteExperiencePopupOpen(true)}> <img src="/profile-icon/x-close.svg" alt="Delete" /></DeleteButton>
           </ButtonSection>
+          {isEditExperiencePopupOpen && (
+              <AddExperiencePopup
+                  title='Edit Experience'
+                  onClose={() => setEditExperiencePopupOpen(false)}
+              />
+          )}
           {isDeleteExperiencePopupOpen && (
               <DeleteExperiencePopup
                   onClose={() => setDeleteExperiencePopupOpen(false)}
@@ -234,7 +241,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
 }
 
 const Container = styled.div`
-  width:63rem;
+  width: ${(props) => props.width || 'auto'}; /
   position: relative;
   border-radius: 12px;
   background-color: #fff;
@@ -313,14 +320,15 @@ const CardSection = styled.div`
 
 interface ExperienceContainerProps {
 children: ReactElement<ExperienceCardProps>[] | ReactElement<ExperienceCardProps>;
+width?: string;
 };
 
-export const ExperienceContainer: React.FC<ExperienceContainerProps> = ({ children }) => {
+export const ExperienceContainer: React.FC<ExperienceContainerProps> = ({ children,width }) => {
 
     const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] =
         useState(false);
     return (
-        <Container>
+        <Container width={width}>
             <Header>
                 <Title>Experience</Title>
 

@@ -14,6 +14,7 @@ const Container = styled.div`
   gap: 40px;
   position: relative;
   transition: all 0.3s;
+  background-color: white;
 `;
 
 const Title = styled.div`
@@ -109,7 +110,7 @@ const FinnerDetail: React.FC = () => {
   };
   return (
     <Container>
-      <Title>Finder</Title>
+      <Title>Finner details</Title>
       <ToggleButton onClick={() => setExpanded(!expanded)}>
         {expanded ? <MinusSVG /> : <AddBSVG />}
       </ToggleButton>

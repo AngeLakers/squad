@@ -50,8 +50,9 @@ const Card = styled.div`
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   background-color: #ffffff;
-  min-width: fit-content;
-  flex: 1;
+
+
+  margin-left:30px;
 `;
 
 const Divider = styled.div`
