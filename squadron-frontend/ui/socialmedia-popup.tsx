@@ -204,38 +204,37 @@ const SocialMediaPopup: React.FC<SocialMediaProps> = ({ onClose }) => {
                                 </InputWrapper>
                             </InputContainer>
 
-                            <InputContainer>
-                                <InputWrapper>
-                                    <InputLabel>Twitter</InputLabel>
-                                    <CustomInput type="text" />
-                                    <IconWrapper><LinkSVG /></IconWrapper>
-                                </InputWrapper>
-                            </InputContainer>
-                        </BodyForm>
-                    </PopupBody>
-
-                    <PopupFooter>
-                        <ButtonContainer>
-                            <CustomButton
-                                label="Cancel"
-                                backgroundColor="#FFFFFF"
-                                textColor="#384250"
-                                borderColor="#D2D6DB"
-                                onClick={onClose}
-                            />
-                            <CustomButton
-                                label="Update"
-                                backgroundColor="#4B48EC"
-                                textColor="#FFFFFF"
-                                borderColor="#4B48EC"
-                                onClick={onClose}
-                            />
-                        </ButtonContainer>
-                    </PopupFooter>
-                </Container>
-            </PopupComponent>
-        </>
-    );
+                    <InputContainer>
+                        <InputWrapper>
+                        <InputLabel>Twitter</InputLabel>
+                        <CustomInput type="text"/>
+                        <IconWrapper><LinkSVG /></IconWrapper>
+                        </InputWrapper>
+                    </InputContainer>
+                </BodyForm>
+            </PopupBody>
+                
+            <PopupFooter>
+                <ButtonContainer>
+                  <CustomButton
+                    label="Cancel"
+                    preset="outlined"
+                    hoverColor={gray200}
+                    textColor={gray700}
+                    borderColor={gray300}       
+                    onClick={onClose}
+                  />
+                  <CustomButton
+                    label="Update"
+                    preset="default"  
+                    onClick={onClose} 
+                  />         
+                </ButtonContainer>
+            </PopupFooter>
+          </Container>
+        </PopupComponent>
+    </>
+  );
 };
 
 export default SocialMediaPopup;

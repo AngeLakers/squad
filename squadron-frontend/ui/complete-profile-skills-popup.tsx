@@ -285,10 +285,8 @@ const CompleteSkillsPopup: React.FC<CompleteSkillsPopupProps> = ({
                         ></CustomButton>
                         <CustomButton
                             label="Update"
-                            preset="outlined"
-                            backgroundColor={primary600}
-                            textColor={basewhite}
-                            borderColor={primary600}
+                            preset="default"
+                            onClick={onClose}
                         ></CustomButton>
                     </ButtonContainer>
                 </PopupFooter>
