@@ -5,6 +5,7 @@ import CustomButton from "./custom-button";
 import { useState } from "react";
 import AddProjectPopup from "@/ui/add-project-popup";
 import { AddProjectsSVG, AddBSVG, AddCSVG, MinusSVG } from "@/ui/svgs";
+import SmallProjectCard from "@/ui/profile/SmallProjectCard";
 
 const Container = styled.div`
   border: 1px solid #E5E7EB;
@@ -12,6 +13,7 @@ const Container = styled.div`
   padding: 32px 40px;
   position: relative;
   transition: all 0.3s;
+  background-color: white;
 `;
 
 const Title = styled.div`
@@ -75,8 +77,14 @@ const ExperienceText = styled.span`
 
 const Projects: React.FC = () => {
   const [expanded, setExpanded] = React.useState(false);
-  const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] =
+  const [isCompleteProjectPopupOpen, setCompleteProjectPopupOpen] =
   useState(false);
+  const [showProjectCard, setShowProjectCard] = useState(false);
+  const handleAddProject = () => {
+    setShowProjectCard(true);
+    setCompleteProjectPopupOpen(false);
+  };
+
 
   return (
     <Container>
@@ -91,7 +99,7 @@ const Projects: React.FC = () => {
           <DividerA />
           <RightAlignedButton 
             preset="default" 
-            onClick={() => setCompleteExperiencePopupOpen(true)}
+            onClick={() => setCompleteProjectPopupOpen(true)}
             label={
         <>
       <AddCSVG />
@@ -100,21 +108,39 @@ const Projects: React.FC = () => {
         }
       />
           <DividerB/>
+          {showProjectCard ? (
+            <SmallProjectCard
+            title="My Project1"
+            year="2023"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus adsjaldjalskjda asda"
+            avatars={[
+                { alt: "Remy Sharp", src: "/static/images/avatar/avatar1.jpg" },
+                { alt: "Travis Howard", src: "/static/images/avatar/avatar2.jpg" },
+                { alt: "Remy Sharp", src: "/static/images/avatar/avatar1.jpg" },
+                { alt: "Travis Howard", src: "/static/images/avatar/avatar2.jpg" },
+                { alt: "Remy Sharp", src: "/static/images/avatar/avatar1.jpg" },
+                { alt: "Travis Howard", src: "/static/images/avatar/avatar2.jpg" },
+            ]}
+        />
+
+          ) : (
           <ProjectsContainer>
             <SVGContainer>
               <AddProjectsSVG />
             </SVGContainer>
             <div>
-              <AddText onClick={() => setCompleteExperiencePopupOpen(true)}>Add</AddText> <ExperienceText>your first project</ExperienceText>
+              <AddText onClick={() => setCompleteProjectPopupOpen(true)}>Add</AddText> <ExperienceText>your first project</ExperienceText>
             </div>
           </ProjectsContainer>
+          )}
         </>
       )}
 
-      {isCompleteExperiencePopupOpen && (
+      {isCompleteProjectPopupOpen && (
         <AddProjectPopup
           title="Add project"
-          onClose={() => setCompleteExperiencePopupOpen(false)}
+          onClose={() => setCompleteProjectPopupOpen(false)}
+          onClick={handleAddProject}
         />
       )}  
     </Container>

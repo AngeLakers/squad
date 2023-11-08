@@ -8,7 +8,7 @@ import CustomButton from "@/ui/custom-button";
 import ProgressBar from "@/ui/progress-bar";
 import { Divider } from "@mui/material";
 import Experience from "@/ui/experience";
-
+import Skill from "@/ui/skill";
 import AboutYou from "@/ui/profile-setup/about-you";
 import Skills from "@/ui/profile-setup/skill";
 import Projects from "@/ui/projects";
@@ -128,7 +128,7 @@ export default function T2() {
             case ABOUT_YOU_LABEL:
                 return (<AboutYou />)
             case SKILL_LABEL:
-                return (<Skills />)
+                return (<Skill />)
             case EXPERIENCE_LABEL:
                 return (<Experience />)
             case PROJECTS_LABEL:
