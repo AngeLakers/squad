@@ -198,7 +198,7 @@ export default function T2() {
                 rMiddleButtonLabel="Back"
                 rRightButtonLabel="Next"
                 isButtonDisabled={false}
-
+                rightLink="/t2/unique_profile"
             />
 
         </>
