@@ -19,7 +19,7 @@ const UniqueProfile: React.FC = () => {
         />
         <Footer 
                 leftButtonLabel="Back"
-                leftLink=""
+                leftLink="/t2"
                 LeftButtonStyle="outlined"
                 rRightButtonLabel="Home"
                 rightLink=""
