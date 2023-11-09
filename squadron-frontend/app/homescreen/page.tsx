@@ -53,7 +53,7 @@ font-size: 24px;
 font-style: normal; 
 font-weight: 500;
 line-height: 32px;
-margin-left:20px;
+margin-left:150px;
 `;
 
 const Svgo=styled.svg`
