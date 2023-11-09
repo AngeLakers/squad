@@ -78,7 +78,7 @@ margin-right:10px;
 `;
 
 
-export default function Home() {
+export default function Homepage() {
   return (
     <>
    {/* <Displayy>
