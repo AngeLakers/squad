@@ -44,6 +44,10 @@ const mockTalentMenuItems = [
   ],
 ];
 
+const  Card1 = styled.div`
+display: flex;
+`;
+
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -52,7 +56,8 @@ const Card = styled.div`
   background-color: #ffffff;
   min-width: fit-content;
   margin-left:30px;
-  // min-width:100px;
+  // min-width:200px;
+  width:267px;
 
 
 `;
@@ -219,7 +224,8 @@ const SquadCard: React.FC<SquadCardProps> = ({
   const [showTalentSkills, setShowTalentSkills] = useState(false);
   
 
-  return (
+  return 
+    <Card1>
     <Card>
       {!hideHeader && (
         <>
@@ -336,6 +342,131 @@ const SquadCard: React.FC<SquadCardProps> = ({
       </SquadContainer>
       
     </Card>
+    
+    
+    
+    
+    
+    
+     <Card>
+      {!hideHeader && (
+        <>
+          <HeaderContainer>
+            <BadgeContainer>
+              {badgeTitles && badgeTitles.length > 0
+                ? badgeTitles.map((title, index) => (
+                    <CustomBadge
+                      key={index}
+                      preset={
+                        type === "project"
+                          ? "grey"
+                          : index === 0
+                          ? badgeColor
+                          : "blue"
+                      }
+                      icon={
+                        type === "project" ? null : badgeIcon && index === 0 ? (
+                          <TickSVG preset={badgeColor} />
+                        ) : null
+                      }
+                      label={title || ""}
+                    />
+                  ))
+                : null}
+            </BadgeContainer>
+            {type === "project" ? (
+              <ButtonContainerComponent
+                preset={ButtonContainerPresets.PROJECT}
+              />
+            ) : null}
+          </HeaderContainer>
+          <Divider />
+        </>
+      )}
+      <SquadContainer>
+        {!hideTitle && (
+          <SquadHeader>
+            <Heading>
+              <HeadingContainer>
+                <SuqadIcon> {icon && icon}</SuqadIcon>
+                <TitleContainer>
+                  {type === "project" ? (
+                    <>
+                      <SquadSubTitle>{squadSubTitle}</SquadSubTitle>
+                      <SquadTitle>{squadTitle}</SquadTitle>
+                    </>
+                  ) : (
+                    <>
+                      <SquadTitle>{squadTitle}</SquadTitle>
+                      <SquadSubTitle>{squadSubTitle}</SquadSubTitle>
+                    </>
+                  )}
+                </TitleContainer>
+              </HeadingContainer>
+              {type !== "project" ? (
+                <ButtonContainerComponent
+                  preset={buttonsPreset}
+                  button1Link={button1Link}
+                  onClick={onClick}
+                />
+              ) : null}
+            </Heading>
+            {squadDescription && (
+              <ShowMoreText
+                text={squadDescription}
+                showMoreLength={300}
+                fontSize={"14px"}
+                fontColor={"#4D5761"}
+                lineHeight={"20px"}
+                fontWeight={400}
+              />
+            )}
+          </SquadHeader>
+        )}
+        {type === "project" ? (
+          <ProjectRoles RolesData={data as string[]} />
+        ) : buttonsPreset === ButtonContainerPresets.TALENT ||
+          buttonsPreset === ButtonContainerPresets.MESSAGE ||
+          buttonsPreset === ButtonContainerPresets.REFER ? (
+          <>
+            <Divider />
+            <RoleInfo
+              hideTitle={true}
+              rate={rate}
+              rateColor={rateColor}
+              hoursPerWeek={hoursPerWeek}
+              hoursPerWeekColor={hoursPerWeekColor}
+              location={location}
+              locationColor={locationColor}
+              availability={availability}
+              availabilityColor={availabilityColor}
+              experience={experience}
+              experienceColor={experienceColor}
+            />
+            <Divider />
+            {showTalentSkills ? (
+              <TalentSkills
+                skillsData={data[0] as unknown as BadgeData[]}
+                toolsData={data[1] as unknown as BadgeData[]}
+                fontSize="14px"
+              />
+            ) : null}
+            <ShowMoreButton
+              onClick={() => setShowTalentSkills(!showTalentSkills)}
+            >
+              {showTalentSkills ? "See Less" : "See More"}
+              {showTalentSkills ? <ArrowUpSVG /> : <ArrowDownSVG />}
+            </ShowMoreButton>
+          </>
+        ) : (
+          <SquadTable type={type} data={data as Array<PersonData>} />
+        )}
+      </SquadContainer>
+      
+    </Card>
+    
+    
+    </Card1>
   );
 };
 
