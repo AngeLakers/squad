@@ -295,7 +295,7 @@ const Title = styled.h2`
 
 const AddButton = styled.button`
   padding: 0.5rem 1rem;
-  background-color: #4CAF50;  // 您可以选择您喜欢的颜色
+  background-color: #4CAF50;  
   color: white;
   border: none;
   cursor: pointer;
