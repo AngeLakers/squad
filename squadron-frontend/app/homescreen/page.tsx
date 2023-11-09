@@ -7,7 +7,7 @@
 // import { Community } from "@/ui/Community";
 // import { Community2 } from "@/ui/Community2";
 // import { Header } from "@/ui/Header";
-// import SquadCard from "@/ui/squad-card";
+// import SquadCard3 from "@/ui/squad-card3";
 // import styled from "styled-components";
 // const Display = styled.div`
 //   display: flex;
@@ -86,7 +86,7 @@
 //       < Displayyy>
 
 
-//    <SquadCard
+//    <SquadCard3
 //                         badgeTitles={['E-commerce', 'MVP']}
 //                         squadTitle='Name of the project'
 //                         squadSubTitle='Stir'
@@ -101,7 +101,7 @@
 //                         ]}
 //                     />
 
-// <SquadCard
+// <SquadCard3
 //                         badgeTitles={['E-commerce', 'MVP']}
 //                         squadTitle='Name of the project'
 //                         squadSubTitle='Stir'
