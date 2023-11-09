@@ -224,7 +224,7 @@ const SquadCard: React.FC<SquadCardProps> = ({
   const [showTalentSkills, setShowTalentSkills] = useState(false);
   
 
-  return 
+  return (
     <Card1>
     <Card>
       {!hideHeader && (
