@@ -8,7 +8,13 @@ import SocialMediaPopup from "@/ui/socialmedia-popup";
 import styled from "styled-components";
 import { LinkSVG } from "../svgs";
 
-import { gray900, mediumFontWeight, regularFontSize, regularLineHeight } from "@/styles/reuseParams";
+import {
+    gray900,
+    mediumFontWeight,
+    mediumFontSize,
+    mediumLineHeight,
+    gray200
+} from "@/styles/reuseParams";
 
 
 interface DividerProps {
@@ -20,8 +26,7 @@ const Divider = styledComponents.hr<DividerProps>`
     height: 1px;
     background-color: lightgray;
     border: none;
-    margin: ${props => props.margin || '15px 0'};
-    margin-top: ${props => props.marginTop || '15px'};
+    margin: 15px 0;
 `;
 
 
@@ -32,7 +37,6 @@ const PopupBody = styled.div`
     gap: 40px;
     width: 100%; 
     overflow-y: auto; 
-   
 `;
 
 const BodyForm = styled.div`
@@ -80,13 +84,19 @@ const CustomInput = styled.input`
         border: 1px solid #9daab6; 
     }
 `;
-
+const Container = styled.div`
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+`
 
 
 export default function AboutYou() {
 
     return (
-        <>
+        <Container>
             <CustomCard title="Profile picture & header" secondaryTitle="Update your photo and personal details here."
                 children={
                     <>
@@ -115,34 +125,36 @@ export default function AboutYou() {
 
                     </>
                 } />
-            <CustomCard title="Personal Questions" secondaryTitle="Update your photo and personal details here."
+            <CustomCard title="Personal Questions" secondaryTitle="Write a short introduction."
                 children={
                     <>
                         <Divider />
                         <CustomDropdownList
                             listName="Question 01"
                             color={gray900}
-                            fontSize={regularFontSize}
+                            fontSize={mediumFontSize}
                             fontWeight={mediumFontWeight}
-                            lineHeight={regularLineHeight}
+                            lineHeight={mediumLineHeight}
+                            borderColor={gray200}
+
                             items={["Lorem ipsum dolor sit amet consectetur.?", "Lorem ipsum dolor sit amet consectetur.?"]}
                         />
                         <CustomTextarea />
                         <CustomDropdownList
                             listName="Question 02"
                             color={gray900}
-                            fontSize={regularFontSize}
+                            fontSize={mediumFontSize}
                             fontWeight={mediumFontWeight}
-                            lineHeight={regularLineHeight}
+                            lineHeight={mediumLineHeight}
                             items={["Lorem ipsum dolor sit amet consectetur.?", "Lorem ipsum dolor sit amet consectetur.?"]}
                         />
                         <CustomTextarea />
                         <CustomDropdownList
                             listName="Question 03"
                             color={gray900}
-                            fontSize={regularFontSize}
+                            fontSize={mediumFontSize}
                             fontWeight={mediumFontWeight}
-                            lineHeight={regularLineHeight}
+                            lineHeight={mediumLineHeight}
                             items={["Lorem ipsum dolor sit amet consectetur.?", "Lorem ipsum dolor sit amet consectetur.?"]}
                         />
                         <CustomTextarea />
@@ -213,6 +225,6 @@ export default function AboutYou() {
                         </PopupBody>
                     </>
                 } />
-        </>
+        </Container>
     )
 }
