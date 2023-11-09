@@ -22,7 +22,7 @@ const UniqueProfile: React.FC = () => {
                 leftLink="/t2"
                 LeftButtonStyle="outlined"
                 rRightButtonLabel="Home"
-                rightLink=""
+                rightLink="/t2/profile_views"
                 isRLeftButtonVisible={false}
                 isRMiddleButtonVisible={false}
                 isButtonDisabled={false}  
