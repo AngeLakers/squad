@@ -30,10 +30,6 @@ display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: row;
-width:567px;
-margin-top: 30px;
-margin-bottom: 50px;
-margin-left:150px;
 `;
 
 
@@ -90,7 +86,7 @@ Newest matches
                         badgeTitles={['E-commerce', 'MVP']}
                         squadTitle='Name of the project'
                         squadSubTitle='Stir'
-                        squadDescription='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. morbi aliquet elit accumsan, nam faucibus. morbi aliquet elit accumsan, na...'
+                        squadDescription='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius facilisis arcu viverra elit pretium hendrerit habitant sapien. Vestibulum vel morbi aliquet elit accumsan, nam faucibus. morbi aliquet elit accumsan'
                         icon={<img src='https://s3-alpha-sig.figma.com/img/1dee/cc01/e5a8e10689abf5afcef62f37a9e78f64?Expires=1699833600&Signature=pJSJiuH9VAmfWKpruKL45yshriM2yANsPWQaPq8pKO0NzoTbnegeQ0oYCCj725-G6ckxRj8SXc2AbCNJjM8pkA-kYaeDsi5NcMuItIxr4g37tTHGdAA0JDSR~98Y9poR3uWa3Y5EvAoZXcLT5Zu-YA8aj98zBm4KMuxRdNn4xyiON5QPJ8GgZEQGtz258M5QE9Iqti4450YNDgXA4MGTpdqYh63eB9lR4sWGW9Lt-BLDnKXyBkQZmvpDTB1B07E~gvGSx3BS6wfwe49eS4CEFlCGfjPfaVpDVgLR~befG8c47IEJrwqvO-rFwKOQCmn~-lOymvh56Q9W1CXC0KN~Ww__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4' />}
                         type='project'
                         data={[
