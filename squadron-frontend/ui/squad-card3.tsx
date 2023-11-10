@@ -46,6 +46,23 @@ const mockTalentMenuItems = [
 
 const  Card1 = styled.div`
 display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: row;
+// margin-left:180px;
+// width:267px;
+min-width:1150px;
+`;
+
+const  Cardd = styled.div`
+margin-left:50px;
+// width:267px;
+border: 1px solid #e5e7eb;
+border-radius: 12px;
+background-color: #ffffff;
+margin-top: 30px;
+margin-bottom: 50px;
+width:567px;
 `;
 
 const Card = styled.div`
@@ -54,10 +71,12 @@ const Card = styled.div`
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   background-color: #ffffff;
-  min-width: fit-content;
+  // min-width: fit-content;
   margin-left:30px;
-  // min-width:200px;
-  width:267px;
+  width:567px;
+  margin-top: 30px;
+margin-bottom: 50px;
+  // min-width:267px;
 
 
 `;
@@ -348,7 +367,7 @@ const SquadCard: React.FC<SquadCardProps> = ({
     
     
     
-     <Card>
+     <Cardd>
       {!hideHeader && (
         <>
           <HeaderContainer>
@@ -463,9 +482,10 @@ const SquadCard: React.FC<SquadCardProps> = ({
         )}
       </SquadContainer>
       
-    </Card>
+    </Cardd>
     
     
+      
     </Card1>
   );
 };
