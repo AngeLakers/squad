@@ -22,7 +22,7 @@ min-width: 200px;
 `;
 const T3 =styled.div`
 display: flex;
-margin-top: 15px;
+margin-top: 20px;
 min-width: 300px;
 `;
 const Buttonh =styled.button`
