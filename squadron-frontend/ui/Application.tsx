@@ -54,15 +54,9 @@ export function Application() {
 <>
 
 
-<T>
-<Divider sx={{ width:1130}} />
-</T>
 
-<Titlea>
-<TitleA>
-  My applications
-  </TitleA>
-    </Titlea>
+
+
 
 
 <T>
