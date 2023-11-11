@@ -7,6 +7,9 @@ import { Wallet } from "@/ui/Wallet";
 import { Community } from "@/ui/Community";
 import { Community2 } from "@/ui/Community2";
 import { Header } from "@/ui/Header";
+import { Header3 } from "@/ui/Header3";
+import { Header4 } from "@/ui/Header4";
+import { Divider } from '@mui/material';
 import SquadCard3 from "@/ui/squad-card3";
 import styled from "styled-components";
 const Display = styled.div`
@@ -68,15 +71,19 @@ export default function Home() {
         <Header></Header>
       </Displayy>
 
+   <Displayy>
+<Divider sx={{ width:1130}} />
+</Displayy>
+      
+      < Displayy>
+    <Header4></Header4>
+    </Displayy>
       <Application></Application>
       
-      <Titlec> 
+    < Displayy>
+    <Header3></Header3>
+    </Displayy>
 
-{/* <Svgo width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="8" cy="8" r="8" fill="#FDB022"/>
-</Svgo> */}
-Newest matches
-  </Titlec>
       
       
       < Displayyy>
