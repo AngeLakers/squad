@@ -2,7 +2,7 @@
 import { Divider } from '@mui/material';
 import styled from 'styled-components';
 
-//加上width :1100px;
+
 const  Heada = styled.header`
 margin-bottom: 30px;
 
@@ -28,7 +28,7 @@ flex-direction: row;
 const T2 =styled.div`
 min-width: 200px;
 `;
-//删掉padding-right
+
 const T3 =styled.div`
 display: flex;
 
