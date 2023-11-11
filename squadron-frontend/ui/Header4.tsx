@@ -9,7 +9,7 @@ margin-bottom: 30px;
   margin-top: 50px;
   font-size: 20px;
 
-//  font-weight: bold;
+
    width :1100px;
    display: flex;
   align-items: center;
