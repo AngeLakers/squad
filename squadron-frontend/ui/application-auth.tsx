@@ -215,7 +215,7 @@ export default function AuthenticationForm({
     try {
       if (isLogin) {
         await loginUser({ email, password });
-        router.push("/homescreen");
+        router.push("/home");
         return;
       }
 
