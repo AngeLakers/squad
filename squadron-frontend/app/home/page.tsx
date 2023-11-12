@@ -602,7 +602,7 @@ export default function Home() {
           <SquadCardsContainer ref={squadCardsRef}>
             <SquadCardContainer>
               <SquadCard
-                badgeTitles={["Food & Beverage", "D2C"]}
+                badgeTitles={["Food & Beverage"]}
                 squadTitle={"Mobile App for Specialty Beverage Enthusiasts "}
                 squadSubTitle={"untappd"}
                 squadDescription="For all the wine snobs and craft beer connoisseurs like us, we’re building Untappd - a mobile app that lets people share and discover their favourite blends, brands and venues with their friends, while earning badges and rewards for exploring beverages of different styles and countries. ..."
@@ -619,7 +619,7 @@ export default function Home() {
             </SquadCardContainer>
             <SquadCardContainer>
               <SquadCard
-                badgeTitles={["Food & Beverage", "D2C"]}
+                badgeTitles={["Food & Beverage"]}
                 squadTitle={"Mobile App for Specialty Beverage Enthusiasts "}
                 squadSubTitle={"untappd"}
                 squadDescription="For all the wine snobs and craft beer connoisseurs like us, we’re building Untappd - a mobile app that lets people share and discover their favourite blends, brands and venues with their friends, while earning badges and rewards for exploring beverages of different styles and countries. ..."
@@ -636,7 +636,7 @@ export default function Home() {
             </SquadCardContainer>
             <SquadCardContainer>
               <SquadCard
-                badgeTitles={["Food & Beverage", "D2C"]}
+                badgeTitles={["D2C", "D2C"]}
                 squadTitle={"Mobile App for Specialty Beverage Enthusiasts "}
                 squadSubTitle={"untappd"}
                 squadDescription="For all the wine snobs and craft beer connoisseurs like us, we’re building Untappd - a mobile app that lets people share and discover their favourite blends, brands and venues with their friends, while earning badges and rewards for exploring beverages of different styles and countries. ..."
@@ -653,7 +653,7 @@ export default function Home() {
             </SquadCardContainer>
             <SquadCardContainer>
               <SquadCard
-                badgeTitles={["Food & Beverage", "D2C"]}
+                badgeTitles={["D2C"]}
                 squadTitle={"Mobile App for Specialty Beverage Enthusiasts "}
                 squadSubTitle={"untappd"}
                 squadDescription="For all the wine snobs and craft beer connoisseurs like us, we’re building Untappd - a mobile app that lets people share and discover their favourite blends, brands and venues with their friends, while earning badges and rewards for exploring beverages of different styles and countries. ..."
@@ -670,7 +670,7 @@ export default function Home() {
             </SquadCardContainer>
             <SquadCardContainer>
               <SquadCard
-                badgeTitles={["Food & Beverage", "D2C"]}
+                badgeTitles={["D2C"]}
                 squadTitle={"Mobile App for Specialty Beverage Enthusiasts "}
                 squadSubTitle={"untappd"}
                 squadDescription="For all the wine snobs and craft beer connoisseurs like us, we’re building Untappd - a mobile app that lets people share and discover their favourite blends, brands and venues with their friends, while earning badges and rewards for exploring beverages of different styles and countries. ..."
