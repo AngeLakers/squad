@@ -86,7 +86,7 @@ export function SideNav({ current, showHeading = false }: SideNavProps) {
   return (
     <Aside>
       <LogoContainer>
-        <Link href="/application" passHref>
+        <Link href="/home" passHref>
           <Logo
             src="https://uploads-ssl.webflow.com/64549cd879ac7b0ebb505519/647326278341277e7271ca40_Squadron%20Horizontal%20Lock%20Up%20Black%202.svg"
             alt="Squadron logo"
