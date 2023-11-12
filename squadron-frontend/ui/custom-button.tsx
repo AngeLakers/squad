@@ -73,6 +73,12 @@ const presets = {
     fontSize: "16px",
     lineHeight: "24px",
   },
+  yellow: {
+    backgroundColor: "#FFFAEB",
+    hoverColor: "#FFFAEB",
+    textColor: "#B54708",
+    borderColor: "#FEC84B",
+  },
   text: {
     backgroundColor: "transparent",
     hoverColor: "transparent",
@@ -102,9 +108,11 @@ export type PresetTypes =
   | "black"
   | "text"
   | "arrow"
-  | "avatar";
+  | "avatar"
+  | "yellow";
 export interface CustomButtonProps {
   label: React.ReactNode;
+  icon?: React.ReactNode;
   preset?: PresetTypes;
   onClick?: () => void;
   backgroundColor?: string;
@@ -125,6 +133,7 @@ export interface CustomButtonProps {
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
+  icon,
   label,
   preset,
   onClick,
@@ -137,6 +146,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   //console.log("styles:", styles);
   return (
     <CustomButtonStyled {...styles} onClick={isClickable ? onClick : undefined}>
+      {icon && icon}
       {label}
     </CustomButtonStyled>
   );
