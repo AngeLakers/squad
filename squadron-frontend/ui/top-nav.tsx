@@ -110,7 +110,8 @@ export const TopNav: React.FC<TopNavProps> = ({ NotificationComponent = null,  }
                 style={{
                   position: 'absolute',
                   left: `calc(${position.left}px - 22rem)`,
-                  top: `${position.top}px`
+                  top: `${position.top}px`,
+                  zIndex: 9999
                 }}>
               {NotificationComponent}
             </div>

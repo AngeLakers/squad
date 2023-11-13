@@ -38,7 +38,7 @@ const StyledTypography = styled(Typography)`
     color: gray;
   }
   &.text {
-    margin-top: 0.625rem;  // 从 10px 改为 0.625rem
+    margin-top: 0.625rem; 
   }
 `;
 

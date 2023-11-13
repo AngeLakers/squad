@@ -97,8 +97,8 @@ const Avatar = styled.img`
 
 const CompanyInfo = styled.div`
   display: flex;
-  flex-direction: column;  // stack children vertically
-  align-items: start;      // align children to the start (left for LTR languages)
+  flex-direction: column; 
+  align-items: start;      
 `;
 
 const CompanyName = styled.div`
