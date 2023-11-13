@@ -540,7 +540,6 @@ export function Ste2() {
                 <ChevronRight
                   alt="Chevron right"
                   src="https://cdn.animaapp.com/projects/652e101fa7335b45aa6388ca/releases/652e1188ebc8f085b8091452/img/chevron-right-10@2x.png"
-                  onClick={() => window.location.href = '/c4/proj_detail_custom'}
                 />
               </Frame5>
               <CollectingWrapper

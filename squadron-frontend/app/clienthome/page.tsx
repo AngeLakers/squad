@@ -1,18 +1,11 @@
 "use client";
 import React, { useRef } from "react";
-import { useState } from 'react';
 import Image from "next/image";
 import styled from "styled-components";
 import CustomButton from "@/ui/custom-button";
 import HomeImageSrc from "@/public/t1-homescreen.png";
 import { ComplexHeader } from "@/ui/complex-header";
 import SquadCustom from "@/ui/option-popup";
-import customizeImage from '../../public/customize.png';
-import worldWideWebImage from '../../public/world-wide-web.png';
-import mobilePhoneImage from '../../public/mobile-phone.png';
-import marketingImage from '../../public/marketing.png';
-import growthImage from '../../public/growth.png';
-import dataImage from '../../public/data.png';
 import TalentClientImage from "@/public/talent-client.png";
 import {
   ArrowLeftGreySVG,
@@ -608,15 +601,6 @@ const ScrollCardsContainer = styled.div`
 `;
 
 export default function Home() {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const icons = [
-    <Image src={customizeImage} alt="Custom Icon" width="32" height="32" />,
-    <Image src={worldWideWebImage} alt="Web Platform Icon" width="32" height="32" />,
-    <Image src={mobilePhoneImage} alt="Mobile Phone Icon" width="32" height="32" />,
-    <Image src={marketingImage} alt="Marketing Website Icon" width="32" height="32" />,
-    <Image src={growthImage} alt="Growth Icon" width="32" height="32" />,
-    <Image src={dataImage} alt="Data Icon" width="32" height="32" />
-  ];
   const squadsInFormationRef = useRef<HTMLDivElement | null>(null);
   const liveSquadsRef = useRef<HTMLDivElement | null>(null);
   const handleSquadScroll = (
@@ -648,7 +632,6 @@ export default function Home() {
               preset="default"
               icon={<CrossSVG />}
               label={"Create project"}
-              onClick={() => setModalOpen(true)}
             />
           </ButtonContainer>
         </Header>
@@ -947,21 +930,6 @@ export default function Home() {
           </StoryCardContainer>
         </StoryCard>
       </ContentContainer>
-      {isModalOpen && (
-        <SquadCustom
-          closeModal={() => {
-            setModalOpen(false);
-          }}
-          title={"Squad Presets"}
-          description={
-            "Select a preset to see recommended role appear, or build your custom squad from scratch. Don’t worry, you can always add or remove roles in the next step."
-          }
-          options={["Custom", "Web Platform", "Mobile App",
-            "Marketing Website", "Growth", "Data"]}
-          icons={icons}
-          link={(selectedOption) => selectedOption === "Custom" ? "/c4/proj_detail_custom" : "/c4/proj_detail_preset"}
-        />
-      )}
     </HomeContainer>
   );
 }

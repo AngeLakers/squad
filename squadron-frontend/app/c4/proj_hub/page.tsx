@@ -90,11 +90,6 @@ const rolesData = [
       title: "DevOps Engineer"
     }
   ];
-  
-const RoleCardWrapper = styled.div`
-  margin-bottom: 32px;
-`;
-
 
 const ProjectHub: React.FC = () => {
     const [activeTab, setActiveTab] = useState("Project Details");
@@ -185,7 +180,6 @@ const ProjectHub: React.FC = () => {
             keyDeliverables={['deliverable 1', 'deliverable 2', 'deliverable 3', 'deliverable 4', 'deliverable 5']}
         />
         <Text>Roles</Text>
-        <RoleCardWrapper>
         <RoleCard
             status={["lead role", "Open Role", "Accepting applications"]}
             roleLogoUrl='/icon/projectLogo.svg'
@@ -198,9 +192,7 @@ const ProjectHub: React.FC = () => {
             expectedHoursPerWeek={20}
             skills={["skill 1", "skill 2"]}
             tools={["tool 1", "tool 2", "tool 3"]} />
-        </RoleCardWrapper>
-        <RoleCardWrapper>
-        <RoleCard
+    <RoleCard
             status={["lead role", "Open Role", "Accepting applications"]}
             roleLogoUrl='/icon/projectLogo.svg'
             positionName='Front-End Developer'
@@ -212,10 +204,8 @@ const ProjectHub: React.FC = () => {
             expectedHoursPerWeek={20}
             skills={["skill 1", "skill 2"]}
             tools={["tool 1", "tool 2", "tool 3"]} />
-        </RoleCardWrapper>
             </>
         )}
-       
         {showSquad && (
         <>
             <CollectingBar/>
