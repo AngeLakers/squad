@@ -563,6 +563,7 @@ Squads in Formation
                 <ChevronRight
                   alt="Chevron right"
                   src="https://cdn.animaapp.com/projects/652e101fa7335b45aa6388ca/releases/652e1188ebc8f085b8091452/img/chevron-right-10@2x.png"
+                  onClick={() => window.location.href = '/c4/proj_hub'}
                 />
               </Frame5>
               <CollectingWrapper
@@ -596,6 +597,7 @@ Squads in Formation
                 <ChevronRight
                   alt="Chevron right"
                   src="https://cdn.animaapp.com/projects/652e101fa7335b45aa6388ca/releases/652e1188ebc8f085b8091452/img/chevron-right-10@2x.png"
+                  onClick={() => window.location.href = '/c5/application'}
                 />
               </Frame6>
               <HiringWrapper
