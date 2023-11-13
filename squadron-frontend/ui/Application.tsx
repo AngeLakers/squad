@@ -13,6 +13,15 @@ width:1130px;
 height: 350px;
 
 `;
+
+const  Titlea = styled.div`
+
+   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+`;
+
 const TitleA = styled.div`
   margin-top: 50px;
   font-size: 20px;
@@ -45,14 +54,9 @@ export function Application() {
 <>
 
 
-<T>
-<Divider sx={{ width:1130}} />
-</T>
 
 
-<TitleA>
-  My applications
-  </TitleA>
+
 
 
 <T>

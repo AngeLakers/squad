@@ -32,8 +32,10 @@ interface FooterProps {
     onRLeftClick?: () => void;
     onRMiddleClick?: () => void;
     onRRightClick?: () => void;
+    LeftButtonStyle?: PresetTypes;
     rLeftButtonStyle?: PresetTypes;
     rMiddleButtonStyle?: PresetTypes;
+    leftLink?: string;
     rightLink?: string;
     isRLeftButtonVisible?: boolean;
     isRMiddleButtonVisible?: boolean;
@@ -52,8 +54,10 @@ const Footer: React.FC<FooterProps> = ({
     onRLeftClick,
     onRMiddleClick,
     onRRightClick,
+    LeftButtonStyle = "text",
     rLeftButtonStyle = "text",
     rMiddleButtonStyle = "outlined", 
+    leftLink = "#",
     rightLink = "#",
     isRLeftButtonVisible = true,
     isRMiddleButtonVisible = true,
@@ -64,7 +68,14 @@ const Footer: React.FC<FooterProps> = ({
   }) => {
     return (
       <FooterDiv>
-        <CustomButton preset="text" onClick={onLeftClick} label={leftButtonLabel} />
+        <a href={leftLink}> 
+          <CustomButton 
+            preset={LeftButtonStyle}
+            width="144px"
+            onClick={onLeftClick} 
+            label={leftButtonLabel}
+          />
+        </a>
         <RightButtonGroup>
         {isRLeftButtonVisible && 
           <CustomButton preset={rLeftButtonStyle} width="144px" onClick={onRLeftClick} label={rLeftButtonLabel} textColor={rLeftButtonTextColor}/>}

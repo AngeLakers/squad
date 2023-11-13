@@ -41,7 +41,7 @@ border: 1px solid #e0e0e0;
 const Paper3 = styled(Paper)`
 width: 200px;
 height: 150px;
-margin-top: 20px,
+margin-top: 20px;
 background-image: url("/images/04.png");
 background-size: cover;
 background-repeat: no-repeat;

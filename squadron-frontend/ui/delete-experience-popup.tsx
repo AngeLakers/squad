@@ -3,6 +3,11 @@ import PopupComponent from "./popup";
 import styled from "styled-components";
 import Button from '@mui/material/Button';
 import CustomButton from "./custom-button";
+import {
+    gray200,
+    gray300,
+    gray700,
+  } from "@/styles/reuseParams";
 
 const ContentContainer = styled.div`
     display: flex;
@@ -31,6 +36,7 @@ const ButtonContainer = styled.div`
     display: flex;
     justify-content: space-around;
     width: 100%;
+    gap: 12px;
     margin-top:24px;
 `;
 
@@ -45,7 +51,7 @@ interface DeleteExperiencePopupProps {
 
 const DeleteExperiencePopup: React.FC<DeleteExperiencePopupProps> = ({ onClose, onDelete }) => {
     return (
-        <PopupComponent onClose={onClose}  width="30%" maxHeightPercent={0.2} minWidth="300px" minHeight="150px" >
+        <PopupComponent onClose={onClose}  width="400px" maxHeightPercent={0.2} minWidth="300px" minHeight="150px" >
             <ContentContainer>
                 <Icon><svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="4" y="4" width="48" height="48" rx="24" fill="#FEE4E2"/>
@@ -56,8 +62,23 @@ const DeleteExperiencePopup: React.FC<DeleteExperiencePopupProps> = ({ onClose, 
                 <Title>Delete</Title>
                 <Description>Are you sure you want to delete this expererience? This action cannot be undone.</Description>
                 <ButtonContainer>
-                    <CustomButton label="Cancel" preset="default" onClick={onClose} borderColor="#D0D5DD" padding="10px 24px" width="45vw" margin="0 8px 0 0" backgroundColor="white" textColor="#344054" hoverColor="none"/>
-                    <CustomButton label="Delete" preset="default" onClick={onDelete} padding="10px 24px" width="45vw" backgroundColor="#D92D20"/>
+                    <CustomButton 
+                        label="Cancel" 
+                        preset="outlined" 
+                        width="170px"
+                        onClick={onClose} 
+                        hoverColor={gray200}
+                        textColor={gray700}
+                        borderColor={gray300} 
+                        />
+                    <CustomButton 
+                        label="Delete" 
+                        preset="default"
+                        hoverColor="#f0948d"
+                        width="170px" 
+                        onClick={onDelete}                  
+                        backgroundColor="#D92D20"
+                        />
                 </ButtonContainer>
             </ContentContainer>
         </PopupComponent>

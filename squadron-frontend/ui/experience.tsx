@@ -5,6 +5,7 @@ import CustomButton from "./custom-button";
 import { useState } from "react";
 import AddExperiencePopup from "@/ui/complete-profile-addexperience-popup";
 import { AddExperienceSVG, AddBSVG, AddCSVG, MinusSVG } from "@/ui/svgs";
+import ExperienceCard from "./profile/Experience_Card";
 
 const Container = styled.div`
   border: 1px solid #E5E7EB;
@@ -12,6 +13,7 @@ const Container = styled.div`
   padding: 32px 40px;
   position: relative;
   transition: all 0.3s;
+  background-color: white;
 `;
 
 const Title = styled.div`
@@ -58,6 +60,7 @@ const ExperienceContainer = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 5px;
+
 `;
 
 const SVGContainer = styled.div`
@@ -77,6 +80,12 @@ const Experience: React.FC = () => {
   const [expanded, setExpanded] = React.useState(false);
   const [isCompleteExperiencePopupOpen, setCompleteExperiencePopupOpen] =
   useState(false);
+  const [showExperienceCard, setShowExperienceCard] = useState(false);
+  const handleAddExperience = () => {
+    setShowExperienceCard(true);
+    setCompleteExperiencePopupOpen(false);
+  };
+
 
   return (
     <Container>
@@ -100,7 +109,17 @@ const Experience: React.FC = () => {
         }
       />
           <DividerB/>
-          <ExperienceContainer>
+          {showExperienceCard ? (
+            <ExperienceCard
+              jobTitle="Software Engineer"
+              direction="Frontend"
+              avatarUrl="/google.svg"
+              companyName="Tech Co."
+              timePeriod="June 2020 - Present"
+              description="Working on creating innovative solutions using React and TypeScript 11111 and 322222222."
+            />
+          ) : (
+            <ExperienceContainer>
             <SVGContainer>
               <AddExperienceSVG />
             </SVGContainer>
@@ -108,6 +127,7 @@ const Experience: React.FC = () => {
               <AddText onClick={() => setCompleteExperiencePopupOpen(true)}>Add</AddText> <ExperienceText>your first experience</ExperienceText>
             </div>
           </ExperienceContainer>
+          )}
         </>
       )}
 
@@ -115,6 +135,7 @@ const Experience: React.FC = () => {
         <AddExperiencePopup
           title="Add experience"
           onClose={() => setCompleteExperiencePopupOpen(false)}
+          onClick={handleAddExperience}
         />
       )}  
     </Container>

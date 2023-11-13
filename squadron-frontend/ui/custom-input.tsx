@@ -6,8 +6,10 @@ type InputType = 'text' | 'select' | 'searchableSelect';
 
 interface CustomInputProps {
   title: string;
+  showTitle?: boolean;
   type: InputType;
   options?: string[];  // For select and searchableSelect
+  onChange?: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => void; 
   titleFontSize?: string;
   titleFontWeight?: string;
   titleColor?: string;
@@ -68,8 +70,10 @@ const StyledSelect = StyledInput.withComponent('select');
 
 const CustomInput: React.FC<CustomInputProps> = ({ 
     title, 
+    showTitle = true,
     type, 
-    options, 
+    options,
+    onChange,
     titleFontSize, 
     titleFontWeight, 
     titleColor, 
@@ -87,12 +91,15 @@ const CustomInput: React.FC<CustomInputProps> = ({
         case 'text':
             return (
                 <div>
-                    <Title 
-                      fontSize={titleFontSize} 
-                      fontWeight={titleFontWeight} 
-                      color={titleColor}>
-                        {title || ' '}
-                    </Title>
+                    {showTitle && (
+                        <Title 
+                            fontSize={titleFontSize} 
+                            fontWeight={titleFontWeight} 
+                            color={titleColor}>
+                            {title}
+                            
+                        </Title>
+                    )}
                     <StyledInput 
                       type="text" 
                       borderColor={borderColor} 
@@ -104,14 +111,22 @@ const CustomInput: React.FC<CustomInputProps> = ({
                       fontSize={inputTextSize}
                       fontWeight={inputTextWeight}
                       placeholder={placeholder}
+                      onChange={onChange}
                      />
                 </div>
             );
         case 'select':
             return (
                 <div>
-                    <Title fontSize={titleFontSize} fontWeight={titleFontWeight} color={titleColor}>{title}</Title>
-                    <StyledSelect borderColor={borderColor} borderRadius={borderRadius} height={inputHeight} width={inputWidth}>
+                    {showTitle && (
+                        <Title 
+                            fontSize={titleFontSize} 
+                            fontWeight={titleFontWeight} 
+                            color={titleColor}>
+                            {title}
+                        </Title>
+                    )}
+                    <StyledSelect borderColor={borderColor} borderRadius={borderRadius} height={inputHeight} width={inputWidth} onChange={onChange}>
                         {options?.map(option => <option key={option}>{option}</option>)}
                     </StyledSelect>
                 </div>
@@ -120,8 +135,15 @@ const CustomInput: React.FC<CustomInputProps> = ({
             const id = `${title}-list`;
             return (
                 <div>
-                    <Title fontSize={titleFontSize} fontWeight={titleFontWeight} color={titleColor}>{title}</Title>
-                    <StyledInput list={id} borderColor={borderColor} borderRadius={borderRadius} height={inputHeight} width={inputWidth} />
+                    {showTitle && (
+                        <Title 
+                            fontSize={titleFontSize} 
+                            fontWeight={titleFontWeight} 
+                            color={titleColor}>
+                            {title}
+                        </Title>
+                    )}
+                    <StyledInput list={id} borderColor={borderColor} borderRadius={borderRadius} height={inputHeight} width={inputWidth} onChange={onChange}/>
                     <datalist id={id}>
                         {options?.map(option => <option key={option} value={option} />)}
                     </datalist>
