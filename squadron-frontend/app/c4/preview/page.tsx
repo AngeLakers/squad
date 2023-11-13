@@ -22,6 +22,10 @@ const Text = styled.p`
   font-size: 24px;
 `;
 
+const RoleCardWrapper = styled.div`
+  margin-bottom: 32px;
+`;
+
 const Preview: React.FC = () => {
   const handleBackClick = () => {
     window.history.back();
@@ -50,6 +54,7 @@ const Preview: React.FC = () => {
           keyDeliverables={['deliverable 1', 'deliverable 2', 'deliverable 3', 'deliverable 4', 'deliverable 5']}
         />
       <Text>Apply for a Role</Text>
+      <RoleCardWrapper>
       <RoleCard
           status={["lead role", "Open Role", "Accepting applications"]}
           roleLogoUrl='/icon/projectLogo.svg'
@@ -62,7 +67,9 @@ const Preview: React.FC = () => {
           expectedHoursPerWeek={20}
           skills={["skill 1", "skill 2"]}
           tools={["tool 1", "tool 2", "tool 3"]} />
-    <RoleCard
+      </RoleCardWrapper>
+      <RoleCardWrapper>
+      <RoleCard
           status={["lead role", "Open Role", "Accepting applications"]}
           roleLogoUrl='/icon/projectLogo.svg'
           positionName='Front-End Developer'
@@ -74,6 +81,7 @@ const Preview: React.FC = () => {
           expectedHoursPerWeek={20}
           skills={["skill 1", "skill 2"]}
           tools={["tool 1", "tool 2", "tool 3"]} />
+      </RoleCardWrapper>
     </InnerContainer>
     <Footer onRMiddleClick={handleBackClick} isButtonDisabled={false} rightLink='/c4/proj_live'/>
     </Container>
