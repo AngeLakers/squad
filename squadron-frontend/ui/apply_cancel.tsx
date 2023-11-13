@@ -6,6 +6,11 @@ import { ReactNode } from 'react';
 import CustomButton from "./custom-button";
 import cancelIcon from "../public/cancel.png";
 import Image from "next/image";
+import {
+    gray200,
+    gray300,
+    gray700,
+  } from "@/styles/reuseParams";
 
 const ContentContainer = styled.div`
     display: flex;
@@ -68,25 +73,20 @@ const ApplyCancelPopup: React.FC<ApplyCancelProps> = ({
                     <a href="/t5_proj_apply/projectView">
                     <CustomButton 
                         label='Cancel application'
-                        backgroundColor="#FFFFFF"
-                        textColor="#384250"
-                        borderColor="#D2D6DB" 
-                        onClick={onClose} 
-                        width= '170px'
-                        height= '44px'
-                        padding='10px, 18px, 10px, 18px'
+                        preset="outlined"
+                        hoverColor={gray200}
+                        textColor={gray700}
+                        borderColor={gray300} 
+                        onClick={onClose}
                     />
                     </a>
                     {/*to do: complete the function save as draft*/}
                     <a href="/t5_proj_apply/projectView">
                         <CustomButton 
                             label='Save as draft' 
-                            backgroundColor="#4B48EC"
-                            textColor="#FFFFFF"
-                            borderColor="#4B48EC"
+                            preset="default"
                             width= '170px'
-                            height= '44px'
-                            padding='10px, 18px, 10px, 18px'
+                            borderColor="#4D5761"
                             onClick={onClose}
                         />
                     </a>

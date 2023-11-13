@@ -1,4 +1,4 @@
-import React, {useState}from "react";
+import React, { useState } from "react";
 import PopupComponent from "./popup";
 import styled from "styled-components";
 import CustomTextarea from "./customtextarea";
@@ -7,19 +7,19 @@ import { LinkSVG } from "./svgs";
 
 
 import {
-  basewhite,
-  gray200,
-  gray300,
-  gray600,
-  gray700,
-  primary600,
-  regularFontSize,
-  titleFontSize,
-  regularFontWeight,
-  mediumFontWeight,
-  regularLineHeight,
-  largeLineHeight,
-  titleFontWeight,
+    basewhite,
+    gray200,
+    gray300,
+    gray600,
+    gray700,
+    primary600,
+    regularFontSize,
+    titleFontSize,
+    regularFontWeight,
+    mediumFontWeight,
+    regularLineHeight,
+    largeLineHeight,
+    titleFontWeight,
 } from "@/styles/reuseParams";
 
 
@@ -137,72 +137,72 @@ const ButtonContainer = styled.div`
 `;
 
 interface SocialMediaProps {
-  onClose: () => void;
+    onClose: () => void;
 }
 
 const SocialMediaPopup: React.FC<SocialMediaProps> = ({ onClose }) => {
 
 
-  return (
-    <>
-        <PopupComponent onClose={onClose} width="432px" maxHeightPercent={0.1}>
-          <Container>
-            <PopupHeader>
-              <Title>Social Media</Title>
-              <Description>Info of this screen</Description>
-            </PopupHeader>
-            
-            <Divider />
-            
-            <PopupBody>
-                <BodyForm>
-                  <InputContainer>
-                    <InputWrapper>
-                      <InputLabel>LinkedIn</InputLabel>
-                      <CustomInput type="text"/>
-                      <IconWrapper><LinkSVG /></IconWrapper>
-                    </InputWrapper>
-                  </InputContainer>
+    return (
+        <>
+            <PopupComponent onClose={onClose} width="432px" maxHeightPercent={0.1}>
+                <Container>
+                    <PopupHeader>
+                        <Title>Social Media</Title>
+                        <Description>Info of this screen</Description>
+                    </PopupHeader>
 
-                  <InputContainer>
-                    <InputWrapper>
-                      <InputLabel>Personal website</InputLabel>
-                      <CustomInput type="text"/>
-                      <IconWrapper><LinkSVG /></IconWrapper>
-                    </InputWrapper>
-                  </InputContainer>
+                    <Divider />
 
-                    <InputContainer>
-                        <InputWrapper>
-                        <InputLabel>Github (optional)</InputLabel>
-                        <CustomInput type="text"/>
-                        <IconWrapper><LinkSVG /></IconWrapper>
-                        </InputWrapper>
-                    </InputContainer>
+                    <PopupBody>
+                        <BodyForm>
+                            <InputContainer>
+                                <InputWrapper>
+                                    <InputLabel>LinkedIn</InputLabel>
+                                    <CustomInput type="text" />
+                                    <IconWrapper><LinkSVG /></IconWrapper>
+                                </InputWrapper>
+                            </InputContainer>
 
-                    <InputContainer>
-                        <InputWrapper>
-                        <InputLabel>Dribbble (optional)</InputLabel>
-                        <CustomInput type="text"/>
-                        <IconWrapper><LinkSVG /></IconWrapper>
-                        </InputWrapper>
-                    </InputContainer>
+                            <InputContainer>
+                                <InputWrapper>
+                                    <InputLabel>Personal website</InputLabel>
+                                    <CustomInput type="text" />
+                                    <IconWrapper><LinkSVG /></IconWrapper>
+                                </InputWrapper>
+                            </InputContainer>
 
-                    <InputContainer>
-                        <InputWrapper>
-                        <InputLabel>Behance</InputLabel>
-                        <CustomInput type="text"/>
-                        <IconWrapper><LinkSVG /></IconWrapper>
-                        </InputWrapper>
-                    </InputContainer>
+                            <InputContainer>
+                                <InputWrapper>
+                                    <InputLabel>Github (optional)</InputLabel>
+                                    <CustomInput type="text" />
+                                    <IconWrapper><LinkSVG /></IconWrapper>
+                                </InputWrapper>
+                            </InputContainer>
 
-                    <InputContainer>
-                        <InputWrapper>
-                        <InputLabel>Stack Overflow</InputLabel>
-                        <CustomInput type="text"/>
-                        <IconWrapper><LinkSVG /></IconWrapper>
-                        </InputWrapper>
-                    </InputContainer>
+                            <InputContainer>
+                                <InputWrapper>
+                                    <InputLabel>Dribbble (optional)</InputLabel>
+                                    <CustomInput type="text" />
+                                    <IconWrapper><LinkSVG /></IconWrapper>
+                                </InputWrapper>
+                            </InputContainer>
+
+                            <InputContainer>
+                                <InputWrapper>
+                                    <InputLabel>Behance</InputLabel>
+                                    <CustomInput type="text" />
+                                    <IconWrapper><LinkSVG /></IconWrapper>
+                                </InputWrapper>
+                            </InputContainer>
+
+                            <InputContainer>
+                                <InputWrapper>
+                                    <InputLabel>Stack Overflow</InputLabel>
+                                    <CustomInput type="text" />
+                                    <IconWrapper><LinkSVG /></IconWrapper>
+                                </InputWrapper>
+                            </InputContainer>
 
                     <InputContainer>
                         <InputWrapper>
@@ -218,16 +218,15 @@ const SocialMediaPopup: React.FC<SocialMediaProps> = ({ onClose }) => {
                 <ButtonContainer>
                   <CustomButton
                     label="Cancel"
-                    backgroundColor="#FFFFFF"
-                    textColor="#384250"
-                    borderColor="#D2D6DB"      
+                    preset="outlined"
+                    hoverColor={gray200}
+                    textColor={gray700}
+                    borderColor={gray300}       
                     onClick={onClose}
                   />
                   <CustomButton
                     label="Update"
-                    backgroundColor="#4B48EC"
-                    textColor="#FFFFFF"
-                    borderColor="#4B48EC"  
+                    preset="default"  
                     onClick={onClose} 
                   />         
                 </ButtonContainer>

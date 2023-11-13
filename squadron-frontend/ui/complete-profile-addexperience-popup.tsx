@@ -124,6 +124,7 @@ const ButtonContainer = styled.div`
 `;
 interface AddExperiencePopupProps {
     onClose: () => void;
+    onClick?: () => void;
     showDivider?: boolean;
     icon?: ReactNode;
     title: string;
@@ -131,6 +132,7 @@ interface AddExperiencePopupProps {
 
 const AddExperiencePopup: React.FC<AddExperiencePopupProps> = ({
     onClose,
+    onClick,
     showDivider = true,
     icon,
     title 
@@ -357,10 +359,8 @@ const AddExperiencePopup: React.FC<AddExperiencePopupProps> = ({
                         ></CustomButton>
                         <CustomButton
                             label="Add"
-                            preset="outlined"
-                            backgroundColor={primary600}
-                            textColor={basewhite}
-                            borderColor={primary600}
+                            preset="default"
+                            onClick={onClick}
                         ></CustomButton>
                     </ButtonContainer>
                 </PopupFooter>

@@ -1,5 +1,4 @@
-
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import {
   FlashSVG,
@@ -15,7 +14,7 @@ import {
 import Link from "next/link";
 
 import DropdownButton from "./dropdown-button";
-import {Button, Popover} from "@mui/material";
+import { Button, Popover } from "@mui/material";
 import NotificationBox from "@/ui/notification-message";
 
 const Nav = styled.nav`
@@ -24,8 +23,9 @@ const Nav = styled.nav`
   align-items: center;
   justify-content: space-between;
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
   padding: 16px 32px 16px 32px;
+  height: 76px;
 `;
 
 const SearchBar = styled.input`
@@ -63,18 +63,18 @@ const AvatarImage = styled.img`
   min-width: 40px;
 `;
 
-
-
-
 type TopNavProps = {
   NotificationComponent?: React.ReactNode;
 };
 
-
-
-export const TopNav: React.FC<TopNavProps> = ({ NotificationComponent = null,  }) => {
+export const TopNav: React.FC<TopNavProps> = ({
+  NotificationComponent = null,
+}) => {
   const [showNotification, setShowNotification] = useState(false);
-  const [position, setPosition] = useState<{left: number, top: number} | null>(null);
+  const [position, setPosition] = useState<{
+    left: number;
+    top: number;
+  } | null>(null);
   const menuChatRef = useRef<HTMLAnchorElement | null>(null);
 
   useEffect(() => {
@@ -90,7 +90,6 @@ export const TopNav: React.FC<TopNavProps> = ({ NotificationComponent = null,  }
     setShowNotification(!showNotification);
   };
 
-
   return (
     <Nav>
       <SearchContainer>
@@ -99,10 +98,11 @@ export const TopNav: React.FC<TopNavProps> = ({ NotificationComponent = null,  }
       </SearchContainer>
       <MenuContainer>
         <Link
-            href={"#"}
-            onClick={() => setShowNotification(!showNotification)}
-            ref={menuChatRef}
-            id="chatLink">
+          href={"#"}
+          onClick={() => setShowNotification(!showNotification)}
+          ref={menuChatRef}
+          id="chatLink"
+        >
           <MenuChatSVG />
         </Link>
         {showNotification && position && (
@@ -115,9 +115,8 @@ export const TopNav: React.FC<TopNavProps> = ({ NotificationComponent = null,  }
                 }}>
               {NotificationComponent}
             </div>
+
         )}
-
-
 
         <Link href={"#"}>
           <MenuStarSVG />
@@ -132,7 +131,6 @@ export const TopNav: React.FC<TopNavProps> = ({ NotificationComponent = null,  }
           menuItems={mockMenuItems}
         />
       </MenuContainer>
-
     </Nav>
   );
 };

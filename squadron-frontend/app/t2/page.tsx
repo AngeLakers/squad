@@ -8,11 +8,12 @@ import CustomButton from "@/ui/custom-button";
 import ProgressBar from "@/ui/progress-bar";
 import { Divider } from "@mui/material";
 import Experience from "@/ui/experience";
-
+import Skill from "@/ui/skill";
 import AboutYou from "@/ui/profile-setup/about-you";
 import Skills from "@/ui/profile-setup/skill";
 import Projects from "@/ui/projects";
 import FinerDetails from "@/ui/profile-setup/finer-details";
+import FinnerDetail from "@/ui/finner-detail";
 
 const ABOUT_YOU_LABEL = "About You";
 const SKILL_LABEL = "Skill";
@@ -31,6 +32,7 @@ const Mainbody = styled.div`
     justify-content: space-between;
 `
 const ProfileNavContainer = styled.div`
+    min-width: 384px;
     width: 31%;
     height: 497px;
     padding: 24px;
@@ -83,8 +85,8 @@ const ProfileNavButton = styled.div<ProfileNavButtonProps>`
     `}
 `
 const ProfileSetupContainer = styled.div`
+    min-width: 800px;
     width: 65%;
-    // border: 2px solid red;
     box-sizing: border-box;
 `
 
@@ -128,13 +130,15 @@ export default function T2() {
             case ABOUT_YOU_LABEL:
                 return (<AboutYou />)
             case SKILL_LABEL:
-                return (<Skills />)
+                return (<Skill />)
             case EXPERIENCE_LABEL:
                 return (<Experience />)
             case PROJECTS_LABEL:
                 return (<Projects />)
             case FINER_DETAILS_LABEL:
-                return (<FinerDetails />)
+                return (<FinnerDetail 
+                //rewrite the container style in finner-detail.tsx
+                />)
             default:
                 console.error("Unexpected value: " + section);
                 break;
@@ -194,7 +198,7 @@ export default function T2() {
                 rMiddleButtonLabel="Back"
                 rRightButtonLabel="Next"
                 isButtonDisabled={false}
-
+                rightLink="/t2/unique_profile"
             />
 
         </>

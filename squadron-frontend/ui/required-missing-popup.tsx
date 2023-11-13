@@ -4,7 +4,11 @@ import styled from "styled-components";
 import CustomButton from "./custom-button";
 import CustomBadge from "./custom-badge";
 //import StarBorderSVG from "./icons/star-border.svg";
-
+import {
+  gray200,
+  gray300,
+  gray700,
+} from "@/styles/reuseParams";
 
 
 const Container = styled.div`
@@ -103,16 +107,15 @@ const RequiredMissingPopup: React.FC<RequiredMissingProps> = ({
         <ButtonContainer>
           <CustomButton
             label={noRequiredButtonLabel}
-            backgroundColor="#FFFFFF"
-            textColor="#384250"
-            borderColor="#D2D6DB" 
+            preset="outlined"
+            hoverColor={gray200}
+            textColor={gray700}
+            borderColor={gray300} 
             onClick={onClose}
           />
           <CustomButton
             label={addRequiredButtonLabel}
-            backgroundColor="#4B48EC"
-            textColor="#FFFFFF"
-            borderColor="#4B48EC"
+            preset="default"
             onClick={onClose}
             //todo: update skills in backend
           />         

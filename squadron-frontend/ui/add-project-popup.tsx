@@ -126,6 +126,7 @@ const ButtonContainer = styled.div`
 
 interface AddProjectPopupProps {
     onClose: () => void;
+    onClick?: () => void;
     showDivider?: boolean;
     icon?: ReactNode;
     title: string;
@@ -133,6 +134,7 @@ interface AddProjectPopupProps {
 
 const AddProjectPopup: React.FC<AddProjectPopupProps> = ({
     onClose,
+    onClick,
     showDivider = true,
     icon,
     title
@@ -305,10 +307,8 @@ const AddProjectPopup: React.FC<AddProjectPopupProps> = ({
                         ></CustomButton>
                         <CustomButton
                             label="Add project"
-                            preset="outlined"
-                            backgroundColor={primary600}
-                            textColor={basewhite}
-                            borderColor={primary600}
+                            preset="default"
+                            onClick={onClick}
                         ></CustomButton>
                     </ButtonContainer>
                 </PopupFooter>
